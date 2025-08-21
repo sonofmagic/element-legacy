@@ -30,7 +30,8 @@
     "test": "npm run lint && npm run build:theme && cross-env CI_ENV=/dev/ BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test:watch": "npm run build:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
     "overwrite": "tsx scripts/overwrite",
-    "format:css": "prettier ./lib-before/theme-chalk/*.css --write"
+    "format:lib-before:css": "prettier ./lib-before/theme-chalk/*.css --write",
+    "format:lib:css": "prettier ./lib/theme-chalk/*.css --write"
   },
   "faas": [
     {
@@ -76,6 +77,8 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
+    "@types/gulp-postcss": "^8.0.6",
+    "@types/gulp-sass": "^5.0.4",
     "@vue/component-compiler-utils": "^2.6.0",
     "algoliasearch": "^3.24.5",
     "babel-cli": "^6.26.0",
@@ -108,6 +111,7 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-cssmin": "^0.2.0",
+    "gulp-postcss": "^10.0.0",
     "gulp-sass": "6.0.1",
     "highlight.js": "^9.3.0",
     "html-webpack-plugin": "^3.2.0",
@@ -130,7 +134,8 @@
     "mocha": "^6.0.2",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "pathe": "^2.0.3",
-    "postcss": "^7.0.39",
+    "postcss": "^8.5.6",
+    "postcss-discard-comments": "^7.0.4",
     "prettier": "^3.6.2",
     "progress-bar-webpack-plugin": "^1.11.0",
     "rimraf": "^2.5.4",

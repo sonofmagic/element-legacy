@@ -1,273 +1,3 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
---------------------------*/
-/* Slider
---------------------------*/
-/* Steps
---------------------------*/
-/* Menu
---------------------------*/
-/* Rate
---------------------------*/
-/* DatePicker
---------------------------*/
-/* Loading
---------------------------*/
-/* Scrollbar
---------------------------*/
-/* Carousel
---------------------------*/
-/* Collapse
---------------------------*/
-/* Transfer
---------------------------*/
-/* Header
-  --------------------------*/
-/* Footer
---------------------------*/
-/* Main
---------------------------*/
-/* Timeline
---------------------------*/
-/* Backtop
---------------------------*/
-/* Link
---------------------------*/
-/* Calendar
---------------------------*/
-/* Form
--------------------------- */
-/* Avatar
---------------------------*/
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton 
---------------------------*/
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
---------------------------*/
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
---------------------------*/
-/* Slider
---------------------------*/
-/* Steps
---------------------------*/
-/* Menu
---------------------------*/
-/* Rate
---------------------------*/
-/* DatePicker
---------------------------*/
-/* Loading
---------------------------*/
-/* Scrollbar
---------------------------*/
-/* Carousel
---------------------------*/
-/* Collapse
---------------------------*/
-/* Transfer
---------------------------*/
-/* Header
-  --------------------------*/
-/* Footer
---------------------------*/
-/* Main
---------------------------*/
-/* Timeline
---------------------------*/
-/* Backtop
---------------------------*/
-/* Link
---------------------------*/
-/* Calendar
---------------------------*/
-/* Form
--------------------------- */
-/* Avatar
---------------------------*/
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton 
---------------------------*/
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
---------------------------*/
 .el-step {
   position: relative;
   -ms-flex-negative: 1;
@@ -287,7 +17,8 @@
   flex-grow: 0;
 }
 
-.el-step:last-of-type .el-step__main, .el-step:last-of-type .el-step__description {
+.el-step:last-of-type .el-step__main,
+.el-step:last-of-type .el-step__description {
   padding-right: 0;
 }
 
@@ -301,23 +32,23 @@
 }
 
 .el-step__head.is-wait {
-  color: #C0C4CC;
-  border-color: #C0C4CC;
+  color: #c0c4cc;
+  border-color: #c0c4cc;
 }
 
 .el-step__head.is-success {
-  color: #67C23A;
-  border-color: #67C23A;
+  color: #67c23a;
+  border-color: #67c23a;
 }
 
 .el-step__head.is-error {
-  color: #F56C6C;
-  border-color: #F56C6C;
+  color: #f56c6c;
+  border-color: #f56c6c;
 }
 
 .el-step__head.is-finish {
-  color: #409EFF;
-  border-color: #409EFF;
+  color: #409eff;
+  border-color: #409eff;
 }
 
 .el-step__icon {
@@ -337,7 +68,7 @@
   font-size: 14px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background: #FFFFFF;
+  background: #ffffff;
   -webkit-transition: 0.15s ease-out;
   transition: 0.15s ease-out;
 }
@@ -362,7 +93,7 @@
   line-height: 1;
   color: inherit;
 }
-.el-step__icon-inner[class*=el-icon]:not(.is-status) {
+.el-step__icon-inner[class*="el-icon"]:not(.is-status) {
   font-size: 25px;
   font-weight: normal;
 }
@@ -374,7 +105,7 @@
 .el-step__line {
   position: absolute;
   border-color: inherit;
-  background-color: #C0C4CC;
+  background-color: #c0c4cc;
 }
 
 .el-step__line-inner {
@@ -405,19 +136,19 @@
 }
 
 .el-step__title.is-wait {
-  color: #C0C4CC;
+  color: #c0c4cc;
 }
 
 .el-step__title.is-success {
-  color: #67C23A;
+  color: #67c23a;
 }
 
 .el-step__title.is-error {
-  color: #F56C6C;
+  color: #f56c6c;
 }
 
 .el-step__title.is-finish {
-  color: #409EFF;
+  color: #409eff;
 }
 
 .el-step__description {
@@ -432,19 +163,19 @@
 }
 
 .el-step__description.is-wait {
-  color: #C0C4CC;
+  color: #c0c4cc;
 }
 
 .el-step__description.is-success {
-  color: #67C23A;
+  color: #67c23a;
 }
 
 .el-step__description.is-error {
-  color: #F56C6C;
+  color: #f56c6c;
 }
 
 .el-step__description.is-finish {
-  color: #409EFF;
+  color: #409eff;
 }
 
 .el-step.is-horizontal {
@@ -531,7 +262,7 @@
   font-size: 12px;
 }
 
-.el-step.is-simple .el-step__icon-inner[class*=el-icon]:not(.is-status) {
+.el-step.is-simple .el-step__icon-inner[class*="el-icon"]:not(.is-status) {
   font-size: 18px;
 }
 .el-step.is-simple .el-step__icon-inner.is-status {
@@ -576,13 +307,14 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
-.el-step.is-simple .el-step__arrow::before, .el-step.is-simple .el-step__arrow::after {
+.el-step.is-simple .el-step__arrow::before,
+.el-step.is-simple .el-step__arrow::after {
   content: "";
   display: inline-block;
   position: absolute;
   height: 15px;
   width: 1px;
-  background: #C0C4CC;
+  background: #c0c4cc;
 }
 .el-step.is-simple .el-step__arrow::before {
   -webkit-transform: rotate(-45deg) translateY(-4px);

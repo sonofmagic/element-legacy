@@ -1,273 +1,3 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
---------------------------*/
-/* Slider
---------------------------*/
-/* Steps
---------------------------*/
-/* Menu
---------------------------*/
-/* Rate
---------------------------*/
-/* DatePicker
---------------------------*/
-/* Loading
---------------------------*/
-/* Scrollbar
---------------------------*/
-/* Carousel
---------------------------*/
-/* Collapse
---------------------------*/
-/* Transfer
---------------------------*/
-/* Header
-  --------------------------*/
-/* Footer
---------------------------*/
-/* Main
---------------------------*/
-/* Timeline
---------------------------*/
-/* Backtop
---------------------------*/
-/* Link
---------------------------*/
-/* Calendar
---------------------------*/
-/* Form
--------------------------- */
-/* Avatar
---------------------------*/
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton 
---------------------------*/
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
---------------------------*/
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
---------------------------*/
-/* Slider
---------------------------*/
-/* Steps
---------------------------*/
-/* Menu
---------------------------*/
-/* Rate
---------------------------*/
-/* DatePicker
---------------------------*/
-/* Loading
---------------------------*/
-/* Scrollbar
---------------------------*/
-/* Carousel
---------------------------*/
-/* Collapse
---------------------------*/
-/* Transfer
---------------------------*/
-/* Header
-  --------------------------*/
-/* Footer
---------------------------*/
-/* Main
---------------------------*/
-/* Timeline
---------------------------*/
-/* Backtop
---------------------------*/
-/* Link
---------------------------*/
-/* Calendar
---------------------------*/
-/* Form
--------------------------- */
-/* Avatar
---------------------------*/
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton 
---------------------------*/
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
---------------------------*/
 .el-color-predefine {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -294,12 +24,12 @@
   border-radius: 4px;
   cursor: pointer;
 }
-.el-color-predefine__color-selector:nth-child(10n+1) {
+.el-color-predefine__color-selector:nth-child(10n + 1) {
   margin-left: 0;
 }
 .el-color-predefine__color-selector.selected {
-  -webkit-box-shadow: 0 0 3px 2px #409EFF;
-  box-shadow: 0 0 3px 2px #409EFF;
+  -webkit-box-shadow: 0 0 3px 2px #409eff;
+  box-shadow: 0 0 3px 2px #409eff;
 }
 .el-color-predefine__color-selector > div {
   display: -webkit-box;
@@ -323,8 +53,28 @@
 }
 .el-color-hue-slider__bar {
   position: relative;
-  background: -webkit-gradient(linear, left top, right top, from(#f00), color-stop(17%, #ff0), color-stop(33%, #0f0), color-stop(50%, #0ff), color-stop(67%, #00f), color-stop(83%, #f0f), to(#f00));
-  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#f00),
+    color-stop(17%, #ff0),
+    color-stop(33%, #0f0),
+    color-stop(50%, #0ff),
+    color-stop(67%, #00f),
+    color-stop(83%, #f0f),
+    to(#f00)
+  );
+  background: linear-gradient(
+    to right,
+    #f00 0%,
+    #ff0 17%,
+    #0f0 33%,
+    #0ff 50%,
+    #00f 67%,
+    #f0f 83%,
+    #f00 100%
+  );
   height: 100%;
 }
 
@@ -351,8 +101,28 @@
   padding: 2px 0;
 }
 .el-color-hue-slider.is-vertical .el-color-hue-slider__bar {
-  background: -webkit-gradient(linear, left top, left bottom, from(#f00), color-stop(17%, #ff0), color-stop(33%, #0f0), color-stop(50%, #0ff), color-stop(67%, #00f), color-stop(83%, #f0f), to(#f00));
-  background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#f00),
+    color-stop(17%, #ff0),
+    color-stop(33%, #0f0),
+    color-stop(50%, #0ff),
+    color-stop(67%, #00f),
+    color-stop(83%, #f0f),
+    to(#f00)
+  );
+  background: linear-gradient(
+    to bottom,
+    #f00 0%,
+    #ff0 17%,
+    #0f0 33%,
+    #0ff 50%,
+    #00f 67%,
+    #f0f 83%,
+    #f00 100%
+  );
 }
 .el-color-hue-slider.is-vertical .el-color-hue-slider__thumb {
   left: 0;
@@ -366,7 +136,8 @@
   width: 280px;
   height: 180px;
 }
-.el-color-svpanel__white, .el-color-svpanel__black {
+.el-color-svpanel__white,
+.el-color-svpanel__black {
   position: absolute;
   top: 0;
   left: 0;
@@ -375,12 +146,24 @@
 }
 
 .el-color-svpanel__white {
-  background: -webkit-gradient(linear, left top, right top, from(#fff), to(rgba(255, 255, 255, 0)));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#fff),
+    to(rgba(255, 255, 255, 0))
+  );
   background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
 }
 
 .el-color-svpanel__black {
-  background: -webkit-gradient(linear, left bottom, left top, from(#000), to(rgba(0, 0, 0, 0)));
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#000),
+    to(rgba(0, 0, 0, 0))
+  );
   background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
 }
 
@@ -391,8 +174,14 @@
   cursor: head;
   width: 4px;
   height: 4px;
-  -webkit-box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px 2px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px 2px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow:
+    0 0 0 1.5px #fff,
+    inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
+    0 0 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 0 0 1.5px #fff,
+    inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
+    0 0 1px 2px rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   -webkit-transform: translate(-2px, -2px);
   transform: translate(-2px, -2px);
@@ -408,8 +197,18 @@
 }
 .el-color-alpha-slider__bar {
   position: relative;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgba(255, 255, 255, 0)),
+    to(rgb(255, 255, 255))
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 100%
+  );
   height: 100%;
 }
 
@@ -435,8 +234,18 @@
   height: 180px;
 }
 .el-color-alpha-slider.is-vertical .el-color-alpha-slider__bar {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(255, 255, 255, 0)),
+    to(rgb(255, 255, 255))
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 100%
+  );
 }
 .el-color-alpha-slider.is-vertical .el-color-alpha-slider__thumb {
   left: 0;
@@ -486,19 +295,19 @@
   cursor: not-allowed;
 }
 .el-color-dropdown__btn:hover {
-  color: #409EFF;
-  border-color: #409EFF;
+  color: #409eff;
+  border-color: #409eff;
 }
 
 .el-color-dropdown__link-btn {
   cursor: pointer;
-  color: #409EFF;
+  color: #409eff;
   text-decoration: none;
   padding: 15px;
   font-size: 12px;
 }
 .el-color-dropdown__link-btn:hover {
-  color: tint(#409EFF, 20%);
+  color: tint(#409eff, 20%);
 }
 
 .el-color-picker {
@@ -624,7 +433,7 @@
   left: 50%;
   -webkit-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   font-size: 12px;
 }
@@ -635,8 +444,8 @@
   padding: 6px;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  background-color: #FFFFFF;
-  border: 1px solid #EBEEF5;
+  background-color: #ffffff;
+  border: 1px solid #ebeef5;
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
