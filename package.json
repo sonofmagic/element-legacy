@@ -31,7 +31,9 @@
     "test:watch": "npm run build:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
     "overwrite": "tsx scripts/overwrite",
     "format:lib-before:css": "prettier ./lib-before/theme-chalk/*.css --write",
-    "format:lib:css": "prettier ./lib/theme-chalk/*.css --write"
+    "format:lib:css": "prettier ./lib/theme-chalk/*.css --write",
+    "scss:migrator": "sass-migrator module --migrate-deps ./packages/theme-chalk/src/index.scss",
+    "scss:reset": "sass-migrator module --migrate-deps ./packages/theme-chalk/src/reset.scss"
   },
   "faas": [
     {

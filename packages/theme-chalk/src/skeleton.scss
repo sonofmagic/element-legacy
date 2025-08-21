@@ -1,19 +1,20 @@
-@import 'mixins/mixins';
-@import 'common/var';
-@import "./skeleton-item.scss";
+@use 'mixins/mixins';
+@use 'common/var';
+@use "skeleton-item.scss";
+@use "mixins/config";
 
 @mixin skeleton-color() {
   background: linear-gradient(
     90deg,
-    $--skeleton-color 25%,
-    $--skeleton-to-color 37%,
-    $--skeleton-color 63%
+    var.$skeleton-color 25%,
+    var.$skeleton-to-color 37%,
+    var.$skeleton-color 63%
   );
   background-size: 400% 100%;
-  animation: #{$namespace}-skeleton-loading 1.4s ease infinite;
+  animation: #{config.$namespace}-skeleton-loading 1.4s ease infinite;
 }
 
-@keyframes #{$namespace}-skeleton-loading {
+@keyframes #{config.$namespace}-skeleton-loading {
   0% {
     background-position: 100% 50%;
   }
@@ -22,18 +23,18 @@
   }
 }
 
-@include b(skeleton) {
+@include mixins.b(skeleton) {
   width: 100%;
   @each $unit in (first-line, paragraph) {
-    @include e($unit) {
+    @include mixins.e($unit) {
       height: 16px;
       margin-top: 16px;
-      background: $--skeleton-color;
+      background: var.$skeleton-color;
     }
   }
 
-  @include when(animated) {
-    .#{$namespace}-skeleton__item {
+  @include mixins.when(animated) {
+    .#{config.$namespace}-skeleton__item {
       @include skeleton-color();
     }
   }

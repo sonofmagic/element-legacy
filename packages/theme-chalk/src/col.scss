@@ -1,5 +1,5 @@
-@import "./common/var.scss";
-@import "./mixins/mixins.scss";
+@use "common/var.scss";
+@use "mixins/mixins.scss";
 
 [class*="el-col-"] {
   float: left;
@@ -30,7 +30,7 @@
   }
 }
 
-@include res(xs) {
+@include mixins.res(xs) {
   .el-col-xs-0 {
     display: none;
   }
@@ -55,7 +55,7 @@
   }
 }
 
-@include res(sm) {
+@include mixins.res(sm) {
   .el-col-sm-0 {
     display: none;
   }
@@ -80,7 +80,7 @@
   }
 }
 
-@include res(md) {
+@include mixins.res(md) {
   .el-col-md-0 {
     display: none;
   }
@@ -105,7 +105,7 @@
   }
 }
 
-@include res(lg) {
+@include mixins.res(lg) {
   .el-col-lg-0 {
     display: none;
   }
@@ -130,7 +130,7 @@
   }
 }
 
-@include res(xl) {
+@include mixins.res(xl) {
   .el-col-xl-0 {
     display: none;
   }

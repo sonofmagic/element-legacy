@@ -1,5 +1,5 @@
-@import 'mixins/mixins';
-@import 'common/var';
+@use 'mixins/mixins';
+@use 'common/var';
 
 @mixin circle-size($size) {
   width: $size;
@@ -7,67 +7,67 @@
   line-height: $size;
 }
 
-@include b(skeleton) {
-  @include e(item) {
-    background: $--skeleton-color;
+@include mixins.b(skeleton) {
+  @include mixins.e(item) {
+    background: var.$skeleton-color;
     display: inline-block;
     height: 16px;
-    border-radius: $--border-radius-base;
+    border-radius: var.$border-radius-base;
     width: 100%;
   }
 
-  @include e(circle) {
+  @include mixins.e(circle) {
     border-radius: 50%;
-    @include circle-size($--avatar-medium-size);
+    @include circle-size(var.$avatar-medium-size);
 
-    @include m(lg) {
-      @include circle-size($--avatar-large-size);
+    @include mixins.m(lg) {
+      @include circle-size(var.$avatar-large-size);
     }
 
-    @include m(md) {
-      @include circle-size($--avatar-small-size);
+    @include mixins.m(md) {
+      @include circle-size(var.$avatar-small-size);
     }
   }
 
-  @include e(button) {
+  @include mixins.e(button) {
     height: 40px;
     width: 64px;
     border-radius: 4px;
   }
 
-  @include e(p) {
+  @include mixins.e(p) {
     width: 100%;
-    @include when(last) {
+    @include mixins.when(last) {
       width: 61%;
     }
 
-    @include when(first) {
+    @include mixins.when(first) {
       width: 33%;
     }
   }
 
-  @include e(text) {
+  @include mixins.e(text) {
     width: 100%;
-    height: $--font-size-small;
+    height: var.$font-size-small;
   }
 
-  @include e(caption) {
-    height: $--font-size-extra-small;
+  @include mixins.e(caption) {
+    height: var.$font-size-extra-small;
   }
 
-  @include e(h1) {
-    height: $--font-size-extra-large;
+  @include mixins.e(h1) {
+    height: var.$font-size-extra-large;
   }
 
-  @include e(h3) {
-    height: $--font-size-large;
+  @include mixins.e(h3) {
+    height: var.$font-size-large;
   }
 
-  @include e(h5) {
-    height: $--font-size-medium;
+  @include mixins.e(h5) {
+    height: var.$font-size-medium;
   }
 
-  @include e(image) {
+  @include mixins.e(image) {
     width: unset;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@
     border-radius: 0;
 
     svg {
-      fill: $--svg-monochrome-grey;
+      fill: var.$svg-monochrome-grey;
       width: 22%;
       height: 22%;
     }

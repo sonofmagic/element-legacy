@@ -1,10 +1,10 @@
-@import 'mixins/mixins';
-@import 'common/var';
+@use 'mixins/mixins';
+@use 'common/var';
 
-@include b(descriptions-item) {
+@include mixins.b(descriptions-item) {
   vertical-align: top;
   
-  @include e(container) {
+  @include mixins.e(container) {
     display: flex;
 
     .el-descriptions-item__label,
@@ -17,7 +17,7 @@
     }
   }
 
-  @include e(label) {
+  @include mixins.e(label) {
     &.has-colon {
       &::after {
         content: ':';
@@ -27,15 +27,15 @@
     }
     &.is-bordered-label {
       font-weight: bold;
-      color: $--color-text-secondary;
-      background: $--descriptions-item-bordered-label-background;
+      color: var.$color-text-secondary;
+      background: var.$descriptions-item-bordered-label-background;
     }
     &:not(.is-bordered-label) {
       margin-right: 10px;
     }
   }
 
-  @include e(content) {
+  @include mixins.e(content) {
     word-break: break-word;
     overflow-wrap: break-word;
   }
