@@ -1,5 +1,6 @@
 @use "mixins/mixins";
 @use "common/var";
+@use "sass:math";
 
 @include mixins.b(popper) {
   .popper__arrow,
