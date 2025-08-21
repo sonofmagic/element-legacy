@@ -29,7 +29,8 @@
     "pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh && node build/bin/gen-indices.js",
     "test": "npm run lint && npm run build:theme && cross-env CI_ENV=/dev/ BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test:watch": "npm run build:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
-    "overwrite": "tsx scripts/overwrite"
+    "overwrite": "tsx scripts/overwrite",
+    "format:css": "prettier ./lib-before/theme-chalk/*.css --write"
   },
   "faas": [
     {
@@ -130,6 +131,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "pathe": "^2.0.3",
     "postcss": "^7.0.39",
+    "prettier": "^3.6.2",
     "progress-bar-webpack-plugin": "^1.11.0",
     "rimraf": "^2.5.4",
     "sass": "1.90.0",
