@@ -222,6 +222,9 @@ importers:
       sass-loader:
         specifier: ^7.1.0
         version: 7.3.1(webpack@4.47.0)
+      sass-migrator:
+        specifier: ^2.4.2
+        version: 2.4.2
       select-version-cli:
         specifier: ^0.0.2
         version: 0.0.2
@@ -5168,6 +5171,11 @@ packages:
     engines: {node: '>= 6.9.0'}
     peerDependencies:
       webpack: ^3.0.0 || ^4.0.0
+
+  sass-migrator@2.4.2:
+    resolution: {integrity: sha512-YNvfvXtlP91H1YJ/csKs9IL3SnGHfAJNU/en/AfJmKKcFpouYX8K1NsQ+3hqyo9rP1zGPrlNM3Lp7mteeXReyQ==}
+    engines: {node: '>=10.12.0'}
+    hasBin: true
 
   sass@1.90.0:
     resolution: {integrity: sha512-9GUyuksjw70uNpb1MTYWsH9MQHOHY6kwfnkafC24+7aOMZn9+rVMBxRbLvw756mrBFbIsFg6Xw9IkR2Fnn3k+Q==}
@@ -12170,6 +12178,8 @@ snapshots:
       pify: 4.0.1
       semver: 6.3.1
       webpack: 4.47.0(webpack-cli@3.3.12)
+
+  sass-migrator@2.4.2: {}
 
   sass@1.90.0:
     dependencies:
