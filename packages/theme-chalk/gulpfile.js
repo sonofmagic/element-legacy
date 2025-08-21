@@ -6,8 +6,8 @@ const autoprefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');
 const dartSass = require('sass');
 const sass = gulpSass(dartSass);
-const postcss = require('gulp-postcss');
-const postcssDiscardComments = require('postcss-discard-comments');
+// const postcss = require('gulp-postcss');
+// const postcssDiscardComments = require('postcss-discard-comments');
 function compile() {
   return src('./src/*.scss')
     .pipe(sass.sync(
