@@ -9,7 +9,7 @@
   box-sizing: border-box;
   border: 1px solid #ebeef5;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #fff;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   -webkit-transition:
@@ -53,31 +53,27 @@
   margin-left: 13px;
   margin-right: 8px;
 }
-
 .el-notification__title {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
   color: #303133;
   margin: 0;
 }
-
 .el-notification__content {
   font-size: 14px;
   line-height: 21px;
-  margin: 6px 0 0 0;
+  margin: 6px 0 0;
   color: #606266;
   text-align: justify;
 }
 .el-notification__content p {
   margin: 0;
 }
-
 .el-notification__icon {
   height: 24px;
   width: 24px;
   font-size: 24px;
 }
-
 .el-notification__closeBtn {
   position: absolute;
   top: 18px;
@@ -89,7 +85,6 @@
 .el-notification__closeBtn:hover {
   color: #606266;
 }
-
 .el-notification .el-icon-success {
   color: #67c23a;
 }
@@ -102,7 +97,6 @@
 .el-notification .el-icon-warning {
   color: #e6a23c;
 }
-
 .el-notification-fade-enter.right {
   right: 0;
   -webkit-transform: translateX(100%);
@@ -113,7 +107,6 @@
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
 }
-
 .el-notification-fade-leave-active {
   opacity: 0;
 }

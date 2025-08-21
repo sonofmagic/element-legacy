@@ -1,3 +1,10 @@
+.el-drawer.btt,
+.el-drawer.ttb,
+.el-drawer__container {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
 @-webkit-keyframes el-drawer-fade-in {
   0% {
     opacity: 0;
@@ -16,169 +23,169 @@
 }
 @-webkit-keyframes rtl-drawer-in {
   0% {
-    -webkit-transform: translate(100%, 0px);
-    transform: translate(100%, 0px);
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @keyframes rtl-drawer-in {
   0% {
-    -webkit-transform: translate(100%, 0px);
-    transform: translate(100%, 0px);
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @-webkit-keyframes rtl-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(100%, 0px);
-    transform: translate(100%, 0px);
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
   }
 }
 @keyframes rtl-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(100%, 0px);
-    transform: translate(100%, 0px);
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
   }
 }
 @-webkit-keyframes ltr-drawer-in {
   0% {
-    -webkit-transform: translate(-100%, 0px);
-    transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @keyframes ltr-drawer-in {
   0% {
-    -webkit-transform: translate(-100%, 0px);
-    transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @-webkit-keyframes ltr-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(-100%, 0px);
-    transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
   }
 }
 @keyframes ltr-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(-100%, 0px);
-    transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
   }
 }
 @-webkit-keyframes ttb-drawer-in {
   0% {
-    -webkit-transform: translate(0px, -100%);
-    transform: translate(0px, -100%);
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @keyframes ttb-drawer-in {
   0% {
-    -webkit-transform: translate(0px, -100%);
-    transform: translate(0px, -100%);
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @-webkit-keyframes ttb-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(0px, -100%);
-    transform: translate(0px, -100%);
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
   }
 }
 @keyframes ttb-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(0px, -100%);
-    transform: translate(0px, -100%);
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
   }
 }
 @-webkit-keyframes btt-drawer-in {
   0% {
-    -webkit-transform: translate(0px, 100%);
-    transform: translate(0px, 100%);
+    -webkit-transform: translate(0, 100%);
+    transform: translate(0, 100%);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @keyframes btt-drawer-in {
   0% {
-    -webkit-transform: translate(0px, 100%);
-    transform: translate(0px, 100%);
+    -webkit-transform: translate(0, 100%);
+    transform: translate(0, 100%);
   }
   100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 @-webkit-keyframes btt-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0);
-    transform: translate(0px, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(0px, 100%);
-    transform: translate(0px, 100%);
+    -webkit-transform: translate(0, 100%);
+    transform: translate(0, 100%);
   }
 }
 @keyframes btt-drawer-out {
   0% {
-    -webkit-transform: translate(0px, 0);
-    transform: translate(0px, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(0px, 100%);
-    transform: translate(0px, 100%);
+    -webkit-transform: translate(0, 100%);
+    transform: translate(0, 100%);
   }
 }
 .el-drawer {
   position: absolute;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -200,6 +207,7 @@
 .el-drawer.rtl {
   -webkit-animation: rtl-drawer-out 0.3s;
   animation: rtl-drawer-out 0.3s;
+  right: 0;
 }
 .el-drawer__open .el-drawer.rtl {
   -webkit-animation: rtl-drawer-in 0.3s 1ms;
@@ -208,6 +216,7 @@
 .el-drawer.ltr {
   -webkit-animation: ltr-drawer-out 0.3s;
   animation: ltr-drawer-out 0.3s;
+  left: 0;
 }
 .el-drawer__open .el-drawer.ltr {
   -webkit-animation: ltr-drawer-in 0.3s 1ms;
@@ -216,6 +225,7 @@
 .el-drawer.ttb {
   -webkit-animation: ttb-drawer-out 0.3s;
   animation: ttb-drawer-out 0.3s;
+  top: 0;
 }
 .el-drawer__open .el-drawer.ttb {
   -webkit-animation: ttb-drawer-in 0.3s 1ms;
@@ -224,6 +234,7 @@
 .el-drawer.btt {
   -webkit-animation: btt-drawer-out 0.3s;
   animation: btt-drawer-out 0.3s;
+  bottom: 0;
 }
 .el-drawer__open .el-drawer.btt {
   -webkit-animation: btt-drawer-in 0.3s 1ms;
@@ -242,13 +253,12 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: rgb(114, 118, 123);
+  color: #72767b;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 32px;
-  padding: 20px;
-  padding-bottom: 0;
+  padding: 20px 20px 0;
 }
 .el-drawer__header > :first-child {
   -webkit-box-flex: 1;
@@ -286,40 +296,16 @@
   top: 0;
   bottom: 0;
 }
-.el-drawer.ttb,
-.el-drawer.btt {
-  width: 100%;
-  left: 0;
-  right: 0;
-}
-.el-drawer.ltr {
-  left: 0;
-}
-.el-drawer.rtl {
-  right: 0;
-}
-.el-drawer.ttb {
-  top: 0;
-}
-.el-drawer.btt {
-  bottom: 0;
-}
-
 .el-drawer__container {
   position: relative;
-  left: 0;
-  right: 0;
   top: 0;
   bottom: 0;
   height: 100%;
-  width: 100%;
 }
-
 .el-drawer-fade-enter-active {
   -webkit-animation: el-drawer-fade-in 0.3s;
   animation: el-drawer-fade-in 0.3s;
 }
-
 .el-drawer-fade-leave-active {
   animation: el-drawer-fade-in 0.3s reverse;
 }

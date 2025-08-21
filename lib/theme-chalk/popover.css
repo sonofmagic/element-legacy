@@ -1,3 +1,7 @@
+.el-popover__title,
+.el-popper[x-placement^="top"] {
+  margin-bottom: 12px;
+}
 .el-popper .popper__arrow,
 .el-popper .popper__arrow::after {
   position: absolute;
@@ -16,9 +20,6 @@
   content: " ";
   border-width: 6px;
 }
-.el-popper[x-placement^="top"] {
-  margin-bottom: 12px;
-}
 .el-popper[x-placement^="top"] .popper__arrow {
   bottom: -6px;
   left: 50%;
@@ -29,7 +30,7 @@
 .el-popper[x-placement^="top"] .popper__arrow::after {
   bottom: 1px;
   margin-left: -6px;
-  border-top-color: #ffffff;
+  border-top-color: #fff;
   border-bottom-width: 0;
 }
 .el-popper[x-placement^="bottom"] {
@@ -46,7 +47,7 @@
   top: 1px;
   margin-left: -6px;
   border-top-width: 0;
-  border-bottom-color: #ffffff;
+  border-bottom-color: #fff;
 }
 .el-popper[x-placement^="right"] {
   margin-left: 12px;
@@ -61,7 +62,7 @@
 .el-popper[x-placement^="right"] .popper__arrow::after {
   bottom: -6px;
   left: 1px;
-  border-right-color: #ffffff;
+  border-right-color: #fff;
   border-left-width: 0;
 }
 .el-popper[x-placement^="left"] {
@@ -79,12 +80,11 @@
   bottom: -6px;
   margin-left: -6px;
   border-right-width: 0;
-  border-left-color: #ffffff;
+  border-left-color: #fff;
 }
-
 .el-popover {
   position: absolute;
-  background: #ffffff;
+  background: #fff;
   min-width: 150px;
   border-radius: 4px;
   border: 1px solid #ebeef5;
@@ -101,20 +101,14 @@
 .el-popover--plain {
   padding: 18px 20px;
 }
-
 .el-popover__title {
   color: #303133;
   font-size: 16px;
   line-height: 1;
-  margin-bottom: 12px;
 }
-
-.el-popover__reference:focus:not(.focusing),
-.el-popover__reference:focus:hover {
-  outline-width: 0;
-}
-
+.el-popover:focus,
 .el-popover:focus:active,
-.el-popover:focus {
+.el-popover__reference:focus:hover,
+.el-popover__reference:focus:not(.focusing) {
   outline-width: 0;
 }

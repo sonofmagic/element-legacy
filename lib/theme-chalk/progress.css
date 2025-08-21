@@ -14,7 +14,6 @@
   vertical-align: middle;
   display: block;
 }
-
 .el-progress--circle,
 .el-progress--dashboard {
   display: inline-block;
@@ -35,7 +34,6 @@
   vertical-align: middle;
   display: inline-block;
 }
-
 .el-progress--without-text .el-progress__text {
   display: none;
 }
@@ -44,37 +42,36 @@
   margin-right: 0;
   display: block;
 }
-
+.el-progress-bar,
+.el-progress-bar__inner::after,
+.el-progress-bar__innerText {
+  display: inline-block;
+  vertical-align: middle;
+}
 .el-progress--text-inside .el-progress-bar {
   padding-right: 0;
   margin-right: 0;
 }
-
 .el-progress.is-success .el-progress-bar__inner {
   background-color: #67c23a;
 }
 .el-progress.is-success .el-progress__text {
   color: #67c23a;
 }
-
 .el-progress.is-warning .el-progress-bar__inner {
   background-color: #e6a23c;
 }
 .el-progress.is-warning .el-progress__text {
   color: #e6a23c;
 }
-
 .el-progress.is-exception .el-progress-bar__inner {
   background-color: #f56c6c;
 }
 .el-progress.is-exception .el-progress__text {
   color: #f56c6c;
 }
-
 .el-progress-bar {
   padding-right: 50px;
-  display: inline-block;
-  vertical-align: middle;
   width: 100%;
   margin-right: -55px;
   -webkit-box-sizing: border-box;
@@ -88,7 +85,6 @@
   position: relative;
   vertical-align: middle;
 }
-
 .el-progress-bar__inner {
   position: absolute;
   left: 0;
@@ -103,20 +99,14 @@
   transition: width 0.6s ease;
 }
 .el-progress-bar__inner::after {
-  display: inline-block;
   content: "";
   height: 100%;
-  vertical-align: middle;
 }
-
 .el-progress-bar__innerText {
-  display: inline-block;
-  vertical-align: middle;
-  color: #ffffff;
+  color: #fff;
   font-size: 12px;
   margin: 0 5px;
 }
-
 @-webkit-keyframes progress {
   0% {
     background-position: 0 0;
@@ -125,7 +115,6 @@
     background-position: 32px 0;
   }
 }
-
 @keyframes progress {
   0% {
     background-position: 0 0;

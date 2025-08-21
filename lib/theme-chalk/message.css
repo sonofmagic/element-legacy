@@ -43,18 +43,15 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
-
 .el-message.is-closable .el-message__content {
   padding-right: 16px;
 }
-
 .el-message p {
   margin: 0;
 }
 .el-message--info .el-message__content {
   color: #909399;
 }
-
 .el-message--success {
   background-color: rgb(239.8, 248.9, 235.3);
   border-color: rgb(224.6, 242.8, 215.6);
@@ -62,7 +59,6 @@
 .el-message--success .el-message__content {
   color: #67c23a;
 }
-
 .el-message--warning {
   background-color: rgb(252.5, 245.7, 235.5);
   border-color: rgb(250, 236.4, 216);
@@ -70,7 +66,6 @@
 .el-message--warning .el-message__content {
   color: #e6a23c;
 }
-
 .el-message--error {
   background-color: rgb(254, 240.3, 240.3);
   border-color: rgb(253, 225.6, 225.6);
@@ -78,11 +73,9 @@
 .el-message--error .el-message__content {
   color: #f56c6c;
 }
-
 .el-message__icon {
   margin-right: 10px;
 }
-
 .el-message__content {
   padding: 0;
   font-size: 14px;
@@ -91,7 +84,6 @@
 .el-message__content:focus {
   outline-width: 0;
 }
-
 .el-message__closeBtn {
   position: absolute;
   top: 50%;
@@ -108,7 +100,6 @@
 .el-message__closeBtn:hover {
   color: #909399;
 }
-
 .el-message .el-icon-success {
   color: #67c23a;
 }
@@ -121,7 +112,6 @@
 .el-message .el-icon-warning {
   color: #e6a23c;
 }
-
 .el-message-fade-enter,
 .el-message-fade-leave-active {
   opacity: 0;

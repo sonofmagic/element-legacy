@@ -29,7 +29,7 @@
 .el-popper[x-placement^="top"] .popper__arrow::after {
   bottom: 1px;
   margin-left: -6px;
-  border-top-color: #ffffff;
+  border-top-color: #fff;
   border-bottom-width: 0;
 }
 .el-popper[x-placement^="bottom"] {
@@ -46,7 +46,7 @@
   top: 1px;
   margin-left: -6px;
   border-top-width: 0;
-  border-bottom-color: #ffffff;
+  border-bottom-color: #fff;
 }
 .el-popper[x-placement^="right"] {
   margin-left: 12px;
@@ -61,7 +61,7 @@
 .el-popper[x-placement^="right"] .popper__arrow::after {
   bottom: -6px;
   left: 1px;
-  border-right-color: #ffffff;
+  border-right-color: #fff;
   border-left-width: 0;
 }
 .el-popper[x-placement^="left"] {
@@ -79,15 +79,14 @@
   bottom: -6px;
   margin-left: -6px;
   border-right-width: 0;
-  border-left-color: #ffffff;
+  border-left-color: #fff;
 }
-
 .el-select-dropdown {
   position: absolute;
   z-index: 1001;
-  border: solid 1px #e4e7ed;
+  border: 1px solid #e4e7ed;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: #fff;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-sizing: border-box;
@@ -99,7 +98,7 @@
 }
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
   color: #409eff;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover {
   background-color: #f5f7fa;
@@ -107,18 +106,16 @@
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected::after {
   position: absolute;
   right: 20px;
-  font-family: "element-icons";
+  font-family: element-icons;
   content: "\e6da";
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .el-select-dropdown .el-scrollbar.is-empty .el-select-dropdown__list {
   padding: 0;
 }
-
 .el-select-dropdown__empty {
   padding: 10px 0;
   margin: 0;
@@ -126,11 +123,9 @@
   color: #999;
   font-size: 14px;
 }
-
 .el-select-dropdown__wrap {
   max-height: 274px;
 }
-
 .el-select-dropdown__list {
   list-style: none;
   padding: 6px 0;

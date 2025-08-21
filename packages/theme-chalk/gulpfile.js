@@ -19,10 +19,10 @@ function compile() {
       // browsers: ['ie > 9', 'last 2 versions'],
       cascade: false
     }))
-    .pipe(postcss([postcssDiscardComments({
+    // .pipe(postcss([postcssDiscardComments({
 
-    })]))
-    // .pipe(cssmin())
+    // })]))
+    .pipe(cssmin())
     .pipe(dest('./lib'));
 }
 

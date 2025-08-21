@@ -17,14 +17,13 @@
   cursor: not-allowed;
 }
 .el-select-dropdown__item.is-disabled:hover {
-  background-color: #ffffff;
+  background-color: #fff;
 }
-
 .el-select-dropdown__item.hover,
 .el-select-dropdown__item:hover {
   background-color: #f5f7fa;
 }
 .el-select-dropdown__item.selected {
   color: #409eff;
-  font-weight: bold;
+  font-weight: 700;
 }

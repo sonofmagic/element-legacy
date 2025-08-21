@@ -1,10 +1,13 @@
 .el-image__error,
-.el-image__placeholder,
-.el-image__inner {
+.el-image__placeholder {
+  background: #f5f7fa;
+}
+.el-image__error,
+.el-image__inner,
+.el-image__placeholder {
   width: 100%;
   height: 100%;
 }
-
 .el-image {
   position: relative;
   display: inline-block;
@@ -21,11 +24,6 @@
   transform: translate(-50%, -50%);
   display: block;
 }
-
-.el-image__placeholder {
-  background: #f5f7fa;
-}
-
 .el-image__error {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -37,15 +35,12 @@
   -ms-flex-align: center;
   align-items: center;
   font-size: 14px;
-  background: #f5f7fa;
   color: #c0c4cc;
   vertical-align: middle;
 }
-
 .el-image__preview {
   cursor: pointer;
 }
-
 .el-image-viewer__wrapper {
   position: fixed;
   top: 0;
@@ -53,7 +48,6 @@
   bottom: 0;
   left: 0;
 }
-
 .el-image-viewer__btn {
   position: absolute;
   z-index: 1;
@@ -76,7 +70,6 @@
   -ms-user-select: none;
   user-select: none;
 }
-
 .el-image-viewer__close {
   top: 40px;
   right: 40px;
@@ -86,7 +79,6 @@
   color: #fff;
   background-color: #606266;
 }
-
 .el-image-viewer__canvas {
   width: 100%;
   height: 100%;
@@ -100,7 +92,6 @@
   -ms-flex-align: center;
   align-items: center;
 }
-
 .el-image-viewer__actions {
   left: 50%;
   bottom: 30px;
@@ -129,34 +120,27 @@
   -ms-flex-pack: distribute;
   justify-content: space-around;
 }
-
+.el-image-viewer__next,
 .el-image-viewer__prev {
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
   width: 44px;
   height: 44px;
   font-size: 24px;
   color: #fff;
   background-color: #606266;
   border-color: #fff;
+}
+.el-image-viewer__prev {
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
   left: 40px;
 }
-
 .el-image-viewer__next {
-  top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  font-size: 24px;
-  color: #fff;
-  background-color: #606266;
-  border-color: #fff;
   right: 40px;
   text-indent: 2px;
 }
-
 .el-image-viewer__mask {
   position: absolute;
   width: 100%;
@@ -166,17 +150,14 @@
   opacity: 0.5;
   background: #000;
 }
-
 .viewer-fade-enter-active {
   -webkit-animation: viewer-fade-in 0.3s;
   animation: viewer-fade-in 0.3s;
 }
-
 .viewer-fade-leave-active {
   -webkit-animation: viewer-fade-out 0.3s;
   animation: viewer-fade-out 0.3s;
 }
-
 @-webkit-keyframes viewer-fade-in {
   0% {
     -webkit-transform: translate3d(0, -20px, 0);
@@ -189,7 +170,6 @@
     opacity: 1;
   }
 }
-
 @keyframes viewer-fade-in {
   0% {
     -webkit-transform: translate3d(0, -20px, 0);

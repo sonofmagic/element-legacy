@@ -2,12 +2,10 @@
   width: 100%;
   white-space: nowrap;
 }
-
 .el-spinner {
   display: inline-block;
   vertical-align: middle;
 }
-
 .el-spinner-inner {
   -webkit-animation: rotate 2s linear infinite;
   animation: rotate 2s linear infinite;
@@ -20,14 +18,12 @@
   -webkit-animation: dash 1.5s ease-in-out infinite;
   animation: dash 1.5s ease-in-out infinite;
 }
-
 @-webkit-keyframes rotate {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @keyframes rotate {
   100% {
     -webkit-transform: rotate(360deg);

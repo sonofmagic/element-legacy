@@ -1,11 +1,9 @@
 .el-loading-parent--relative {
   position: relative !important;
 }
-
 .el-loading-parent--hidden {
   overflow: hidden !important;
 }
-
 .el-loading-mask {
   position: absolute;
   z-index: 2000;
@@ -28,7 +26,6 @@
   height: 50px;
   width: 50px;
 }
-
 .el-loading-spinner {
   top: 50%;
   margin-top: -21px;
@@ -59,19 +56,16 @@
 .el-loading-spinner i {
   color: #409eff;
 }
-
 .el-loading-fade-enter,
 .el-loading-fade-leave-active {
   opacity: 0;
 }
-
 @-webkit-keyframes loading-rotate {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @keyframes loading-rotate {
   100% {
     -webkit-transform: rotate(360deg);
