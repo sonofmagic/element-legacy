@@ -1,18 +1,16 @@
-.el-input,
-.el-textarea {
-  font-size: 14px;
-  width: 100%;
-}
 .el-input__inner,
 .el-textarea__inner {
   background-image: none;
+  width: 100%;
   -webkit-box-sizing: border-box;
   background-color: #fff;
 }
 .el-textarea {
   position: relative;
   display: inline-block;
+  width: 100%;
   vertical-align: bottom;
+  font-size: 14px;
 }
 .el-textarea__inner {
   display: block;
@@ -20,7 +18,6 @@
   padding: 5px 15px;
   line-height: 1.5;
   box-sizing: border-box;
-  width: 100%;
   font-size: inherit;
   color: #606266;
   border: 1px solid #dcdfe6;
@@ -29,9 +26,6 @@
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .el-textarea__inner::-webkit-input-placeholder {
-  color: #c0c4cc;
-}
-.el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 .el-textarea__inner:-ms-input-placeholder {
@@ -67,9 +61,6 @@
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
   color: #c0c4cc;
 }
-.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
-  color: #c0c4cc;
-}
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -87,7 +78,9 @@
 }
 .el-input {
   position: relative;
+  font-size: 14px;
   display: inline-block;
+  width: 100%;
 }
 .el-input::-webkit-scrollbar {
   z-index: 11;
@@ -158,7 +151,6 @@
   padding: 0 15px;
   -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  width: 100%;
 }
 .el-input__prefix,
 .el-input__suffix {
@@ -173,9 +165,6 @@
   display: none;
 }
 .el-input__inner::-webkit-input-placeholder {
-  color: #c0c4cc;
-}
-.el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 .el-input__inner:-ms-input-placeholder {
@@ -232,9 +221,6 @@
   cursor: not-allowed;
 }
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
-  color: #c0c4cc;
-}
-.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder {
