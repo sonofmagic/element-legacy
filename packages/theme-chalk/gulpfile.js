@@ -12,7 +12,7 @@ function compile() {
   return src('./src/*.scss')
     .pipe(sass.sync(
       {
-        silenceDeprecations: ['legacy-js-api', 'function-units']
+        silenceDeprecations: []
       }
     ))
     .pipe(autoprefixer({

@@ -125,11 +125,11 @@
   }
 
   @include mixins.m(dark) {
-    @include genTheme(100%, 100%, 0, 80%);
+    @include genTheme(100%, 100%, 0%, 80%);
   }
 
   @include mixins.m(plain) {
-    @include genTheme(0, 40%, 100%, 100%);
+    @include genTheme(0%, 40%, 100%, 100%);
   }
 
   @include mixins.m(medium) {
