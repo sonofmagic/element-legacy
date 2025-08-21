@@ -22,7 +22,7 @@
     @include mixins.when(fixed) {
       position: absolute;
       top: 0;
-      right: #{1 + var.$badge-size / 2};
+      right: #{1 + calc(var.$badge-size / 2)};
       transform: translateY(-50%) translateX(100%);
 
       @include mixins.when(dot) {

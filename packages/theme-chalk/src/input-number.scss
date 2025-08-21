@@ -1,6 +1,7 @@
 @use "mixins/mixins";
 @use "common/var";
 @use "input";
+@use "sass:math";
 
 @include mixins.b(input-number) {
   position: relative;
@@ -71,7 +72,7 @@
 
   @include mixins.m(medium) {
     width: 200px;
-    line-height: #{var.$input-medium-height - 2};
+    line-height: #{var.$input-medium-height - 2px};
 
     @include mixins.e((increase, decrease)) {
       width: var.$input-medium-height;
@@ -79,8 +80,8 @@
     }
 
     .el-input__inner {
-      padding-left: #{var.$input-medium-height + 7};
-      padding-right: #{var.$input-medium-height + 7};
+      padding-left: #{var.$input-medium-height + 7px};
+      padding-right: #{var.$input-medium-height + 7px};
     }
   }
 
@@ -137,7 +138,7 @@
 
     @include mixins.e((increase, decrease)) {
       height: auto;
-      line-height: #{(var.$input-height - 2) / 2};
+      line-height: #{calc((var.$input-height - 2px) / 2)};
 
       [class*=el-icon] {
         transform: scale(.8);
@@ -161,19 +162,19 @@
 
     &[class*=medium] {
       [class*=increase], [class*=decrease] {
-        line-height: #{(var.$input-medium-height - 2) / 2};
+        line-height: #{calc((var.$input-medium-height - 2px) / 2)};
       }
     }
 
     &[class*=small] {
       [class*=increase], [class*=decrease] {
-        line-height: #{(var.$input-small-height - 2) / 2};
+        line-height: #{calc((var.$input-small-height - 2px) / 2)};
       }
     }
 
     &[class*=mini] {
       [class*=increase], [class*=decrease] {
-        line-height: #{(var.$input-mini-height - 2) / 2};
+        line-height: #{math.div(var.$input-mini-height - 2, 2)};
       }
     }
   }

@@ -5,6 +5,7 @@
 @use "button";
 @use "checkbox";
 @use "checkbox-group";
+@use "sass:math";
 
 @include mixins.b(transfer) {
   font-size: var.$font-size-base;
@@ -138,7 +139,7 @@
       font-size: 12px;
       display: inline-block;
       box-sizing: border-box;
-      border-radius: #{var.$transfer-filter-height / 2};
+      border-radius: #{math.div(var.$transfer-filter-height,2)};
       padding-right: 10px;
       padding-left: 30px;
     }

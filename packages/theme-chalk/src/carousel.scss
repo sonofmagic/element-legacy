@@ -122,7 +122,7 @@
       padding: var.$carousel-indicator-padding-horizontal var.$carousel-indicator-padding-vertical;
       .el-carousel__button {
         width: var.$carousel-indicator-height;
-        height: #{var.$carousel-indicator-width / 2};
+        height: #{calc(var.$carousel-indicator-width / 2)};
       }
     }
 
