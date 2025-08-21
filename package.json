@@ -28,7 +28,8 @@
     "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh && node build/bin/gen-indices.js",
     "test": "npm run lint && npm run build:theme && cross-env CI_ENV=/dev/ BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "test:watch": "npm run build:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js"
+    "test:watch": "npm run build:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+    "overwrite": "tsx scripts/overwrite"
   },
   "faas": [
     {
@@ -73,6 +74,7 @@
     "vue": "^2.5.17"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@vue/component-compiler-utils": "^2.6.0",
     "algoliasearch": "^3.24.5",
     "babel-cli": "^6.26.0",
@@ -101,6 +103,7 @@
     "eslint-plugin-json": "^1.2.0",
     "file-loader": "^1.1.11",
     "file-save": "^0.2.0",
+    "fs-extra": "^11.3.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-cssmin": "^0.2.0",
@@ -124,17 +127,19 @@
     "markdown-it-container": "^2.0.0",
     "mini-css-extract-plugin": "^0.4.1",
     "mocha": "^6.0.2",
-    "sass": "1.90.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss": "^7.0.14",
+    "pathe": "^2.0.3",
+    "postcss": "^7.0.39",
     "progress-bar-webpack-plugin": "^1.11.0",
     "rimraf": "^2.5.4",
+    "sass": "1.90.0",
     "sass-loader": "^7.1.0",
     "select-version-cli": "^0.0.2",
     "sinon": "^7.2.7",
     "sinon-chai": "^3.3.0",
     "style-loader": "^0.23.1",
     "transliteration": "^1.1.11",
+    "tsx": "^4.20.4",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "uppercamelcase": "^1.1.0",
     "url-loader": "^1.0.1",
