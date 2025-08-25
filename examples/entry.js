@@ -1,17 +1,17 @@
 import Vue from 'vue';
-import entry from './app';
+import entry from './app.vue';
 import VueRouter from 'vue-router';
-import Element from 'main/index.js';
+import Element from '../src/index';
 import hljs from 'highlight.js';
 import routes from './route.config';
-import demoBlock from './components/demo-block';
-import MainFooter from './components/footer';
-import MainHeader from './components/header';
-import SideNav from './components/side-nav';
-import FooterNav from './components/footer-nav';
+import demoBlock from './components/demo-block.vue';
+import MainFooter from './components/footer.vue';
+import MainHeader from './components/header.vue';
+import SideNav from './components/side-nav.vue';
+import FooterNav from './components/footer-nav.vue';
 import title from './i18n/title';
 
-import 'packages/theme-chalk/src/index.scss';
+import '../packages/theme-chalk/src/index.scss';
 import './demo-styles/index.scss';
 import './assets/styles/common.css';
 import './assets/styles/fonts/style.css';
@@ -41,8 +41,8 @@ Vue.mixin({
 Vue.prototype.$icon = icon; // Icon 列表页用
 
 const router = new VueRouter({
-  mode: 'hash',
-  base: __dirname,
+  mode: 'history',
+  // base: __dirname,
   routes
 });
 
