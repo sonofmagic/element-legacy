@@ -288,8 +288,10 @@ export default {
   },
 
   created() {
-    this.throttledArrowClick = throttle(300, true, index => {
+    this.throttledArrowClick = throttle(300, index => {
       this.setActiveItem(index);
+    }, {
+      // TODO
     });
     this.throttledIndicatorHover = throttle(300, index => {
       this.handleIndicatorHover(index);

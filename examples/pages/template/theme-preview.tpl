@@ -96,7 +96,7 @@ export default {
     }
   },
   created() {
-    this.throttledHandleScroll = throttle(10, true, index => {
+    this.throttledHandleScroll = throttle(10, index => {
       this.handleScroll(index);
     });
   },
