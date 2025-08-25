@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ImgPlaceholder from './img-placeholder';
+  import ImgPlaceholder from './img-placeholder.vue';
 
   export default {
     name: 'ElSkeletonItem',

@@ -1,4 +1,4 @@
-import PageHeader from './src/main';
+import PageHeader from './src/main.vue';
 
 /* istanbul ignore next */
 PageHeader.install = function(Vue) {

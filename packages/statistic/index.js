@@ -1,4 +1,4 @@
-import Statistic from './src/main';
+import Statistic from './src/main.vue';
 
 /* istanbul ignore next */
 Statistic.install = function(Vue) {

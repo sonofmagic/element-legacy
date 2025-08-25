@@ -1,4 +1,4 @@
-import Popconfirm from './src/main';
+import Popconfirm from './src/main.vue';
 
 /* istanbul ignore next */
 Popconfirm.install = function(Vue) {

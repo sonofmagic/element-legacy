@@ -1,4 +1,4 @@
-import Popover from './src/main';
+import Popover from './src/main.vue';
 import directive from './src/directive';
 import Vue from 'vue';
 

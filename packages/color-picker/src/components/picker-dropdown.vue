@@ -39,10 +39,10 @@
 </template>
 
 <script>
-  import SvPanel from './sv-panel';
-  import HueSlider from './hue-slider';
-  import AlphaSlider from './alpha-slider';
-  import Predefine from './predefine';
+  import SvPanel from './sv-panel.vue';
+  import HueSlider from './hue-slider.vue';
+  import AlphaSlider from './alpha-slider.vue';
+  import Predefine from './predefine.vue';
   import Popper from 'element-ui/src/utils/vue-popper';
   import Locale from 'element-ui/src/mixins/locale';
   import ElInput from 'element-ui/packages/input';

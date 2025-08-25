@@ -1,4 +1,4 @@
-<script>
+<script lang="jsx">
 import fecha from 'element-ui/src/utils/date';
 import { range as rangeArr, getFirstDayOfMonth, getPrevMonthLastDays, getMonthDays, getI18nSettings, validateRangeInOneMonth } from 'element-ui/src/utils/date-util';
 

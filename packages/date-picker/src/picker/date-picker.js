@@ -1,7 +1,7 @@
-import Picker from '../picker';
-import DatePanel from '../panel/date';
-import DateRangePanel from '../panel/date-range';
-import MonthRangePanel from '../panel/month-range';
+import Picker from '../picker.vue';
+import DatePanel from '../panel/date.vue';
+import DateRangePanel from '../panel/date-range.vue';
+import MonthRangePanel from '../panel/month-range.vue';
 
 const getPanel = function(type) {
   if (type === 'daterange' || type === 'datetimerange') {

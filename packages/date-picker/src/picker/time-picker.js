@@ -1,6 +1,6 @@
-import Picker from '../picker';
-import TimePanel from '../panel/time';
-import TimeRangePanel from '../panel/time-range';
+import Picker from '../picker.vue';
+import TimePanel from '../panel/time.vue';
+import TimeRangePanel from '../panel/time-range.vue';
 
 export default {
   mixins: [Picker],

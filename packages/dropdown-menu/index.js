@@ -1,4 +1,4 @@
-import ElDropdownMenu from '../dropdown/src/dropdown-menu';
+import ElDropdownMenu from '../dropdown/src/dropdown-menu.vue';
 
 /* istanbul ignore next */
 ElDropdownMenu.install = function(Vue) {

@@ -1,4 +1,4 @@
-import ElMenuItemGroup from '../menu/src/menu-item-group';
+import ElMenuItemGroup from '../menu/src/menu-item-group.vue';
 
 /* istanbul ignore next */
 ElMenuItemGroup.install = function(Vue) {

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CascaderMenu from './cascader-menu';
+import CascaderMenu from './cascader-menu.vue';
 import Store from './store';
 import merge from 'element-ui/src/utils/merge';
 import AriaUtils from 'element-ui/src/utils/aria-utils';

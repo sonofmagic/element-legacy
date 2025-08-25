@@ -1,4 +1,4 @@
-<script>
+<script lang="jsx">
 import ajax from './ajax';
 import UploadDragger from './upload-dragger.vue';
 

@@ -55,7 +55,7 @@
   </transition>
 </template>
 
-<script type="text/babel">
+<script>
   import {
     parseDate,
     limitTimeRange,
@@ -64,7 +64,7 @@
     timeWithinRange
   } from 'element-ui/src/utils/date-util';
   import Locale from 'element-ui/src/mixins/locale';
-  import TimeSpinner from '../basic/time-spinner';
+  import TimeSpinner from '../basic/time-spinner.vue';
 
   const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss');
   const MAX_TIME = parseDate('23:59:59', 'HH:mm:ss');
