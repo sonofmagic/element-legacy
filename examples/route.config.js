@@ -28,25 +28,27 @@ const load = function (lang, path) {
   return LOAD_MAP[lang](path);
 };
 
+const modules = import.meta.glob('./docs/**/*.md');
+
 const LOAD_DOCS_MAP = {
   'zh-CN': path => {
     return ()=>{
-      return import(`./docs/zh-CN${path}.md`)
+      return modules[`./docs/zh-CN${path}.md`]()
     }
   },
   'en-US': path => {
     return ()=>{
-      return import(`./docs/en-US${path}.md`)
+      return modules[`./docs/en-US${path}.md`]()
     }
   },
   'es': path => {
     return ()=>{
-      return import(`./docs/es${path}.md`)
+      return modules[`./docs/es${path}.md`]()
     }
   },
   'fr-FR': path => {
     return ()=>{
-      return import(`./docs/fr-FR${path}.md`)
+      return modules[`./docs/fr-FR${path}.md`]()
     }
   }
 };
