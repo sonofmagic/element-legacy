@@ -67,12 +67,12 @@
   "style": "lib/theme-chalk/index.css",
   "web-types": "./web-types.json",
   "dependencies": {
-    "async-validator": "~1.8.1",
+    "async-validator": "~4.2.5",
     "babel-helper-vue-jsx-merge-props": "^2.0.0",
-    "deepmerge": "^1.2.0",
+    "deepmerge": "^4.3.1",
     "normalize-wheel": "^1.0.1",
     "resize-observer-polyfill": "^1.5.0",
-    "throttle-debounce": "^1.0.1"
+    "throttle-debounce": "^5.0.2"
   },
   "peerDependencies": {
     "vue": "^2.5.17"
@@ -149,7 +149,7 @@
     "sinon-chai": "^3.3.0",
     "style-loader": "^0.23.1",
     "transliteration": "^1.1.11",
-    "tsx": "^4.20.4",
+    "tsx": "^4.20.5",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "uppercamelcase": "^1.1.0",
     "url-loader": "^1.0.1",
