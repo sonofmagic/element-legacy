@@ -68,9 +68,12 @@
   "style": "lib/theme-chalk/index.css",
   "web-types": "./web-types.json",
   "dependencies": {
+    "@types/lodash-es": "^4.17.12",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
     "async-validator": "~4.2.5",
     "deepmerge": "^4.3.1",
+    "fecha": "^4.2.3",
+    "lodash-es": "^4.17.21",
     "normalize-wheel": "^1.0.1",
     "resize-observer-polyfill": "^1.5.0",
     "throttle-debounce": "^5.0.2"
