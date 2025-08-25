@@ -1,8 +1,18 @@
 {
   "name": "element-ui-next",
-  "version": "2.15.14",
+  "version": "3.0.0",
   "description": "A Component Library for Vue.js.",
-  "main": "lib/element-ui.common.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./style.css": "./lib/theme-chalk/index.css"
+  },
   "files": [
     "lib",
     "src",
@@ -10,7 +20,6 @@
     "types",
     "web-types.json"
   ],
-  "typings": "types/index.d.ts",
   "scripts": {
     "bootstrap": "pnpm i",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
@@ -36,20 +45,6 @@
     "scss:migrator": "sass-migrator module --migrate-deps ./packages/theme-chalk/src/index.scss",
     "scss:reset": "sass-migrator module --migrate-deps ./packages/theme-chalk/src/reset.scss"
   },
-  "faas": [
-    {
-      "domain": "element",
-      "public": "temp_web/element"
-    },
-    {
-      "domain": "element-theme",
-      "public": "examples/element-ui",
-      "build": [
-        "yarn",
-        "npm run deploy:build"
-      ]
-    }
-  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:ElemeFE/element.git"

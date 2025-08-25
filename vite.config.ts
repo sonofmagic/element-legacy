@@ -15,8 +15,12 @@ export default defineConfig({
         VueJsx()
     ],
     build: {
+        outDir: 'lib',
         lib: {
-            entry
+            entry:{
+                ...entry,
+                index: path.resolve(import.meta.dirname, 'src/index.js')
+            }
         },
         rollupOptions: {
             external: ['vue'],
