@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite"
+    "dev": "node ../build/bin/i18n.js && vite"
   },
   "keywords": [],
   "author": "",

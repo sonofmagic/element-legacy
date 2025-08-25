@@ -55,7 +55,6 @@ export default {
         .then(() => {
           this.triggertProgressBar(false);
         });
-      ga('send', 'event', 'ThemeConfigurator', 'Download', themeName);
     },
     onAction() {
       this.triggertProgressBar(true);
