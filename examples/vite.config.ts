@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue2'
 import VueJsx from '@vitejs/plugin-vue2-jsx'
 import path from 'path'
+import Markdown from 'unplugin-vue-markdown/vite'
 
 export default defineConfig({
     resolve: {
@@ -11,8 +12,15 @@ export default defineConfig({
         }
     },
     plugins: [
-        Vue(),
-        VueJsx()
+        Vue(
+            {
+                include: [/\.vue$/, /\.md$/],
+            }
+        ),
+        VueJsx(),
+        Markdown({
+            vueVersion: '2.7'
+        })
     ],
     css: {
         preprocessorOptions: {

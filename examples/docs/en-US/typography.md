@@ -135,7 +135,7 @@ We create a font convention to ensure the best presentation across different pla
 ### Font Line Height
 
 <div>
-<img class="lineH-left" src="~examples/assets/images/typography.png" />
+<img class="lineH-left" src="/assets/images/typography.png" />
 <ul class="lineH-right">
 <li>line-height:1 <span>No line height</span></li>
 <li>line-height:1.3 <span>Compact</span></li>
