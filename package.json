@@ -1,6 +1,7 @@
 {
   "name": "element-ui-legacy",
-  "version": "3.0.0-alpha.4",
+  "type": "module",
+  "version": "3.0.0-alpha.5",
   "packageManager": "pnpm@10.15.0",
   "description": "A Component Library for Vue.js.",
   "license": "MIT",
@@ -17,9 +18,9 @@
     "vue",
     "components"
   ],
-  "main": "lib/index.js",
-  "module": "lib/index.mjs",
-  "unpkg": "lib/index.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
+  "unpkg": "lib/index.cjs",
   "types": "types/index.d.ts",
   "style": "lib/theme-chalk/index.css",
   "web-types": "./web-types.json",
@@ -32,8 +33,8 @@
   ],
   "scripts": {
     "bootstrap": "pnpm i",
-    "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
-    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
+    "build:file": "node build/bin/iconInit.cjs & node build/bin/build-entry.cjs & node build/bin/i18n.cjs & node build/bin/version.cjs",
+    "build:theme": "node build/bin/gen-cssfile.cjs && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
     "build:umd": "node build/bin/build-locale.js",
     "build": "vite build",
@@ -57,7 +58,6 @@
     "commitlint": "commitlint --edit",
     "release:alpha": "pnpm publish --tag alpha --no-git-checks"
   },
-
   "peerDependencies": {
     "vue": "^2.5.17"
   },

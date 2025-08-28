@@ -303,7 +303,7 @@ export {
 }
 
 export default {
-  version: '3.0.0-alpha.4',
+  version: '3.0.0-alpha.5',
   locale: locale.use,
   i18n: locale.i18n,
   install,
