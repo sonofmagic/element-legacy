@@ -1,6 +1,6 @@
 {
   "name": "element-ui-legacy",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.4",
   "packageManager": "pnpm@10.15.0",
   "description": "A Component Library for Vue.js.",
   "license": "MIT",
@@ -17,19 +17,12 @@
     "vue",
     "components"
   ],
-  "exports": {
-    ".": {
-      "types": "./types/index.d.ts",
-      "import": "./lib/index.js",
-      "require": "./lib/index.cjs"
-    },
-    "./style.css": "./lib/theme-chalk/index.css",
-    "./*": "./*"
-  },
-  "main": "lib/index.cjs",
-  "module": "lib/index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
   "unpkg": "lib/index.js",
   "types": "types/index.d.ts",
+  "style": "lib/theme-chalk/index.css",
+  "web-types": "./web-types.json",
   "files": [
     "lib",
     "packages",
@@ -64,8 +57,7 @@
     "commitlint": "commitlint --edit",
     "release:alpha": "pnpm publish --tag alpha --no-git-checks"
   },
-  "style": "lib/theme-chalk/index.css",
-  "web-types": "./web-types.json",
+
   "peerDependencies": {
     "vue": "^2.5.17"
   },
