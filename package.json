@@ -1,6 +1,6 @@
 {
-  "name": "element-ui-next",
-  "version": "3.0.0",
+  "name": "element-ui-legacy",
+  "version": "3.0.0-alpha.0",
   "packageManager": "pnpm@10.15.0",
   "description": "A Component Library for Vue.js.",
   "license": "MIT",
@@ -39,7 +39,7 @@
   "scripts": {
     "bootstrap": "pnpm i",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
-    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk && pnpm format:lib:css",
+    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
     "build:umd": "node build/bin/build-locale.js",
     "build": "vite build",
@@ -49,27 +49,28 @@
     "dev:extension": "rimraf examples/extension/dist && cross-env NODE_ENV=development webpack --watch --config build/webpack.extension.js",
     "dev": "npm run bootstrap && npm run build:file && cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js & node build/bin/template.js",
     "dev:play": "npm run build:file && cross-env NODE_ENV=development PLAY_ENV=true webpack-dev-server --config build/webpack.demo.js",
-    "dist": "npm run clean && npm run build:file && npm run lint && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && webpack --config build/webpack.component.js && npm run build:utils && npm run build:umd && npm run build:theme",
+    "dist": "npm run clean && npm run build:file && npm run lint && npm run build && npm run build:utils && npm run build:theme",
     "i18n": "node build/bin/i18n.js",
-    "lint": "eslint --quiet",
+    "lint": "",
     "pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh && node build/bin/gen-indices.js",
+    "publish-packages": "turbo run build lint test && changeset version && changeset publish",
     "test": "vitest run",
     "test:dev": "vitest",
-    "overwrite": "tsx scripts/overwrite",
-    "format:lib-before:css": "prettier ./lib-before/theme-chalk/*.css --write",
-    "format:lib:css": "prettier ./lib/theme-chalk/*.css --write",
-    "scss:migrator": "sass-migrator module --migrate-deps ./packages/theme-chalk/src/index.scss",
-    "scss:reset": "sass-migrator module --migrate-deps ./packages/theme-chalk/src/reset.scss",
     "script:init": "monorepo init",
     "script:sync": "monorepo sync",
     "script:clean": "monorepo clean",
     "script:mirror": "monorepo mirror",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "release:alpha": "pnpm publish --tag alpha --no-git-checks"
   },
   "style": "lib/theme-chalk/index.css",
   "web-types": "./web-types.json",
   "peerDependencies": {
     "vue": "^2.5.17"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
     "@types/lodash-es": "^4.17.12",
@@ -114,7 +115,7 @@
     "copy-webpack-plugin": "^13.0.1",
     "corejs": "^1.0.0",
     "coveralls": "^3.0.3",
-    "cp-cli": "^1.0.2",
+    "cp-cli": "^2.0.0",
     "cross-env": "^10.0.0",
     "css-loader": "^7.1.2",
     "defu": "^6.1.4",
