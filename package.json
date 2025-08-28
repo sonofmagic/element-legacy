@@ -1,7 +1,7 @@
 {
   "name": "element-ui-legacy",
   "type": "module",
-  "version": "3.0.0-alpha.5",
+  "version": "3.0.0-alpha.7",
   "packageManager": "pnpm@10.15.0",
   "description": "A Component Library for Vue.js.",
   "license": "MIT",
