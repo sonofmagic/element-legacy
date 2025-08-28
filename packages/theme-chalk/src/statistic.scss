@@ -1,22 +1,22 @@
-@import "mixins/mixins";
-@import "common/var";
+@use "mixins/mixins";
+@use "common/var";
 
-@include b(statistic) {
+@include mixins.b(statistic) {
   $statistic-justify: center;
   $statistic-align: center;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: $--color-black;
+  color: var.$color-black;
   font-variant: tabular-nums;
   list-style: none;
   font-feature-settings: "tnum";
   text-align: center;
   .head {
     margin-bottom: 4px;
-    color: $--color-text-regular;
-    font-size: $--font-size-small;
+    color: var.$color-text-regular;
+    font-size: var.$font-size-small;
   }
 
   .con {
@@ -24,9 +24,9 @@
     display: flex;
     justify-content: $statistic-justify;
     align-items: $statistic-align;
-    color: $--color-text-primary;
+    color: var.$color-text-primary;
     .number {
-      font-size: $--font-size-extra-large;
+      font-size: var.$font-size-extra-large;
       padding: 0 4px;
     }
     span {

@@ -1,4 +1,4 @@
-import ElTable from './src/table';
+import ElTable from './src/table.vue';
 
 /* istanbul ignore next */
 ElTable.install = function(Vue) {

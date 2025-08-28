@@ -252,6 +252,10 @@ import { savePreviewToLocal } from './localstorage';
 import { tintColor } from '../../color.js';
 import dateUtil from 'element-ui/src/utils/date';
 import { getActionDisplayName } from '../theme-configurator/utils/utils';
+import IconCheck from '../../assets/images/icon-check.png'
+import IconCopy from '../../assets/images/icon-copy.png'
+import IconEdit from '../../assets/images/icon-edit.png'
+import IconDownload from '../../assets/images/icon-download.png'
 
 export default {
   props: {
@@ -377,12 +381,12 @@ export default {
       if (this.isOfficial) {
         return [
           {
-            icon: require('../../assets/images/icon-check.png'),
+            icon: IconCheck,
             name: getActionDisplayName('theme-check'),
             action: 'preview'
           },
           {
-            icon: require('../../assets/images/icon-copy.png'),
+            icon: IconCopy,
             name: getActionDisplayName('theme-copy'),
             action: 'copy'
           }
@@ -390,12 +394,12 @@ export default {
       }
       return [
         {
-          icon: require('../../assets/images/icon-edit.png'),
+          icon: IconEdit,
           name: getActionDisplayName('theme-edit'),
           action: 'edit'
         },
         {
-          icon: require('../../assets/images/icon-download.png'),
+          icon: IconDownload,
           name: getActionDisplayName('download-theme'),
           action: 'download'
         }

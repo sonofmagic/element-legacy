@@ -1,27 +1,27 @@
-@import 'mixins/mixins';
-@import 'common/var';
-@import 'descriptions-item';
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'descriptions-item';
 
-@include b(descriptions) {
+@include mixins.b(descriptions) {
   box-sizing: border-box;
-  font-size: $--font-size-base;
-  color: $--color-text-primary;
+  font-size: var.$font-size-base;
+  color: var.$color-text-primary;
 
-  @include e(header) {
+  @include mixins.e(header) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $--descriptions-header-margin-bottom;
+    margin-bottom: var.$descriptions-header-margin-bottom;
 
-    @include e(title) {
-      font-size: $--descriptions-title-font-size;
+    @include mixins.e(title) {
+      font-size: var.$descriptions-title-font-size;
       font-weight: bold;
     }
   }
 
-  @include e(body) {
-    color: $--color-text-regular;
-    background-color: $--color-white;
+  @include mixins.e(body) {
+    color: var.$color-text-regular;
+    background-color: var.$color-white;
 
     .el-descriptions__table {
       border-collapse: collapse;
@@ -34,15 +34,15 @@
         font-weight: normal;
         line-height: 1.5;
 
-        @include when(left) {
+        @include mixins.when(left) {
           text-align: left;
         }
 
-        @include when(center) {
+        @include mixins.when(center) {
           text-align: center;
         }
 
-        @include when(right) {
+        @include mixins.when(right) {
           text-align: right;
         }
       }
@@ -52,7 +52,7 @@
   .is-bordered {
     table-layout: auto;
     .el-descriptions-item__cell {
-      border: $--descriptions-table-border;
+      border: var.$descriptions-table-border;
       padding: 12px 10px;
     }
   }
@@ -63,7 +63,7 @@
     }
   }
 
-  @include m(medium) {
+  @include mixins.m(medium) {
     &.is-bordered {
       .el-descriptions-item__cell {
         padding: 10px;
@@ -77,7 +77,7 @@
     }
   }
 
-  @include m(small) {
+  @include mixins.m(small) {
     font-size: 12px;
 
     &.is-bordered {
@@ -93,7 +93,7 @@
     }
   }
 
-  @include m(mini) {
+  @include mixins.m(mini) {
     font-size: 12px;
 
     &.is-bordered {

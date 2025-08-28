@@ -1,4 +1,4 @@
-import ElForm from './src/form';
+import ElForm from './src/form.vue';
 
 /* istanbul ignore next */
 ElForm.install = function(Vue) {

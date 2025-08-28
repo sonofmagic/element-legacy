@@ -1,61 +1,61 @@
-@import 'mixins/mixins';
-@import 'common/var';
+@use 'mixins/mixins';
+@use 'common/var';
 
-@include b(result) {
+@include mixins.b(result) {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   box-sizing: border-box;
-  padding: $--result-padding;
+  padding: var.$result-padding;
 
-  @include e(icon) {
+  @include mixins.e(icon) {
     svg {
-      width: $--result-icon-font-size;
-      height: $--result-icon-font-size;
+      width: var.$result-icon-font-size;
+      height: var.$result-icon-font-size;
     }
   }
 
-  @include e(title) {
-    margin-top: $--result-title-margin-top;
+  @include mixins.e(title) {
+    margin-top: var.$result-title-margin-top;
 
     p {
       margin: 0;
-      font-size: $--result-title-font-size;
-      color: $--color-text-primary;
+      font-size: var.$result-title-font-size;
+      color: var.$color-text-primary;
       line-height: 1.3;
     }
   }
 
-  @include e(subtitle) {
-    margin-top: $--result-subtitle-margin-top;
+  @include mixins.e(subtitle) {
+    margin-top: var.$result-subtitle-margin-top;
 
     p {
       margin: 0;
-      font-size: $--font-size-base;
-      color: $--color-text-regular;
+      font-size: var.$font-size-base;
+      color: var.$color-text-regular;
       line-height: 1.3;
     }
   }
 
-  @include e(extra) {
-    margin-top: $--result-extra-margin-top;
+  @include mixins.e(extra) {
+    margin-top: var.$result-extra-margin-top;
   }
 
   .icon-success {
-    fill: $--result-success-color;
+    fill: var.$result-success-color;
   }
 
   .icon-error {
-    fill: $--result-danger-color;
+    fill: var.$result-danger-color;
   }
 
   .icon-info {
-    fill: $--result-info-color;
+    fill: var.$result-info-color;
   }
 
   .icon-warning {
-    fill: $--result-warning-color;
+    fill: var.$result-warning-color;
   }
 }

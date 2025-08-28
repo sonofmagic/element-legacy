@@ -1,4 +1,4 @@
-import Transfer from './src/main';
+import Transfer from './src/main.vue';
 
 /* istanbul ignore next */
 Transfer.install = function(Vue) {

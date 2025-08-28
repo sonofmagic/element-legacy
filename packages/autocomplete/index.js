@@ -1,4 +1,4 @@
-import ElAutocomplete from './src/autocomplete';
+import ElAutocomplete from './src/autocomplete.vue';
 
 /* istanbul ignore next */
 ElAutocomplete.install = function(Vue) {

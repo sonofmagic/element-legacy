@@ -1,4 +1,4 @@
-import ElCarouselItem from '../carousel/src/item';
+import ElCarouselItem from '../carousel/src/item.vue';
 
 /* istanbul ignore next */
 ElCarouselItem.install = function(Vue) {

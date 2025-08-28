@@ -314,7 +314,7 @@
         <!-- nav -->
         <ul class="nav">
           <li class="nav-item nav-algolia-search" v-show="isComponentPage">
-            <algolia-search></algolia-search>
+            <!-- <algolia-search></algolia-search> -->
           </li>
           <li class="nav-item">
             <router-link
@@ -403,10 +403,10 @@
 </template>
 <script>
   import ThemePicker from './theme-picker.vue';
-  import AlgoliaSearch from './search.vue';
+  // import AlgoliaSearch from './search.vue';
   import compoLang from '../i18n/component.json';
   import Element from 'main/index.js';
-  import themeLoader from './theme/loader';
+  import themeLoader from './theme/loader/index.vue';
   import bus from '../bus';
   import { ACTION_USER_CONFIG_UPDATE } from './theme/constant.js';
 
@@ -433,7 +433,7 @@
 
     components: {
       ThemePicker,
-      AlgoliaSearch
+      // AlgoliaSearch
     },
 
     computed: {
@@ -457,10 +457,8 @@
       const testInnerImg = new Image();
       testInnerImg.onload = () => {
         this.$isEle = true;
-        ga('send', 'event', 'DocView', 'Ali', 'Inner');
       };
       testInnerImg.onerror = (err) => {
-        ga('send', 'event', 'DocView', 'Ali', 'Outer');
         console.error(err);
       };
       testInnerImg.src = `https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/rmsportal/VmvVUItLdPNqKlNGuRHi.png?t=${Date.now()}`;

@@ -1,4 +1,4 @@
-import ElDialog from './src/component';
+import ElDialog from './src/component.vue';
 
 /* istanbul ignore next */
 ElDialog.install = function(Vue) {

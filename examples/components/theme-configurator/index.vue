@@ -79,7 +79,6 @@ export default {
     }
   },
   mounted() {
-    ga('send', 'event', 'ThemeConfigurator', 'Init');
     this.showConfigurator();
     this.enableShortcut();
   },

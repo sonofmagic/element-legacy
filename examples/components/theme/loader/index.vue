@@ -1,7 +1,7 @@
 <script>
 import bus from '../../../bus.js';
-import Loading from './loading';
-import DocStyle from './docStyle';
+import Loading from './loading/index.vue';
+import DocStyle from './docStyle.vue';
 import { updateVars } from './api.js';
 import { updateDomHeadStyle } from '../utils.js';
 import {
@@ -55,7 +55,6 @@ export default {
         .then(() => {
           this.triggertProgressBar(false);
         });
-      ga('send', 'event', 'ThemeConfigurator', 'Download', themeName);
     },
     onAction() {
       this.triggertProgressBar(true);

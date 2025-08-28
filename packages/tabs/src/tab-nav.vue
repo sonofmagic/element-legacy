@@ -1,5 +1,5 @@
-<script>
-  import TabBar from './tab-bar';
+<script lang="jsx">
+  import TabBar from './tab-bar.vue';
   import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
 
   function noop() {}

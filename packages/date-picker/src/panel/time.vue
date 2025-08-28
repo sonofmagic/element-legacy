@@ -33,7 +33,7 @@
 <script type="text/babel">
   import { limitTimeRange, isDate, clearMilliseconds, timeWithinRange } from 'element-ui/src/utils/date-util';
   import Locale from 'element-ui/src/mixins/locale';
-  import TimeSpinner from '../basic/time-spinner';
+  import TimeSpinner from '../basic/time-spinner.vue';
 
   export default {
     mixins: [Locale],

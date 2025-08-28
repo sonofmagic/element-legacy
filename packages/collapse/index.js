@@ -1,4 +1,4 @@
-import ElCollapse from './src/collapse';
+import ElCollapse from './src/collapse.vue';
 
 /* istanbul ignore next */
 ElCollapse.install = function(Vue) {

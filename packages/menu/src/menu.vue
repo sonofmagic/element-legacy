@@ -1,4 +1,4 @@
-<script type="text/jsx">
+<script lang="jsx">
   import emitter from 'element-ui/src/mixins/emitter';
   import Migrating from 'element-ui/src/mixins/migrating';
   import Menubar from 'element-ui/src/utils/menu/aria-menubar';

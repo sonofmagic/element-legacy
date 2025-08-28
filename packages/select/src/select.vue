@@ -144,7 +144,7 @@
   import ElOption from './option.vue';
   import ElTag from 'element-ui/packages/tag';
   import ElScrollbar from 'element-ui/packages/scrollbar';
-  import debounce from 'throttle-debounce/debounce';
+  import { debounce } from 'throttle-debounce';
   import Clickoutside from 'element-ui/src/utils/clickoutside';
   import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
   import scrollIntoView from 'element-ui/src/utils/scroll-into-view';

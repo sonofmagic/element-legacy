@@ -4,10 +4,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const launchEditorMiddleware = require('launch-editor-middleware');
+// const launchEditorMiddleware = require('launch-editor-middleware');
 
 const config = require('./config');
 
@@ -21,7 +21,7 @@ const webpackConfig = {
   } : (isPlay ? './examples/play.js' : './examples/entry.js'),
   output: {
     path: path.resolve(process.cwd(), './examples/element-ui/'),
-    publicPath: process.env.CI_ENV || '',
+    // publicPath: process.env.CI_ENV || '',
     filename: '[name].[hash:7].js',
     chunkFilename: isProd ? '[name].[hash:7].js' : '[name].js'
   },
@@ -33,17 +33,17 @@ const webpackConfig = {
   devServer: {
     host: '0.0.0.0',
     port: 8085,
-    publicPath: '/',
-    hot: true,
-    before: (app) => {
-      /*
-       * 编辑器类型 :此处的指令表示的时各个各个编辑器在cmd或terminal中的命令
-       * webstorm
-       * code // vscode
-       * idea
-      */
-      app.use('/__open-in-editor', launchEditorMiddleware('code'));
-    }
+    // publicPath: '/',
+    hot: true
+    // before: (app) => {
+    //   /*
+    //    * 编辑器类型 :此处的指令表示的时各个各个编辑器在cmd或terminal中的命令
+    //    * webstorm
+    //    * code // vscode
+    //    * idea
+    //   */
+    //   app.use('/__open-in-editor', launchEditorMiddleware('code'));
+    // }
   },
   performance: {
     hints: false
@@ -100,12 +100,12 @@ const webpackConfig = {
       },
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: 'url-loader',
+        loader: 'url-loader'
         // todo: 这种写法有待调整
-        query: {
-          limit: 10000,
-          name: path.posix.join('static', '[name].[hash:7].[ext]')
-        }
+        // query: {
+        //   limit: 10000,
+        //   name: path.posix.join('static', '[name].[hash:7].[ext]')
+        // }
       }
     ]
   },
@@ -116,9 +116,11 @@ const webpackConfig = {
       filename: './index.html',
       favicon: './examples/favicon.ico'
     }),
-    new CopyWebpackPlugin([
-      { from: 'examples/versions.json' }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'examples/versions.json' }
+      ]
+    }),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
@@ -135,7 +137,7 @@ const webpackConfig = {
   optimization: {
     minimizer: []
   },
-  devtool: '#eval-source-map'
+  devtool: 'source-map'
 };
 
 if (isProd) {

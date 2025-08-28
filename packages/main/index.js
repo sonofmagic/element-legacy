@@ -1,4 +1,4 @@
-import Main from './src/main';
+import Main from './src/main.vue';
 
 /* istanbul ignore next */
 Main.install = function(Vue) {

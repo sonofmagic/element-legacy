@@ -1,4 +1,4 @@
-import Header from './src/main';
+import Header from './src/main.vue';
 
 /* istanbul ignore next */
 Header.install = function(Vue) {

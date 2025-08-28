@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script>
+<script lang="jsx">
   import ElCheckboxGroup from 'element-ui/packages/checkbox-group';
   import ElCheckbox from 'element-ui/packages/checkbox';
   import ElInput from 'element-ui/packages/input';

@@ -1,0 +1,16 @@
+{
+  "name": "element-ui-next-docs",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ../build/bin/i18n.js && vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "unplugin-vue-markdown": "^29.1.0"
+  }
+}

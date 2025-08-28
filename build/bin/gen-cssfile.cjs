@@ -17,11 +17,11 @@ function fileExists(filePath) {
 
 themes.forEach((theme) => {
   var isSCSS = theme !== 'theme-default';
-  var indexContent = isSCSS ? '@import "./base.scss";\n' : '@import "./base.css";\n';
+  var indexContent = isSCSS ? '@use "./base.scss";\n' : '@use "./base.css";\n';
   Components.forEach(function(key) {
     if (['icon', 'option', 'option-group'].indexOf(key) > -1) return;
     var fileName = key + (isSCSS ? '.scss' : '.css');
-    indexContent += '@import "./' + fileName + '";\n';
+    indexContent += '@use "./' + fileName + '";\n';
     var filePath = path.resolve(basepath, theme, 'src', fileName);
     if (!fileExists(filePath)) {
       fs.writeFileSync(filePath, '', 'utf8');

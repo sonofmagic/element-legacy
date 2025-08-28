@@ -1,4 +1,4 @@
-<script>
+<script lang="jsx">
   import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
   import menuMixin from './menu-mixin';
   import Emitter from 'element-ui/src/mixins/emitter';

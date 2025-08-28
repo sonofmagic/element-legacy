@@ -1,4 +1,4 @@
-import ElButton from './src/button';
+import ElButton from './src/button.vue';
 
 /* istanbul ignore next */
 ElButton.install = function(Vue) {

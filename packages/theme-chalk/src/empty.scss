@@ -1,17 +1,17 @@
-@import "mixins/mixins";
-@import "common/var";
+@use "mixins/mixins";
+@use "common/var";
 
-@include b(empty) {
+@include mixins.b(empty) {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   box-sizing: border-box;
-  padding: $--empty-padding;
+  padding: var.$empty-padding;
 
-  @include e(image) {
-    width: $--empty-image-width;
+  @include mixins.e(image) {
+    width: var.$empty-image-width;
 
     img {
       user-select: none;
@@ -22,24 +22,24 @@
     }
 
     svg {
-      fill: $--svg-monochrome-grey;
+      fill: var.$svg-monochrome-grey;
       width: 100%;
       height: 100%;
       vertical-align: top;
     }
   }
 
-  @include e(description) {
-    margin-top: $--empty-description-margin-top;
+  @include mixins.e(description) {
+    margin-top: var.$empty-description-margin-top;
 
     p {
       margin: 0;
-      font-size: $--font-size-base;
-      color: $--color-text-secondary;
+      font-size: var.$font-size-base;
+      color: var.$color-text-secondary;
     }
   }
 
-  @include e(bottom) {
-    margin-top: $--empty-bottom-margin-top;
+  @include mixins.e(bottom) {
+    margin-top: var.$empty-bottom-margin-top;
   }
 }
