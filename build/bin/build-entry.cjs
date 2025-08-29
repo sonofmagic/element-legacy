@@ -51,6 +51,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
+  CollapseTransition,
+  Loading,
 {{list}}
 }
 
