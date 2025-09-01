@@ -37,9 +37,9 @@ export default defineConfig(
           '**/{vitest,vite}.config.*/**',
         ],
         environment: 'jsdom',
-        // include: [
-        //   'test/**/*.spec.js',
-        // ],
+        include: [
+          'test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
+        ],
         globals: true,
       },
     }

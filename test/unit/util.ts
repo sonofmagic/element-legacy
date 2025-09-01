@@ -1,5 +1,5 @@
 import Element from 'main/index.js'
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.js'
 
 Vue.use(Element)
 
@@ -114,7 +114,7 @@ export function triggerKeyDown(el, keyCode) {
  * @param {number} ms
  */
 export function wait(ms = 50) {
-  return new Promise(resolve => setTimeout(() => resolve(), ms))
+  return new Promise(resolve => setTimeout(() => resolve(undefined), ms))
 }
 
 /**
