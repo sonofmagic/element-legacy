@@ -20,9 +20,6 @@ importers:
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
-      fecha:
-        specifier: ^4.2.3
-        version: 4.2.3
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -165,6 +162,9 @@ importers:
       execa:
         specifier: ^9.6.0
         version: 9.6.0
+      fecha:
+        specifier: ^4.2.3
+        version: 4.2.3
       file-loader:
         specifier: ^6.2.0
         version: 6.2.0(webpack@5.101.3)
