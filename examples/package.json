@@ -1,15 +1,15 @@
 {
-  "name": "element-ui-next-docs",
-  "private": true,
+  "name": "element-ui-legacy-docs",
   "version": "1.0.0",
+  "private": true,
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "index.js",
   "scripts": {
     "dev": "node ../build/bin/i18n.js && vite"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "unplugin-vue-markdown": "^29.1.0"
   }
