@@ -11,6 +11,6 @@
     "dev": "node ../build/bin/i18n.js && vite"
   },
   "devDependencies": {
-    "unplugin-vue-markdown": "^29.1.0"
+    "unplugin-vue-markdown": "^29.2.0"
   }
 }
