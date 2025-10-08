@@ -1,41 +1,41 @@
-<template>
-  <section class="config" :key="displayName">
-    <div class="config-label">
-      <el-tooltip :content="displayName" placement="top">
-        <span>{{displayKeyName}}</span>
-      </el-tooltip>
-    </div>
-    <div class="config-content">
-      <theme-input 
-        :val="value"
-        size="medium"
-        @change="onChange"
-      ></theme-input>
-    </div>
-  </section>
-</template>
-
 <script>
-import Input from './input';
-import Mixin from './mixin';
+import Input from './input.vue'
+import Mixin from './mixin.vue'
 
 export default {
   components: {
-    themeInput: Input
-  },
-  data() {
-    return {
-      value: ''
-    };
+    ThemeInput: Input,
   },
   mixins: [Mixin],
-  watch: {
-    'mergedValue': {
-      immediate: true,
-      handler(value) {
-        this.value = this.mergedValue;
-      }
+  data() {
+    return {
+      value: '',
     }
-  }
-};
+  },
+  watch: {
+    mergedValue: {
+      immediate: true,
+      handler(_value) {
+        this.value = this.mergedValue
+      },
+    },
+  },
+}
 </script>
+
+<template>
+  <section :key="displayName" class="config">
+    <div class="config-label">
+      <el-tooltip :content="displayName" placement="top">
+        <span>{{ displayKeyName }}</span>
+      </el-tooltip>
+    </div>
+    <div class="config-content">
+      <ThemeInput
+        :val="value"
+        size="medium"
+        @change="onChange"
+      />
+    </div>
+  </section>
+</template>

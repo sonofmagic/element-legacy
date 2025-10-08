@@ -8,7 +8,8 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "dev": "node ../build/bin/i18n.js && vite"
+    "dev": "node ../build/bin/i18n.cjs && vite",
+    "build": "node ../build/bin/i18n.cjs && vite build"
   },
   "devDependencies": {
     "unplugin-vue-markdown": "^29.2.0"

@@ -1,20 +1,73 @@
+<script>
+import { getStyleDisplayName } from '../utils/utils.js'
+import Input from './input.vue'
+import Mixin from './mixin.vue'
+
+export default {
+  components: {
+    ThemeInput: Input,
+  },
+  mixins: [Mixin],
+  data() {
+    return {
+      options: [],
+      value: '',
+    }
+  },
+  computed: {
+    isGlobalInputValue() {
+      return this.config.value.startsWith('$')
+    },
+  },
+  watch: {
+    mergedValue: {
+      immediate: true,
+      handler(_value) {
+        this.initSelectOption()
+        this.value = this.mergedValue
+      },
+    },
+  },
+  methods: {
+    onSelectChange(e) {
+      this.onChange(e)
+    },
+    initSelectOption() {
+      this.options = []
+      const golbalV = this.golbalValue.border
+      if (golbalV) {
+        Object.keys(golbalV).forEach((font) => {
+          if (font.includes('border-radius')) {
+            const size = golbalV[font]
+            this.options.push({
+              value: size.key,
+              label: getStyleDisplayName(size),
+            })
+          }
+        })
+      }
+    },
+  },
+}
+</script>
+
 <template>
-  <section class="config" :key="displayName">
+  <section :key="displayName" class="config">
     <div class="config-label">
       <el-tooltip :content="displayName" placement="top">
-        <span>{{displayKeyName}}</span>
+        <span>{{ displayKeyName }}</span>
       </el-tooltip>
     </div>
     <div class="config-content">
-      <theme-input 
+      <ThemeInput
         v-if="isGlobal"
         :val="value"
         @change="onChange"
-      ></theme-input>
-      <el-select 
-        size="medium"
+      />
+      <el-select
         v-if="!isGlobal"
-        v-model="value" 
+        v-model="value"
+        size="medium"
         class="select"
         @change="onSelectChange"
       >
@@ -22,8 +75,8 @@
           v-for="item in options"
           :key="item.value"
           :label="item.label"
-          :value="item.value">
-        </el-option>
+          :value="item.value"
+        />
       </el-select>
     </div>
   </section>
@@ -34,56 +87,3 @@
   width: 100%;
 }
 </style>
-
-<script>
-import Mixin from './mixin';
-import Input from './input';
-import { getStyleDisplayName } from '../utils/utils.js';
-
-export default {
-  data() {
-    return {
-      options: [],
-      value: ''
-    };
-  },
-  components: {
-    themeInput: Input
-  },
-  mixins: [Mixin],
-  computed: {
-    isGlobalInputValue() {
-      return this.config.value.startsWith('$');
-    }
-  },
-  methods: {
-    onSelectChange(e) {
-      this.onChange(e);
-    },
-    initSelectOption() {
-      this.options = [];
-      const golbalV = this.golbalValue.border;
-      if (golbalV) {
-        Object.keys(golbalV).forEach((font) => {
-          if (font.includes('border-radius')) {
-            const size = golbalV[font];
-            this.options.push({
-              value: size.key,
-              label: getStyleDisplayName(size)
-            });
-          }
-        });
-      }
-    }
-  },
-  watch: {
-    'mergedValue': {
-      immediate: true,
-      handler(value) {
-        this.initSelectOption();
-        this.value = this.mergedValue;
-      }
-    }
-  }
-};
-</script>

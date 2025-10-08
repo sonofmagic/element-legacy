@@ -55,9 +55,9 @@
 </template>
 <script>
 import bus from '../../bus.js';
-import ThemeConfigurator from '../../components/theme-configurator';
-import ComponentsPreview from '../../components/theme/components-preview';
-import BasicTokensPreview from '../../components/theme/basic-tokens-preview';
+import ThemeConfigurator from '../../components/theme-configurator/index.vue';
+import ComponentsPreview from '../../components/theme/components-preview.vue';
+import BasicTokensPreview from '../../components/theme/basic-tokens-preview.vue';
 import {
   loadPreviewFromLocal,
   loadUserThemeFromLocal,
