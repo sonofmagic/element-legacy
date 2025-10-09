@@ -1,18 +1,19 @@
 import { statSync, writeFileSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
 import { createRequire } from 'node:module'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const require = createRequire(import.meta.url)
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const components = Object.keys(require('../../components.json') as Record<string, string>)
+
 const themes = [
   'theme-chalk',
 ]
 const basePath = resolve(__dirname, '../../packages/')
 
-const fileExists = (filePath: string) => {
+function fileExists(filePath: string) {
   try {
     return statSync(filePath).isFile()
   }
@@ -23,7 +24,7 @@ const fileExists = (filePath: string) => {
 
 themes.forEach((theme) => {
   const isSCSS = theme !== 'theme-default'
-  let indexContent = isSCSS ? '@use "./base.scss";\n' : '@use "./base.css";\n'
+  let indexContent = isSCSS ? '@use \'./base\';\n' : '@use \'./base.css\';\n'
 
   components.forEach((key) => {
     if (['icon', 'option', 'option-group'].includes(key)) {
@@ -31,7 +32,7 @@ themes.forEach((theme) => {
     }
 
     const fileName = `${key}${isSCSS ? '.scss' : '.css'}`
-    indexContent += `@use "./${fileName}";\n`
+    indexContent += `@use './${key}';\n`
     const filePath = resolve(basePath, theme, 'src', fileName)
 
     if (!fileExists(filePath)) {

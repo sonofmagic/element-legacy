@@ -1,5 +1,5 @@
-@use "../common/var";
-@use "../mixins/mixins";
+@use '../common/var';
+@use '../mixins/mixins';
 
 @include mixins.b(picker-panel) {
   color: var.$color-text-regular;
@@ -12,7 +12,7 @@
 
   @include mixins.e((body, body-wrapper)) {
     &::after {
-      content: "";
+      content: '';
       display: table;
       clear: both;
     }
@@ -99,7 +99,7 @@
   }
 }
 
-.el-picker-panel *[slot=sidebar],
+.el-picker-panel *[slot='sidebar'],
 .el-picker-panel__sidebar {
   position: absolute;
   top: 0;
@@ -112,7 +112,7 @@
   overflow: auto;
 }
 
-.el-picker-panel *[slot=sidebar] + .el-picker-panel__body,
+.el-picker-panel *[slot='sidebar'] + .el-picker-panel__body,
 .el-picker-panel__sidebar + .el-picker-panel__body {
   margin-left: 110px;
 }

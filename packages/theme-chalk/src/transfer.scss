@@ -1,11 +1,11 @@
-@use "mixins/mixins";
-@use "mixins/utils";
-@use "common/var";
-@use "input";
-@use "button";
-@use "checkbox";
-@use "checkbox-group";
-@use "sass:math";
+@use 'mixins/mixins';
+@use 'mixins/utils';
+@use 'common/var';
+@use 'input';
+@use 'button';
+@use 'checkbox';
+@use 'checkbox-group';
+@use 'sass:math';
 
 @include mixins.b(transfer) {
   font-size: var.$font-size-base;
@@ -49,11 +49,12 @@
       margin: 0;
     }
 
-    i, span {
+    i,
+    span {
       font-size: 14px;
     }
 
-    & [class*="el-icon-"] + span {
+    & [class*='el-icon-'] + span {
       margin-left: 0;
     }
   }
@@ -139,7 +140,7 @@
       font-size: 12px;
       display: inline-block;
       box-sizing: border-box;
-      border-radius: #{math.div(var.$transfer-filter-height,2)};
+      border-radius: #{math.div(var.$transfer-filter-height, 2)};
       padding-right: 10px;
       padding-left: 30px;
     }

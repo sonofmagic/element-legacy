@@ -1,5 +1,5 @@
-@use "sass:color";
-@use "../common/var";
+@use 'sass:color';
+@use '../common/var';
 @mixin button-plain($color) {
   color: $color;
   background: color.mix(var.$color-white, $color, 90%);
@@ -42,7 +42,7 @@
     border-color: color.mix(var.$color-white, $border-color, var.$button-hover-tint-percent);
     color: $color;
   }
-  
+
   &:active {
     background: color.mix(var.$color-black, $background-color, var.$button-active-shade-percent);
     border-color: color.mix(var.$color-black, $border-color, var.$button-active-shade-percent);

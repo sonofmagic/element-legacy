@@ -1,13 +1,14 @@
-@use "sass:color";
-@use "mixins/mixins";
-@use "common/var";
+@use 'sass:color';
+@use 'mixins/mixins';
+@use 'common/var';
 
 $typeMap: (
-  primary: var.$link-primary-font-color, 
-  danger: var.$link-danger-font-color, 
-  success: var.$link-success-font-color, 
-  warning: var.$link-warning-font-color, 
-  info: var.$link-info-font-color);
+  primary: var.$link-primary-font-color,
+  danger: var.$link-danger-font-color,
+  success: var.$link-success-font-color,
+  warning: var.$link-warning-font-color,
+  info: var.$link-info-font-color,
+);
 
 @include mixins.b(link) {
   display: inline-flex;
@@ -25,37 +26,36 @@ $typeMap: (
 
   @include mixins.when(underline) {
     &:hover:after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       right: 0;
       height: 0;
       bottom: 0;
-      border-bottom: 1px solid var.$link-default-active-color
+      border-bottom: 1px solid var.$link-default-active-color;
     }
   }
 
   @include mixins.when(disabled) {
     cursor: not-allowed;
-  } 
+  }
 
-  & [class*="el-icon-"] {
+  & [class*='el-icon-'] {
     & + span {
       margin-left: 5px;
     }
   }
-    
-    
-  &.el-link--default  {
+
+  &.el-link--default {
     color: var.$link-default-font-color;
     &:hover {
-      color: var.$link-default-active-color
+      color: var.$link-default-active-color;
     }
     &:after {
-      border-color: var.$link-default-active-color
+      border-color: var.$link-default-active-color;
     }
     @include mixins.when(disabled) {
-      color: var.$link-disabled-font-color
+      color: var.$link-disabled-font-color;
     }
   }
 
@@ -63,20 +63,19 @@ $typeMap: (
     &.el-link--#{$type} {
       color: $primaryColor;
       &:hover {
-        color: color.mix($primaryColor, var.$color-white, 80%)
+        color: color.mix($primaryColor, var.$color-white, 80%);
       }
       &:after {
-        border-color: $primaryColor
+        border-color: $primaryColor;
       }
       @include mixins.when(disabled) {
-        color: color.mix($primaryColor, var.$color-white, 50%)
+        color: color.mix($primaryColor, var.$color-white, 50%);
       }
       @include mixins.when(underline) {
         &:hover:after {
-          border-color: $primaryColor
+          border-color: $primaryColor;
         }
       }
     }
   }
-    
 }

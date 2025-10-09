@@ -1,9 +1,9 @@
 @charset "UTF-8";
-@use "sass:color";
-@use "common/var";
-@use "mixins/button";
-@use "mixins/mixins";
-@use "mixins/utils";
+@use 'sass:color';
+@use 'common/var';
+@use 'mixins/button';
+@use 'mixins/mixins';
+@use 'mixins/utils';
 
 @include mixins.b(button) {
   display: inline-block;
@@ -19,14 +19,19 @@
   box-sizing: border-box;
   outline: none;
   margin: 0;
-  transition: .1s;
+  transition: 0.1s;
   font-weight: var.$button-font-weight;
   @include utils.utils-user-select(none);
   & + & {
     margin-left: 10px;
   }
 
-  @include button.button-size(var.$button-padding-vertical, var.$button-padding-horizontal, var.$button-font-size, var.$button-border-radius);
+  @include button.button-size(
+    var.$button-padding-vertical,
+    var.$button-padding-horizontal,
+    var.$button-font-size,
+    var.$button-border-radius
+  );
 
   &:hover,
   &:focus {
@@ -45,7 +50,7 @@
     border: 0;
   }
 
-  & [class*="el-icon-"] {
+  & [class*='el-icon-'] {
     & + span {
       margin-left: 5px;
     }
@@ -111,7 +116,7 @@
       right: -1px;
       bottom: -1px;
       border-radius: inherit;
-      background-color: rgba(255,255,255,.35);
+      background-color: rgba(255, 255, 255, 0.35);
     }
   }
   @include mixins.when(round) {
@@ -123,34 +128,69 @@
     padding: var.$button-padding-vertical;
   }
   @include mixins.m(primary) {
-    @include button.button-variant(var.$button-primary-font-color, var.$button-primary-background-color, var.$button-primary-border-color);
+    @include button.button-variant(
+      var.$button-primary-font-color,
+      var.$button-primary-background-color,
+      var.$button-primary-border-color
+    );
   }
   @include mixins.m(success) {
-    @include button.button-variant(var.$button-success-font-color, var.$button-success-background-color, var.$button-success-border-color);
+    @include button.button-variant(
+      var.$button-success-font-color,
+      var.$button-success-background-color,
+      var.$button-success-border-color
+    );
   }
   @include mixins.m(warning) {
-    @include button.button-variant(var.$button-warning-font-color, var.$button-warning-background-color, var.$button-warning-border-color);
+    @include button.button-variant(
+      var.$button-warning-font-color,
+      var.$button-warning-background-color,
+      var.$button-warning-border-color
+    );
   }
   @include mixins.m(danger) {
-    @include button.button-variant(var.$button-danger-font-color, var.$button-danger-background-color, var.$button-danger-border-color);
+    @include button.button-variant(
+      var.$button-danger-font-color,
+      var.$button-danger-background-color,
+      var.$button-danger-border-color
+    );
   }
   @include mixins.m(info) {
-    @include button.button-variant(var.$button-info-font-color, var.$button-info-background-color, var.$button-info-border-color);
+    @include button.button-variant(
+      var.$button-info-font-color,
+      var.$button-info-background-color,
+      var.$button-info-border-color
+    );
   }
   @include mixins.m(medium) {
-    @include button.button-size(var.$button-medium-padding-vertical, var.$button-medium-padding-horizontal, var.$button-medium-font-size, var.$button-medium-border-radius);
+    @include button.button-size(
+      var.$button-medium-padding-vertical,
+      var.$button-medium-padding-horizontal,
+      var.$button-medium-font-size,
+      var.$button-medium-border-radius
+    );
     @include mixins.when(circle) {
       padding: var.$button-medium-padding-vertical;
     }
   }
   @include mixins.m(small) {
-    @include button.button-size(var.$button-small-padding-vertical, var.$button-small-padding-horizontal, var.$button-small-font-size, var.$button-small-border-radius);
+    @include button.button-size(
+      var.$button-small-padding-vertical,
+      var.$button-small-padding-horizontal,
+      var.$button-small-font-size,
+      var.$button-small-border-radius
+    );
     @include mixins.when(circle) {
       padding: var.$button-small-padding-vertical;
     }
   }
   @include mixins.m(mini) {
-    @include button.button-size(var.$button-mini-padding-vertical, var.$button-mini-padding-horizontal, var.$button-mini-font-size, var.$button-mini-border-radius);
+    @include button.button-size(
+      var.$button-mini-padding-vertical,
+      var.$button-mini-padding-horizontal,
+      var.$button-mini-font-size,
+      var.$button-mini-border-radius
+    );
     @include mixins.when(circle) {
       padding: var.$button-mini-padding-vertical;
     }
@@ -237,7 +277,7 @@
       z-index: 1;
     }
   }
-  
+
   & > .el-dropdown {
     & > .el-button {
       border-top-left-radius: 0;

@@ -1,8 +1,8 @@
-@use "mixins/mixins";
-@use "checkbox";
-@use "tag";
-@use "tooltip";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'checkbox';
+@use 'tag';
+@use 'tooltip';
+@use 'common/var';
 
 @include mixins.b(table) {
   position: relative;
@@ -66,7 +66,7 @@
     background-color: var.$color-white;
 
     // 纯属为了增加权重
-    &[class*=cell] {
+    &[class*='cell'] {
       padding: 20px 50px;
     }
 
@@ -171,7 +171,7 @@
   tr {
     background-color: var.$color-white;
 
-    input[type="checkbox"] {
+    input[type='checkbox'] {
       margin: 0;
     }
   }
@@ -206,7 +206,7 @@
 
     &.required > div::before {
       display: inline-block;
-      content: "";
+      content: '';
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -483,10 +483,11 @@
     & .el-table__body {
       & tr.el-table__row--striped {
         td.el-table__cell {
-          background: #FAFAFA;
+          background: #fafafa;
         }
 
-        &.current-row td.el-table__cell, &.selection-row td.el-table__cell {
+        &.current-row td.el-table__cell,
+        &.selection-row td.el-table__cell {
           background-color: var.$table-current-row-background-color;
         }
       }
@@ -495,8 +496,11 @@
 
   @include mixins.e(body) {
     tr.hover-row {
-      &, &.el-table__row--striped {
-        &, &.current-row, &.selection-row {
+      &,
+      &.el-table__row--striped {
+        &,
+        &.current-row,
+        &.selection-row {
           > td.el-table__cell {
             background-color: var.$table-row-hover-background-color;
           }
@@ -504,7 +508,8 @@
       }
     }
 
-    tr.current-row > td.el-table__cell, tr.selection-row > td.el-table__cell {
+    tr.current-row > td.el-table__cell,
+    tr.selection-row > td.el-table__cell {
       background-color: var.$table-current-row-background-color;
     }
   }
@@ -527,13 +532,13 @@
     & i {
       color: var.$color-info;
       font-size: 12px;
-      transform: scale(.75);
+      transform: scale(0.75);
     }
   }
 
   @include mixins.m(enable-row-transition) {
     .el-table__body td.el-table__cell {
-      transition: background-color .25s ease;
+      transition: background-color 0.25s ease;
     }
   }
 
@@ -551,7 +556,7 @@
     }
   }
 
-  [class*=el-table__row--level] {
+  [class*='el-table__row--level'] {
     .el-table__expand-icon {
       display: inline-block;
       width: 20px;

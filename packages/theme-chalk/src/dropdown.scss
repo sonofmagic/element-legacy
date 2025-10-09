@@ -1,8 +1,8 @@
-@use "sass:color";
-@use "mixins/mixins";
-@use "common/var";
-@use "button";
-@use "popper";
+@use 'sass:color';
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'button';
+@use 'popper';
 
 @include mixins.b(dropdown) {
   display: inline-block;
@@ -56,8 +56,10 @@
     margin: 0 3px;
   }
 
-  .el-dropdown-selfdefine { // 自定义
-    &:focus:active, &:focus:not(.focusing) {
+  .el-dropdown-selfdefine {
+    // 自定义
+    &:focus:active,
+    &:focus:not(.focusing) {
       outline-width: 0;
     }
   }
@@ -89,7 +91,8 @@
     color: var.$color-text-regular;
     cursor: pointer;
     outline: none;
-    &:not(.is-disabled):hover, &:focus {
+    &:not(.is-disabled):hover,
+    &:focus {
       background-color: var.$dropdown-menuItem-hover-fill;
       color: var.$dropdown-menuItem-hover-color;
     }

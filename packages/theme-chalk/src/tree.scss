@@ -1,8 +1,8 @@
-@use "sass:color";
-@use "mixins/mixins";
-@use "common/var";
-@use "common/transition";
-@use "checkbox";
+@use 'sass:color';
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'common/transition';
+@use 'checkbox';
 
 @include mixins.b(tree) {
   position: relative;
@@ -39,7 +39,8 @@
 @include mixins.b(tree-node) {
   white-space: nowrap;
   outline: none;
-  &:focus { /* focus */
+  &:focus {
+    /* focus */
     > .el-tree-node__content {
       background-color: var.$tree-node-hover-background-color;
     }

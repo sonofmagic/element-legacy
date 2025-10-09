@@ -1,13 +1,13 @@
-@use "mixins/mixins";
-@use "mixins/utils";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'mixins/utils';
+@use 'common/var';
 
 @include mixins.b(progress) {
   position: relative;
   line-height: 1;
 
   @include mixins.e(text) {
-    font-size:14px;
+    font-size: 14px;
     color: var.$color-text-regular;
     display: inline-block;
     vertical-align: middle;
@@ -20,7 +20,7 @@
     }
   }
 
-  @include mixins.m((circle,dashboard)) {
+  @include mixins.m((circle, dashboard)) {
     display: inline-block;
 
     .el-progress__text {
@@ -38,7 +38,6 @@
       }
     }
   }
-
 
   @include mixins.m(without-text) {
     .el-progress__text {

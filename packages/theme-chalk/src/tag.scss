@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "mixins/mixins";
-@use "common/var";
+@use 'sass:color';
+@use 'mixins/mixins';
+@use 'common/var';
 
 @mixin genTheme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight) {
   background-color: color.mix(var.$tag-primary-color, var.$color-white, $backgroundColorWeight);
@@ -137,7 +137,7 @@
     line-height: 26px;
 
     .el-icon-close {
-      transform: scale(.8);
+      transform: scale(0.8);
     }
   }
 
@@ -147,7 +147,7 @@
     line-height: 22px;
 
     .el-icon-close {
-      transform: scale(.8);
+      transform: scale(0.8);
     }
   }
 
@@ -158,7 +158,7 @@
 
     .el-icon-close {
       margin-left: -3px;
-      transform: scale(.7);
+      transform: scale(0.7);
     }
   }
 }

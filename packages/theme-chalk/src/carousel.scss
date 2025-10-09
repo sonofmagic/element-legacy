@@ -1,5 +1,5 @@
-@use "mixins/mixins";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'common/var';
 
 @include mixins.b(carousel) {
   position: relative;
@@ -25,7 +25,7 @@
     height: var.$carousel-arrow-size;
     width: var.$carousel-arrow-size;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
     border-radius: 50%;
     background-color: var.$carousel-arrow-background;
     color: var.$color-white;
@@ -144,7 +144,7 @@
     padding: 0;
     margin: 0;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
   }
 }
 

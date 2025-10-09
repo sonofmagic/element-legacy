@@ -1,5 +1,5 @@
-@use "mixins/mixins";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'common/var';
 
 @include mixins.b(textarea) {
   position: relative;
@@ -145,7 +145,7 @@
     top: 0;
     text-align: center;
     color: var.$input-icon-color;
-    transition: all .3s;
+    transition: all 0.3s;
     pointer-events: none;
   }
 
@@ -160,14 +160,14 @@
     top: 0;
     text-align: center;
     color: var.$input-icon-color;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 
   @include mixins.e(icon) {
     height: 100%;
     width: 25px;
     text-align: center;
-    transition: all .3s;
+    transition: all 0.3s;
     line-height: var.$input-height;
 
     &:after {
@@ -274,7 +274,7 @@
   display: inline-table;
   width: 100%;
   border-collapse: separate;
-  border-spacing:0;
+  border-spacing: 0;
 
   > .el-input__inner {
     vertical-align: middle;

@@ -1,8 +1,8 @@
-@use "mixins/mixins";
-@use "common/var";
-@use "common/popup";
-@use "button";
-@use "input";
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'common/popup';
+@use 'button';
+@use 'input';
 
 @include mixins.b(message-box) {
   display: inline-block;
@@ -27,7 +27,7 @@
     text-align: center;
 
     &::after {
-      content: "";
+      content: '';
       display: inline-block;
       height: 100%;
       width: 0;
@@ -64,12 +64,12 @@
       color: var.$color-info;
     }
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
       .el-message-box__close {
         color: var.$color-primary;
       }
     }
-
   }
 
   @include mixins.e(content) {
@@ -77,7 +77,7 @@
     color: var.$messagebox-content-color;
     font-size: var.$messagebox-content-font-size;
   }
-  
+
   @include mixins.e(container) {
     position: relative;
   }
@@ -196,11 +196,11 @@
 }
 
 .msgbox-fade-enter-active {
-  animation: msgbox-fade-in .3s;
+  animation: msgbox-fade-in 0.3s;
 }
 
 .msgbox-fade-leave-active {
-  animation: msgbox-fade-out .3s;
+  animation: msgbox-fade-out 0.3s;
 }
 
 @keyframes msgbox-fade-in {

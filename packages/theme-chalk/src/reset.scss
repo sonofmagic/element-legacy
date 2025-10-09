@@ -1,8 +1,9 @@
-@use "sass:color";
+@use 'sass:color';
 @use 'common/var';
 
 body {
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family:
+    'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   font-weight: 400;
   font-size: var.$font-size-base;
   color: var.$color-black;
@@ -23,7 +24,12 @@ a {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var.$color-text-regular;
   font-weight: inherit;
 
@@ -48,7 +54,10 @@ h3 {
   font-size: #{var.$font-size-base + 2px};
 }
 
-h4, h5, h6, p {
+h4,
+h5,
+h6,
+p {
   font-size: inherit;
 }
 
@@ -64,7 +73,8 @@ p {
   }
 }
 
-sup, sub {
+sup,
+sub {
   font-size: #{var.$font-size-base - 1px};
 }
 

@@ -1,5 +1,5 @@
-@use "mixins/mixins";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'common/var';
 
 @include mixins.b(loading-parent) {
   @include mixins.m(relative) {
@@ -14,7 +14,7 @@
 @include mixins.b(loading-mask) {
   position: absolute;
   z-index: 2000;
-  background-color: rgba(255, 255, 255, .9);
+  background-color: rgba(255, 255, 255, 0.9);
   margin: 0;
   top: 0;
   right: 0;

@@ -1,6 +1,6 @@
-@use "mixins/mixins";
-@use "mixins/_button";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'mixins/_button';
+@use 'common/var';
 
 @include mixins.b(radio-button) {
   position: relative;
@@ -32,7 +32,7 @@
       color: var.$color-primary;
     }
 
-    & [class*="el-icon-"] {
+    & [class*='el-icon-'] {
       line-height: 0.9;
 
       & + span {
@@ -93,21 +93,37 @@
 
   @include mixins.m(medium) {
     & .el-radio-button__inner {
-      @include button.button-size(var.$button-medium-padding-vertical, var.$button-medium-padding-horizontal, var.$button-medium-font-size, 0);
+      @include button.button-size(
+        var.$button-medium-padding-vertical,
+        var.$button-medium-padding-horizontal,
+        var.$button-medium-font-size,
+        0
+      );
     }
   }
   @include mixins.m(small) {
     & .el-radio-button__inner {
-      @include button.button-size(var.$button-small-padding-vertical, var.$button-small-padding-horizontal, var.$button-small-font-size, 0);
+      @include button.button-size(
+        var.$button-small-padding-vertical,
+        var.$button-small-padding-horizontal,
+        var.$button-small-font-size,
+        0
+      );
     }
   }
   @include mixins.m(mini) {
     & .el-radio-button__inner {
-      @include button.button-size(var.$button-mini-padding-vertical, var.$button-mini-padding-horizontal, var.$button-mini-font-size, 0);
+      @include button.button-size(
+        var.$button-mini-padding-vertical,
+        var.$button-mini-padding-horizontal,
+        var.$button-mini-font-size,
+        0
+      );
     }
   }
 
-  &:focus:not(.is-focus):not(:active):not(.is-disabled){ /*获得焦点时 样式提醒*/
+  &:focus:not(.is-focus):not(:active):not(.is-disabled) {
+    /*获得焦点时 样式提醒*/
     box-shadow: 0 0 2px 2px var.$radio-button-checked-border-color;
   }
 }

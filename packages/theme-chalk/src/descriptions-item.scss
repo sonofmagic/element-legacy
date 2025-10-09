@@ -3,7 +3,7 @@
 
 @include mixins.b(descriptions-item) {
   vertical-align: top;
-  
+
   @include mixins.e(container) {
     display: flex;
 

@@ -1,15 +1,10 @@
 @use 'mixins/mixins';
 @use 'common/var';
-@use "skeleton-item.scss";
-@use "mixins/config";
+@use 'skeleton-item.scss';
+@use 'mixins/config';
 
 @mixin skeleton-color() {
-  background: linear-gradient(
-    90deg,
-    var.$skeleton-color 25%,
-    var.$skeleton-to-color 37%,
-    var.$skeleton-color 63%
-  );
+  background: linear-gradient(90deg, var.$skeleton-color 25%, var.$skeleton-to-color 37%, var.$skeleton-color 63%);
   background-size: 400% 100%;
   animation: #{config.$namespace}-skeleton-loading 1.4s ease infinite;
 }

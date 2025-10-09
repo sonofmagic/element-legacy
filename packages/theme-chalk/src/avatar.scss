@@ -1,5 +1,5 @@
-@use "mixins/mixins";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'common/var';
 
 @include mixins.b(avatar) {
   display: inline-block;
@@ -13,7 +13,7 @@
   line-height: var.$avatar-large-size;
   font-size: var.$avatar-text-font-size;
 
-  >img {
+  > img {
     display: block;
     height: 100%;
     vertical-align: middle;
