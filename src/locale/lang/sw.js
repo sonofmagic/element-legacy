@@ -2,7 +2,7 @@ export default {
   el: {
     colorpicker: {
       confirm: 'Sawa',
-      clear: 'Futa'
+      clear: 'Futa',
     },
     datepicker: {
       now: 'Hivi Punde',
@@ -41,7 +41,7 @@ export default {
         wed: 'J5',
         thu: 'Alhamisi',
         fri: 'Ijumaa',
-        sat: 'J1'
+        sat: 'J1',
       },
       months: {
         jan: 'Jan',
@@ -55,48 +55,48 @@ export default {
         sep: 'Sep',
         oct: 'Okt',
         nov: 'Nov',
-        dec: 'Dec'
-      }
+        dec: 'Dec',
+      },
     },
     select: {
       loading: 'Inapakia',
       noMatch: 'Hakuna Matokeo yaliyofanana',
       noData: 'Hakuna Matokeo',
-      placeholder: 'Chagua'
+      placeholder: 'Chagua',
     },
     cascader: {
       noMatch: 'Hakuna Matokeo yaliyofanana',
       loading: 'Inapakia',
       placeholder: 'Chagua',
-      noData: 'Hakuna Matokeo'
+      noData: 'Hakuna Matokeo',
     },
     pagination: {
       goto: 'Nenda',
       pagesize: '/page',
       total: 'Jumla {total}',
-      pageClassifier: ''
+      pageClassifier: '',
     },
     messagebox: {
       title: 'Ujumbe',
       confirm: 'Sawa',
       cancel: 'Katisha',
-      error: 'Maingizo yasiyo sahihi'
+      error: 'Maingizo yasiyo sahihi',
     },
     upload: {
       deleteTip: 'bonyeza futa kuondoa',
       delete: 'Futa',
       preview: 'Onyesha',
-      continue: 'Endelea'
+      continue: 'Endelea',
     },
     table: {
       emptyText: 'Hakuna Data',
       confirmFilter: 'Hakikisha',
       resetFilter: 'Ondoa Kichujio',
       clearFilter: 'Zote',
-      sumText: 'Jumla'
+      sumText: 'Jumla',
     },
     tree: {
-      emptyText: 'Hakuna Data'
+      emptyText: 'Hakuna Data',
     },
     transfer: {
       noMatch: 'Hakuna Matokeo yaliyofanana',
@@ -104,20 +104,20 @@ export default {
       titles: ['List 1', 'List 2'], // to be translated
       filterPlaceholder: 'Enter keyword', // to be translated
       noCheckedFormat: '{total} ya zote', // to be translated
-      hasCheckedFormat: '{checked}/{total} zilizochaguliwa' // to be translated
+      hasCheckedFormat: '{checked}/{total} zilizochaguliwa', // to be translated
     },
     image: {
-      error: 'IMEFELI'
+      error: 'IMEFELI',
     },
     pageHeader: {
-      title: 'Nyuma' // to be translated
+      title: 'Nyuma', // to be translated
     },
     popconfirm: {
       confirmButtonText: 'Ndio',
-      cancelButtonText: 'Hapana'
+      cancelButtonText: 'Hapana',
     },
     empty: {
-      description: 'Hakuna Data'
-    }
-  }
-};
+      description: 'Hakuna Data',
+    },
+  },
+}
