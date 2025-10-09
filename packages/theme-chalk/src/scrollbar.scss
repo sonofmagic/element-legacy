@@ -1,9 +1,9 @@
-@use "mixins/mixins";
-@use "common/var";
+@use 'mixins/mixins';
+@use 'common/var';
 
 @include mixins.b(scrollbar) {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 
   &:hover,
   &:active,
@@ -15,11 +15,12 @@
   }
 
   @include mixins.e(wrap) {
-    overflow: scroll;
     height: 100%;
+    overflow: scroll;
 
     @include mixins.m(hidden-default) {
       scrollbar-width: none;
+
       &::-webkit-scrollbar {
         width: 0;
         height: 0;
@@ -33,9 +34,9 @@
     width: 0;
     height: 0;
     cursor: pointer;
-    border-radius: inherit;
     background-color: var.$scrollbar-background-color;
-    transition: .3s background-color;
+    border-radiu0s: inherit;
+    transition: 0.3s background-color;
 
     &:hover {
       background-color: var.$scrollbar-hover-background-color;
@@ -52,8 +53,8 @@
     transition: opacity 120ms ease-out;
 
     @include mixins.when(vertical) {
-      width: 6px;
       top: 2px;
+      width: 6px;
 
       > div {
         width: 100%;
@@ -61,8 +62,8 @@
     }
 
     @include mixins.when(horizontal) {
-      height: 6px;
       left: 2px;
+      height: 6px;
 
       > div {
         height: 100%;

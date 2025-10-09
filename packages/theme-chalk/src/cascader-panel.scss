@@ -1,13 +1,13 @@
-@use "mixins/mixins";
-@use "common/var";
-@use "checkbox";
-@use "radio";
-@use "scrollbar";
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'checkbox';
+@use 'radio';
+@use 'scrollbar';
 
 @include mixins.b(cascader-panel) {
   display: flex;
-  border-radius: var.$cascader-menu-radius;
   font-size: var.$cascader-menu-font-size;
+  border-radius: var.$cascader-menu-radius;
 
   @include mixins.when(bordered) {
     border: var.$cascader-menu-border;
@@ -16,13 +16,18 @@
 }
 
 @include mixins.b(cascader-menu) {
-  min-width: 180px;
   box-sizing: border-box;
+  min-width: 180px;
   color: var.$cascader-menu-font-color;
   border-right: var.$cascader-menu-border;
 
+  &.el-scrollbar {
+    overflow: hidden;
+  }
+
   &:last-child {
     border-right: none;
+
     .el-cascader-node {
       padding-right: 20px;
     }
@@ -34,11 +39,11 @@
 
   @include mixins.e(list) {
     position: relative;
-    min-height: 100%;
-    margin: 0;
-    padding: 6px 0;
-    list-style: none;
     box-sizing: border-box;
+    min-height: 100%;
+    padding: 6px 0;
+    margin: 0;
+    list-style: none;
   }
 
   @include mixins.e(hover-zone) {
@@ -54,9 +59,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
     color: var.$cascader-color-empty;
+    text-align: center;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -64,8 +69,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 30px 0 20px;
   height: 34px;
+  padding: 0 30px 0 20px;
   line-height: 34px;
   outline: none;
 
@@ -76,13 +81,15 @@
   &.in-active-path,
   &.is-selectable.in-checked-path,
   &.is-active {
-    color: var.$cascader-menu-selected-font-color;
     font-weight: bold;
+    color: var.$cascader-menu-selected-font-color;
   }
 
   &:not(.is-disabled) {
     cursor: pointer;
-    &:hover, &:focus {
+
+    &:hover,
+    &:focus {
       background: var.$cascader-node-background-hover;
     }
   }
@@ -105,9 +112,9 @@
   @include mixins.e(label) {
     flex: 1;
     padding: 0 10px;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   > .el-radio {

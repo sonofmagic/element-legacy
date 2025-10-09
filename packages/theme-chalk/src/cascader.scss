@@ -1,13 +1,13 @@
-@use "mixins/mixins";
-@use "common/var";
-@use "input";
-@use "popper";
-@use "tag";
-@use "cascader-panel";
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'input';
+@use 'popper';
+@use 'tag';
+@use 'cascader-panel';
 
 @include mixins.b(cascader) {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   font-size: var.$font-size-base;
   line-height: var.$input-height;
 
@@ -30,8 +30,8 @@
     }
 
     .el-icon-arrow-down {
-      transition: transform .3s;
       font-size: 14px;
+      transition: transform 0.3s;
 
       @include mixins.when(reverse) {
         transform: rotateZ(180deg);
@@ -82,15 +82,15 @@
 
   @include mixins.e(tags) {
     position: absolute;
-    left: 0;
-    right: 30px;
     top: 50%;
-    transform: translateY(-50%);
+    right: 30px;
+    left: 0;
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
     line-height: normal;
     text-align: left;
-    box-sizing: border-box;
+    transform: translateY(-50%);
 
     .el-tag {
       display: inline-flex;
@@ -112,8 +112,8 @@
 
       .el-icon-close {
         flex: none;
-        background-color: var.$color-text-placeholder;
         color: var.$color-white;
+        background-color: var.$color-text-placeholder;
 
         &:hover {
           background-color: var.$color-text-secondary;
@@ -124,12 +124,16 @@
 
   @include mixins.e(suggestion-panel) {
     border-radius: var.$cascader-menu-radius;
+
+    &.el-scrollbar {
+      overflow: hidden;
+    }
   }
 
   @include mixins.e(suggestion-list) {
     max-height: 204px;
-    margin: 0;
     padding: 6px 0;
+    margin: 0;
     font-size: var.$font-size-base;
     color: var.$cascader-menu-font-color;
     text-align: center;
@@ -137,21 +141,22 @@
 
   @include mixins.e(suggestion-item) {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     height: 34px;
     padding: 0 15px;
     text-align: left;
-    outline: none;
     cursor: pointer;
+    outline: none;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: var.$cascader-node-background-hover;
     }
 
     &.is-checked {
-      color: var.$cascader-menu-selected-font-color;
       font-weight: bold;
+      color: var.$cascader-menu-selected-font-color;
     }
 
     > span {
@@ -165,15 +170,15 @@
   }
 
   @include mixins.e(search-input) {
-    flex: 1;
-    height: 24px;
-    min-width: 60px;
-    margin: 2px 0 2px 15px;
-    padding: 0;
-    color: var.$cascader-menu-font-color;
-    border: none;
-    outline: none;
     box-sizing: border-box;
+    flex: 1;
+    min-width: 60px;
+    height: 24px;
+    padding: 0;
+    margin: 2px 0 2px 15px;
+    color: var.$cascader-menu-font-color;
+    outline: none;
+    border: none;
 
     &::placeholder {
       color: var.$color-text-placeholder;

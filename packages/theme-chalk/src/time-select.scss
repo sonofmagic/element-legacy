@@ -1,12 +1,16 @@
-@use "common/var";
-@use "date-picker/picker.scss";
-@use "date-picker/date-picker.scss";
-@use "scrollbar.scss";
-@use "popper";
+@use 'common/var';
+@use 'date-picker/picker';
+@use 'date-picker/date-picker';
+@use 'scrollbar';
+@use 'popper';
 
 .time-select {
-  margin: 5px 0;
   min-width: 0;
+  margin: 5px 0;
+}
+
+.time-select .el-scrollbar {
+  overflow: hidden;
 }
 
 .time-select .el-picker-panel__content {
@@ -21,8 +25,8 @@
 }
 
 .time-select-item.selected:not(.disabled) {
-  color: var.$color-primary;
   font-weight: bold;
+  color: var.$color-primary;
 }
 
 .time-select-item.disabled {
@@ -31,7 +35,7 @@
 }
 
 .time-select-item:hover {
-  background-color: var.$background-color-base;
   font-weight: bold;
   cursor: pointer;
+  background-color: var.$background-color-base;
 }
