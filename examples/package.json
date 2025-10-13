@@ -12,6 +12,8 @@
     "build": "tsx ../build/bin/i18n.ts && vite build"
   },
   "devDependencies": {
+    "markdown-it": "^14.1.0",
+    "markdown-it-container": "^4.0.0",
     "unplugin-vue-markdown": "^29.2.0"
   }
 }

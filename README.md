@@ -55,8 +55,6 @@ For MiniProgram development, we recommend using [MorJS](https://github.com/eleme
 - [Vue.js 3.0 migration](https://github.com/element-plus/element-plus)
 - [Customize theme](http://element.eleme.io/#/en-US/component/custom-theme)
 - [Preview and generate theme online](https://elementui.github.io/theme-chalk-preview)
-- [Element for React](https://github.com/elemefe/element-react)
-- [Element for Angular](https://github.com/ElemeFE/element-angular)
 - [Atom helper](https://github.com/ElemeFE/element-helper)
 - [Visual Studio Code helper](https://github.com/ElemeFE/vscode-element-helper)
 - Starter kit

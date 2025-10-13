@@ -9,6 +9,7 @@ import FooterNav from './components/footer-nav.vue'
 import MainFooter from './components/footer.vue'
 import MainHeader from './components/header.vue'
 import SideNav from './components/side-nav.vue'
+import DocAlert from './components/doc-alert.vue'
 import title from './i18n/title.json'
 import icon from './icon.json'
 
@@ -33,6 +34,7 @@ Vue.component('main-footer', MainFooter)
 Vue.component('main-header', MainHeader)
 Vue.component('side-nav', SideNav)
 Vue.component('footer-nav', FooterNav)
+Vue.component('DocAlert', DocAlert)
 
 const globalEle = new Vue({
   data() {

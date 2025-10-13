@@ -113,15 +113,31 @@ export default {
   <div class="headerWrapper">
     <header ref="header" class="header">
       <div class="container">
-        <h1>
-          <router-link :to="`/${lang}`">
-            <!-- logo -->
-            <slot>
-              <img src="../assets/images/element-logo.svg" alt="element-logo" class="nav-logo">
-              <img src="../assets/images/element-logo-small.svg" alt="element-logo" class="nav-logo-small">
-            </slot>
-          </router-link>
-        </h1>
+        <div class="header-left">
+          <h1>
+            <router-link :to="`/${lang}`">
+              <!-- logo -->
+              <slot>
+                <img src="../assets/images/element-logo.svg" alt="element-logo" class="nav-logo">
+                <img src="../assets/images/element-logo-small.svg" alt="element-logo" class="nav-logo-small">
+              </slot>
+            </router-link>
+          </h1>
+          <div v-if="isComponentPage" class="header-version">
+            <div class="header-divider" />
+            <el-dropdown trigger="click" class="nav-dropdown header-version__dropdown" :class="{ 'is-active': verDropdownVisible }">
+              <span>
+                {{ version }}
+                <i class="el-icon-arrow-down el-icon--right" />
+              </span>
+              <el-dropdown-menu slot="dropdown" class="nav-dropdown-list" @input="handleVerDropdownToggle">
+                <el-dropdown-item v-for="item in Object.keys(versions)" :key="item" @click.native="switchVersion(item)">
+                  {{ item }}
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+        </div>
 
         <!-- nav -->
         <ul class="nav">
@@ -147,26 +163,6 @@ export default {
             <router-link active-class="active" :to="`/${lang}/resource`" exact>
               {{ langConfig.resource }}
             </router-link>
-          </li>
-
-          <!-- gap -->
-          <li v-show="isComponentPage" class="nav-item">
-            <div class="nav-gap" />
-          </li>
-
-          <!-- 版本选择器 -->
-          <li v-show="isComponentPage" class="nav-item nav-versions">
-            <el-dropdown trigger="click" class="nav-dropdown" :class="{ 'is-active': verDropdownVisible }">
-              <span>
-                {{ version }}
-                <i class="el-icon-arrow-down el-icon--right" />
-              </span>
-              <el-dropdown-menu slot="dropdown" class="nav-dropdown-list" @input="handleVerDropdownToggle">
-                <el-dropdown-item v-for="item in Object.keys(versions)" :key="item" @click.native="switchVersion(item)">
-                  {{ item }}
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
           </li>
 
           <!-- 语言选择器 -->
@@ -209,14 +205,21 @@ export default {
     box-sizing: border-box;
     height: 100%;
     border-bottom: 1px solid #DCDFE6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .nav-lang-spe {
     color: #888;
   }
 
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+
   h1 {
-    float: left;
     margin: 0;
     font-size: 32px;
     font-weight: normal;
@@ -242,12 +245,13 @@ export default {
   }
 
   .nav {
-    float: right;
-    height: 100%;
+    display: flex;
+    align-items: center;
     padding: 0;
     margin: 0;
     line-height: 80px;
     background: transparent;
+    list-style: none;
 
     &::before,
     &::after {
@@ -257,22 +261,6 @@ export default {
 
     &::after {
       clear: both;
-    }
-  }
-
-  .nav-gap {
-    position: relative;
-    width: 1px;
-    height: 80px;
-    padding: 0 20px;
-
-    &::before {
-      position: absolute;
-      top: calc(50% - 8px);
-      width: 1px;
-      height: 16px;
-      content: '';
-      background: #ebebeb;
     }
   }
 
@@ -287,29 +275,33 @@ export default {
 
   .nav-item {
     position: relative;
-    float: left;
+    display: flex;
+    align-items: center;
     margin: 0;
     cursor: pointer;
     list-style: none;
+
+    & + .nav-item {
+      margin-left: 34px;
+    }
 
     &.nav-algolia-search {
       cursor: default;
     }
 
-    &.lang-item,
-    &:last-child {
-      margin-left: 34px;
+    &.lang-item {
       cursor: default;
 
-      span {
-        opacity: .8;
-      }
-
       .nav-lang {
-        display: inline-block;
-        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        height: 80px;
         color: #888;
         cursor: pointer;
+
+        span {
+          opacity: .8;
+        }
 
         &:hover {
           color: #409EFF;
@@ -348,17 +340,42 @@ export default {
   }
 }
 
+.header-version {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+}
+
+.header-divider {
+  position: relative;
+  width: 1px;
+  height: 80px;
+  margin-right: 20px;
+
+  &::before {
+    position: absolute;
+    top: calc(50% - 8px);
+    width: 1px;
+    height: 16px;
+    content: '';
+    background: #ebebeb;
+  }
+}
+
 .nav-dropdown {
-  width: 100%;
-  padding-left: 18px;
-  margin-bottom: 6px;
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  padding: 0;
+  margin-bottom: 0;
 
   span {
-    display: block;
-    width: 100%;
-    padding-bottom: 6px;
+    display: inline-flex;
+    align-items: center;
+    height: 80px;
+    padding: 0 22px;
     font-size: 16px;
-    line-height: 40px;
+    line-height: 80px;
     color: #888;
     user-select: none;
     transition: .2s;
@@ -375,22 +392,22 @@ export default {
     transition: .2s;
   }
 
-  .is-active {
-    span,
-    i {
-      color: #409EFF;
-    }
-
-    i {
-      transform: rotateZ(180deg) translateY(3px);
-    }
-  }
-
+  &.is-active,
   &:hover {
     span,
     i {
       color: #409EFF;
     }
+  }
+
+  &.is-active i {
+    transform: rotateZ(180deg) translateY(3px);
+  }
+}
+
+.header-version__dropdown {
+  span {
+    padding: 0 16px;
   }
 }
 
@@ -412,12 +429,18 @@ export default {
       margin-left: 6px;
 
       &.lang-item,
-      &:last-child {
+      & + .nav-item {
         margin-left: 10px;
       }
 
       a {
         padding: 0 5px;
+      }
+    }
+
+    .nav-dropdown {
+      span {
+        padding: 0 12px;
       }
     }
 
@@ -459,15 +482,11 @@ export default {
 
       span {
         font-size: 12px;
-
+        padding: 0 8px;
       }
     }
 
-    .nav-gap {
-      padding: 0 8px;
-    }
-
-    .nav-versions {
+    .header-version {
       display: none;
     }
   }
