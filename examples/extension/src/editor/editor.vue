@@ -1,5 +1,5 @@
 <script>
-import bus from '../../../bus.js'
+import bus from '../../../bus.ts'
 import ThemeConfigurator from '../../../components/theme-configurator/index.vue'
 import {
   ACTION_APPLY_THEME,

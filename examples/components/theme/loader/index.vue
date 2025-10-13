@@ -1,5 +1,5 @@
 <script>
-import bus from '../../../bus.js';
+import bus from '../../../bus.ts';
 import Loading from './loading/index.vue';
 import DocStyle from './docStyle.vue';
 import { updateVars } from './api.js';

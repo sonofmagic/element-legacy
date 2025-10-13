@@ -1,6 +1,6 @@
 <script>
-  import bus from '../../bus';
-  import { tintColor } from '../../color.js';
+  import bus from '../../bus.ts';
+  import { tintColor } from '../../color.ts';
   import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant.js';
   const varMap = {
     'primary': '$--color-primary',

@@ -249,7 +249,7 @@ import {
   ACTION_DOWNLOAD_THEME
 } from './constant.js';
 import { savePreviewToLocal } from './localstorage';
-import { tintColor } from '../../color.js';
+import { tintColor } from '../../color.ts';
 import dateUtil from 'element-ui/src/utils/date';
 import { getActionDisplayName } from '../theme-configurator/utils/utils';
 import IconCheck from '../../assets/images/icon-check.png'

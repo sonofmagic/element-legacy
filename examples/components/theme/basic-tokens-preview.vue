@@ -167,7 +167,7 @@
 
 <script>
 import bus from '../../bus';
-import { tintColor } from '../../color.js';
+import { tintColor } from '../../color.ts';
 import {
   ACTION_COMPONECT_SELECT,
   ACTION_USER_CONFIG_UPDATE

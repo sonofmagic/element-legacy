@@ -9,7 +9,7 @@
 </style>
 <script>
 
-import bus from '../../../../bus.js';
+import bus from '../../../../bus.ts';
 import './progress.js';
 
 export default {

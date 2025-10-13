@@ -1,5 +1,5 @@
 <script>
-  import bus from '../../bus';
+  import bus from '../../bus.ts';
   import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant.js';
   const varMap = {
     '$--box-shadow-light': 'boxShadowLight',

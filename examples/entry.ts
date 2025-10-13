@@ -1,6 +1,6 @@
 import hljs from 'highlight.js'
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue, { type ComponentOptions } from 'vue'
+import VueRouter, { type Route } from 'vue-router'
 import Element from '../src/index'
 import entry from './app.vue'
 import demoBlock from './components/demo-block.vue'
@@ -9,7 +9,7 @@ import FooterNav from './components/footer-nav.vue'
 import MainFooter from './components/footer.vue'
 import MainHeader from './components/header.vue'
 import SideNav from './components/side-nav.vue'
-import title from './i18n/title'
+import title from './i18n/title.json'
 import icon from './icon.json'
 
 import routes from './route.config'
@@ -17,6 +17,13 @@ import '../packages/theme-chalk/src/index.scss'
 import './demo-styles/index.scss'
 import './assets/styles/common.css'
 import './assets/styles/fonts/style.css'
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $icon: typeof icon
+    $isEle: boolean
+  }
+}
 
 Vue.use(Element)
 Vue.use(VueRouter)
@@ -28,14 +35,16 @@ Vue.component('side-nav', SideNav)
 Vue.component('footer-nav', FooterNav)
 
 const globalEle = new Vue({
-  data: { $isEle: false }, // 是否 ele 用户
+  data() {
+    return { $isEle: false } // 是否 ele 用户
+  },
 })
 
 Vue.mixin({
   computed: {
     $isEle: {
       get: () => (globalEle.$data.$isEle),
-      set: (data) => { globalEle.$data.$isEle = data },
+      set: (data: boolean) => { globalEle.$data.$isEle = data },
     },
   },
 })
@@ -48,23 +57,36 @@ const router = new VueRouter({
   routes,
 })
 
-router.afterEach((route) => {
+router.afterEach((route: Route) => {
   // https://github.com/highlightjs/highlight.js/issues/909#issuecomment-131686186
   Vue.nextTick(() => {
-    const blocks = document.querySelectorAll('pre code:not(.hljs)')
-    Array.prototype.forEach.call(blocks, hljs.highlightBlock)
+    const blocks = document.querySelectorAll<HTMLElement>('pre code:not(.hljs)')
+    blocks.forEach((block) => {
+      hljs.highlightBlock(block)
+    })
   })
-  const data = title[route.meta.lang]
-  for (const val in data) {
-    if (new RegExp(`^${val}`, 'g').test(route.name)) {
-      document.title = data[val]
+  const lang = (route.meta?.lang as keyof typeof title) || 'en-US'
+  const data = title[lang]
+  if (data) {
+    for (const key of Object.keys(data)) {
+      const pattern = new RegExp(`^${key}`, 'g')
+      if (pattern.test(route.name || '')) {
+        document.title = data[key]
+        return
+      }
+    }
+    const fallback = route.meta?.title as keyof typeof data | undefined
+    if (fallback && data[fallback]) {
+      document.title = data[fallback]
       return
     }
   }
   document.title = 'Element'
 })
 
+const appOptions = entry as ComponentOptions<Vue>
+
 new Vue({
-  ...entry,
+  ...appOptions,
   router,
 }).$mount('#app')

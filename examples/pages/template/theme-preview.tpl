@@ -54,7 +54,7 @@
   </div>
 </template>
 <script>
-import bus from '../../bus.js';
+import bus from '../../bus.ts';
 import ThemeConfigurator from '../../components/theme-configurator/index.vue';
 import ComponentsPreview from '../../components/theme/components-preview.vue';
 import BasicTokensPreview from '../../components/theme/basic-tokens-preview.vue';

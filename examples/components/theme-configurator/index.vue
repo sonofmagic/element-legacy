@@ -1,5 +1,5 @@
 <script>
-import bus from '../../bus.js'
+import bus from '../../bus.ts'
 import {
   ACTION_APPLY_THEME,
   ACTION_COMPONECT_SELECT,
