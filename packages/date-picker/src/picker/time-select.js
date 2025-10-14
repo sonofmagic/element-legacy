@@ -1,5 +1,5 @@
-import Picker from '../picker.vue';
-import Panel from '../panel/time-select.vue';
+import Panel from '../panel/time-select.vue'
+import Picker from '../picker.vue'
 
 export default {
   mixins: [Picker],
@@ -11,11 +11,11 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'time-select'
-    }
+      default: 'time-select',
+    },
   },
 
   beforeCreate() {
-    this.panel = Panel;
-  }
-};
+    this.panel = Panel
+  },
+}

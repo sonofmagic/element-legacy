@@ -1,16 +1,17 @@
-import Picker from '../picker.vue';
-import DatePanel from '../panel/date.vue';
-import DateRangePanel from '../panel/date-range.vue';
-import MonthRangePanel from '../panel/month-range.vue';
+import DateRangePanel from '../panel/date-range.vue'
+import DatePanel from '../panel/date.vue'
+import MonthRangePanel from '../panel/month-range.vue'
+import Picker from '../picker.vue'
 
-const getPanel = function(type) {
+function getPanel(type) {
   if (type === 'daterange' || type === 'datetimerange') {
-    return DateRangePanel;
-  } else if (type === 'monthrange') {
-    return MonthRangePanel;
+    return DateRangePanel
   }
-  return DatePanel;
-};
+  else if (type === 'monthrange') {
+    return MonthRangePanel
+  }
+  return DatePanel
+}
 
 export default {
   mixins: [Picker],
@@ -20,24 +21,25 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'date'
+      default: 'date',
     },
-    timeArrowControl: Boolean
+    timeArrowControl: Boolean,
   },
 
   watch: {
     type(type) {
       if (this.picker) {
-        this.unmountPicker();
-        this.panel = getPanel(type);
-        this.mountPicker();
-      } else {
-        this.panel = getPanel(type);
+        this.unmountPicker()
+        this.panel = getPanel(type)
+        this.mountPicker()
       }
-    }
+      else {
+        this.panel = getPanel(type)
+      }
+    },
   },
 
   created() {
-    this.panel = getPanel(this.type);
-  }
-};
+    this.panel = getPanel(this.type)
+  },
+}
