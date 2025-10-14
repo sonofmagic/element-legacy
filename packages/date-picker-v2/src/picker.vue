@@ -949,12 +949,6 @@ export default {
     @mouseleave.native="showClose = false"
   >
     <i
-      slot="prefix"
-      class="el-input__icon"
-      :class="triggerClass"
-      @click="handleFocus"
-    />
-    <i
       v-if="haveTrigger"
       slot="suffix"
       class="el-input__icon"
@@ -978,7 +972,6 @@ export default {
     @mouseleave="showClose = false"
     @keydown="handleKeydown"
   >
-    <i class="el-input__icon el-range-v2__icon" :class="[triggerClass]" />
     <input
       autocomplete="off"
       :placeholder="startPlaceholder"

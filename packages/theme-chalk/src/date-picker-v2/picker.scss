@@ -7,6 +7,22 @@
   display: inline-block;
   text-align: left;
 
+  &.el-input:not(.el-input--medium):not(.el-input--small):not(.el-input--mini) {
+    .el-input__inner {
+      height: 36px;
+      line-height: 36px;
+    }
+
+    .el-input__icon {
+      line-height: 36px;
+    }
+  }
+
+  &.el-input__inner {
+    height: 36px;
+    line-height: 36px;
+  }
+
   &.el-input,
   &.el-input__inner {
     width: 220px;
@@ -44,14 +60,6 @@
     cursor: pointer;
   }
 
-  .el-range-v2__icon {
-    font-size: 14px;
-    margin-left: -5px;
-    color: var.$color-text-placeholder;
-    float: left;
-    line-height: 32px;
-  }
-
   .el-range-input-v2 {
     appearance: none;
     border: none;
@@ -64,6 +72,7 @@
     text-align: center;
     font-size: var.$font-size-base;
     color: var.$color-text-regular;
+    line-height: 36px;
 
     &::placeholder {
       color: var.$color-text-placeholder;
@@ -76,7 +85,7 @@
     padding: 0 5px;
     margin: 0;
     text-align: center;
-    line-height: 32px;
+    line-height: 36px;
     font-size: 14px;
     width: 5%;
     color: var.$color-text-primary;
@@ -88,7 +97,7 @@
     width: 25px;
     display: inline-block;
     float: right;
-    line-height: 32px;
+    line-height: 36px;
   }
 }
 
@@ -96,11 +105,12 @@
   &.el-input__inner {
     display: inline-flex;
     align-items: center;
-    padding: 3px 10px;
+    padding: 0 10px;
+    height: 36px;
   }
 
   .el-range-input-v2 {
-    line-height: 1;
+    line-height: 36px;
   }
 
   @include mixins.when(active) {
@@ -117,17 +127,17 @@
     }
 
     .el-range-separator-v2 {
-      line-height: 28px;
+      line-height: var.$input-medium-height;
       font-size: var.$input-medium-font-size;
     }
 
     .el-range-input-v2 {
       font-size: var.$input-medium-font-size;
+      line-height: var.$input-medium-height;
     }
 
-    .el-range-v2__icon,
     .el-range-v2__close-icon {
-      line-height: 28px;
+      line-height: var.$input-medium-height;
     }
   }
 
@@ -137,17 +147,17 @@
     }
 
     .el-range-separator-v2 {
-      line-height: 24px;
+      line-height: var.$input-small-height;
       font-size: var.$input-small-font-size;
     }
 
     .el-range-input-v2 {
       font-size: var.$input-small-font-size;
+      line-height: var.$input-small-height;
     }
 
-    .el-range-v2__icon,
     .el-range-v2__close-icon {
-      line-height: 24px;
+      line-height: var.$input-small-height;
     }
   }
 
@@ -157,17 +167,17 @@
     }
 
     .el-range-separator-v2 {
-      line-height: 20px;
+      line-height: var.$input-mini-height;
       font-size: var.$input-mini-font-size;
     }
 
     .el-range-input-v2 {
       font-size: var.$input-mini-font-size;
+      line-height: var.$input-mini-height;
     }
 
-    .el-range-v2__icon,
     .el-range-v2__close-icon {
-      line-height: 20px;
+      line-height: var.$input-mini-height;
     }
   }
 
