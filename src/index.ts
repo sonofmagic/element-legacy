@@ -27,6 +27,7 @@ import ButtonGroup from '../packages/button-group/index';
 import Table from '../packages/table/index';
 import TableColumn from '../packages/table-column/index';
 import DatePicker from '../packages/date-picker/index';
+import DatePickerV2 from '../packages/date-picker-v2/index';
 import TimeSelect from '../packages/time-select/index';
 import TimePicker from '../packages/time-picker/index';
 import Popover from '../packages/popover/index';
@@ -120,6 +121,7 @@ const components = [
   Table,
   TableColumn,
   DatePicker,
+  DatePickerV2,
   TimeSelect,
   TimePicker,
   Popover,
@@ -241,6 +243,7 @@ export {
   Table,
   TableColumn,
   DatePicker,
+  DatePickerV2,
   TimeSelect,
   TimePicker,
   Popover,
@@ -338,6 +341,7 @@ export default {
   Table,
   TableColumn,
   DatePicker,
+  DatePickerV2,
   TimeSelect,
   TimePicker,
   Popover,

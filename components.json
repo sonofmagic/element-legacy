@@ -26,6 +26,7 @@
   "table": "./packages/table/index.js",
   "table-column": "./packages/table-column/index.js",
   "date-picker": "./packages/date-picker/index.ts",
+  "date-picker-v2": "./packages/date-picker-v2/index.ts",
   "time-select": "./packages/time-select/index.js",
   "time-picker": "./packages/time-picker/index.js",
   "popover": "./packages/popover/index.js",

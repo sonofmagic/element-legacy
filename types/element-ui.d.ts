@@ -33,6 +33,7 @@ import { ElCollapseItem } from './collapse-item'
 import { ElColorPicker } from './color-picker'
 import { ElContainer } from './container'
 import { ElDatePicker } from './date-picker'
+import { ElDatePickerV2 } from './date-picker-v2'
 import { ElDescriptions } from './descriptions'
 import { ElDescriptionsItem } from './descriptions-item'
 import { ElDialog } from './dialog'
@@ -193,6 +194,9 @@ export class Container extends ElContainer {}
 
 /** Date Picker Component */
 export class DatePicker extends ElDatePicker {}
+
+/** Date Picker V2 Component */
+export class DatePickerV2 extends ElDatePickerV2 {}
 
 /** Dialog Component */
 export class Dialog extends ElDialog {}

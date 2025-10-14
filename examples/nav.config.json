@@ -113,6 +113,10 @@
               "title": "DatePicker 日期选择器"
             },
             {
+              "path": "/date-picker-v2",
+              "title": "DatePicker v2 日期选择器"
+            },
+            {
               "path": "/datetime-picker",
               "title": "DateTimePicker 日期时间选择器"
             },
@@ -421,6 +425,10 @@
             {
               "path": "/date-picker",
               "title": "DatePicker"
+            },
+            {
+              "path": "/date-picker-v2",
+              "title": "DatePicker V2"
             },
             {
               "path": "/datetime-picker",
@@ -733,6 +741,10 @@
               "title": "DatePicker"
             },
             {
+              "path": "/date-picker-v2",
+              "title": "DatePicker V2"
+            },
+            {
               "path": "/datetime-picker",
               "title": "DateTimePicker"
             },
@@ -1041,6 +1053,10 @@
             {
               "path": "/date-picker",
               "title": "DatePicker"
+            },
+            {
+              "path": "/date-picker-v2",
+              "title": "DatePicker V2"
             },
             {
               "path": "/datetime-picker",

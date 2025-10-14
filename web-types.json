@@ -1081,6 +1081,109 @@
           ]
         },
         {
+          "name": "ElDatePickerV2",
+          "description": "Use Date Picker for date input.",
+          "doc-url": "https://element.eleme.io/#/en-US/component/date-picker-v2",
+          "props": [
+            {
+              "name": "defaultValue",
+              "description": "Default date of the calendar",
+              "type": "Date|number|string"
+            },
+            {
+              "name": "type",
+              "description": "Type of the picker",
+              "type": "DatePickerV2Type"
+            },
+            {
+              "name": "align",
+              "description": "Alignment",
+              "type": "ElementUIHorizontalAlignment"
+            },
+            {
+              "name": "readonly",
+              "description": "Whether DatePicker is read only",
+              "type": "boolean"
+            },
+            {
+              "name": "format",
+              "description": "Format of the picker",
+              "type": "string"
+            },
+            {
+              "name": "size",
+              "description": "Size of Input",
+              "type": "ElementUIComponentSize"
+            },
+            {
+              "name": "popperClass",
+              "description": "Custom class name for DatePicker's dropdown",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "description": "name for the inner native input",
+              "type": "string"
+            },
+            {
+              "name": "startPlaceholder",
+              "description": "Placeholder for the start date in range mode",
+              "type": "string"
+            },
+            {
+              "name": "disabled",
+              "description": "Whether DatePicker is disabled",
+              "type": "boolean"
+            },
+            {
+              "name": "placeholder",
+              "description": "Placeholder",
+              "type": "string"
+            },
+            {
+              "name": "endPlaceholder",
+              "description": "Placeholder for the end date in range mode",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "description": "The value of the date picker",
+              "type": "Date|string|Date[]|string[]"
+            },
+            {
+              "name": "rangeSeparator",
+              "description": "Range separator",
+              "type": "string"
+            },
+            {
+              "name": "clearable",
+              "description": "Whether to show clear button",
+              "type": "boolean"
+            },
+            {
+              "name": "editable",
+              "description": "Whether the input is editable",
+              "type": "boolean"
+            },
+            {
+              "name": "pickerOptions",
+              "description": "Additional options, check the table below",
+              "type": "DatePickerV2Options"
+            },
+            {
+              "name": "valueFormat",
+              "description": "Format of binding value. If not specified, the binding value will be a Date object",
+              "type": "string"
+            }
+          ],
+          "slots": [
+            {
+              "name": "range-separator",
+              "description": "Custom range separator content"
+            }
+          ]
+        },
+        {
           "name": "ElDescriptions",
           "description": "Display multiple fields in list form.",
           "doc-url": "https://element.eleme.io/#/en-US/component/descriptions",
