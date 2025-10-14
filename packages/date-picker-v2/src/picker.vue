@@ -356,6 +356,7 @@ export default {
       userInput: null,
       valueOnOpen: null, // value when picker opens, used to determine whether to emit change
       unwatchPickerOptions: null,
+      hoverPlaceholder: '',
     }
   },
 
@@ -391,6 +392,16 @@ export default {
         }
       }
       return true
+    },
+
+    displayedPlaceholder() {
+      if (this.ranged) {
+        return this.placeholder
+      }
+      if (this.hoverPlaceholder && this.valueIsEmpty) {
+        return this.hoverPlaceholder
+      }
+      return this.placeholder
     },
 
     triggerClass() {
@@ -703,6 +714,7 @@ export default {
         return
       }
       this.pickerVisible = false
+      this.hoverPlaceholder = ''
 
       if (this.type === 'dates' || this.type === 'years' || this.type === 'months') {
         // restore to former value
@@ -793,6 +805,19 @@ export default {
         this.pickerVisible = this.picker.visible = false
         this.destroyPopper()
       }
+      this.hoverPlaceholder = ''
+    },
+
+    handlePanelHover(date) {
+      if (this.ranged || this.type !== 'date') {
+        this.hoverPlaceholder = ''
+        return
+      }
+      if (!this.pickerVisible || !date || !this.valueIsEmpty) {
+        this.hoverPlaceholder = ''
+        return
+      }
+      this.hoverPlaceholder = this.formatToString(date)
     },
 
     showPicker() {
@@ -802,6 +827,7 @@ export default {
       if (!this.picker) {
         this.mountPicker()
       }
+      this.hoverPlaceholder = ''
       this.pickerVisible = this.picker.visible = true
 
       this.updatePopper()
@@ -862,10 +888,13 @@ export default {
       this.picker.$on('dodestroy', this.doDestroy)
       this.picker.$on('pick', (date = '', visible = false) => {
         this.userInput = null
+        this.hoverPlaceholder = ''
         this.pickerVisible = this.picker.visible = visible
         this.emitInput(date)
         this.picker.resetView && this.picker.resetView()
       })
+
+      this.picker.$on('hover-date', this.handlePanelHover)
 
       this.picker.$on('select-range', (start, end, pos) => {
         if (this.refInput.length === 0) {
@@ -891,6 +920,7 @@ export default {
         }
         this.picker.$el.parentNode.removeChild(this.picker.$el)
       }
+      this.hoverPlaceholder = ''
     },
 
     emitChange(val) {
@@ -938,7 +968,7 @@ export default {
     :disabled="pickerDisabled"
     :size="pickerSize"
     :name="name"
-    :placeholder="placeholder"
+    :placeholder="displayedPlaceholder"
     :value="displayValue"
     :validateEvent="false"
     @focus="handleFocus"

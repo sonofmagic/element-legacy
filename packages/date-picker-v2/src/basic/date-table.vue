@@ -361,10 +361,6 @@ export default {
     },
 
     handleMouseMove(event) {
-      if (!this.rangeState.selecting) {
-        return
-      }
-
       let target = event.target
       if (target.tagName === 'SPAN') {
         target = target.parentNode.parentNode
@@ -373,14 +369,32 @@ export default {
         target = target.parentNode
       }
       if (target.tagName !== 'TD') {
+        this.$emit('cell-hover', null)
         return
       }
 
       const row = target.parentNode.rowIndex - 1
       const column = target.cellIndex
+      const cell = this.rows[row] && this.rows[row][column]
+
+      if (!cell || cell.type === 'week') {
+        this.$emit('cell-hover', null)
+        return
+      }
+
+      if (!cell.disabled) {
+        this.$emit('cell-hover', this.getDateOfCell(row, column))
+      }
+      else {
+        this.$emit('cell-hover', null)
+      }
+
+      if (!this.rangeState.selecting) {
+        return
+      }
 
       // can not select disabled date
-      if (this.rows[row][column].disabled) {
+      if (cell.disabled) {
         return
       }
 
@@ -398,6 +412,10 @@ export default {
           },
         })
       }
+    },
+
+    handleMouseLeave() {
+      this.$emit('cell-hover', null)
     },
 
     handleClick(event) {
@@ -471,6 +489,7 @@ export default {
     :class="{ 'is-week-mode': selectionMode === 'week' }"
     @click="handleClick"
     @mousemove="handleMouseMove"
+    @mouseleave="handleMouseLeave"
   >
     <tbody>
       <tr>

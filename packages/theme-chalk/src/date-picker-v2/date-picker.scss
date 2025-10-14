@@ -3,14 +3,14 @@
 @use 'picker-panel.scss';
 
 @include mixins.b(date-picker-v2) {
-  width: 322px;
+  width: 304px;
 
   &.has-sidebar.has-time {
-    width: 434px;
+    width: 416px;
   }
 
   &.has-sidebar {
-    width: 438px;
+    width: 420px;
   }
 
   &.has-time .el-picker-panel__body-wrapper {
@@ -18,7 +18,8 @@
   }
 
   .el-picker-panel__content {
-    width: 292px;
+    width: 274px;
+    margin-top: 4px;
   }
 
   table {
@@ -43,7 +44,7 @@
   }
 
   @include mixins.e(header) {
-    margin: 12px;
+    margin: 12px 12px 6px;
     text-align: center;
 
     @include mixins.m(bordered) {
@@ -54,6 +55,13 @@
       & + .el-picker-panel__content {
         margin-top: 0;
       }
+    }
+
+    @include mixins.m(simple) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
     }
   }
 
@@ -94,4 +102,41 @@
     line-height: 30px;
     margin-left: 10px;
   }
+
+  @include mixins.e(header-controls) {
+    display: flex;
+    align-items: center;
+
+    > * + * {
+      margin-left: 8px;
+    }
+  }
+
+  @include mixins.e(month-select) {
+    min-width: 88px;
+    max-width: 88px;
+  }
+
+  @include mixins.e(year-select) {
+    min-width: 88px;
+    max-width: 88px;
+  }
+
+  @include mixins.e(today-btn) {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-size: var.$font-size-base;
+    color: var.$color-text-secondary;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      color: #007aff;
+    }
+  }
+}
+
+.el-date-picker-v2__select-dropdown .el-select-dropdown__wrap {
+  max-height: 180px;
 }
