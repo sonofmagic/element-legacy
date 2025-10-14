@@ -220,7 +220,7 @@ export default {
         this.$nextTick(() => {
           this.$refs.minTimePicker.date = this.minDate
           this.$refs.minTimePicker.value = this.minDate
-          this.$refs.minTimePicker.adjustSpinners()
+          this.$refs.minTimePicker.adjustSpinners(true)
         })
       }
     },
@@ -230,7 +230,7 @@ export default {
         this.$nextTick(() => {
           this.$refs.maxTimePicker.date = this.maxDate
           this.$refs.maxTimePicker.value = this.maxDate
-          this.$refs.maxTimePicker.adjustSpinners()
+          this.$refs.maxTimePicker.adjustSpinners(true)
         })
       }
     },
@@ -348,11 +348,11 @@ export default {
       if (parsedValue) {
         if (type === 'min') {
           this.minDate = modifyTime(this.minDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds())
-          this.$nextTick(_ => this.$refs.minTimePicker.adjustSpinners())
+          this.$nextTick(_ => this.$refs.minTimePicker.adjustSpinners(true))
         }
         else {
           this.maxDate = modifyTime(this.maxDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds())
-          this.$nextTick(_ => this.$refs.maxTimePicker.adjustSpinners())
+          this.$nextTick(_ => this.$refs.maxTimePicker.adjustSpinners(true))
         }
       }
     },

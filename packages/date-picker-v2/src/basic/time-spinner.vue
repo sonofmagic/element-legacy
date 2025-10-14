@@ -38,7 +38,7 @@ export default {
 
   mounted() {
     this.$nextTick(() => {
-      this.adjustSpinners()
+      this.adjustSpinners(true)
     })
   },
 
@@ -108,25 +108,27 @@ export default {
       this.scrollDown(-1)
     },
 
-    modifyDateField(type, value) {
+    modifyDateField(type, value, emitSource) {
+      let nextDate = this.date
       switch (type) {
         case 'hours':
-          this.$emit('change', modifyTime(this.date, value, this.minutes, this.seconds))
+          nextDate = modifyTime(this.date, value, this.minutes, this.seconds)
           break
         case 'minutes':
-          this.$emit('change', modifyTime(this.date, this.hours, value, this.seconds))
+          nextDate = modifyTime(this.date, this.hours, value, this.seconds)
           break
         case 'seconds':
-          this.$emit('change', modifyTime(this.date, this.hours, this.minutes, value))
+          nextDate = modifyTime(this.date, this.hours, this.minutes, value)
           break
       }
+      this.$emit('change', nextDate, emitSource)
     },
 
     handleClick(type, value, disabled = false) {
       if (disabled) {
         return
       }
-      this.modifyDateField(type, value)
+      this.modifyDateField(type, value, 'click')
       this.emitSelectRange(type)
       this.emitHoverPreview(type, value)
       this.$nextTick(() => {
@@ -168,7 +170,7 @@ export default {
 
       if (currentIndex === -1) {
         const fallbackIndex = direction > 0 ? 0 : len - 1
-        this.modifyDateField(type, values[fallbackIndex])
+        this.modifyDateField(type, values[fallbackIndex], 'scroll')
         this.$nextTick(() => {
           this.emitSelectRange(type)
           this.scrollToValue(type, values[fallbackIndex])
@@ -184,7 +186,7 @@ export default {
         remaining--
       }
 
-      this.modifyDateField(type, values[nextIndex])
+      this.modifyDateField(type, values[nextIndex], 'scroll')
       this.$nextTick(() => {
         this.emitSelectRange(type)
         this.scrollToValue(type, values[nextIndex])
@@ -241,15 +243,15 @@ export default {
       return (`0${value}`).slice(-2)
     },
 
-    adjustSpinners() {
-      this.scrollToValue('hours', this.hours)
-      this.scrollToValue('minutes', this.minutes)
+    adjustSpinners(instant = false) {
+      this.scrollToValue('hours', this.hours, instant)
+      this.scrollToValue('minutes', this.minutes, instant)
       if (this.showSeconds) {
-        this.scrollToValue('seconds', this.seconds)
+        this.scrollToValue('seconds', this.seconds, instant)
       }
     },
 
-    scrollToValue(type, value) {
+    scrollToValue(type, value, instant = false) {
       const scrollbar = this.$refs[type]
       if (!scrollbar || !scrollbar.wrap) {
         return
@@ -261,8 +263,34 @@ export default {
         return
       }
       const top = target.offsetTop
+      if (instant) {
+        const prevBehavior = wrap.style.scrollBehavior
+        wrap.style.scrollBehavior = 'auto'
+        wrap.scrollTop = top
+        if (typeof wrap.scrollTo === 'function') {
+          try {
+            wrap.scrollTo({ top })
+          }
+          catch (_error) {
+            wrap.scrollTo(0, top)
+          }
+        }
+        if (prevBehavior) {
+          wrap.style.scrollBehavior = prevBehavior
+        }
+        else {
+          wrap.style.removeProperty('scroll-behavior')
+        }
+        return
+      }
+
       if (typeof wrap.scrollTo === 'function') {
-        wrap.scrollTo({ top, behavior: 'smooth' })
+        try {
+          wrap.scrollTo({ top, behavior: 'smooth' })
+        }
+        catch (_error) {
+          wrap.scrollTo(0, top)
+        }
       }
       else {
         wrap.scrollTop = top

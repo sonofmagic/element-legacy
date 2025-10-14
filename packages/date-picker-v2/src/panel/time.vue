@@ -1,7 +1,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Locale from 'element-ui/src/mixins/locale'
-import { clearMilliseconds, formatDate, isDate, limitTimeRange, timeWithinRange } from 'element-ui/src/utils/date-util'
+import { clearMilliseconds, clearTime, formatDate, isDate, limitTimeRange, timeWithinRange } from 'element-ui/src/utils/date-util'
 import TimeSpinner from '../basic/time-spinner.vue'
 
 export default {
@@ -64,7 +64,7 @@ export default {
           if (!spinner) {
             return
           }
-          this.adjustSpinners()
+          this.adjustSpinners(true)
           spinner.emitSelectRange('hours')
           this.needInitAdjust = false
         })
@@ -81,12 +81,12 @@ export default {
         date = limitTimeRange(newVal, this.selectableRange, this.format)
       }
       else if (!newVal) {
-        date = this.defaultValue ? new Date(this.defaultValue) : new Date()
+        date = this.defaultValue ? new Date(this.defaultValue) : clearTime(new Date())
       }
 
       this.date = date
       if (this.visible && this.needInitAdjust) {
-        this.$nextTick(_ => this.adjustSpinners())
+        this.$nextTick(_ => this.adjustSpinners(true))
         this.needInitAdjust = false
       }
     },
@@ -112,13 +112,16 @@ export default {
       this.$emit('pick', this.oldValue, false)
     },
 
-    handleChange(date) {
+    handleChange(date, source) {
       // this.visible avoids edge cases, when use scrolls during panel closing animation
       if (this.visible) {
         this.date = clearMilliseconds(date)
         // if date is out of range, do not emit
         if (this.isValidValue(this.date)) {
-          this.$emit('pick', this.date, true, 'preview')
+          const payload = source === 'click'
+            ? [this.date, true, 'click']
+            : [this.date, true, 'preview']
+          this.$emit('pick', ...payload)
         }
       }
     },
@@ -160,8 +163,8 @@ export default {
       return timeWithinRange(date, this.selectableRange, this.format)
     },
 
-    adjustSpinners() {
-      return this.$refs.spinner.adjustSpinners()
+    adjustSpinners(instant = false) {
+      return this.$refs.spinner.adjustSpinners(instant)
     },
 
     changeSelectionRange(step) {

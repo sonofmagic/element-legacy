@@ -150,9 +150,9 @@ export default {
       this.$emit('pick', [this.minDate, this.maxDate], visible)
     },
 
-    adjustSpinners() {
-      this.$refs.minSpinner.adjustSpinners()
-      this.$refs.maxSpinner.adjustSpinners()
+    adjustSpinners(instant = false) {
+      this.$refs.minSpinner.adjustSpinners(instant)
+      this.$refs.maxSpinner.adjustSpinners(instant)
     },
 
     changeSelectionRange(step) {

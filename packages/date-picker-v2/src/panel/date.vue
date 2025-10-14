@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       popperClass: '',
-      date: new Date(),
+      date: clearTime(new Date()),
       value: '',
       defaultValue: null, // use getDefaultValue() for time computation
       defaultTime: null,
@@ -161,7 +161,7 @@ export default {
 
     defaultValue(val) {
       if (!isDate(this.value)) {
-        this.date = val ? new Date(val) : new Date()
+        this.date = val ? new Date(val) : clearTime(new Date())
       }
     },
 
@@ -282,13 +282,20 @@ export default {
       }
     },
 
-    handleTimePick(value) {
+    handleTimePick(value, visible, source) {
       if (isDate(value)) {
-        const newDate = this.value
-          ? modifyTime(this.value, value.getHours(), value.getMinutes(), value.getSeconds())
-          : modifyWithTimeString(this.getDefaultValue(), this.defaultTime)
+        const base = this.value ? this.value : this.getDefaultValue()
+        const defaulted = !this.value && this.defaultTime
+          ? modifyWithTimeString(base, this.defaultTime)
+          : base
+        const newDate = modifyTime(defaulted, value.getHours(), value.getMinutes(), value.getSeconds())
         this.date = newDate
-        this.emit(this.date, true)
+        const emitVisible = typeof visible === 'boolean' ? visible : true
+        const args = []
+        if (source === 'preview') {
+          args.push('preview')
+        }
+        this.emit(this.date, emitVisible, ...args)
       }
       else {
         this.emit(value, true)
@@ -443,6 +450,30 @@ export default {
       }
     },
 
+    handleBeforeEnter() {
+      if (!this.showTime) {
+        return
+      }
+      const syncSpinners = () => {
+        const timepicker = this.$refs.timepicker
+        if (!timepicker || typeof timepicker.adjustSpinners !== 'function') {
+          return
+        }
+        if ('needInitAdjust' in timepicker) {
+          timepicker.needInitAdjust = true
+        }
+        timepicker.adjustSpinners(true)
+      }
+      this.$nextTick(() => {
+        if (typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function') {
+          window.requestAnimationFrame(syncSpinners)
+        }
+        else {
+          syncSpinners()
+        }
+      })
+    },
+
     handleEnter() {
       document.body.addEventListener('keydown', this.handleKeydown)
     },
@@ -450,6 +481,13 @@ export default {
     handleLeave() {
       this.$emit('dodestroy')
       document.body.removeEventListener('keydown', this.handleKeydown)
+      if (!this.showTime) {
+        return
+      }
+      const timepicker = this.$refs.timepicker
+      if (timepicker && 'needInitAdjust' in timepicker) {
+        timepicker.needInitAdjust = true
+      }
     },
 
     handleKeydown(event) {
@@ -526,8 +564,8 @@ export default {
 
     getDefaultValue() {
       // if default-value is set, return it
-      // otherwise, return now (the moment this method gets called)
-      return this.defaultValue ? new Date(this.defaultValue) : new Date()
+      // otherwise, return start of today to keep time selection at 00:00:00
+      return this.defaultValue ? new Date(this.defaultValue) : clearTime(new Date())
     },
 
     checkDateWithinRange(date) {
@@ -540,7 +578,7 @@ export default {
 </script>
 
 <template>
-  <transition name="el-zoom-in-top" @after-enter="handleEnter" @after-leave="handleLeave">
+  <transition name="el-zoom-in-top" @before-enter="handleBeforeEnter" @after-enter="handleEnter" @after-leave="handleLeave">
     <div
       v-show="visible"
       class="el-picker-panel el-date-picker-v2 el-popper"
