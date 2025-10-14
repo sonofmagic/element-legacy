@@ -11,14 +11,17 @@
         div {
           background-color: var.$datepicker-inrange-background-color;
         }
+
         td.available:hover {
           color: var.$datepicker-font-color;
         }
+
         td:first-child div {
           margin-left: 5px;
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
         }
+
         td:last-child div {
           margin-right: 5px;
           border-top-right-radius: 15px;
@@ -33,32 +36,32 @@
   }
 
   td {
+    position: relative;
+    box-sizing: border-box;
     width: 40px;
     height: 28px;
     padding: 4px 0;
-    box-sizing: border-box;
     text-align: center;
     cursor: pointer;
-    position: relative;
 
     & div {
+      box-sizing: border-box;
       height: 28px;
       padding: 2px 0;
-      box-sizing: border-box;
     }
 
     & span {
-      width: 24px;
-      height: 24px;
-      display: block;
-      margin: 0 auto;
-      line-height: 24px;
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
-      border-radius: 50%;
       box-sizing: border-box;
+      display: block;
+      width: 24px;
+      height: 24px;
+      margin: 0 auto;
+      line-height: 24px;
       border: 1px solid transparent;
+      border-radius: 50%;
+      transform: translateX(-50%);
     }
 
     &.next-month,
@@ -68,18 +71,21 @@
 
     &.today {
       position: relative;
+
       span {
-        color: #007aff;
         font-weight: bold;
+        color: #007aff;
       }
+
       &.start-date span,
       &.end-date span {
         color: var.$color-white;
       }
     }
 
-    &:not(.disabled):not(.week):hover {
+    &:not(.disabled, .week):hover {
       color: inherit;
+
       span {
         background-color: transparent;
         border-color: #007aff;
@@ -88,6 +94,7 @@
 
     &.in-range div {
       background-color: var.$datepicker-inrange-background-color;
+
       &:hover {
         background-color: var.$datepicker-inrange-hover-background-color;
       }
@@ -97,6 +104,7 @@
       color: var.$color-white;
       background-color: var.$color-primary;
     }
+
     &.start-date div,
     &.end-date div {
       color: var.$color-white;
@@ -120,25 +128,26 @@
     }
 
     &.disabled div {
+      color: var.$color-text-placeholder;
+      cursor: not-allowed;
       background-color: var.$background-color-base;
       opacity: 1;
-      cursor: not-allowed;
-      color: var.$color-text-placeholder;
     }
 
     &.selected div {
-      margin-left: 5px;
       margin-right: 5px;
+      margin-left: 5px;
       background-color: var.$datepicker-inrange-background-color;
       border-radius: 15px;
+
       &:hover {
         background-color: var.$datepicker-inrange-hover-background-color;
       }
     }
 
     &.selected span {
-      background-color: var.$datepicker-active-color;
       color: var.$color-white;
+      background-color: var.$datepicker-active-color;
       border-radius: 15px;
     }
 
@@ -149,10 +158,10 @@
   }
 
   th {
-    padding: 2px 5px;
-    line-height: 28px;
     height: 28px;
-    color: #909399;
+    padding: 2px 5px;
     font-weight: 400;
+    line-height: 28px;
+    color: #909399;
   }
 }

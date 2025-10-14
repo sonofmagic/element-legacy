@@ -9,8 +9,8 @@
   }
 
   table {
-    table-layout: fixed;
     width: 100%;
+    table-layout: fixed;
   }
 
   .el-picker-panel__body {
@@ -23,8 +23,8 @@
 
   @include mixins.e(header) {
     position: relative;
-    text-align: center;
     height: 28px;
+    text-align: center;
 
     [class*='arrow-left'] {
       float: left;
@@ -35,26 +35,27 @@
     }
 
     div {
+      margin-right: 50px;
       font-size: 16px;
       font-weight: 500;
-      margin-right: 50px;
     }
   }
 
   @include mixins.e(content) {
     float: left;
-    width: 50%;
     box-sizing: border-box;
-    margin: 0;
+    width: 50%;
     padding: 16px;
+    margin: 0;
 
     @include mixins.when(left) {
       border-right: 1px solid var.$datepicker-inner-border-color;
     }
+
     .el-date-range-picker-v2__header {
       div {
-        margin-left: 50px;
         margin-right: 50px;
+        margin-left: 50px;
       }
     }
   }
@@ -70,17 +71,17 @@
 
   @include mixins.e(time-header) {
     position: relative;
-    border-bottom: 1px solid var.$datepicker-inner-border-color;
-    font-size: 12px;
-    padding: 8px 5px 5px 5px;
+    box-sizing: border-box;
     display: table;
     width: 100%;
-    box-sizing: border-box;
+    padding: 8px 5px 5px;
+    font-size: 12px;
+    border-bottom: 1px solid var.$datepicker-inner-border-color;
 
     > .el-icon-arrow-right {
+      display: table-cell;
       font-size: 20px;
       vertical-align: middle;
-      display: table-cell;
       color: var.$datepicker-icon-color;
     }
   }

@@ -1,18 +1,14 @@
 <script lang="ts">
 // @ts-nocheck
 import ElButton from 'element-ui/packages/button'
-import ElInput from 'element-ui/packages/input'
-import ElSelect from 'element-ui/packages/select'
 import ElOption from 'element-ui/packages/option'
+import ElSelect from 'element-ui/packages/select'
 import Locale from 'element-ui/src/mixins/locale'
-import Clickoutside from 'element-ui/src/utils/clickoutside'
 import {
   changeYearMonthAndClampDate,
   clearMilliseconds,
   clearTime,
-  extractDateFormat,
   extractTimeFormat,
-  formatDate,
   getWeekNumber,
   isDate,
   modifyDate,
@@ -20,7 +16,6 @@ import {
   modifyWithTimeString,
   nextMonth,
   nextYear,
-  parseDate,
   prevMonth,
   prevYear,
   timeWithinRange,
@@ -35,14 +30,11 @@ const ENGLISH_MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', '
 
 export default {
 
-  directives: { Clickoutside },
-
   components: {
     TimePicker,
     YearTable,
     MonthTable,
     DateTable,
-    ElInput,
     ElButton,
     ElSelect,
     ElOption,
@@ -66,11 +58,8 @@ export default {
       selectableRange: [],
       firstDayOfWeek: 7,
       showWeekNumber: false,
-      timePickerVisible: false,
       format: '',
       arrowControl: false,
-      userInputDate: null,
-      userInputTime: null,
     }
   },
 
@@ -95,24 +84,6 @@ export default {
       return this.showTime || this.selectionMode === 'dates' || this.selectionMode === 'months' || this.selectionMode === 'years'
     },
 
-    visibleTime() {
-      if (this.userInputTime !== null) {
-        return this.userInputTime
-      }
-      else {
-        return formatDate(this.value || this.defaultValue, this.timeFormat)
-      }
-    },
-
-    visibleDate() {
-      if (this.userInputDate !== null) {
-        return this.userInputDate
-      }
-      else {
-        return formatDate(this.value || this.defaultValue, this.dateFormat)
-      }
-    },
-
     yearLabel() {
       const yearTranslation = this.t('el.datepicker.year')
       if (this.currentView === 'year') {
@@ -131,15 +102,6 @@ export default {
       }
       else {
         return 'HH:mm:ss'
-      }
-    },
-
-    dateFormat() {
-      if (this.format) {
-        return extractDateFormat(this.format)
-      }
-      else {
-        return 'yyyy-MM-dd'
       }
     },
 
@@ -179,19 +141,6 @@ export default {
   },
 
   watch: {
-    showTime(val) {
-      /* istanbul ignore if */
-      if (!val) {
-        return
-      }
-      this.$nextTick((_) => {
-        const inputElm = this.$refs.input.$el
-        if (inputElm) {
-          this.pickerWidth = inputElm.getBoundingClientRect().width + 10
-        }
-      })
-    },
-
     value(val) {
       if (this.selectionMode === 'dates' && this.value) {
         return
@@ -213,12 +162,6 @@ export default {
     defaultValue(val) {
       if (!isDate(this.value)) {
         this.date = val ? new Date(val) : new Date()
-      }
-    },
-
-    timePickerVisible(val) {
-      if (val) {
-        this.$nextTick(() => this.$refs.timepicker.adjustSpinners())
       }
     },
 
@@ -282,8 +225,6 @@ export default {
       else {
         this.$emit('pick', this.showTime ? clearMilliseconds(value) : clearTime(value), ...args)
       }
-      this.userInputDate = null
-      this.userInputTime = null
     },
 
     // resetDate() {
@@ -341,7 +282,7 @@ export default {
       }
     },
 
-    handleTimePick(value, visible, first) {
+    handleTimePick(value) {
       if (isDate(value)) {
         const newDate = this.value
           ? modifyTime(this.value, value.getHours(), value.getMinutes(), value.getSeconds())
@@ -352,13 +293,6 @@ export default {
       else {
         this.emit(value, true)
       }
-      if (!first) {
-        this.timePickerVisible = visible
-      }
-    },
-
-    handleTimePickClose() {
-      this.timePickerVisible = false
     },
 
     handleCellHover(date) {
@@ -366,14 +300,18 @@ export default {
     },
 
     handleMonthDropdownVisible(visible) {
-      if (!visible) { return }
+      if (!visible) {
+        return
+      }
       this.$nextTick(() => {
         this.centerSelectOption('monthSelect', this.month)
       })
     },
 
     handleYearDropdownVisible(visible) {
-      if (!visible) { return }
+      if (!visible) {
+        return
+      }
       this.$nextTick(() => {
         this.centerSelectOption('yearSelect', this.year)
       })
@@ -381,11 +319,17 @@ export default {
 
     centerSelectOption(refName, value) {
       const select = this.$refs[refName]
-      if (!select || !select.$refs || !select.$refs.popper) { return }
+      if (!select || !select.$refs || !select.$refs.popper) {
+        return
+      }
       const option = select.getOption(value)
-      if (!option || !option.$el) { return }
+      if (!option || !option.$el) {
+        return
+      }
       const wrap = select.$refs.popper.$el.querySelector('.el-select-dropdown__wrap')
-      if (!wrap) { return }
+      if (!wrap) {
+        return
+      }
       const optionEl = option.$el
       const target = optionEl.offsetTop - Math.max((wrap.clientHeight - optionEl.offsetHeight) / 2, 0)
       wrap.scrollTop = target
@@ -445,13 +389,17 @@ export default {
 
     handleMonthChange(month) {
       const targetMonth = typeof month === 'number' ? month : Number(month)
-      if (Number.isNaN(targetMonth)) { return }
+      if (Number.isNaN(targetMonth)) {
+        return
+      }
       this.date = changeYearMonthAndClampDate(this.date, this.year, targetMonth)
     },
 
     handleYearChange(year) {
       const targetYear = typeof year === 'number' ? year : Number(year)
-      if (Number.isNaN(targetYear)) { return }
+      if (Number.isNaN(targetYear)) {
+        return
+      }
       this.date = changeYearMonthAndClampDate(this.date, targetYear, this.month)
     },
 
@@ -507,13 +455,15 @@ export default {
     handleKeydown(event) {
       const keyCode = event.keyCode
       const list = [38, 40, 37, 39]
-      if (this.visible && !this.timePickerVisible) {
+      const timepickerEl = this.$refs.timepicker && this.$refs.timepicker.$el
+      const isInTimePanel = timepickerEl ? timepickerEl.contains(event.target) : false
+      if (this.visible && !isInTimePanel) {
         if (list.includes(keyCode)) {
           this.handleKeyControl(keyCode)
           event.stopPropagation()
           event.preventDefault()
         }
-        if (keyCode === 13 && this.userInputDate === null && this.userInputTime === null) { // Enter
+        if (keyCode === 13) { // Enter
           this.emit(this.date, false)
         }
       }
@@ -566,30 +516,6 @@ export default {
       }
     },
 
-    handleVisibleTimeChange(value) {
-      const time = parseDate(value, this.timeFormat)
-      if (time && this.checkDateWithinRange(time)) {
-        this.date = modifyDate(time, this.year, this.month, this.monthDate)
-        this.userInputTime = null
-        this.$refs.timepicker.value = this.date
-        this.timePickerVisible = false
-        this.emit(this.date, true)
-      }
-    },
-
-    handleVisibleDateChange(value) {
-      const date = parseDate(value, this.dateFormat)
-      if (date) {
-        if (typeof this.disabledDate === 'function' && this.disabledDate(date)) {
-          return
-        }
-        this.date = modifyTime(date, this.date.getHours(), this.date.getMinutes(), this.date.getSeconds())
-        this.userInputDate = null
-        this.resetView()
-        this.emit(this.date, true)
-      }
-    },
-
     isValidValue(value) {
       return value && !Number.isNaN(Number(value)) && (
         typeof this.disabledDate === 'function'
@@ -637,160 +563,143 @@ export default {
           </button>
         </div>
         <div class="el-picker-panel__body">
-          <div v-if="showTime" class="el-date-picker-v2__time-header">
-            <span class="el-date-picker-v2__editor-wrap">
-              <ElInput
-                :placeholder="t('el.datepicker.selectDate')"
-                :value="visibleDate"
-                size="small"
-                @input="val => userInputDate = val"
-                @change="handleVisibleDateChange"
-              />
-            </span>
-            <span v-clickoutside="handleTimePickClose" class="el-date-picker-v2__editor-wrap">
-              <ElInput
-                ref="input"
-                :placeholder="t('el.datepicker.selectTime')"
-                :value="visibleTime"
-                size="small"
-                @focus="timePickerVisible = true"
-                @input="val => userInputTime = val"
-                @change="handleVisibleTimeChange"
-              />
-              <TimePicker
-                ref="timepicker"
-                :time-arrow-control="arrowControl"
-                :visible="timePickerVisible"
-                @pick="handleTimePick"
-                @mounted="proxyTimePickerDataProperties"
-              />
-            </span>
-          </div>
-          <div
-            v-show="currentView !== 'time'"
-            class="el-date-picker-v2__header"
-            :class="{
-              'el-date-picker-v2__header--bordered': currentView === 'year' || currentView === 'month',
-              'el-date-picker-v2__header--simple': isSingleDateView,
-            }"
-          >
-            <template v-if="isSingleDateView">
-              <div class="el-date-picker-v2__header-controls">
-                <ElSelect
-                  ref="monthSelect"
-                  class="el-date-picker-v2__month-select"
-                  :value="month"
-                  size="small"
-                  :popper-append-to-body="false"
-                  :popper-class="'el-date-picker-v2__select-dropdown'"
-                  @change="handleMonthChange"
-                  @visible-change="handleMonthDropdownVisible"
+          <div class="el-date-picker-v2__main">
+            <div
+              v-show="currentView !== 'time'"
+              class="el-date-picker-v2__header"
+              :class="{
+                'el-date-picker-v2__header--bordered': currentView === 'year' || currentView === 'month',
+                'el-date-picker-v2__header--simple': isSingleDateView,
+              }"
+            >
+              <template v-if="isSingleDateView">
+                <div class="el-date-picker-v2__header-controls">
+                  <ElSelect
+                    ref="monthSelect"
+                    class="el-date-picker-v2__month-select"
+                    :value="month"
+                    size="small"
+                    :popper-append-to-body="false"
+                    popper-class="el-date-picker-v2__select-dropdown"
+                    @change="handleMonthChange"
+                    @visible-change="handleMonthDropdownVisible"
+                  >
+                    <ElOption
+                      v-for="item in monthOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    />
+                  </ElSelect>
+                  <ElSelect
+                    ref="yearSelect"
+                    class="el-date-picker-v2__year-select"
+                    :value="year"
+                    size="small"
+                    :popper-append-to-body="false"
+                    popper-class="el-date-picker-v2__select-dropdown"
+                    @change="handleYearChange"
+                    @visible-change="handleYearDropdownVisible"
+                  >
+                    <ElOption
+                      v-for="item in yearOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    />
+                  </ElSelect>
+                </div>
+                <button
+                  v-if="!showTime"
+                  type="button"
+                  class="el-date-picker-v2__today-btn"
+                  @click="selectToday"
                 >
-                  <ElOption
-                    v-for="item in monthOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  />
-                </ElSelect>
-                <ElSelect
-                  ref="yearSelect"
-                  class="el-date-picker-v2__year-select"
-                  :value="year"
-                  size="small"
-                  :popper-append-to-body="false"
-                  :popper-class="'el-date-picker-v2__select-dropdown'"
-                  @change="handleYearChange"
-                  @visible-change="handleYearDropdownVisible"
-                >
-                  <ElOption
-                    v-for="item in yearOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  />
-                </ElSelect>
-              </div>
-              <button
-                type="button"
-                class="el-date-picker-v2__today-btn"
-                @click="selectToday"
-              >
-                {{ todayLabel }}
-              </button>
-            </template>
-            <template v-else>
-              <button
-                type="button"
-                :aria-label="t(`el.datepicker.prevYear`)"
-                class="el-picker-panel__icon-btn el-date-picker-v2__prev-btn el-icon-d-arrow-left"
-                @click="prevYear"
-              />
-              <button
-                v-show="currentView === 'date'"
-                type="button"
-                :aria-label="t(`el.datepicker.prevMonth`)"
-                class="el-picker-panel__icon-btn el-date-picker-v2__prev-btn el-icon-arrow-left"
-                @click="prevMonth"
-              />
-              <span
-                role="button"
-                class="el-date-picker-v2__header-label"
-                @click="showYearPicker"
-              >{{ yearLabel }}</span>
-              <span
-                v-show="currentView === 'date'"
-                role="button"
-                class="el-date-picker-v2__header-label"
-                :class="{ active: currentView === 'month' }"
-                @click="showMonthPicker"
-              >{{ t(`el.datepicker.month${month + 1}`) }}</span>
-              <button
-                type="button"
-                :aria-label="t(`el.datepicker.nextYear`)"
-                class="el-picker-panel__icon-btn el-date-picker-v2__next-btn el-icon-d-arrow-right"
-                @click="nextYear"
-              />
-              <button
-                v-show="currentView === 'date'"
-                type="button"
-                :aria-label="t(`el.datepicker.nextMonth`)"
-                class="el-picker-panel__icon-btn el-date-picker-v2__next-btn el-icon-arrow-right"
-                @click="nextMonth"
-              />
-            </template>
-          </div>
+                  {{ todayLabel }}
+                </button>
+              </template>
+              <template v-else>
+                <button
+                  type="button"
+                  :aria-label="t(`el.datepicker.prevYear`)"
+                  class="el-picker-panel__icon-btn el-date-picker-v2__prev-btn el-icon-d-arrow-left"
+                  @click="prevYear"
+                />
+                <button
+                  v-show="currentView === 'date'"
+                  type="button"
+                  :aria-label="t(`el.datepicker.prevMonth`)"
+                  class="el-picker-panel__icon-btn el-date-picker-v2__prev-btn el-icon-arrow-left"
+                  @click="prevMonth"
+                />
+                <span
+                  role="button"
+                  class="el-date-picker-v2__header-label"
+                  @click="showYearPicker"
+                >{{ yearLabel }}</span>
+                <span
+                  v-show="currentView === 'date'"
+                  role="button"
+                  class="el-date-picker-v2__header-label"
+                  :class="{ active: currentView === 'month' }"
+                  @click="showMonthPicker"
+                >{{ t(`el.datepicker.month${month + 1}`) }}</span>
+                <button
+                  type="button"
+                  :aria-label="t(`el.datepicker.nextYear`)"
+                  class="el-picker-panel__icon-btn el-date-picker-v2__next-btn el-icon-d-arrow-right"
+                  @click="nextYear"
+                />
+                <button
+                  v-show="currentView === 'date'"
+                  type="button"
+                  :aria-label="t(`el.datepicker.nextMonth`)"
+                  class="el-picker-panel__icon-btn el-date-picker-v2__next-btn el-icon-arrow-right"
+                  @click="nextMonth"
+                />
+              </template>
+            </div>
 
-          <div class="el-picker-panel__content">
-            <DateTable
-              v-show="currentView === 'date'"
-              :selection-mode="selectionMode"
-              :first-day-of-week="firstDayOfWeek"
-              :value="value"
-              :default-value="defaultValue ? new Date(defaultValue) : null"
-              :date="date"
-              :cell-class-name="cellClassName"
-              :disabled-date="disabledDate"
-              @cell-hover="handleCellHover"
-              @pick="handleDatePick"
-            />
-            <YearTable
-              v-show="currentView === 'year'"
-              :selection-mode="selectionMode"
-              :value="value"
-              :default-value="defaultValue ? new Date(defaultValue) : null"
-              :date="date"
-              :disabled-date="disabledDate"
-              @pick="handleYearPick"
-            />
-            <MonthTable
-              v-show="currentView === 'month'"
-              :selection-mode="selectionMode"
-              :value="value"
-              :default-value="defaultValue ? new Date(defaultValue) : null"
-              :date="date"
-              :disabled-date="disabledDate"
-              @pick="handleMonthPick"
+            <div class="el-picker-panel__content">
+              <DateTable
+                v-show="currentView === 'date'"
+                :selection-mode="selectionMode"
+                :first-day-of-week="firstDayOfWeek"
+                :value="value"
+                :default-value="defaultValue ? new Date(defaultValue) : null"
+                :date="date"
+                :cell-class-name="cellClassName"
+                :disabled-date="disabledDate"
+                @cell-hover="handleCellHover"
+                @pick="handleDatePick"
+              />
+              <YearTable
+                v-show="currentView === 'year'"
+                :selection-mode="selectionMode"
+                :value="value"
+                :default-value="defaultValue ? new Date(defaultValue) : null"
+                :date="date"
+                :disabled-date="disabledDate"
+                @pick="handleYearPick"
+              />
+              <MonthTable
+                v-show="currentView === 'month'"
+                :selection-mode="selectionMode"
+                :value="value"
+                :default-value="defaultValue ? new Date(defaultValue) : null"
+                :date="date"
+                :disabled-date="disabledDate"
+                @pick="handleMonthPick"
+              />
+            </div>
+          </div>
+          <div v-if="showTime" class="el-date-picker-v2__time-wrapper">
+            <TimePicker
+              ref="timepicker"
+              :time-arrow-control="arrowControl"
+              :visible="true"
+              @pick="handleTimePick"
+              @mounted="proxyTimePickerDataProperties"
             />
           </div>
         </div>
@@ -800,23 +709,25 @@ export default {
         v-show="footerVisible && (currentView === 'date' || currentView === 'month' || currentView === 'year')"
         class="el-picker-panel__footer"
       >
-        <ElButton
-          v-show="selectionMode !== 'dates' && selectionMode !== 'months' && selectionMode !== 'years'"
-          size="mini"
-          type="text"
-          class="el-picker-panel__link-btn"
-          @click="changeToNow"
-        >
-          {{ t('el.datepicker.now') }}
-        </ElButton>
-        <ElButton
-          plain
-          size="mini"
-          class="el-picker-panel__link-btn"
-          @click="confirm"
-        >
-          {{ t('el.datepicker.confirm') }}
-        </ElButton>
+        <div class="el-date-picker-v2__footer-actions">
+          <ElButton
+            v-show="selectionMode !== 'dates' && selectionMode !== 'months' && selectionMode !== 'years'"
+            size="mini"
+            type="text"
+            class="el-picker-panel__link-btn el-date-picker-v2__footer-now"
+            @click="changeToNow"
+          >
+            {{ t('el.datepicker.now') }}
+          </ElButton>
+          <ElButton
+            type="primary"
+            size="mini"
+            class="el-date-picker-v2__footer-confirm"
+            @click="confirm"
+          >
+            Confirm
+          </ElButton>
+        </div>
       </div>
     </div>
   </transition>

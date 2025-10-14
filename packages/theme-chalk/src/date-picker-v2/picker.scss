@@ -7,7 +7,7 @@
   display: inline-block;
   text-align: left;
 
-  &.el-input:not(.el-input--medium):not(.el-input--small):not(.el-input--mini) {
+  &.el-input:not(.el-input--medium, .el-input--small, .el-input--mini) {
     .el-input__inner {
       height: 36px;
       line-height: 36px;
@@ -61,18 +61,18 @@
   }
 
   .el-range-input-v2 {
-    appearance: none;
-    border: none;
-    outline: none;
     display: inline-block;
-    height: 100%;
-    margin: 0;
-    padding: 0;
     width: 39%;
-    text-align: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
     font-size: var.$font-size-base;
-    color: var.$color-text-regular;
     line-height: 36px;
+    color: var.$color-text-regular;
+    text-align: center;
+    appearance: none;
+    outline: none;
+    border: none;
 
     &::placeholder {
       color: var.$color-text-placeholder;
@@ -81,23 +81,23 @@
 
   .el-range-separator-v2 {
     display: inline-block;
+    width: 5%;
     height: 100%;
     padding: 0 5px;
     margin: 0;
-    text-align: center;
-    line-height: 36px;
     font-size: 14px;
-    width: 5%;
+    line-height: 36px;
     color: var.$color-text-primary;
+    text-align: center;
   }
 
   .el-range-v2__close-icon {
-    font-size: 14px;
-    color: var.$color-text-placeholder;
-    width: 25px;
-    display: inline-block;
     float: right;
+    display: inline-block;
+    width: 25px;
+    font-size: 14px;
     line-height: 36px;
+    color: var.$color-text-placeholder;
   }
 }
 
@@ -105,8 +105,8 @@
   &.el-input__inner {
     display: inline-flex;
     align-items: center;
-    padding: 0 10px;
     height: 36px;
+    padding: 0 10px;
   }
 
   .el-range-input-v2 {
@@ -127,8 +127,8 @@
     }
 
     .el-range-separator-v2 {
-      line-height: var.$input-medium-height;
       font-size: var.$input-medium-font-size;
+      line-height: var.$input-medium-height;
     }
 
     .el-range-input-v2 {
@@ -147,8 +147,8 @@
     }
 
     .el-range-separator-v2 {
-      line-height: var.$input-small-height;
       font-size: var.$input-small-font-size;
+      line-height: var.$input-small-height;
     }
 
     .el-range-input-v2 {
@@ -167,8 +167,8 @@
     }
 
     .el-range-separator-v2 {
-      line-height: var.$input-mini-height;
       font-size: var.$input-mini-font-size;
+      line-height: var.$input-mini-height;
     }
 
     .el-range-input-v2 {
@@ -182,10 +182,10 @@
   }
 
   @include mixins.when(disabled) {
-    background-color: var.$input-disabled-fill;
-    border-color: var.$input-disabled-border;
     color: var.$input-disabled-color;
     cursor: not-allowed;
+    background-color: var.$input-disabled-fill;
+    border-color: var.$input-disabled-border;
 
     &:hover,
     &:focus {
@@ -193,9 +193,10 @@
     }
 
     input {
-      background-color: var.$input-disabled-fill;
       color: var.$input-disabled-color;
       cursor: not-allowed;
+      background-color: var.$input-disabled-fill;
+
       &::placeholder {
         color: var.$input-disabled-placeholder-color;
       }

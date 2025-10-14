@@ -1,55 +1,27 @@
 @use '../common/var';
 @use '../mixins/mixins';
-@use 'picker-panel.scss';
+@use 'picker-panel';
 
 @include mixins.b(date-picker-v2) {
   width: 304px;
 
-  &.has-sidebar.has-time {
-    width: 416px;
-  }
-
-  &.has-sidebar {
-    width: 420px;
-  }
-
-  &.has-time .el-picker-panel__body-wrapper {
-    position: relative;
-  }
-
   .el-picker-panel__content {
     width: 274px;
-    margin-top: 4px;
+    margin: 0;
   }
 
   table {
+    width: 100%;
     table-layout: fixed;
-    width: 100%;
-  }
-
-  @include mixins.e(editor-wrap) {
-    position: relative;
-    display: table-cell;
-    padding: 0 5px;
-  }
-
-  @include mixins.e(time-header) {
-    position: relative;
-    border-bottom: 1px solid var.$datepicker-inner-border-color;
-    font-size: 12px;
-    padding: 8px 5px 5px 5px;
-    display: table;
-    width: 100%;
-    box-sizing: border-box;
   }
 
   @include mixins.e(header) {
-    margin: 12px 12px 6px;
+    margin: 12px 0 6px;
     text-align: center;
 
     @include mixins.m(bordered) {
-      margin-bottom: 0;
       padding-bottom: 12px;
+      margin-bottom: 0;
       border-bottom: solid 1px var.$border-color-lighter;
 
       & + .el-picker-panel__content {
@@ -66,13 +38,13 @@
   }
 
   @include mixins.e(header-label) {
+    padding: 0 5px;
     font-size: 16px;
     font-weight: 500;
-    padding: 0 5px;
     line-height: 22px;
+    color: var.$color-text-regular;
     text-align: center;
     cursor: pointer;
-    color: var.$color-text-regular;
 
     &:hover {
       color: var.$datepicker-hover-font-color;
@@ -89,18 +61,6 @@
 
   @include mixins.e(next-btn) {
     float: right;
-  }
-
-  @include mixins.e(time-wrap) {
-    padding: 10px;
-    text-align: center;
-  }
-
-  @include mixins.e(time-label) {
-    float: left;
-    cursor: pointer;
-    line-height: 30px;
-    margin-left: 10px;
   }
 
   @include mixins.e(header-controls) {
@@ -123,17 +83,122 @@
   }
 
   @include mixins.e(today-btn) {
-    border: none;
-    background: transparent;
     padding: 0;
     font-size: var.$font-size-base;
     color: var.$color-text-secondary;
     cursor: pointer;
     outline: none;
+    background: transparent;
+    border: none;
 
     &:hover {
       color: #007aff;
     }
+  }
+
+  @include mixins.e(main) {
+    margin-bottom: 12px;
+  }
+
+  &.has-sidebar {
+    width: auto;
+    min-width: 420px;
+  }
+
+  .el-picker-panel__footer {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 8px 12px;
+  }
+
+  @include mixins.e(footer-actions) {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  @include mixins.e(footer) {
+    box-sizing: border-box;
+    min-height: 40px;
+    padding: 8px 12px;
+  }
+
+  @include mixins.e(footer-now) {
+    min-width: auto;
+    padding: 0;
+    font-size: 14px;
+    color: #606266;
+
+    &:hover {
+      color: #007aff;
+    }
+  }
+
+  @include mixins.e(footer-confirm) {
+    width: 60px;
+    min-width: 60px;
+    height: 24px;
+    padding: 0;
+    font-size: 12px;
+    line-height: 24px;
+  }
+
+  &.has-time {
+    width: 448px;
+    min-width: 448px;
+
+    .el-picker-panel__body {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .el-picker-panel__content {
+      width: auto;
+    }
+
+    @include mixins.e(main) {
+      box-sizing: border-box;
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-width: 0;
+      padding: 0 12px;
+    }
+
+    @include mixins.e(time-wrapper) {
+      box-sizing: border-box;
+      display: flex;
+      flex: 0 0 144px;
+      justify-content: center;
+      min-width: 144px;
+      padding: 12px 12px 12px 0;
+      border-left: 1px solid var.$datepicker-inner-border-color;
+
+      .el-time-panel-v2 {
+        position: static;
+        width: 144px;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+      }
+
+      .el-time-panel-v2__content {
+        width: 100%;
+      }
+
+      .el-time-panel-v2__footer {
+        display: none;
+      }
+    }
+  }
+
+  &.has-sidebar.has-time {
+    width: 558px;
+    min-width: 558px;
   }
 }
 
