@@ -116,26 +116,42 @@ export default {
     },
 
     minVisibleDate() {
-      if (this.dateUserInput.min !== null) { return this.dateUserInput.min }
-      if (this.minDate) { return formatDate(this.minDate, this.dateFormat) }
+      if (this.dateUserInput.min !== null) {
+        return this.dateUserInput.min
+      }
+      if (this.minDate) {
+        return formatDate(this.minDate, this.dateFormat)
+      }
       return ''
     },
 
     maxVisibleDate() {
-      if (this.dateUserInput.max !== null) { return this.dateUserInput.max }
-      if (this.maxDate || this.minDate) { return formatDate(this.maxDate || this.minDate, this.dateFormat) }
+      if (this.dateUserInput.max !== null) {
+        return this.dateUserInput.max
+      }
+      if (this.maxDate || this.minDate) {
+        return formatDate(this.maxDate || this.minDate, this.dateFormat)
+      }
       return ''
     },
 
     minVisibleTime() {
-      if (this.timeUserInput.min !== null) { return this.timeUserInput.min }
-      if (this.minDate) { return formatDate(this.minDate, this.timeFormat) }
+      if (this.timeUserInput.min !== null) {
+        return this.timeUserInput.min
+      }
+      if (this.minDate) {
+        return formatDate(this.minDate, this.timeFormat)
+      }
       return ''
     },
 
     maxVisibleTime() {
-      if (this.timeUserInput.max !== null) { return this.timeUserInput.max }
-      if (this.maxDate || this.minDate) { return formatDate(this.maxDate || this.minDate, this.timeFormat) }
+      if (this.timeUserInput.max !== null) {
+        return this.timeUserInput.max
+      }
+      if (this.maxDate || this.minDate) {
+        return formatDate(this.maxDate || this.minDate, this.timeFormat)
+      }
       return ''
     },
 
@@ -276,7 +292,9 @@ export default {
 
     handleDateInput(value, type) {
       this.dateUserInput[type] = value
-      if (value.length !== this.dateFormat.length) { return }
+      if (value.length !== this.dateFormat.length) {
+        return
+      }
       const parsedValue = parseDate(value, this.dateFormat)
 
       if (parsedValue) {
@@ -321,7 +339,9 @@ export default {
 
     handleTimeInput(value, type) {
       this.timeUserInput[type] = value
-      if (value.length !== this.timeFormat.length) { return }
+      if (value.length !== this.timeFormat.length) {
+        return
+      }
       const parsedValue = parseDate(value, this.timeFormat)
 
       if (parsedValue) {
@@ -375,7 +395,9 @@ export default {
         this.maxDate = maxDate
         this.minDate = minDate
       }, 10)
-      if (!close || this.showTime) { return }
+      if (!close || this.showTime) {
+        return
+      }
       this.handleConfirm()
     },
 
@@ -395,7 +417,8 @@ export default {
         this.minTimePickerVisible = visible
       }
 
-      if (!this.maxDate || this.maxDate && this.maxDate.getTime() < this.minDate.getTime()) {
+      const maxDateLessThanMin = this.maxDate ? this.maxDate.getTime() < this.minDate.getTime() : false
+      if (!this.maxDate || maxDateLessThanMin) {
         this.maxDate = new Date(this.minDate)
       }
     },
@@ -495,7 +518,9 @@ export default {
       // NOTE: this is a hack to reset {min, max}Date on picker open.
       // TODO: correct way of doing so is to refactor {min, max}Date to be dependent on value and internal selection state
       //       an alternative would be resetView whenever picker becomes visible, should also investigate date-panel's resetView
-      if (this.minDate && this.maxDate == null) { this.rangeState.selecting = false }
+      if (this.minDate && this.maxDate == null) {
+        this.rangeState.selecting = false
+      }
       this.minDate = this.value && isDate(this.value[0]) ? new Date(this.value[0]) : null
       this.maxDate = this.value && isDate(this.value[0]) ? new Date(this.value[1]) : null
     },
@@ -531,7 +556,6 @@ export default {
             <span class="el-date-range-picker__editors-wrap">
               <span class="el-date-range-picker__time-picker-wrap">
                 <ElInput
-                  ref="minInput"
                   size="small"
                   :disabled="rangeState.selecting"
                   :placeholder="t('el.datepicker.startDate')"

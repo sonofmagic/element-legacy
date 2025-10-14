@@ -39,8 +39,12 @@ export default {
       return this.arrowControl || this.timeArrowControl || false
     },
     amPmMode() {
-      if ((this.format || '').includes('A')) { return 'A' }
-      if ((this.format || '').includes('a')) { return 'a' }
+      if ((this.format || '').includes('A')) {
+        return 'A'
+      }
+      if ((this.format || '').includes('a')) {
+        return 'a'
+      }
       return ''
     },
   },
@@ -110,7 +114,9 @@ export default {
     },
 
     handleConfirm(visible = false, first) {
-      if (first) { return }
+      if (first) {
+        return
+      }
       const date = clearMilliseconds(limitTimeRange(this.date, this.selectableRange, this.format))
       this.$emit('pick', date, visible, first)
     },

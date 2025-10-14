@@ -90,9 +90,15 @@ export default {
 
     modifyDateField(type, value) {
       switch (type) {
-        case 'hours': this.$emit('change', modifyTime(this.date, value, this.minutes, this.seconds)); break
-        case 'minutes': this.$emit('change', modifyTime(this.date, this.hours, value, this.seconds)); break
-        case 'seconds': this.$emit('change', modifyTime(this.date, this.hours, this.minutes, value)); break
+        case 'hours':
+          this.$emit('change', modifyTime(this.date, value, this.minutes, this.seconds))
+          break
+        case 'minutes':
+          this.$emit('change', modifyTime(this.date, this.hours, value, this.seconds))
+          break
+        case 'seconds':
+          this.$emit('change', modifyTime(this.date, this.hours, this.minutes, value))
+          break
       }
     },
 
@@ -149,7 +155,9 @@ export default {
     },
 
     adjustSpinner(type, value) {
-      if (this.arrowControl) { return }
+      if (this.arrowControl) {
+        return
+      }
       const el = this.$refs[type].wrap
       if (el) {
         el.scrollTop = Math.max(0, value * this.typeItemHeight(type))
@@ -176,7 +184,9 @@ export default {
           }
           total--
         }
-        if (hoursList[now]) { return }
+        if (hoursList[now]) {
+          return
+        }
       }
       else {
         now = (now + step + 60) % 60
@@ -188,10 +198,14 @@ export default {
     },
     amPm(hour) {
       const shouldShowAmPm = this.amPmMode.toLowerCase() === 'a'
-      if (!shouldShowAmPm) { return '' }
+      if (!shouldShowAmPm) {
+        return ''
+      }
       const isCapital = this.amPmMode === 'A'
       let content = (hour < 12) ? ' am' : ' pm'
-      if (isCapital) { content = content.toUpperCase() }
+      if (isCapital) {
+        content = content.toUpperCase()
+      }
       return content
     },
     typeItemHeight(type) {
@@ -208,11 +222,11 @@ export default {
   <div class="el-time-spinner" :class="{ 'has-seconds': showSeconds }">
     <template v-if="!arrowControl">
       <ElScrollbar
+        ref="hours"
         class="el-time-spinner__wrapper"
         wrap-style="max-height: inherit;"
         view-class="el-time-spinner__list"
         noresize
-        ref="hours"
         tag="ul"
         @mouseenter.native="emitSelectRange('hours')"
         @mousemove.native="adjustCurrentSpinner('hours')"
@@ -228,11 +242,11 @@ export default {
         </li>
       </ElScrollbar>
       <ElScrollbar
+        ref="minutes"
         class="el-time-spinner__wrapper"
         wrap-style="max-height: inherit;"
         view-class="el-time-spinner__list"
         noresize
-        ref="minutes"
         tag="ul"
         @mouseenter.native="emitSelectRange('minutes')"
         @mousemove.native="adjustCurrentSpinner('minutes')"
@@ -249,11 +263,11 @@ export default {
       </ElScrollbar>
       <ElScrollbar
         v-show="showSeconds"
+        ref="seconds"
         class="el-time-spinner__wrapper"
         wrap-style="max-height: inherit;"
         view-class="el-time-spinner__list"
         noresize
-        ref="seconds"
         tag="ul"
         @mouseenter.native="emitSelectRange('seconds')"
         @mousemove.native="adjustCurrentSpinner('seconds')"

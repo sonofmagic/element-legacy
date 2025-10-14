@@ -97,7 +97,9 @@ export default {
 
   watch: {
     value(val) {
-      if (!val) { return }
+      if (!val) {
+        return
+      }
       this.$nextTick(() => this.scrollToOption())
     },
   },

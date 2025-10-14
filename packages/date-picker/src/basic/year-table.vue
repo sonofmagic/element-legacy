@@ -47,18 +47,21 @@ export default {
     handleYearTableClick(event) {
       const target = event.target
       if (target.tagName === 'A') {
-        if (hasClass(target.parentNode, 'disabled')) { return }
-        const year = target.textContent || target.innerText
+        if (hasClass(target.parentNode, 'disabled')) {
+          return
+        }
+        const yearText = target.textContent || ''
+        const year = Number(yearText)
         if (this.selectionMode === 'years') {
           const value = this.value || []
-          const idx = arrayFindIndex(value, date => date.getFullYear() === Number(year))
+          const idx = arrayFindIndex(value, date => date.getFullYear() === year)
           const newValue = idx > -1
             ? [...value.slice(0, idx), ...value.slice(idx + 1)]
             : [...value, new Date(year)]
           this.$emit('pick', newValue)
         }
         else {
-          this.$emit('pick', Number(year))
+          this.$emit('pick', year)
         }
       }
     },

@@ -90,11 +90,15 @@ function RANGE_PARSER(array, format, separator) {
 const TYPE_VALUE_RESOLVER_MAP = {
   default: {
     formatter(value) {
-      if (!value) { return '' }
+      if (!value) {
+        return ''
+      }
       return `${value}`
     },
     parser(text) {
-      if (text === undefined || text === '') { return null }
+      if (text === undefined || text === '') {
+        return null
+      }
       return text
     },
   },
@@ -157,13 +161,15 @@ const TYPE_VALUE_RESOLVER_MAP = {
   },
   number: {
     formatter(value) {
-      if (!value) { return '' }
+      if (!value) {
+        return ''
+      }
       return `${value}`
     },
     parser(text) {
       const result = Number(text)
 
-      if (!isNaN(text)) {
+      if (!Number.isNaN(result)) {
         return result
       }
       else {
@@ -177,7 +183,7 @@ const TYPE_VALUE_RESOLVER_MAP = {
     },
     parser(value, format) {
       return (typeof value === 'string' ? value.split(', ') : value)
-        .map(date => date instanceof Date ? date : DATE_PARSER(date, format))
+        .map(date => isDateObject(date) ? date : DATE_PARSER(date, format))
     },
   },
   months: {
@@ -186,7 +192,7 @@ const TYPE_VALUE_RESOLVER_MAP = {
     },
     parser(value, format) {
       return (typeof value === 'string' ? value.split(', ') : value)
-        .map(date => date instanceof Date ? date : DATE_PARSER(date, format))
+        .map(date => isDateObject(date) ? date : DATE_PARSER(date, format))
     },
   },
   years: {
@@ -195,7 +201,7 @@ const TYPE_VALUE_RESOLVER_MAP = {
     },
     parser(value, format) {
       return (typeof value === 'string' ? value.split(', ') : value)
-        .map(date => date instanceof Date ? date : DATE_PARSER(date, format))
+        .map(date => isDateObject(date) ? date : DATE_PARSER(date, format))
     },
   },
 }
@@ -206,7 +212,9 @@ const PLACEMENT_MAP = {
 }
 
 function parseAsFormatAndType(value, customFormat, type, rangeSeparator = '-') {
-  if (!value) { return null }
+  if (!value) {
+    return null
+  }
   const parser = (
     TYPE_VALUE_RESOLVER_MAP[type]
     || TYPE_VALUE_RESOLVER_MAP.default
@@ -216,7 +224,9 @@ function parseAsFormatAndType(value, customFormat, type, rangeSeparator = '-') {
 }
 
 function formatAsFormatAndType(value, customFormat, type) {
-  if (!value) { return null }
+  if (!value) {
+    return null
+  }
   const formatter = (
     TYPE_VALUE_RESOLVER_MAP[type]
     || TYPE_VALUE_RESOLVER_MAP.default
@@ -234,8 +244,8 @@ function formatAsFormatAndType(value, customFormat, type) {
 function valueEquals(a, b) {
   // considers Date object and string
   const dateEquals = function (a, b) {
-    const aIsDate = a instanceof Date
-    const bIsDate = b instanceof Date
+    const aIsDate = isDateObject(a)
+    const bIsDate = isDateObject(b)
     if (aIsDate && bIsDate) {
       return a.getTime() === b.getTime()
     }
@@ -260,7 +270,7 @@ function valueEquals(a, b) {
 }
 
 function isString(val) {
-  return typeof val === 'string' || val instanceof String
+  return typeof val === 'string' || Object.prototype.toString.call(val) === '[object String]'
 }
 
 function validator(val) {
@@ -438,8 +448,12 @@ export default {
     },
 
     parsedValue() {
-      if (!this.value) { return this.value } // component value is not set
-      if (this.type === 'time-select') { return this.value } // time-select does not require parsing, this might change in next major version
+      if (!this.value) {
+        return this.value
+      } // component value is not set
+      if (this.type === 'time-select') {
+        return this.value
+      } // time-select does not require parsing, this might change in next major version
 
       const valueIsDateObject = isDateObject(this.value) || (Array.isArray(this.value) && this.value.every(isDateObject))
       if (valueIsDateObject) {
@@ -476,7 +490,9 @@ export default {
       else {
         id = this.id
       }
-      if (id) { obj.id = id }
+      if (id) {
+        obj.id = id
+      }
       return obj
     },
 
@@ -486,14 +502,18 @@ export default {
       if (this.ranged) {
         id = this.id && this.id[1]
       }
-      if (id) { obj.id = id }
+      if (id) {
+        obj.id = id
+      }
       return obj
     },
   },
 
   watch: {
     pickerVisible(val) {
-      if (this.readonly || this.pickerDisabled) { return }
+      if (this.readonly || this.pickerDisabled) {
+        return
+      }
       if (val) {
         this.showPicker()
         this.valueOnOpen = Array.isArray(this.value) ? [...this.value] : this.value
@@ -588,7 +608,9 @@ export default {
     },
 
     handleMouseEnter() {
-      if (this.readonly || this.pickerDisabled) { return }
+      if (this.readonly || this.pickerDisabled) {
+        return
+      }
       if (!this.valueIsEmpty && this.clearable) {
         this.showClose = true
       }
@@ -630,7 +652,7 @@ export default {
       }
     },
 
-    handleStartChange(event) {
+    handleStartChange() {
       const value = this.parseString(this.userInput && this.userInput[0])
       if (value) {
         this.userInput = [this.formatToString(value), this.displayValue[1]]
@@ -643,7 +665,7 @@ export default {
       }
     },
 
-    handleEndChange(event) {
+    handleEndChange() {
       const value = this.parseString(this.userInput && this.userInput[1])
       if (value) {
         this.userInput = [this.displayValue[0], this.formatToString(value)]
@@ -657,7 +679,9 @@ export default {
     },
 
     handleClickIcon(event) {
-      if (this.readonly || this.pickerDisabled) { return }
+      if (this.readonly || this.pickerDisabled) {
+        return
+      }
       if (this.showClose) {
         this.valueOnOpen = this.value
         event.stopPropagation()
@@ -674,7 +698,9 @@ export default {
     },
 
     handleClose() {
-      if (!this.pickerVisible) { return }
+      if (!this.pickerVisible) {
+        return
+      }
       this.pickerVisible = false
 
       if (this.type === 'dates' || this.type === 'years' || this.type === 'months') {
@@ -769,7 +795,9 @@ export default {
     },
 
     showPicker() {
-      if (this.$isServer) { return }
+      if (this.$isServer) {
+        return
+      }
       if (!this.picker) {
         this.mountPicker()
       }
@@ -813,7 +841,7 @@ export default {
         }
 
         for (const option in options) {
-          if (options.hasOwnProperty(option)
+          if (Object.prototype.hasOwnProperty.call(options, option)
           // 忽略 time-picker 的该配置项
             && option !== 'selectableRange') {
             this.picker[option] = options[option]
@@ -839,7 +867,9 @@ export default {
       })
 
       this.picker.$on('select-range', (start, end, pos) => {
-        if (this.refInput.length === 0) { return }
+        if (this.refInput.length === 0) {
+          return
+        }
         if (!pos || pos === 'min') {
           this.refInput[0].setSelectionRange(start, end)
           this.refInput[0].focus()

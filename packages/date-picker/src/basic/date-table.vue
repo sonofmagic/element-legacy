@@ -74,7 +74,6 @@ export default {
 
   data() {
     return {
-      tableRows: [[], [], [], [], [], []],
       lastRow: null,
       lastColumn: null,
     }
@@ -114,7 +113,21 @@ export default {
       day = (day === 0 ? 7 : day)
 
       const offset = this.offsetDay
-      const rows = this.tableRows
+      const rows = Array.from({ length: 6 }, () => {
+        const row = []
+        if (this.showWeekNumber) {
+          row.push({
+            column: -1,
+            end: false,
+            inRange: false,
+            row: -1,
+            start: false,
+            text: '',
+            type: 'week',
+          })
+        }
+        return row
+      })
       let count = 1
 
       const startDate = this.startDate
@@ -122,29 +135,46 @@ export default {
       const cellClassName = this.cellClassName
       const selectedDate = this.selectionMode === 'dates' ? coerceTruthyValueToArray(this.value) : []
       const now = getDateTimestamp(new Date())
+      const minDateTimestamp = getDateTimestamp(this.minDate)
+      const maxDateTimestamp = getDateTimestamp(this.maxDate)
+      const hasMin = !Number.isNaN(minDateTimestamp)
+      const hasMax = !Number.isNaN(maxDateTimestamp)
 
       for (let i = 0; i < 6; i++) {
         const row = rows[i]
 
         if (this.showWeekNumber) {
-          if (!row[0]) {
-            row[0] = { type: 'week', text: getWeekNumber(nextDate(startDate, i * 7 + 1)) }
+          row[0] = {
+            column: -1,
+            end: false,
+            inRange: false,
+            row: i,
+            start: false,
+            text: getWeekNumber(nextDate(startDate, i * 7 + 1)),
+            type: 'week',
           }
         }
 
         for (let j = 0; j < 7; j++) {
-          let cell = row[this.showWeekNumber ? j + 1 : j]
-          if (!cell) {
-            cell = { row: i, column: j, type: 'normal', inRange: false, start: false, end: false }
+          const cellIndex = this.showWeekNumber ? j + 1 : j
+          const cell = {
+            column: j,
+            customClass: '',
+            disabled: false,
+            end: false,
+            inRange: false,
+            row: i,
+            selected: false,
+            start: false,
+            text: 0,
+            type: 'normal',
           }
-
-          cell.type = 'normal'
 
           const index = i * 7 + j
           const time = nextDate(startDate, index - offset).getTime()
-          cell.inRange = time >= getDateTimestamp(this.minDate) && time <= getDateTimestamp(this.maxDate)
-          cell.start = this.minDate && time === getDateTimestamp(this.minDate)
-          cell.end = this.maxDate && time === getDateTimestamp(this.maxDate)
+          cell.inRange = hasMin && hasMax && time >= minDateTimestamp && time <= maxDateTimestamp
+          cell.start = Boolean(this.minDate) && time === minDateTimestamp
+          cell.end = Boolean(this.maxDate) && time === maxDateTimestamp
           const isToday = time === now
 
           if (isToday) {
@@ -176,7 +206,7 @@ export default {
           cell.disabled = typeof disabledDate === 'function' && disabledDate(cellDate)
           cell.selected = arrayFind(selectedDate, date => date.getTime() === cellDate.getTime())
           cell.customClass = typeof cellClassName === 'function' && cellClassName(cellDate)
-          this.$set(row, this.showWeekNumber ? j + 1 : j, cell)
+          row[cellIndex] = cell
         }
 
         if (this.selectionMode === 'week') {
@@ -277,7 +307,9 @@ export default {
     },
 
     isWeekActive(cell) {
-      if (this.selectionMode !== 'week') { return false }
+      if (this.selectionMode !== 'week') {
+        return false
+      }
       const newDate = new Date(this.year, this.month, 1)
       const year = newDate.getFullYear()
       const month = newDate.getMonth()
@@ -312,7 +344,9 @@ export default {
       for (let i = 0, k = rows.length; i < k; i++) {
         const row = rows[i]
         for (let j = 0, l = row.length; j < l; j++) {
-          if (this.showWeekNumber && j === 0) { continue }
+          if (this.showWeekNumber && j === 0) {
+            continue
+          }
 
           const cell = row[j]
           const index = i * 7 + j + (this.showWeekNumber ? -1 : 0)
@@ -326,7 +360,9 @@ export default {
     },
 
     handleMouseMove(event) {
-      if (!this.rangeState.selecting) { return }
+      if (!this.rangeState.selecting) {
+        return
+      }
 
       let target = event.target
       if (target.tagName === 'SPAN') {
@@ -335,13 +371,17 @@ export default {
       if (target.tagName === 'DIV') {
         target = target.parentNode
       }
-      if (target.tagName !== 'TD') { return }
+      if (target.tagName !== 'TD') {
+        return
+      }
 
       const row = target.parentNode.rowIndex - 1
       const column = target.cellIndex
 
       // can not select disabled date
-      if (this.rows[row][column].disabled) { return }
+      if (this.rows[row][column].disabled) {
+        return
+      }
 
       // only update rangeState when mouse moves to a new cell
       // this avoids frequent Date object creation and improves performance
@@ -368,13 +408,17 @@ export default {
         target = target.parentNode
       }
 
-      if (target.tagName !== 'TD') { return }
+      if (target.tagName !== 'TD') {
+        return
+      }
 
       const row = target.parentNode.rowIndex - 1
       const column = this.selectionMode === 'week' ? 1 : target.cellIndex
       const cell = this.rows[row][column]
 
-      if (cell.disabled || cell.type === 'week') { return }
+      if (cell.disabled || cell.type === 'week') {
+        return
+      }
 
       const newDate = this.getDateOfCell(row, column)
 

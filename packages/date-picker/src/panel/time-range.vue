@@ -62,8 +62,12 @@ export default {
       return this.minDate.getTime() > this.maxDate.getTime()
     },
     amPmMode() {
-      if ((this.format || '').includes('A')) { return 'A' }
-      if ((this.format || '').includes('a')) { return 'a' }
+      if ((this.format || '').includes('A')) {
+        return 'A'
+      }
+      if ((this.format || '').includes('a')) {
+        return 'a'
+      }
       return ''
     },
   },

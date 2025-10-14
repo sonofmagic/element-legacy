@@ -139,7 +139,9 @@ export default {
   watch: {
     showTime(val) {
       /* istanbul ignore if */
-      if (!val) { return }
+      if (!val) {
+        return
+      }
       this.$nextTick((_) => {
         const inputElm = this.$refs.input.$el
         if (inputElm) {
@@ -149,9 +151,15 @@ export default {
     },
 
     value(val) {
-      if (this.selectionMode === 'dates' && this.value) { return }
-      if (this.selectionMode === 'months' && this.value) { return }
-      if (this.selectionMode === 'years' && this.value) { return }
+      if (this.selectionMode === 'dates' && this.value) {
+        return
+      }
+      if (this.selectionMode === 'months' && this.value) {
+        return
+      }
+      if (this.selectionMode === 'years' && this.value) {
+        return
+      }
       if (isDate(val)) {
         this.date = new Date(val)
       }
@@ -167,7 +175,9 @@ export default {
     },
 
     timePickerVisible(val) {
-      if (val) { this.$nextTick(() => this.$refs.timepicker.adjustSpinners()) }
+      if (val) {
+        this.$nextTick(() => this.$refs.timepicker.adjustSpinners())
+      }
     },
 
     selectionMode(newVal) {
@@ -191,10 +201,18 @@ export default {
 
   methods: {
     proxyTimePickerDataProperties() {
-      const format = (timeFormat) => { this.$refs.timepicker.format = timeFormat }
-      const value = (value) => { this.$refs.timepicker.value = value }
-      const date = (date) => { this.$refs.timepicker.date = date }
-      const selectableRange = (selectableRange) => { this.$refs.timepicker.selectableRange = selectableRange }
+      const format = (timeFormat) => {
+        this.$refs.timepicker.format = timeFormat
+      }
+      const value = (value) => {
+        this.$refs.timepicker.value = value
+      }
+      const date = (date) => {
+        this.$refs.timepicker.date = date
+      }
+      const selectableRange = (selectableRange) => {
+        this.$refs.timepicker.selectableRange = selectableRange
+      }
 
       this.$watch('value', value)
       this.$watch('date', date)
@@ -483,7 +501,7 @@ export default {
     },
 
     isValidValue(value) {
-      return value && !isNaN(value) && (
+      return value && !Number.isNaN(Number(value)) && (
         typeof this.disabledDate === 'function'
           ? !this.disabledDate(value)
           : true

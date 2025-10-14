@@ -1,6 +1,4 @@
 <script>
-import ElButton from 'element-ui/packages/button'
-import ElInput from 'element-ui/packages/input'
 import Locale from 'element-ui/src/mixins/locale'
 import Clickoutside from 'element-ui/src/utils/clickoutside'
 import {
@@ -27,7 +25,7 @@ export default {
 
   directives: { Clickoutside },
 
-  components: { MonthTable, ElInput, ElButton },
+  components: { MonthTable },
   mixins: [Locale],
 
   data() {
@@ -152,7 +150,9 @@ export default {
         this.maxDate = maxDate
         this.minDate = minDate
       }, 10)
-      if (!close) { return }
+      if (!close) {
+        return
+      }
       this.handleConfirm()
     },
 
