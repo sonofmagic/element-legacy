@@ -1,5 +1,30 @@
 ## DatePicker v2
 
+### Sélection date et heure
+
+:::demo Sélectionnez la date et l'heure avec DatePicker v2.
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="Sélectionner date et heure"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeValue: '',
+      }
+    },
+  }
+</script>
+```
+:::
+
+
 Utilisez DatePicker pour les champs de dates.
 
 ### Entrez la date
@@ -492,3 +517,27 @@ Lorsque vous choisissez une plage de dates, vous pouvez assigner l'horaire de d�
 | Nom             | Description                           |
 | --------------- | ------------------------------------- |
 | range-separator | Séparateur d'intervalle personnalisé. |
+
+### Sélection date et heure
+
+:::demo Sélectionnez la date et l'heure avec DatePicker v2.
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="Sélectionner date et heure"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeValue: '',
+      }
+    },
+  }
+</script>
+```
+:::

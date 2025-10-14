@@ -1,5 +1,30 @@
 ## DatePicker v2 日期选择器
 
+### 选择日期和时间
+
+:::demo 使用 DatePicker v2 同时选择日期和时间。
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="选择日期和时间"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeValue: '',
+      }
+    },
+  }
+</script>
+```
+:::
+
+
 用于选择或输入日期
 
 ### 选择日
@@ -451,3 +476,27 @@
 | 方法名 | 说明              | 参数 |
 | ------ | ----------------- | ---- |
 | focus  | 使 input 获取焦点 | —    |
+
+### 选择日期和时间
+
+:::demo 使用 DatePicker v2 同时选择日期和时间。
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="选择日期和时间"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeValue: '',
+      }
+    },
+  }
+</script>
+```
+:::

@@ -1,5 +1,30 @@
 ## DatePicker v2
 
+### Date & Time
+
+:::demo Select both date and time with DatePicker v2.
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="Select date and time"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeValue: '',
+      }
+    },
+  }
+</script>
+```
+:::
+
+
 Use Date Picker for date input.
 
 ### Enter Date
@@ -495,3 +520,27 @@ When picking a date range, you can assign the time part for start date and end d
 | Name            | Description                    |
 | --------------- | ------------------------------ |
 | range-separator | custom range separator content |
+
+### Date & Time
+
+:::demo Select both date and time with DatePicker v2.
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="Select date and time"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeValue: '',
+      }
+    },
+  }
+</script>
+```
+:::
