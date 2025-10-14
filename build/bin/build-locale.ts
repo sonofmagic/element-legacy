@@ -1,9 +1,9 @@
 import { readdirSync } from 'node:fs'
-import { basename, dirname, resolve } from 'node:path'
 import { createRequire } from 'node:module'
+import { basename, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-type TransformResult = { code: string }
+interface TransformResult { code: string }
 
 const require = createRequire(import.meta.url)
 const save = require('file-save') as any
@@ -14,7 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const localePath = resolve(__dirname, '../../src/locale/lang')
 const fileList = readdirSync(localePath)
 
-const transform = (filename: string, name: string, cb: (err: Error | null, result?: TransformResult) => void) => {
+function transform(filename: string, name: string, cb: (err: Error | null, result?: TransformResult) => void) {
   babelCore.transformFile(resolve(localePath, filename), {
     plugins: [
       'add-module-exports',
@@ -25,7 +25,7 @@ const transform = (filename: string, name: string, cb: (err: Error | null, resul
 }
 
 fileList
-  .filter((file) => /\.js$/.test(file))
+  .filter(file => /\.js$/.test(file))
   .forEach((file) => {
     const name = basename(file, '.js')
 

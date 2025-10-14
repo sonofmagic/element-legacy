@@ -1,6 +1,6 @@
 import { readdir, readFileSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
 import { createRequire } from 'node:module'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import algoliasearch from 'algoliasearch'
 import { slugify } from 'transliteration'
@@ -19,6 +19,7 @@ const require = createRequire(import.meta.url)
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const key = require('./algolia-key') as string
+
 const client = algoliasearch('4C63BTGP6S', key)
 
 const langs: Record<LanguageKey, string> = {
@@ -56,7 +57,7 @@ supportedLangs.forEach((lang) => {
           .match(/#{2,4}[^#]*/g) ?? []
 
         const normalizedHeadings = rawHeadings
-          .map((heading) => heading.replace(/\n+/g, '\n').split('\n').filter(Boolean))
+          .map(heading => heading.replace(/\n+/g, '\n').split('\n').filter(Boolean))
           .map((parts) => {
             if (parts.length > 2) {
               const [title, ...rest] = parts
@@ -68,7 +69,7 @@ supportedLangs.forEach((lang) => {
         const componentIndices = normalizedHeadings.map<DocIndexRecord>((parts) => {
           const [rawTitle, rawDescription] = parts
           const title = rawTitle.replace(/#{2,4}/, '').trim()
-          const isComponent = rawTitle.indexOf('###') < 0
+          const isComponent = !rawTitle.includes('###')
 
           return {
             component,

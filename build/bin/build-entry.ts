@@ -1,7 +1,8 @@
 import { writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
-import { EOL } from 'node:os'
 import { createRequire } from 'node:module'
+import { EOL } from 'node:os'
+import { dirname, join } from 'node:path'
+import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
 type TemplateRenderer = (template: string, context: Record<string, string>) => string
@@ -14,7 +15,7 @@ const pkg = require('../../package.json') as { version?: string }
 const rawComponents = require('../../components.json') as ComponentDictionary
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUTPUT_PATH = join(__dirname, '../../src/index.js')
+const OUTPUT_PATH = join(__dirname, '../../src/index.ts')
 
 const IMPORT_TEMPLATE = 'import {{name}} from \'../packages/{{package}}/index.js\';'
 const INSTALL_COMPONENT_TEMPLATE = '  {{name}}'

@@ -1,5 +1,6 @@
-import { resolve } from 'node:path'
 import { execSync } from 'node:child_process'
+import { resolve } from 'node:path'
+import process from 'node:process'
 import chokidar from 'chokidar'
 
 const templates = resolve(process.cwd(), './examples/pages/template')
@@ -12,6 +13,6 @@ watcher.on('ready', () => {
   })
 })
 
-const exec = (cmd: string) => {
+function exec(cmd: string) {
   execSync(cmd, { stdio: 'inherit' })
 }

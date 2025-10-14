@@ -1,7 +1,8 @@
 import { mkdirSync, readFileSync } from 'node:fs'
-import { dirname, join, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { createRequire } from 'node:module'
+import { dirname, join, resolve } from 'node:path'
+import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 
 interface FileDescriptor {
   filename: string
@@ -106,6 +107,7 @@ export declare class El${ComponentName} extends ElementUIComponent {
 ]
 
 const componentsFile = require('../../components.json') as Record<string, string>
+
 if (componentsFile[componentname]) {
   console.error(`${componentname} 已存在.`)
   process.exit(1)

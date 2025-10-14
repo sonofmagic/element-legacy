@@ -48,7 +48,7 @@ export default defineConfig({
     lib: {
       entry: {
         ...entry,
-        index: path.resolve(import.meta.dirname, 'src/index.js'),
+        index: path.resolve(import.meta.dirname, 'src/index.ts'),
       },
     },
     rollupOptions: {
