@@ -1,8 +1,8 @@
-import ColorPicker from './src/main.vue';
+import ColorPicker from './src/main.vue'
 
 /* istanbul ignore next */
-ColorPicker.install = function(Vue) {
-  Vue.component(ColorPicker.name, ColorPicker);
-};
+ColorPicker.install = function (Vue) {
+  Vue.component(ColorPicker.name, ColorPicker)
+}
 
-export default ColorPicker;
+export default ColorPicker

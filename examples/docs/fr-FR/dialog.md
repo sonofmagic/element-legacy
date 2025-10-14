@@ -11,11 +11,7 @@ Le Dialog ouvre un modal personnalisable.
 ```html
 <el-button type="text" @click="dialogVisible = true">Cliquez pour ouvrir le modal</el-button>
 
-<el-dialog
-  title="Tips"
-  :visible.sync="dialogVisible"
-  width="30%"
-  :before-close="handleClose">
+<el-dialog title="Tips" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
   <span>Ceci est un message</span>
   <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">Annuler</el-button>
@@ -27,21 +23,22 @@ Le Dialog ouvre un modal personnalisable.
   export default {
     data() {
       return {
-        dialogVisible: false
-      };
+        dialogVisible: false,
+      }
     },
     methods: {
       handleClose(done) {
         this.$confirm('Voulez-vous vraiment quitter ?')
-          .then(_ => {
-            done();
+          .then((_) => {
+            done()
           })
-          .catch(_ => {});
-      }
-    }
-  };
+          .catch((_) => {})
+      },
+    },
+  }
 </script>
 ```
+
 :::
 
 :::tip
@@ -91,23 +88,28 @@ Le contenu du modal peut être n'importe quoi, tableau ou formulaire compris.
   export default {
     data() {
       return {
-        gridData: [{
-          date: '2016-05-02',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }, {
-          date: '2016-05-04',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }, {
-          date: '2016-05-01',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }, {
-          date: '2016-05-03',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }],
+        gridData: [
+          {
+            date: '2016-05-02',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+          {
+            date: '2016-05-04',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+          {
+            date: '2016-05-01',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+          {
+            date: '2016-05-03',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+        ],
         dialogTableVisible: false,
         dialogFormVisible: false,
         form: {
@@ -118,14 +120,15 @@ Le contenu du modal peut être n'importe quoi, tableau ou formulaire compris.
           delivery: false,
           type: [],
           resource: '',
-          desc: ''
+          desc: '',
         },
-        formLabelWidth: '120px'
-      };
-    }
-  };
+        formLabelWidth: '120px',
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 ### Dialog imbriqué
@@ -133,17 +136,13 @@ Le contenu du modal peut être n'importe quoi, tableau ou formulaire compris.
 Si un Dialog est imbriqué dans un autre Dialog, `append-to-body` est requis.
 
 :::demo Normalement l'utilisation de Dialog imbriqué est déconseillée. Si vous avez besoin de plusieurs Dialogs sur la page, vous pouvez les aplatir afin qu'ils soit au même niveau. Si vous devez absolument utiliser un Dialog imbriqué, configurez l'attribut `append-to-body` du Dialog imbriqué à `true` et il sera ajouté au body au lieu de son noeud parent, afin d'avoir un affichage correct.
+
 ```html
 <template>
   <el-button type="text" @click="outerVisible = true">Ouvrir le modal extérieur</el-button>
 
   <el-dialog title="Modal extérieur" :visible.sync="outerVisible">
-    <el-dialog
-        width="30%"
-        title="Modal intérieur"
-        :visible.sync="innerVisible"
-        append-to-body>
-    </el-dialog>
+    <el-dialog width="30%" title="Modal intérieur" :visible.sync="innerVisible" append-to-body> </el-dialog>
     <div slot="footer" class="dialog-footer">
       <el-button @click="outerVisible = false">Annuler</el-button>
       <el-button type="primary" @click="innerVisible = true">Ouvrir le modal intérieur</el-button>
@@ -156,12 +155,13 @@ Si un Dialog est imbriqué dans un autre Dialog, `append-to-body` est requis.
     data() {
       return {
         outerVisible: false,
-        innerVisible: false
-      };
-    }
+        innerVisible: false,
+      }
+    },
   }
 </script>
 ```
+
 :::
 
 ### Centrer le contenu
@@ -173,11 +173,7 @@ Le contenu du modal peut être centré.
 ```html
 <el-button type="text" @click="centerDialogVisible = true">Cliquez pour ouvrir le modal</el-button>
 
-<el-dialog
-  title="Attention"
-  :visible.sync="centerDialogVisible"
-  width="30%"
-  center>
+<el-dialog title="Attention" :visible.sync="centerDialogVisible" width="30%" center>
   <span>Le contenu du modal n'est pas centré par défaut.</span>
   <span slot="footer" class="dialog-footer">
     <el-button @click="centerDialogVisible = false">Annuler</el-button>
@@ -189,12 +185,13 @@ Le contenu du modal peut être centré.
   export default {
     data() {
       return {
-        centerDialogVisible: false
-      };
-    }
-  };
+        centerDialogVisible: false,
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 :::tip
@@ -207,38 +204,38 @@ Si la variable liée à `visible` est gérée dans Vuex, le modificateur `.sync`
 
 ### Attributs
 
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| visible   | Visibilité du Dialog, supporte le modificateur .sync. | boolean | — | false |
-| title     | Titre du Dialog. Peut aussi être passé via un slot (voir la table suivante). | string    | — | — |
-| width     | Largeur du Dialog. | string    | — | 50% |
-| fullscreen     | Si le Dialog doit être en plein écran. | boolean    | — | false |
-| top      | Valeur du `margin-top` du CSS du Dialog. | string    | — | 15vh |
-| modal     | Si un masque est affiché. | boolean   | — | true |
-| modal-append-to-body     | S'il faut ajouter le modal au body. Si `false`, le modal sera ajouter à l'élément parent du Dialog. | boolean   | — | true |
-| append-to-body     | S'il faut ajouter le Dialog au body. Un Dialog imbriqué doit avoir cet attribut à `true`. | boolean   | — | false |
-| lock-scroll     | Si le défilement du body est désactivé. | boolean   | — | true |
-| custom-class      | Nom de classe pour le Dialog | string    | — | — |
-| close-on-click-modal | Si le Dialog peut être fermé en cliquant sur le masque. | boolean    | — | true |
-| close-on-press-escape | Si le Dialog peut être fermé en appuyant sur Echap. | boolean    | — | true |
-| show-close | Si le bouton de fermeture doit apparaître. | boolean    | — | true |
-| before-close | Callback avant la fermeture du Dialog. | function(done)，done est utilisé pour fermer le Dialog. | — | — |
-| center | Si le header et le footer doivent être centrés. | boolean | — | false |
-| destroy-on-close | Destroy elements in Dialog when closed   | boolean | — | false |
+| Attribut              | Description                                                                                         | Type                                                    | Valeurs acceptées | Défaut |
+| --------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ----------------- | ------ |
+| visible               | Visibilité du Dialog, supporte le modificateur .sync.                                               | boolean                                                 | —                 | false  |
+| title                 | Titre du Dialog. Peut aussi être passé via un slot (voir la table suivante).                        | string                                                  | —                 | —      |
+| width                 | Largeur du Dialog.                                                                                  | string                                                  | —                 | 50%    |
+| fullscreen            | Si le Dialog doit être en plein écran.                                                              | boolean                                                 | —                 | false  |
+| top                   | Valeur du `margin-top` du CSS du Dialog.                                                            | string                                                  | —                 | 15vh   |
+| modal                 | Si un masque est affiché.                                                                           | boolean                                                 | —                 | true   |
+| modal-append-to-body  | S'il faut ajouter le modal au body. Si `false`, le modal sera ajouter à l'élément parent du Dialog. | boolean                                                 | —                 | true   |
+| append-to-body        | S'il faut ajouter le Dialog au body. Un Dialog imbriqué doit avoir cet attribut à `true`.           | boolean                                                 | —                 | false  |
+| lock-scroll           | Si le défilement du body est désactivé.                                                             | boolean                                                 | —                 | true   |
+| custom-class          | Nom de classe pour le Dialog                                                                        | string                                                  | —                 | —      |
+| close-on-click-modal  | Si le Dialog peut être fermé en cliquant sur le masque.                                             | boolean                                                 | —                 | true   |
+| close-on-press-escape | Si le Dialog peut être fermé en appuyant sur Echap.                                                 | boolean                                                 | —                 | true   |
+| show-close            | Si le bouton de fermeture doit apparaître.                                                          | boolean                                                 | —                 | true   |
+| before-close          | Callback avant la fermeture du Dialog.                                                              | function(done)，done est utilisé pour fermer le Dialog. | —                 | —      |
+| center                | Si le header et le footer doivent être centrés.                                                     | boolean                                                 | —                 | false  |
+| destroy-on-close      | Destroy elements in Dialog when closed                                                              | boolean                                                 | —                 | false  |
 
 ### Slot
 
-| Nom | Description |
-|------|--------|
-| — | Contenu du Dialog. |
-| title | Contenu du titre. |
+| Nom    | Description        |
+| ------ | ------------------ |
+| —      | Contenu du Dialog. |
+| title  | Contenu du titre.  |
 | footer | Contenu du footer. |
 
 ### Évènements
 
-| Nom | Description | Paramètres |
-|---------- |-------- |---------- |
-| open | Se déclenche quand le Dialog s'ouvre. | — |
-| opened | Se déclenche quand l'animation d'ouverture est terminée. | — |
-| close | Se déclenche quand le Dialog se ferme. | — |
-| closed | Se déclenche quand l'animation de fermeture du Dialog est terminée. | — |
+| Nom    | Description                                                         | Paramètres |
+| ------ | ------------------------------------------------------------------- | ---------- |
+| open   | Se déclenche quand le Dialog s'ouvre.                               | —          |
+| opened | Se déclenche quand l'animation d'ouverture est terminée.            | —          |
+| close  | Se déclenche quand le Dialog se ferme.                              | —          |
+| closed | Se déclenche quand l'animation de fermeture du Dialog est terminée. | —          |

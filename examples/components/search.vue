@@ -1,36 +1,153 @@
+<script>
+import { algoliasearch } from 'algoliasearch'
+
+export default {
+  data() {
+    return {
+      index: null,
+      query: '',
+      isEmpty: false,
+      langs: {
+        'zh-CN': {
+          search: '搜索文档',
+          empty: '无匹配结果',
+          index: 'zh',
+        },
+        'en-US': {
+          search: 'Search',
+          empty: 'No results',
+          index: 'en',
+        },
+        'es': {
+          search: 'Buscar',
+          empty: 'No hay datos que coincidan',
+          index: 'es',
+        },
+        'fr-FR': {
+          search: 'Rechercher',
+          empty: 'Aucun résultat',
+          index: 'fr',
+        },
+      },
+    }
+  },
+
+  computed: {
+    lang() {
+      return this.$route.meta.lang
+    },
+
+    placeholder() {
+      return this.lang ? this.langs[this.lang].search : ''
+    },
+
+    emptyText() {
+      return this.lang ? this.langs[this.lang].empty : ''
+    },
+  },
+
+  watch: {
+    lang() {
+      this.initIndex()
+    },
+  },
+
+  mounted() {
+    this.initIndex()
+  },
+
+  methods: {
+    initIndex() {
+      const client = algoliasearch('4C63BTGP6S', '0729c3c7f4dc8db7395ad0b19c0748d2')
+      this.index = client.initIndex(`element-${this.lang ? this.langs[this.lang].index : 'zh'}`)
+    },
+
+    querySearch(query, cb) {
+      if (!query) { return }
+      this.index.search({ query, hitsPerPage: 6 }, (err, res) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+        if (res.hits.length > 0) {
+          this.isEmpty = false
+          cb(res.hits.map((hit) => {
+            let content = hit._highlightResult.content.value.replace(/\s+/g, ' ')
+            const highlightStart = content.indexOf('<span class="algolia-highlight">')
+            if (highlightStart > -1) {
+              const startEllipsis = highlightStart - 15 > 0
+              content = (startEllipsis ? '...' : '')
+                + content.slice(Math.max(0, highlightStart - 15), content.length)
+            }
+            else if (content.includes('|')) {
+              content = ''
+            }
+            return {
+              anchor: hit.anchor,
+              component: hit.component,
+              highlightedCompo: hit._highlightResult.component.value,
+              title: hit._highlightResult.title.value,
+              content,
+            }
+          }).concat({ img: true }))
+        }
+        else {
+          this.isEmpty = true
+          cb([{ isEmpty: true }])
+        }
+      })
+    },
+
+    handleSelect(val) {
+      if (val.img || val.isEmpty) { return }
+      const component = val.component || ''
+      const anchor = val.anchor
+      this.$router.push(`/${this.lang}/component/${component}${anchor ? `#${anchor}` : ''}`)
+    },
+  },
+}
+</script>
+
 <template>
   <el-autocomplete
     v-model="query"
     size="small"
-    :popper-class="`algolia-search${ isEmpty ? ' is-empty' : '' }`"
+    :popper-class="`algolia-search${isEmpty ? ' is-empty' : ''}`"
     :fetch-suggestions="querySearch"
     :placeholder="placeholder"
     :trigger-on-focus="false"
+    highlight-first-item
     @select="handleSelect"
-    highlight-first-item>
+  >
     <template slot-scope="props">
-      <p class="algolia-search-title" v-if="props.item.title">
-        <span v-html="props.item.highlightedCompo"></span>
-        <span class="algolia-search-separator"></span>
-        <span v-html="props.item.title"></span>
+      <p v-if="props.item.title" class="algolia-search-title">
+        <span v-html="props.item.highlightedCompo" />
+        <span class="algolia-search-separator" />
+        <span v-html="props.item.title" />
       </p>
       <p
-        class="algolia-search-content"
         v-if="props.item.content"
-        v-html="props.item.content"></p>
+        class="algolia-search-content"
+        v-html="props.item.content"
+      />
       <a
-        class="algolia-search-link"
         v-if="props.item.img"
+        class="algolia-search-link"
         target="_blank"
-        href="https://www.algolia.com/docsearch">
+        href="https://www.algolia.com/docsearch"
+      >
         <img
           class="algolia-search-logo"
           src="../assets/images/search-by-algolia.svg"
-          alt="algolia-logo">
+          alt="algolia-logo"
+        >
       </a>
       <p
+        v-if="props.item.isEmpty"
         class="algolia-search-empty"
-        v-if="props.item.isEmpty">{{ emptyText }}</p>
+      >
+        {{ emptyText }}
+      </p>
     </template>
   </el-autocomplete>
 </template>
@@ -112,111 +229,3 @@
     }
   }
 </style>
-
-<script>
-  import {algoliasearch} from 'algoliasearch';
-
-  export default {
-    data() {
-      return {
-        index: null,
-        query: '',
-        isEmpty: false,
-        langs: {
-          'zh-CN': {
-            search: '搜索文档',
-            empty: '无匹配结果',
-            index: 'zh'
-          },
-          'en-US': {
-            search: 'Search',
-            empty: 'No results',
-            index: 'en'
-          },
-          'es': {
-            search: 'Buscar',
-            empty: 'No hay datos que coincidan',
-            index: 'es'
-          },
-          'fr-FR': {
-            search: 'Rechercher',
-            empty: 'Aucun résultat',
-            index: 'fr'
-          }
-        }
-      };
-    },
-
-    computed: {
-      lang() {
-        return this.$route.meta.lang;
-      },
-
-      placeholder() {
-        return this.lang ? this.langs[this.lang].search : '';
-      },
-
-      emptyText() {
-        return this.lang ? this.langs[this.lang].empty : '';
-      }
-    },
-
-    watch: {
-      lang() {
-        this.initIndex();
-      }
-    },
-
-    methods: {
-      initIndex() {
-        const client = algoliasearch('4C63BTGP6S', '0729c3c7f4dc8db7395ad0b19c0748d2');
-        this.index = client.initIndex(`element-${ this.lang ? this.langs[this.lang].index : 'zh' }`);
-      },
-
-      querySearch(query, cb) {
-        if (!query) return;
-        this.index.search({ query, hitsPerPage: 6 }, (err, res) => {
-          if (err) {
-            console.error(err);
-            return;
-          }
-          if (res.hits.length > 0) {
-            this.isEmpty = false;
-            cb(res.hits.map(hit => {
-              let content = hit._highlightResult.content.value.replace(/\s+/g, ' ');
-              const highlightStart = content.indexOf('<span class="algolia-highlight">');
-              if (highlightStart > -1) {
-                const startEllipsis = highlightStart - 15 > 0;
-                content = (startEllipsis ? '...' : '') +
-                  content.slice(Math.max(0, highlightStart - 15), content.length);
-              } else if (content.indexOf('|') > -1) {
-                content = '';
-              }
-              return {
-                anchor: hit.anchor,
-                component: hit.component,
-                highlightedCompo: hit._highlightResult.component.value,
-                title: hit._highlightResult.title.value,
-                content
-              };
-            }).concat({ img: true }));
-          } else {
-            this.isEmpty = true;
-            cb([{ isEmpty: true }]);
-          }
-        });
-      },
-
-      handleSelect(val) {
-        if (val.img || val.isEmpty) return;
-        const component = val.component || '';
-        const anchor = val.anchor;
-        this.$router.push(`/${ this.lang }/component/${ component }${ anchor ? `#${ anchor }` : '' }`);
-      }
-    },
-
-    mounted() {
-      this.initIndex();
-    }
-  };
-</script>

@@ -98,15 +98,15 @@ Hay pocos estilos de radio para elegir.
   <el-col :span="6" :xs="{span: 12}">
     <div class="title">Small Radius</div>
     <div class="value">border-radius: {{borderRadiusSmall}}</div>
-    <div 
-      class="radius" 
+    <div
+      class="radius"
       :style="{ borderRadius: borderRadiusSmall }"
     ></div>
   </el-col>
   <el-col :span="6" :xs="{span: 12}">
     <div class="title">Large Radius</div>
     <div class="value">border-radius: {{borderRadiusBase}}</div>
-    <div 
+    <div
       class="radius"
       :style="{ borderRadius: borderRadiusBase }"
     ></div>
@@ -122,13 +122,13 @@ Hay pocos estilos de radio para elegir.
 
 Hay pocos estilos de sombra para elegir.
 
-<div 
+<div
 class="demo-shadow"
 :style="{ boxShadow: boxShadowBase }"
 ></div>
 <span class="demo-shadow-text">Basic Shadow box-shadow: {{boxShadowBase}}</span>
 
-<div 
+<div
 class="demo-shadow"
 :style="{ boxShadow: boxShadowLight }"
 ></div>

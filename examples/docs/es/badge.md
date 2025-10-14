@@ -23,9 +23,7 @@ Muestra la cantidad de mensajes nuevos.
 </el-badge>
 
 <el-dropdown trigger="click">
-  <span class="el-dropdown-link">
-    Click Me<i class="el-icon-caret-bottom el-icon--right"></i>
-  </span>
+  <span class="el-dropdown-link"> Click Me<i class="el-icon-caret-bottom el-icon--right"></i> </span>
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item class="clearfix">
       comments
@@ -39,12 +37,13 @@ Muestra la cantidad de mensajes nuevos.
 </el-dropdown>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Valor máximo
@@ -62,12 +61,13 @@ Se puede personalizar el valor máximo.
 </el-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Personalizaciones
@@ -85,12 +85,13 @@ Mostrar texto en vez de números.
 </el-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Pequeño punto rojo
@@ -106,20 +107,21 @@ Puede utilizar un punto rojo para marcar contenido que debe ser notado.
 </el-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Atributos
-| Atributo | Descripción                              | Tipo           | Valores aceptados | Por defecto |
-| -------- | ---------------------------------------- | -------------- | ----------------- | ----------- |
-| value    | valor a mostrar                          | string, number | —                 | —           |
-| max      | valor máximo, Muestra '{max}+' cuando se excede. Solo funciona si `value` es un `Number` | number         | —                 | —           |
-| is-dot   | si se debe mostrar un pequeño punto      | boolean        | —                 | false       |
-| hidden   | oculta el badge                    | boolean        | —                 | false       |
-| type     | tipo de botón                            | string         | primary / success / warning / danger / info | — |
 
+| Atributo | Descripción                                                                              | Tipo           | Valores aceptados                           | Por defecto |
+| -------- | ---------------------------------------------------------------------------------------- | -------------- | ------------------------------------------- | ----------- |
+| value    | valor a mostrar                                                                          | string, number | —                                           | —           |
+| max      | valor máximo, Muestra '{max}+' cuando se excede. Solo funciona si `value` es un `Number` | number         | —                                           | —           |
+| is-dot   | si se debe mostrar un pequeño punto                                                      | boolean        | —                                           | false       |
+| hidden   | oculta el badge                                                                          | boolean        | —                                           | false       |
+| type     | tipo de botón                                                                            | string         | primary / success / warning / danger / info | —           |

@@ -2,12 +2,6 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "types": [
-      "vite/client"
-    ],
     "paths": {
       "element-ui": [
         "../src"
@@ -21,7 +15,13 @@
       "packages/*": [
         "../packages/*"
       ]
-    }
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "vite/client"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true
   },
   "include": [
     "./**/*.ts",

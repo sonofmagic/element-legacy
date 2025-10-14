@@ -91,6 +91,7 @@
 </script>
 
 ## Couleur
+
 Element utilise un ensemble de palettes spécifiques afin de fournir un style consistant pour vos produits.
 
 ### Couleur principale

@@ -1,8 +1,8 @@
-export const tintColor = (hex: string, tint: number): string => {
+export function tintColor(hex: string, tint: number): string {
   const color = hex.replace('#', '')
-  let red = parseInt(color.slice(0, 2), 16)
-  let green = parseInt(color.slice(2, 4), 16)
-  let blue = parseInt(color.slice(4, 6), 16)
+  let red = Number.parseInt(color.slice(0, 2), 16)
+  let green = Number.parseInt(color.slice(2, 4), 16)
+  let blue = Number.parseInt(color.slice(4, 6), 16)
 
   if (tint === 0) { // when primary color is in its rgb space
     return [red, green, blue].join(',')

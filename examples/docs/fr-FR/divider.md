@@ -7,15 +7,20 @@ Une ligne de séparation entre deux contenus.
 Séparer le texte de deux paragraphes.
 
 :::demo
+
 ```html
 <template>
   <div>
-    <span>Je suis assis à ma fenêtre ce matin où le monde, tel un passant, s’arrête un instant, me fait signe de la tête et part.</span>
+    <span
+      >Je suis assis à ma fenêtre ce matin où le monde, tel un passant, s’arrête un instant, me fait signe de la tête et
+      part.</span
+    >
     <el-divider></el-divider>
     <span>Les petites pensées sont le bruissement des feuilles; ils ont leur murmure de joie dans mon esprit.</span>
   </div>
 </template>
 ```
+
 :::
 
 ### Contenu personnalisé
@@ -23,6 +28,7 @@ Séparer le texte de deux paragraphes.
 Vous ajouter du contenu dans la ligne de séparation.
 
 :::demo
+
 ```html
 <template>
   <div>
@@ -35,11 +41,13 @@ Vous ajouter du contenu dans la ligne de séparation.
   </div>
 </template>
 ```
+
 :::
 
 ### Séparation verticale
 
 :::demo
+
 ```html
 <template>
   <div>
@@ -51,11 +59,12 @@ Vous ajouter du contenu dans la ligne de séparation.
   </div>
 </template>
 ```
+
 :::
 
 ### Attributs
 
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|-------------  |---------------- |---------------- |---------------------- |-------- |
-| direction      | Règle la direction du séparateur.  | string  |          horizontal / vertical           |    horizontal     |
-| content-position      | Personnalise le contenu du séparateur. | String  |  left / right / center  |  center |
+| Attribut         | Description                            | Type   | Valeurs acceptées     | Défaut     |
+| ---------------- | -------------------------------------- | ------ | --------------------- | ---------- |
+| direction        | Règle la direction du séparateur.      | string | horizontal / vertical | horizontal |
+| content-position | Personnalise le contenu du séparateur. | String | left / right / center | center     |

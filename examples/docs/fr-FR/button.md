@@ -43,6 +43,7 @@ Bouton communément utilisé.
   <el-button type="danger" icon="el-icon-delete" circle></el-button>
 </el-row>
 ```
+
 :::
 
 ### Bouton désactivé
@@ -70,6 +71,7 @@ L'attribut `disabled` détermine si le bouton est désactivé.
   <el-button type="danger" plain disabled>Danger</el-button>
 </el-row>
 ```
+
 :::
 
 ### Bouton texte
@@ -77,10 +79,12 @@ L'attribut `disabled` détermine si le bouton est désactivé.
 Bouton sans bordure ni fond.
 
 :::demo
+
 ```html
 <el-button type="text">Bouton texte</el-button>
 <el-button type="text" disabled>Bouton texte</el-button>
 ```
+
 :::
 
 ### Icône
@@ -96,6 +100,7 @@ Utilisez des icônes pour ajouter plus de sens aux boutons. Vous pouvez utiliser
 <el-button type="primary" icon="el-icon-search">Recherche</el-button>
 <el-button type="primary">Upload<i class="el-icon-upload el-icon-right"></i></el-button>
 ```
+
 :::
 
 ### Groupes de boutons
@@ -115,6 +120,7 @@ Affiche un groupe de bouton. Peut être utilisé pour grouper un ensemble d'opé
   <el-button type="primary" icon="el-icon-delete"></el-button>
 </el-button-group>
 ```
+
 :::
 
 ### Bouton en chargement
@@ -126,6 +132,7 @@ Cliquez sur le bouton pour charger des données et il affichera un état de char
 ```html
 <el-button type="primary" :loading="true">Chargement</el-button>
 ```
+
 :::
 
 ### Tailles
@@ -148,18 +155,20 @@ En plus de la taille par défaut, le composant Button fournit trois tailles supp
   <el-button size="mini" round>Mini</el-button>
 </el-row>
 ```
+
 :::
 
 ### Attributs
-| Attribut      | Description    | Type      | Valeurs acceptées       | Défaut   |
-|---------- |-------- |---------- |-------------  |-------- |
-| size     | Taille du bouton.   | string  |   medium / small / mini            |    —     |
-| type     | Type du bouton.   | string    |   primary / success / warning / danger / info / text |     —    |
-| plain     | Détermine si le bouton est plein.   | boolean    | — | false   |
-| round     | Détermine si le bouton est arrondi.   | boolean    | — | false   |
-| circle     | Détermine si le bouton est un cercle.   | boolean    | — | false   |
-| loading   | Détermine si l'état de chargement est affiché.   | boolean    | — | false   |
-| disabled  | Désactive le bouton    | boolean   | —   | false   |
-| icon  | Classe de l'icône. | string   |  —  |  —  |
-| autofocus  | Identique à l'attribut natif `autofocus` | boolean   |  —  |  false  |
-| native-type | Identique à l'attribut natif `type` | string | button / submit / reset | button |
+
+| Attribut    | Description                                    | Type    | Valeurs acceptées                                  | Défaut |
+| ----------- | ---------------------------------------------- | ------- | -------------------------------------------------- | ------ |
+| size        | Taille du bouton.                              | string  | medium / small / mini                              | —      |
+| type        | Type du bouton.                                | string  | primary / success / warning / danger / info / text | —      |
+| plain       | Détermine si le bouton est plein.              | boolean | —                                                  | false  |
+| round       | Détermine si le bouton est arrondi.            | boolean | —                                                  | false  |
+| circle      | Détermine si le bouton est un cercle.          | boolean | —                                                  | false  |
+| loading     | Détermine si l'état de chargement est affiché. | boolean | —                                                  | false  |
+| disabled    | Désactive le bouton                            | boolean | —                                                  | false  |
+| icon        | Classe de l'icône.                             | string  | —                                                  | —      |
+| autofocus   | Identique à l'attribut natif `autofocus`       | boolean | —                                                  | false  |
+| native-type | Identique à l'attribut natif `type`            | string  | button / submit / reset                            | button |

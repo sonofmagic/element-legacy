@@ -13,8 +13,8 @@ Il vous suffit d'assigner le nom de classe `el-icon-iconName` à une balise `<i>
 <i class="el-icon-share"></i>
 <i class="el-icon-delete"></i>
 <el-button type="primary" icon="el-icon-search">Chercher</el-button>
-
 ```
+
 :::
 
 ### Icônes

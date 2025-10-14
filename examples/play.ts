@@ -1,5 +1,6 @@
-import Vue, { type CreateElement, type VNode } from 'vue'
+import type { CreateElement, VNode } from 'vue'
 import Element from 'main/index.js'
+import Vue from 'vue'
 import App from './play/index.vue'
 import 'packages/theme-chalk/src/index.scss'
 

@@ -1,8 +1,8 @@
-import type { RouteConfig } from 'vue-router'
 import type { Component as VueComponent } from 'vue'
+import type { RouteConfig } from 'vue-router'
 
-import navConfigJson from './nav.config.json'
 import langs from './i18n/route.json'
+import navConfigJson from './nav.config.json'
 import Play from './play/index.vue'
 
 type Language = keyof typeof navConfigJson
@@ -37,7 +37,7 @@ const LOAD_MAP: Record<Language, (name: string) => AsyncComponentLoader> = {
   },
 }
 
-const load = (lang: Language, path: string): AsyncComponentLoader => {
+function load(lang: Language, path: string): AsyncComponentLoader {
   return LOAD_MAP[lang](path)
 }
 
@@ -50,7 +50,7 @@ const LOAD_DOCS_MAP: Record<Language, (path: string) => AsyncComponentLoader> = 
   'en-US': (path: string) => {
     return () => modules[`./docs/en-US${path}.md`]()
   },
-  es: (path: string) => {
+  'es': (path: string) => {
     return () => modules[`./docs/es${path}.md`]()
   },
   'fr-FR': (path: string) => {
@@ -58,11 +58,11 @@ const LOAD_DOCS_MAP: Record<Language, (path: string) => AsyncComponentLoader> = 
   },
 }
 
-const loadDocs = (lang: Language, path: string): AsyncComponentLoader => {
+function loadDocs(lang: Language, path: string): AsyncComponentLoader {
   return LOAD_DOCS_MAP[lang](path)
 }
 
-const registerRoute = (config: NavConfig): RouteConfig[] => {
+function registerRoute(config: NavConfig): RouteConfig[] {
   const route: RouteConfig[] = []
   Object.keys(config).forEach((langKey, index) => {
     const lang = langKey as Language
@@ -76,12 +76,12 @@ const registerRoute = (config: NavConfig): RouteConfig[] => {
     route.push(componentRoute)
 
     const addRoute = (page: NavItem) => {
-      if (!page.path) return
+      if (!page.path) { return }
       const componentLoader = page.path === '/changelog'
         ? load(lang, 'changelog')
         : loadDocs(lang, page.path)
-      const resolvedComponent =
-        ((componentLoader as unknown as { default?: VueComponent }).default
+      const resolvedComponent
+        = ((componentLoader as unknown as { default?: VueComponent }).default
           || componentLoader) as RouteConfig['component']
       const child: RouteConfig = {
         path: page.path.slice(1),
@@ -98,14 +98,16 @@ const registerRoute = (config: NavConfig): RouteConfig[] => {
     }
 
     navs.forEach((nav) => {
-      if (nav.href) return
+      if (nav.href) { return }
       if (nav.groups) {
         nav.groups.forEach((group) => {
           group.list.forEach(addRoute)
         })
-      } else if (nav.children) {
+      }
+      else if (nav.children) {
         nav.children.forEach(addRoute)
-      } else {
+      }
+      else {
         addRoute(nav)
       }
     })
@@ -116,7 +118,7 @@ const registerRoute = (config: NavConfig): RouteConfig[] => {
 
 let route = registerRoute(navConfig)
 
-const generateMiscRoutes = (lang: Language): RouteConfig[] => {
+function generateMiscRoutes(lang: Language): RouteConfig[] {
   const guideRoute: RouteConfig = {
     path: `/${lang}/guide`, // 指南
     redirect: `/${lang}/guide/design`,
@@ -186,11 +188,13 @@ route.push({
 
 const userLanguage = localStorage.getItem('ELEMENT_LANGUAGE') || window.navigator.language || 'en-US'
 let defaultPath = '/en-US'
-if (userLanguage.indexOf('zh-') !== -1) {
+if (userLanguage.includes('zh-')) {
   defaultPath = '/zh-CN'
-} else if (userLanguage.indexOf('es') !== -1) {
+}
+else if (userLanguage.includes('es')) {
   defaultPath = '/es'
-} else if (userLanguage.indexOf('fr') !== -1) {
+}
+else if (userLanguage.includes('fr')) {
   defaultPath = '/fr-FR'
 }
 

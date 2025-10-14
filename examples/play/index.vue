@@ -1,15 +1,15 @@
+<script>
+export default {
+  data() {
+    return {
+      input: 'Hello Element UI!',
+    }
+  },
+}
+</script>
+
 <template>
   <div style="margin: 20px;">
-    <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <el-input v-model="input" placeholder="请输入内容" />
   </div>
 </template>
-
-<script>
-  export default {
-    data() {
-      return {
-        input: 'Hello Element UI!'
-      };
-    }
-  };
-</script>

@@ -98,15 +98,15 @@
   <el-col :span="6" :xs="{span: 12}">
     <div class="title">小圆角</div>
     <div class="value">border-radius: {{borderRadiusSmall}}</div>
-    <div 
-      class="radius" 
+    <div
+      class="radius"
       :style="{ borderRadius: borderRadiusSmall }"
     ></div>
   </el-col>
   <el-col :span="6" :xs="{span: 12}">
     <div class="title">大圆角</div>
     <div class="value">border-radius: {{borderRadiusBase}}</div>
-    <div 
+    <div
       class="radius"
       :style="{ borderRadius: borderRadiusBase }"
     ></div>
@@ -122,13 +122,13 @@
 
 我们提供了以下几种投影样式，以供选择。
 
-<div 
+<div
 class="demo-shadow"
 :style="{ boxShadow: boxShadowBase }"
 ></div>
 <span class="demo-shadow-text">基础投影 box-shadow: {{boxShadowBase}}</span>
 
-<div 
+<div
 class="demo-shadow"
 :style="{ boxShadow: boxShadowLight }"
 ></div>

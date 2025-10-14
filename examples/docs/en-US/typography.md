@@ -68,6 +68,7 @@
 We create a font convention to ensure the best presentation across different platforms.
 
 ### Font
+
 <div class="demo-term-box">
 <img src="../../assets/images/term-pingfang.png" alt="">
 <img src="../../assets/images/term-hiragino.png" alt="">
@@ -147,5 +148,6 @@ We create a font convention to ensure the best presentation across different pla
 ### Font-family
 
 ```css
-font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+font-family:
+  'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 ```
