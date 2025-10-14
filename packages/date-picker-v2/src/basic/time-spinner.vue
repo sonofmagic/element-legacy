@@ -128,6 +128,7 @@ export default {
       }
       this.modifyDateField(type, value)
       this.emitSelectRange(type)
+      this.emitHoverPreview(type, value)
       this.$nextTick(() => {
         this.scrollToValue(type, value)
       })
@@ -171,6 +172,7 @@ export default {
         this.$nextTick(() => {
           this.emitSelectRange(type)
           this.scrollToValue(type, values[fallbackIndex])
+          this.emitHoverPreview(type, values[fallbackIndex])
         })
         return
       }
@@ -186,6 +188,7 @@ export default {
       this.$nextTick(() => {
         this.emitSelectRange(type)
         this.scrollToValue(type, values[nextIndex])
+        this.emitHoverPreview(type, values[nextIndex])
       })
     },
 
@@ -265,6 +268,28 @@ export default {
         wrap.scrollTop = top
       }
     },
+
+    handleHover(type, value, disabled = false) {
+      if (disabled || value === undefined) {
+        return
+      }
+      this.emitHover(this.computePreviewDate(type, value))
+    },
+
+    emitHover(date) {
+      this.$emit('hover', date)
+    },
+
+    emitHoverPreview(type, value) {
+      this.emitHover(this.computePreviewDate(type, value))
+    },
+
+    computePreviewDate(type, value) {
+      const hours = type === 'hours' ? value : this.hours
+      const minutes = type === 'minutes' ? value : this.minutes
+      const seconds = type === 'seconds' ? value : this.seconds
+      return modifyTime(this.date, hours, minutes, seconds)
+    },
   },
 }
 </script>
@@ -279,6 +304,7 @@ export default {
         noresize
         tag="ul"
         @mouseenter.native="emitSelectRange('hours')"
+        @mouseleave.native="emitHover(null)"
       >
         <li
           v-for="hour in hourOptions"
@@ -287,6 +313,7 @@ export default {
           :data-value="hour"
           :class="{ active: hour === hours, disabled: isHourDisabled(hour) }"
           @click="handleClick('hours', hour, isHourDisabled(hour))"
+          @mouseenter="handleHover('hours', hour, isHourDisabled(hour))"
         >
           {{ formatHour(hour) }}{{ amPm(hour) }}
         </li>
@@ -298,6 +325,7 @@ export default {
         noresize
         tag="ul"
         @mouseenter.native="emitSelectRange('minutes')"
+        @mouseleave.native="emitHover(null)"
       >
         <li
           v-for="minute in minuteOptions"
@@ -306,6 +334,7 @@ export default {
           :data-value="minute"
           :class="{ active: minute === minutes, disabled: isMinuteDisabled(minute) }"
           @click="handleClick('minutes', minute, isMinuteDisabled(minute))"
+          @mouseenter="handleHover('minutes', minute, isMinuteDisabled(minute))"
         >
           {{ formatUnit(minute) }}
         </li>
@@ -318,6 +347,7 @@ export default {
         noresize
         tag="ul"
         @mouseenter.native="emitSelectRange('seconds')"
+        @mouseleave.native="emitHover(null)"
       >
         <li
           v-for="second in secondOptions"
@@ -326,6 +356,7 @@ export default {
           :data-value="second"
           :class="{ active: second === seconds }"
           @click="handleClick('seconds', second)"
+          @mouseenter="handleHover('seconds', second, false)"
         >
           {{ formatUnit(second) }}
         </li>
@@ -335,6 +366,7 @@ export default {
       <div
         class="el-time-spinner-v2__wrapper is-arrow"
         @mouseenter="emitSelectRange('hours')"
+        @mouseleave="emitHover(null)"
       >
         <i v-repeat-click="decrease" class="el-time-spinner-v2__arrow el-icon-arrow-up" />
         <i v-repeat-click="increase" class="el-time-spinner-v2__arrow el-icon-arrow-down" />
@@ -345,6 +377,7 @@ export default {
             class="el-time-spinner-v2__item"
             :class="{ active: hour === hours, disabled: hour === undefined || isHourDisabled(hour) }"
             @click="hour === undefined || isHourDisabled(hour) ? undefined : handleClick('hours', hour)"
+            @mouseenter="handleHover('hours', hour, hour === undefined || isHourDisabled(hour))"
           >
             {{ hour === undefined ? '' : `${formatHour(hour)}${amPm(hour)}` }}
           </li>
@@ -353,6 +386,7 @@ export default {
       <div
         class="el-time-spinner-v2__wrapper is-arrow"
         @mouseenter="emitSelectRange('minutes')"
+        @mouseleave="emitHover(null)"
       >
         <i v-repeat-click="decrease" class="el-time-spinner-v2__arrow el-icon-arrow-up" />
         <i v-repeat-click="increase" class="el-time-spinner-v2__arrow el-icon-arrow-down" />
@@ -363,6 +397,7 @@ export default {
             class="el-time-spinner-v2__item"
             :class="{ active: minute === minutes, disabled: minute === undefined || isMinuteDisabled(minute) }"
             @click="minute === undefined || isMinuteDisabled(minute) ? undefined : handleClick('minutes', minute)"
+            @mouseenter="handleHover('minutes', minute, minute === undefined || isMinuteDisabled(minute))"
           >
             {{ minute === undefined ? '' : formatUnit(minute) }}
           </li>
@@ -372,6 +407,7 @@ export default {
         v-if="showSeconds"
         class="el-time-spinner-v2__wrapper is-arrow"
         @mouseenter="emitSelectRange('seconds')"
+        @mouseleave="emitHover(null)"
       >
         <i v-repeat-click="decrease" class="el-time-spinner-v2__arrow el-icon-arrow-up" />
         <i v-repeat-click="increase" class="el-time-spinner-v2__arrow el-icon-arrow-down" />
@@ -382,6 +418,7 @@ export default {
             class="el-time-spinner-v2__item"
             :class="{ active: second === seconds, disabled: second === undefined }"
             @click="second === undefined ? undefined : handleClick('seconds', second)"
+            @mouseenter="handleHover('seconds', second, second === undefined)"
           >
             {{ second === undefined ? '' : formatUnit(second) }}
           </li>

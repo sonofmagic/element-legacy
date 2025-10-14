@@ -105,8 +105,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 5px 0;
-    margin: 4px 0;
+    padding: 9px 0;
+    margin: 0;
     font-size: 14px;
     line-height: 22px;
     color: var.$color-text-regular;
@@ -149,6 +149,10 @@
     &.disabled {
       color: var.$color-text-placeholder;
       cursor: not-allowed;
+    }
+
+    & + .el-time-spinner-v2__item {
+      margin-top: 4px;
     }
   }
 }

@@ -118,7 +118,7 @@ export default {
         this.date = clearMilliseconds(date)
         // if date is out of range, do not emit
         if (this.isValidValue(this.date)) {
-          this.$emit('pick', this.date, true)
+          this.$emit('pick', this.date, true, 'preview')
         }
       }
     },
@@ -171,6 +171,22 @@ export default {
       const next = (index + step + list.length) % list.length
       this.$refs.spinner.emitSelectRange(mapping[next])
     },
+
+    handleHover(date) {
+      if (!this.visible) {
+        this.$emit('hover-date', null)
+        return
+      }
+      if (!date) {
+        this.$emit('hover-date', null)
+        return
+      }
+      const normalized = clearMilliseconds(limitTimeRange(date, this.selectableRange, this.format))
+      if (!this.isValidValue(normalized)) {
+        return
+      }
+      this.$emit('hover-date', normalized)
+    },
   },
 }
 </script>
@@ -193,6 +209,7 @@ export default {
         :date="date"
         @change="handleChange"
         @select-range="setSelectionRange"
+        @hover="handleHover"
       />
     </div>
   </div>

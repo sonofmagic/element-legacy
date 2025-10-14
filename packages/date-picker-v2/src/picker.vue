@@ -809,12 +809,23 @@ export default {
     },
 
     handlePanelHover(date) {
-      if (this.ranged || this.type !== 'date') {
+      const supportsPreview = !this.ranged && ['date', 'datetime', 'time'].includes(this.type)
+      if (!supportsPreview) {
         this.hoverPlaceholder = ''
         return
       }
-      if (!this.pickerVisible || !date || !this.valueIsEmpty) {
+      if (!this.pickerVisible) {
         this.hoverPlaceholder = ''
+        return
+      }
+      if (!date) {
+        if (['datetime', 'time'].includes(this.type)) {
+          return
+        }
+        this.hoverPlaceholder = ''
+        return
+      }
+      if (this.userInput !== null) {
         return
       }
       this.hoverPlaceholder = this.formatToString(date)
@@ -886,7 +897,18 @@ export default {
       this.picker.resetView && this.picker.resetView()
 
       this.picker.$on('dodestroy', this.doDestroy)
-      this.picker.$on('pick', (date = '', visible = false) => {
+      this.picker.$on('pick', (date = '', visible = false, ...args) => {
+        const [extra] = args
+        const isPreview = extra === 'preview'
+
+        if (isPreview) {
+          if (!this.ranged && ['datetime', 'time'].includes(this.type)) {
+            this.hoverPlaceholder = date ? this.formatToString(date) : ''
+          }
+          this.pickerVisible = this.picker.visible = true
+          return
+        }
+
         this.userInput = null
         this.hoverPlaceholder = ''
         this.pickerVisible = this.picker.visible = visible
