@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+// @ts-nocheck
 import Locale from 'element-ui/src/mixins/locale'
 import Clickoutside from 'element-ui/src/utils/clickoutside'
 import {

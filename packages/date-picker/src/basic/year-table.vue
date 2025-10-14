@@ -1,4 +1,5 @@
-<script type="text/babel">
+<script lang="ts">
+// @ts-nocheck
 import { getDayCountOfYear, isDate, nextDate, range } from 'element-ui/src/utils/date-util'
 import { hasClass } from 'element-ui/src/utils/dom'
 import { arrayFindIndex, coerceTruthyValueToArray } from 'element-ui/src/utils/util'
@@ -50,14 +51,18 @@ export default {
         if (hasClass(target.parentNode, 'disabled')) {
           return
         }
-        const yearText = target.textContent || ''
-        const year = Number(yearText)
+        const yearText = (target.textContent ?? '').trim()
+        const year = Number.parseInt(yearText, 10)
+        const createYearDate = (y: number) => new Date(y, 0, 1)
+        if (Number.isNaN(year)) {
+          return
+        }
         if (this.selectionMode === 'years') {
           const value = this.value || []
           const idx = arrayFindIndex(value, date => date.getFullYear() === year)
           const newValue = idx > -1
             ? [...value.slice(0, idx), ...value.slice(idx + 1)]
-            : [...value, new Date(year)]
+            : [...value, createYearDate(year)]
           this.$emit('pick', newValue)
         }
         else {

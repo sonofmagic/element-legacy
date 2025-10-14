@@ -1,4 +1,5 @@
-<script type="text/babel">
+<script lang="ts">
+// @ts-nocheck
 import ElScrollbar from 'element-ui/packages/scrollbar'
 import scrollIntoView from 'element-ui/src/utils/scroll-into-view'
 

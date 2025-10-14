@@ -1,11 +1,12 @@
+import { defineComponent } from 'vue'
 import TimeRangePanel from '../panel/time-range.vue'
 import TimePanel from '../panel/time.vue'
 import Picker from '../picker.vue'
 
-export default {
-  mixins: [Picker],
-
+export default defineComponent({
   name: 'ElTimePicker',
+
+  mixins: [Picker],
 
   props: {
     isRange: Boolean,
@@ -37,4 +38,4 @@ export default {
     this.type = this.isRange ? 'timerange' : 'time'
     this.panel = this.isRange ? TimeRangePanel : TimePanel
   },
-}
+})

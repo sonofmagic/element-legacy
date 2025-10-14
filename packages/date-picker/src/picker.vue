@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+// @ts-nocheck
 import ElInput from 'element-ui/packages/input'
 import Emitter from 'element-ui/src/mixins/emitter'
 import Clickoutside from 'element-ui/src/utils/clickoutside'

@@ -1,4 +1,5 @@
-<script type="text/babel">
+<script lang="ts">
+// @ts-nocheck
 import ElButton from 'element-ui/packages/button'
 import ElInput from 'element-ui/packages/input'
 import Locale from 'element-ui/src/mixins/locale'

@@ -1,4 +1,5 @@
-<script type="text/babel">
+<script lang="ts">
+// @ts-nocheck
 import Locale from 'element-ui/src/mixins/locale'
 import { getDayCountOfMonth, isDate, nextDate, range } from 'element-ui/src/utils/date-util'
 import { hasClass } from 'element-ui/src/utils/dom'

@@ -1,4 +1,5 @@
-<script type="text/babel">
+<script lang="ts">
+// @ts-nocheck
 import ElScrollbar from 'element-ui/packages/scrollbar'
 import RepeatClick from 'element-ui/src/directives/repeat-click'
 import { getRangeHours, getRangeMinutes, modifyTime } from 'element-ui/src/utils/date-util'
