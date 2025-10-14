@@ -12,7 +12,7 @@
     position: relative;
     display: inline-block;
     width: 50%;
-    max-height: 190px;
+    max-height: calc(32px * 7 + 34px);
     overflow: auto;
     vertical-align: top;
 

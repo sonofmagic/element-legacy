@@ -225,7 +225,6 @@ export default {
       <ElScrollbar
         ref="hours"
         class="el-time-spinner-v2__wrapper"
-        wrap-style="max-height: inherit;"
         view-class="el-time-spinner-v2__list"
         noresize
         tag="ul"
@@ -245,7 +244,6 @@ export default {
       <ElScrollbar
         ref="minutes"
         class="el-time-spinner-v2__wrapper"
-        wrap-style="max-height: inherit;"
         view-class="el-time-spinner-v2__list"
         noresize
         tag="ul"
@@ -266,7 +264,6 @@ export default {
         v-show="showSeconds"
         ref="seconds"
         class="el-time-spinner-v2__wrapper"
-        wrap-style="max-height: inherit;"
         view-class="el-time-spinner-v2__list"
         noresize
         tag="ul"

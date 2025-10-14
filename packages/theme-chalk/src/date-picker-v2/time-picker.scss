@@ -6,6 +6,8 @@
   left: 0;
   z-index: var.$index-top;
   box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
   width: 180px;
   margin: 5px 0;
   user-select: none;
@@ -14,10 +16,32 @@
   border-radius: 2px;
   box-shadow: var.$box-shadow-light;
 
+  @include mixins.e(current) {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 53px;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #303133;
+  }
+
   @include mixins.e(content) {
     position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
     overflow: hidden;
     font-size: 0;
+
+    .el-time-spinner-v2 {
+      display: flex;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
 
     &::after,
     &::before {

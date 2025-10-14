@@ -1,7 +1,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Locale from 'element-ui/src/mixins/locale'
-import { clearMilliseconds, isDate, limitTimeRange, timeWithinRange } from 'element-ui/src/utils/date-util'
+import { clearMilliseconds, formatDate, isDate, limitTimeRange, timeWithinRange } from 'element-ui/src/utils/date-util'
 import TimeSpinner from '../basic/time-spinner.vue'
 
 export default {
@@ -48,16 +48,30 @@ export default {
       }
       return ''
     },
+    displayedTime() {
+      return isDate(this.date)
+        ? formatDate(this.date, this.format || 'HH:mm:ss')
+        : ''
+    },
   },
 
   watch: {
     visible(val) {
       if (val) {
         this.oldValue = this.value
-        this.$nextTick(() => this.$refs.spinner.emitSelectRange('hours'))
+        this.$nextTick(() => {
+          const spinner = this.$refs.spinner
+          if (!spinner) {
+            return
+          }
+          this.adjustSpinners()
+          spinner.emitSelectRange('hours')
+          this.needInitAdjust = false
+        })
       }
       else {
         this.needInitAdjust = true
+        this.$emit('dodestroy')
       }
     },
 
@@ -162,40 +176,24 @@ export default {
 </script>
 
 <template>
-  <transition name="el-zoom-in-top" @after-leave="$emit('dodestroy')">
-    <div
-      v-show="visible"
-      class="el-time-panel-v2 el-popper"
-      :class="popperClass"
-    >
-      <div class="el-time-panel-v2__content" :class="{ 'has-seconds': showSeconds }">
-        <TimeSpinner
-          ref="spinner"
-          :arrow-control="useArrow"
-          :show-seconds="showSeconds"
-          :am-pm-mode="amPmMode"
-          :date="date"
-          @change="handleChange"
-          @select-range="setSelectionRange"
-        />
-      </div>
-      <div class="el-time-panel-v2__footer">
-        <button
-          type="button"
-          class="el-time-panel-v2__btn cancel"
-          @click="handleCancel"
-        >
-          {{ t('el.datepicker.cancel') }}
-        </button>
-        <button
-          type="button"
-          class="el-time-panel-v2__btn"
-          :class="{ confirm: !disabled }"
-          @click="handleConfirm()"
-        >
-          {{ t('el.datepicker.confirm') }}
-        </button>
-      </div>
+  <div
+    v-show="visible"
+    class="el-time-panel-v2"
+    :class="popperClass"
+  >
+    <div class="el-time-panel-v2__current">
+      {{ displayedTime }}
     </div>
-  </transition>
+    <div class="el-time-panel-v2__content" :class="{ 'has-seconds': showSeconds }">
+      <TimeSpinner
+        ref="spinner"
+        :arrow-control="useArrow"
+        :show-seconds="showSeconds"
+        :am-pm-mode="amPmMode"
+        :date="date"
+        @change="handleChange"
+        @select-range="setSelectionRange"
+      />
+    </div>
+  </div>
 </template>
