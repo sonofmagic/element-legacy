@@ -2,7 +2,7 @@ import Alert from 'packages/alert'
 import { createTest, createVue, destroyVM } from '../util'
 
 describe('alert', () => {
-  let vm
+  let vm: any
   afterEach(() => {
     destroyVM(vm)
   })
