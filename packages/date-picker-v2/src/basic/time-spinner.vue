@@ -264,9 +264,6 @@ export default {
       }
       const top = target.offsetTop
       if (instant) {
-        const prevBehavior = wrap.style.scrollBehavior
-        wrap.style.scrollBehavior = 'auto'
-        wrap.scrollTop = top
         if (typeof wrap.scrollTo === 'function') {
           try {
             wrap.scrollTo({ top })
@@ -275,12 +272,7 @@ export default {
             wrap.scrollTo(0, top)
           }
         }
-        if (prevBehavior) {
-          wrap.style.scrollBehavior = prevBehavior
-        }
-        else {
-          wrap.style.removeProperty('scroll-behavior')
-        }
+        wrap.scrollTop = top
         return
       }
 
