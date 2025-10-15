@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-Element UI 2.x component library. `src/` holds the plugin entry, global mixins, and shared utilities. Each UI component lives under `packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `build/bin`. Shared theme assets reside in `packages/theme-chalk`. Demo and extension assets live under `examples/`, including documentation content in `examples/docs`. Tests split between `test/unit` for Vitest specs and `test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `build/` and `scripts/`.
+Element UI 2.x component library. `src/` holds the plugin entry, global mixins, and shared utilities. Each UI component lives under `packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `build/bin`. Shared theme assets reside in `theme-chalk`. Demo and extension assets live under `examples/`, including documentation content in `examples/docs`. Tests split between `test/unit` for Vitest specs and `test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `build/` and `scripts/`.
 
 ## Build, Test, and Development Commands
 
@@ -10,7 +10,7 @@ Install dependencies with `pnpm bootstrap`. For the local docs playground run `p
 
 ## Coding Style & Naming Conventions
 
-The repo targets Vue 2 (`eslint.config.mjs` sets `vueVersion: 2`). JavaScript and TypeScript files use two-space indentation and prefer named exports for shared utilities. Component folders mirror kebab-case package names, while component constructors remain PascalCase (e.g., `packages/button` exports `ElButton`). Run `pnpm exec eslint "packages/**" "src/**"` and `pnpm exec stylelint "packages/theme-chalk/src/**/*.scss"` before pushing. Lint-staged auto-fixes JS/TS/Vue/Markdown on commit.
+The repo targets Vue 2 (`eslint.config.mjs` sets `vueVersion: 2`). JavaScript and TypeScript files use two-space indentation and prefer named exports for shared utilities. Component folders mirror kebab-case package names, while component constructors remain PascalCase (e.g., `packages/button` exports `ElButton`). Run `pnpm exec eslint "packages/**" "src/**"` and `pnpm exec stylelint "theme-chalk/src/**/*.scss"` before pushing. Lint-staged auto-fixes JS/TS/Vue/Markdown on commit.
 
 ## Testing Guidelines
 

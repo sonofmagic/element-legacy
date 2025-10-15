@@ -5,7 +5,7 @@ import postcss from 'postcss'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const fontFile = readFileSync(resolve(__dirname, '../../packages/theme-chalk/src/icon.scss'), 'utf8')
+const fontFile = readFileSync(resolve(__dirname, '../../theme-chalk/src/icon.scss'), 'utf8')
 const nodes = postcss.parse(fontFile).nodes ?? []
 const classList: string[] = []
 

@@ -16,7 +16,7 @@ import title from './i18n/title.json'
 import icon from './icon.json'
 
 import routes from './route.config'
-import '../packages/theme-chalk/src/index.scss'
+import '../theme-chalk/src/index.scss'
 import './demo-styles/index.scss'
 import './assets/styles/common.css'
 import './assets/styles/fonts/style.css'
