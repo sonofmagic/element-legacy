@@ -9,5 +9,6 @@ module.exports = {
         targets: { esmodules: true }, // 只转译 ES Modules 支持的环境
       },
     ],
+    '@babel/preset-typescript',
   ],
 }

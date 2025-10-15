@@ -35,7 +35,7 @@
     "bootstrap": "pnpm i",
     "build:file": "tsx build/bin/iconInit.ts & tsx build/bin/build-entry.ts & tsx build/bin/i18n.ts & tsx build/bin/version.ts",
     "build:theme": "tsx build/bin/gen-cssfile.ts && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
-    "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
+    "build:utils": "cross-env BABEL_ENV=utils babel src --extensions '.ts,.tsx,.js' --out-dir lib --ignore 'src/index.ts,**/*.d.ts'",
     "build:umd": "tsx build/bin/build-locale.ts",
     "build": "vite build",
     "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
