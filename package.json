@@ -1,7 +1,7 @@
 {
-  "name": "element-ui-legacy",
+  "name": "element-legacy",
   "type": "module",
-  "version": "3.0.3",
+  "version": "0.0.0",
   "packageManager": "pnpm@10.18.2",
   "description": "A Component Library for Vue.js.",
   "license": "MIT",
@@ -57,8 +57,9 @@
     "script:clean": "monorepo clean",
     "script:mirror": "monorepo mirror",
     "commitlint": "commitlint --edit",
-    "release": "pnpm publish --no-git-checks",
-    "release:alpha": "pnpm publish --tag alpha --no-git-checks",
+    "release": "changeset",
+    "_release": "pnpm publish --no-git-checks",
+    "_release:alpha": "pnpm publish --tag alpha --no-git-checks",
     "prepare": "husky"
   },
   "peerDependencies": {
@@ -116,11 +117,6 @@
     "fecha": "^4.2.3",
     "file-save": "^0.2.0",
     "fs-extra": "^11.3.2",
-    "gulp": "^5.0.1",
-    "gulp-autoprefixer": "^10.0.0",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-postcss": "^10.0.0",
-    "gulp-sass": "6.0.1",
     "highlight.js": "^11.11.1",
     "husky": "^9.1.7",
     "jsdom": "^27.0.0",
