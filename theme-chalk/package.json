@@ -1,6 +1,6 @@
 {
   "name": "@element-legacy/theme-chalk",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Element component chalk theme.",
   "style": "lib/index.css",
   "author": "yi.shyang@ele.me",
