@@ -1,145 +1,5 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-popper .popper__arrow,
-.el-popper .popper__arrow::after {
+.el-popper .popper__arrow:after {
   position: absolute;
   display: block;
   width: 0;
@@ -152,7 +12,7 @@
   -webkit-filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
   filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
 }
-.el-popper .popper__arrow::after {
+.el-popper .popper__arrow:after {
   content: " ";
   border-width: 6px;
 }
@@ -166,7 +26,7 @@
   border-top-color: #ebeef5;
   border-bottom-width: 0;
 }
-.el-popper[x-placement^="top"] .popper__arrow::after {
+.el-popper[x-placement^="top"] .popper__arrow:after {
   bottom: 1px;
   margin-left: -6px;
   border-top-color: #fff;
@@ -182,7 +42,7 @@
   border-top-width: 0;
   border-bottom-color: #ebeef5;
 }
-.el-popper[x-placement^="bottom"] .popper__arrow::after {
+.el-popper[x-placement^="bottom"] .popper__arrow:after {
   top: 1px;
   margin-left: -6px;
   border-top-width: 0;
@@ -198,7 +58,7 @@
   border-right-color: #ebeef5;
   border-left-width: 0;
 }
-.el-popper[x-placement^="right"] .popper__arrow::after {
+.el-popper[x-placement^="right"] .popper__arrow:after {
   bottom: -6px;
   left: 1px;
   border-right-color: #fff;
@@ -214,14 +74,13 @@
   border-right-width: 0;
   border-left-color: #ebeef5;
 }
-.el-popper[x-placement^="left"] .popper__arrow::after {
+.el-popper[x-placement^="left"] .popper__arrow:after {
   right: 1px;
   bottom: -6px;
   margin-left: -6px;
   border-right-width: 0;
   border-left-color: #fff;
 }
-
 .el-select-dropdown {
   position: absolute;
   z-index: 1001;
@@ -232,7 +91,7 @@
   border: solid 1px #e4e7ed;
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px #0000001a;
 }
 .el-select-dropdown > .el-scrollbar {
   overflow: hidden;
@@ -247,21 +106,19 @@
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover {
   background-color: #f5f7fa;
 }
-.el-select-dropdown.is-multiple .el-select-dropdown__item.selected::after {
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected:after {
   position: absolute;
   right: 20px;
   font-family: element-icons, sans-serif;
   font-size: 12px;
-  font-weight: bold;
-  content: "\e6da";
+  font-weight: 700;
+  content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .el-select-dropdown .el-scrollbar.is-empty .el-select-dropdown__list {
   padding: 0;
 }
-
 .el-select-dropdown__empty {
   padding: 10px 0;
   margin: 0;
@@ -269,11 +126,9 @@
   color: #999;
   text-align: center;
 }
-
 .el-select-dropdown__wrap {
   max-height: 274px;
 }
-
 .el-select-dropdown__list {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

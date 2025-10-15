@@ -1,144 +1,4 @@
 @charset "UTF-8";
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* BEM support Func
- -------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-checkbox {
   position: relative;
   display: inline-block;
@@ -198,7 +58,7 @@
   width: 12px;
   height: 12px;
 }
-.el-checkbox.is-bordered.el-checkbox--small .el-checkbox__inner::after {
+.el-checkbox.is-bordered.el-checkbox--small .el-checkbox__inner:after {
   width: 2px;
   height: 6px;
 }
@@ -215,11 +75,10 @@
   width: 12px;
   height: 12px;
 }
-.el-checkbox.is-bordered.el-checkbox--mini .el-checkbox__inner::after {
+.el-checkbox.is-bordered.el-checkbox--mini .el-checkbox__inner:after {
   width: 2px;
   height: 6px;
 }
-
 .el-checkbox__input {
   position: relative;
   display: inline-block;
@@ -234,7 +93,7 @@
   background-color: #edf2fc;
   border-color: #dcdfe6;
 }
-.el-checkbox__input.is-disabled .el-checkbox__inner::after {
+.el-checkbox__input.is-disabled .el-checkbox__inner:after {
   cursor: not-allowed;
   border-color: #c0c4cc;
 }
@@ -245,14 +104,14 @@
   background-color: #f2f6fc;
   border-color: #dcdfe6;
 }
-.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after {
+.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner:after {
   border-color: #c0c4cc;
 }
 .el-checkbox__input.is-disabled.is-indeterminate .el-checkbox__inner {
   background-color: #f2f6fc;
   border-color: #dcdfe6;
 }
-.el-checkbox__input.is-disabled.is-indeterminate .el-checkbox__inner::before {
+.el-checkbox__input.is-disabled.is-indeterminate .el-checkbox__inner:before {
   background-color: #c0c4cc;
   border-color: #c0c4cc;
 }
@@ -260,31 +119,25 @@
   color: #c0c4cc;
   cursor: not-allowed;
 }
-
 .el-checkbox__input.is-checked .el-checkbox__inner {
   background-color: #409eff;
   border-color: #409eff;
 }
-.el-checkbox__input.is-checked .el-checkbox__inner::after {
+.el-checkbox__input.is-checked .el-checkbox__inner:after {
   -webkit-transform: rotate(45deg) scaleY(1);
   transform: rotate(45deg) scaleY(1);
 }
 .el-checkbox__input.is-checked + .el-checkbox__label {
   color: #409eff;
 }
-
-.el-checkbox__input.is-focus {
-  /* focus时 视觉上区分 */
-}
 .el-checkbox__input.is-focus .el-checkbox__inner {
   border-color: #409eff;
 }
-
 .el-checkbox__input.is-indeterminate .el-checkbox__inner {
   background-color: #409eff;
   border-color: #409eff;
 }
-.el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
+.el-checkbox__input.is-indeterminate .el-checkbox__inner:before {
   position: absolute;
   top: 5px;
   right: 0;
@@ -296,10 +149,9 @@
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-.el-checkbox__input.is-indeterminate .el-checkbox__inner::after {
+.el-checkbox__input.is-indeterminate .el-checkbox__inner:after {
   display: none;
 }
-
 .el-checkbox__inner {
   position: relative;
   z-index: 1;
@@ -321,7 +173,7 @@
 .el-checkbox__inner:hover {
   border-color: #409eff;
 }
-.el-checkbox__inner::after {
+.el-checkbox__inner:after {
   position: absolute;
   top: 1px;
   left: 4px;
@@ -344,7 +196,6 @@
     transform 0.15s ease-in 0.05s,
     -webkit-transform 0.15s ease-in 0.05s;
 }
-
 .el-checkbox__original {
   position: absolute;
   z-index: -1;
@@ -354,18 +205,15 @@
   outline: none;
   opacity: 0;
 }
-
 .el-checkbox__label {
   display: inline-block;
   padding-left: 10px;
   font-size: 14px;
   line-height: 19px;
 }
-
 .el-checkbox:last-of-type {
   margin-right: 0;
 }
-
 .el-checkbox-button {
   position: relative;
   display: inline-block;
@@ -412,7 +260,6 @@
 .el-checkbox-button__inner [class*="el-icon-"] + span {
   margin-left: 5px;
 }
-
 .el-checkbox-button__original {
   position: absolute;
   z-index: -1;
@@ -420,13 +267,12 @@
   outline: none;
   opacity: 0;
 }
-
 .el-checkbox-button.is-checked .el-checkbox-button__inner {
   color: #fff;
   background-color: #409eff;
   border-color: #409eff;
   -webkit-box-shadow: -1px 0 0 0 rgb(140.4, 196.8, 255);
-  box-shadow: -1px 0 0 0 rgb(140.4, 196.8, 255);
+  box-shadow: -1px 0 #8cc5ff;
 }
 .el-checkbox-button.is-checked:first-child .el-checkbox-button__inner {
   border-left-color: #409eff;
@@ -463,7 +309,6 @@
 .el-checkbox-button--medium .el-checkbox-button__inner.is-round {
   padding: 10px 20px;
 }
-
 .el-checkbox-button--small .el-checkbox-button__inner {
   padding: 9px 15px;
   font-size: 12px;
@@ -472,7 +317,6 @@
 .el-checkbox-button--small .el-checkbox-button__inner.is-round {
   padding: 9px 15px;
 }
-
 .el-checkbox-button--mini .el-checkbox-button__inner {
   padding: 7px 15px;
   font-size: 12px;
@@ -481,7 +325,6 @@
 .el-checkbox-button--mini .el-checkbox-button__inner.is-round {
   padding: 7px 15px;
 }
-
 .el-checkbox-group {
   font-size: 0;
 }

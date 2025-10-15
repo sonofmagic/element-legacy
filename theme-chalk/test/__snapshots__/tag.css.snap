@@ -1,152 +1,11 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-tag {
   color: #409eff;
-  background-color: rgb(235.9, 245.3, 255);
-  border-color: rgb(216.8, 235.6, 255);
+  background-color: #ecf5ff;
+  border-color: #d9ecff;
 }
 .el-tag.is-hit {
   border-color: #409eff;
 }
-
 .el-tag .el-tag__close {
   color: #409eff;
 }
@@ -156,13 +15,12 @@
 }
 .el-tag.el-tag--info {
   color: #909399;
-  background-color: rgb(243.9, 244.2, 244.8);
-  border-color: rgb(232.8, 233.4, 234.6);
+  background-color: #f4f4f5;
+  border-color: #e9e9eb;
 }
 .el-tag.el-tag--info.is-hit {
   border-color: #909399;
 }
-
 .el-tag.el-tag--info .el-tag__close {
   color: #909399;
 }
@@ -172,13 +30,12 @@
 }
 .el-tag.el-tag--success {
   color: #67c23a;
-  background-color: rgb(239.8, 248.9, 235.3);
-  border-color: rgb(224.6, 242.8, 215.6);
+  background-color: #f0f9eb;
+  border-color: #e1f3d8;
 }
 .el-tag.el-tag--success.is-hit {
   border-color: #67c23a;
 }
-
 .el-tag.el-tag--success .el-tag__close {
   color: #67c23a;
 }
@@ -188,13 +45,12 @@
 }
 .el-tag.el-tag--warning {
   color: #e6a23c;
-  background-color: rgb(252.5, 245.7, 235.5);
-  border-color: rgb(250, 236.4, 216);
+  background-color: #fdf6ec;
+  border-color: #faecd8;
 }
 .el-tag.el-tag--warning.is-hit {
   border-color: #e6a23c;
 }
-
 .el-tag.el-tag--warning .el-tag__close {
   color: #e6a23c;
 }
@@ -204,13 +60,12 @@
 }
 .el-tag.el-tag--danger {
   color: #f56c6c;
-  background-color: rgb(254, 240.3, 240.3);
-  border-color: rgb(253, 225.6, 225.6);
+  background-color: #fef0f0;
+  border-color: #fde2e2;
 }
 .el-tag.el-tag--danger.is-hit {
   border-color: #f56c6c;
 }
-
 .el-tag.el-tag--danger .el-tag__close {
   color: #f56c6c;
 }
@@ -245,99 +100,92 @@
   cursor: pointer;
   border-radius: 50%;
 }
-.el-tag .el-icon-close::before {
+.el-tag .el-icon-close:before {
   display: block;
 }
 .el-tag--dark {
-  color: white;
+  color: #fff;
   background-color: #409eff;
   border-color: #409eff;
 }
 .el-tag--dark.is-hit {
   border-color: #409eff;
 }
-
 .el-tag--dark .el-tag__close {
-  color: white;
+  color: #fff;
 }
 .el-tag--dark .el-tag__close:hover {
   color: #fff;
-  background-color: rgb(102.2, 177.4, 255);
+  background-color: #66b1ff;
 }
 .el-tag--dark.el-tag--info {
-  color: white;
+  color: #fff;
   background-color: #909399;
   border-color: #909399;
 }
 .el-tag--dark.el-tag--info.is-hit {
   border-color: #909399;
 }
-
 .el-tag--dark.el-tag--info .el-tag__close {
-  color: white;
+  color: #fff;
 }
 .el-tag--dark.el-tag--info .el-tag__close:hover {
   color: #fff;
-  background-color: rgb(166.2, 168.6, 173.4);
+  background-color: #a6a9ad;
 }
 .el-tag--dark.el-tag--success {
-  color: white;
+  color: #fff;
   background-color: #67c23a;
   border-color: #67c23a;
 }
 .el-tag--dark.el-tag--success.is-hit {
   border-color: #67c23a;
 }
-
 .el-tag--dark.el-tag--success .el-tag__close {
-  color: white;
+  color: #fff;
 }
 .el-tag--dark.el-tag--success .el-tag__close:hover {
   color: #fff;
-  background-color: rgb(133.4, 206.2, 97.4);
+  background-color: #85ce61;
 }
 .el-tag--dark.el-tag--warning {
-  color: white;
+  color: #fff;
   background-color: #e6a23c;
   border-color: #e6a23c;
 }
 .el-tag--dark.el-tag--warning.is-hit {
   border-color: #e6a23c;
 }
-
 .el-tag--dark.el-tag--warning .el-tag__close {
-  color: white;
+  color: #fff;
 }
 .el-tag--dark.el-tag--warning .el-tag__close:hover {
   color: #fff;
-  background-color: rgb(235, 180.6, 99);
+  background-color: #ebb563;
 }
 .el-tag--dark.el-tag--danger {
-  color: white;
+  color: #fff;
   background-color: #f56c6c;
   border-color: #f56c6c;
 }
 .el-tag--dark.el-tag--danger.is-hit {
   border-color: #f56c6c;
 }
-
 .el-tag--dark.el-tag--danger .el-tag__close {
-  color: white;
+  color: #fff;
 }
 .el-tag--dark.el-tag--danger .el-tag__close:hover {
   color: #fff;
-  background-color: rgb(247, 137.4, 137.4);
+  background-color: #f78989;
 }
-
 .el-tag--plain {
   color: #409eff;
-  background-color: white;
-  border-color: rgb(178.6, 216.2, 255);
+  background-color: #fff;
+  border-color: #b3d8ff;
 }
 .el-tag--plain.is-hit {
   border-color: #409eff;
 }
-
 .el-tag--plain .el-tag__close {
   color: #409eff;
 }
@@ -347,13 +195,12 @@
 }
 .el-tag--plain.el-tag--info {
   color: #909399;
-  background-color: white;
-  border-color: rgb(210.6, 211.8, 214.2);
+  background-color: #fff;
+  border-color: #d3d4d6;
 }
 .el-tag--plain.el-tag--info.is-hit {
   border-color: #909399;
 }
-
 .el-tag--plain.el-tag--info .el-tag__close {
   color: #909399;
 }
@@ -363,13 +210,12 @@
 }
 .el-tag--plain.el-tag--success {
   color: #67c23a;
-  background-color: white;
-  border-color: rgb(194.2, 230.6, 176.2);
+  background-color: #fff;
+  border-color: #c2e7b0;
 }
 .el-tag--plain.el-tag--success.is-hit {
   border-color: #67c23a;
 }
-
 .el-tag--plain.el-tag--success .el-tag__close {
   color: #67c23a;
 }
@@ -379,13 +225,12 @@
 }
 .el-tag--plain.el-tag--warning {
   color: #e6a23c;
-  background-color: white;
-  border-color: rgb(245, 217.8, 177);
+  background-color: #fff;
+  border-color: #f5dab1;
 }
 .el-tag--plain.el-tag--warning.is-hit {
   border-color: #e6a23c;
 }
-
 .el-tag--plain.el-tag--warning .el-tag__close {
   color: #e6a23c;
 }
@@ -395,13 +240,12 @@
 }
 .el-tag--plain.el-tag--danger {
   color: #f56c6c;
-  background-color: white;
-  border-color: rgb(251, 196.2, 196.2);
+  background-color: #fff;
+  border-color: #fbc4c4;
 }
 .el-tag--plain.el-tag--danger.is-hit {
   border-color: #f56c6c;
 }
-
 .el-tag--plain.el-tag--danger .el-tag__close {
   color: #f56c6c;
 }
@@ -409,7 +253,6 @@
   color: #fff;
   background-color: #f56c6c;
 }
-
 .el-tag--medium {
   height: 28px;
   line-height: 26px;
@@ -418,7 +261,6 @@
   -webkit-transform: scale(0.8);
   transform: scale(0.8);
 }
-
 .el-tag--small {
   height: 24px;
   padding: 0 8px;
@@ -428,7 +270,6 @@
   -webkit-transform: scale(0.8);
   transform: scale(0.8);
 }
-
 .el-tag--mini {
   height: 20px;
   padding: 0 5px;

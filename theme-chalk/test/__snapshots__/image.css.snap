@@ -1,150 +1,9 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-image__error,
 .el-image__placeholder,
 .el-image__inner {
   width: 100%;
   height: 100%;
 }
-
 .el-image {
   position: relative;
   display: inline-block;
@@ -161,11 +20,9 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
 .el-image__placeholder {
   background: #f5f7fa;
 }
-
 .el-image__error {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -181,16 +38,13 @@
   color: #c0c4cc;
   background: #f5f7fa;
 }
-
 .el-image__preview {
   cursor: pointer;
 }
-
 .el-image-viewer__wrapper {
   position: fixed;
   inset: 0;
 }
-
 .el-image-viewer__btn {
   position: absolute;
   z-index: 1;
@@ -213,7 +67,6 @@
   border-radius: 50%;
   opacity: 0.8;
 }
-
 .el-image-viewer__close {
   top: 40px;
   right: 40px;
@@ -223,7 +76,6 @@
   color: #fff;
   background-color: #606266;
 }
-
 .el-image-viewer__canvas {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -237,7 +89,6 @@
   width: 100%;
   height: 100%;
 }
-
 .el-image-viewer__actions {
   bottom: 30px;
   left: 50%;
@@ -248,7 +99,7 @@
   border-color: #fff;
   border-radius: 22px;
   -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  transform: translate(-50%);
 }
 .el-image-viewer__actions__inner {
   display: -webkit-box;
@@ -266,7 +117,6 @@
   text-align: justify;
   cursor: default;
 }
-
 .el-image-viewer__prev {
   top: 50%;
   left: 40px;
@@ -279,7 +129,6 @@
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-
 .el-image-viewer__next {
   top: 50%;
   right: 40px;
@@ -293,7 +142,6 @@
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-
 .el-image-viewer__mask {
   position: absolute;
   top: 0;
@@ -303,49 +151,45 @@
   background: #000;
   opacity: 0.5;
 }
-
 .viewer-fade-enter-active {
   -webkit-animation: viewer-fade-in 0.3s;
   animation: viewer-fade-in 0.3s;
 }
-
 .viewer-fade-leave-active {
   -webkit-animation: viewer-fade-out 0.3s;
   animation: viewer-fade-out 0.3s;
 }
-
 @-webkit-keyframes viewer-fade-in {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0);
   }
-  100% {
+  to {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    transform: translateZ(0);
   }
 }
-
 @keyframes viewer-fade-in {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0);
   }
-  100% {
+  to {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    transform: translateZ(0);
   }
 }
 @-webkit-keyframes viewer-fade-out {
   0% {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    transform: translateZ(0);
   }
-  100% {
+  to {
     opacity: 0;
     -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0);
@@ -355,9 +199,9 @@
   0% {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    transform: translateZ(0);
   }
-  100% {
+  to {
     opacity: 0;
     -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0);

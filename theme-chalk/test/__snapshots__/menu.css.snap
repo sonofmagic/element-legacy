@@ -1,191 +1,43 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .fade-in-linear-enter-active,
 .fade-in-linear-leave-active {
-  -webkit-transition: opacity 200ms linear;
-  transition: opacity 200ms linear;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
 }
-
 .fade-in-linear-enter,
 .fade-in-linear-leave,
 .fade-in-linear-leave-active {
   opacity: 0;
 }
-
 .el-fade-in-linear-enter-active,
 .el-fade-in-linear-leave-active {
-  -webkit-transition: opacity 200ms linear;
-  transition: opacity 200ms linear;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
 }
-
 .el-fade-in-linear-enter,
 .el-fade-in-linear-leave,
 .el-fade-in-linear-leave-active {
   opacity: 0;
 }
-
 .el-fade-in-enter-active,
 .el-fade-in-leave-active {
   -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
   transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
-
 .el-fade-in-enter,
 .el-fade-in-leave-active {
   opacity: 0;
 }
-
 .el-zoom-in-center-enter-active,
 .el-zoom-in-center-leave-active {
   -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
   transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
-
 .el-zoom-in-center-enter,
 .el-zoom-in-center-leave-active {
   opacity: 0;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
 }
-
 .el-zoom-in-top-enter-active,
 .el-zoom-in-top-leave-active {
   opacity: 1;
@@ -194,27 +46,25 @@
   -webkit-transform-origin: center top;
   transform-origin: center top;
   -webkit-transition:
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .el-zoom-in-top-enter,
 .el-zoom-in-top-leave-active {
   opacity: 0;
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
 }
-
 .el-zoom-in-bottom-enter-active,
 .el-zoom-in-bottom-leave-active {
   opacity: 1;
@@ -223,56 +73,52 @@
   -webkit-transform-origin: center bottom;
   transform-origin: center bottom;
   -webkit-transition:
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .el-zoom-in-bottom-enter,
 .el-zoom-in-bottom-leave-active {
   opacity: 0;
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
 }
-
 .el-zoom-in-left-enter-active,
 .el-zoom-in-left-leave-active {
   opacity: 1;
   -webkit-transform: scale(1, 1);
-  transform: scale(1, 1);
+  transform: scale(1);
   -webkit-transform-origin: top left;
   transform-origin: top left;
   -webkit-transition:
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   transition:
-    transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
-    -webkit-transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .el-zoom-in-left-enter,
 .el-zoom-in-left-leave-active {
   opacity: 0;
   -webkit-transform: scale(0.45, 0.45);
-  transform: scale(0.45, 0.45);
+  transform: scale(0.45);
 }
-
 .collapse-transition {
   -webkit-transition:
     0.3s height ease-in-out,
@@ -283,7 +129,6 @@
     0.3s padding-top ease-in-out,
     0.3s padding-bottom ease-in-out;
 }
-
 .horizontal-collapse-transition {
   -webkit-transition:
     0.3s width ease-in-out,
@@ -294,25 +139,21 @@
     0.3s padding-left ease-in-out,
     0.3s padding-right ease-in-out;
 }
-
 .el-list-enter-active,
 .el-list-leave-active {
   -webkit-transition: all 1s;
   transition: all 1s;
 }
-
 .el-list-enter,
 .el-list-leave-active {
   opacity: 0;
   -webkit-transform: translateY(-30px);
   transform: translateY(-30px);
 }
-
 .el-opacity-transition {
   -webkit-transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
   transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
-
 .el-menu {
   position: relative;
   padding-left: 0;
@@ -321,16 +162,14 @@
   background-color: #fff;
   border-right: solid 1px #e6e6e6;
 }
-.el-menu::before,
-.el-menu::after {
+.el-menu:before,
+.el-menu:after {
   display: table;
   content: "";
 }
-
-.el-menu::after {
+.el-menu:after {
   clear: both;
 }
-
 .el-menu.el-menu--horizontal {
   border-bottom: solid 1px #e6e6e6;
 }
@@ -405,7 +244,6 @@
   color: #303133;
   border-bottom: 2px solid #409eff;
 }
-
 .el-menu--collapse {
   width: 64px;
 }
@@ -446,7 +284,7 @@
   border: 1px solid #e4e7ed;
   border-radius: 2px;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px #0000001a;
 }
 .el-menu--collapse
   .el-submenu.is-opened
@@ -455,7 +293,6 @@
   -webkit-transform: none;
   transform: none;
 }
-
 .el-menu--popup {
   z-index: 100;
   min-width: 200px;
@@ -463,7 +300,7 @@
   border: none;
   border-radius: 2px;
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px #0000001a;
 }
 .el-menu--popup-bottom-start {
   margin-top: 5px;
@@ -472,7 +309,6 @@
   margin-right: 5px;
   margin-left: 5px;
 }
-
 .el-menu-item {
   position: relative;
   -webkit-box-sizing: border-box;
@@ -503,14 +339,13 @@
 .el-menu-item:hover,
 .el-menu-item:focus {
   outline: none;
-  background-color: rgb(235.9, 245.3, 255);
+  background-color: #ecf5ff;
 }
 .el-menu-item.is-disabled {
   cursor: not-allowed;
   background: none !important;
   opacity: 0.25;
 }
-
 .el-menu-item [class^="el-icon-"] {
   width: 24px;
   margin-right: 5px;
@@ -524,7 +359,6 @@
 .el-menu-item.is-active i {
   color: inherit;
 }
-
 .el-submenu {
   padding-left: 0;
   margin: 0;
@@ -560,18 +394,16 @@
 .el-submenu__title:hover,
 .el-submenu__title:focus {
   outline: none;
-  background-color: rgb(235.9, 245.3, 255);
+  background-color: #ecf5ff;
 }
 .el-submenu__title.is-disabled {
   cursor: not-allowed;
   background: none !important;
   opacity: 0.25;
 }
-
 .el-submenu__title:hover {
-  background-color: rgb(235.9, 245.3, 255);
+  background-color: #ecf5ff;
 }
-
 .el-submenu .el-menu {
   border: none;
 }
@@ -594,23 +426,19 @@
     transform 0.3s,
     -webkit-transform 0.3s;
 }
-
 .el-submenu.is-active .el-submenu__title {
   border-bottom-color: #409eff;
 }
-
 .el-submenu.is-opened > .el-submenu__title .el-submenu__icon-arrow {
   -webkit-transform: rotateZ(180deg);
-  transform: rotateZ(180deg);
+  transform: rotate(180deg);
 }
-
 .el-submenu.is-disabled .el-submenu__title,
 .el-submenu.is-disabled .el-menu-item {
   cursor: not-allowed;
   background: none !important;
   opacity: 0.25;
 }
-
 .el-submenu [class^="el-icon-"] {
   width: 24px;
   margin-right: 5px;
@@ -618,7 +446,6 @@
   vertical-align: middle;
   text-align: center;
 }
-
 .el-menu-item-group > ul {
   padding: 0;
 }
@@ -628,7 +455,6 @@
   line-height: normal;
   color: #909399;
 }
-
 .horizontal-collapse-transition .el-submenu__title .el-submenu__icon-arrow {
   opacity: 0;
   -webkit-transition: 0.2s;

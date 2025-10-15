@@ -1,159 +1,16 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-carousel {
   position: relative;
 }
 .el-carousel--horizontal {
   overflow-x: hidden;
 }
-
 .el-carousel--vertical {
   overflow-y: hidden;
 }
-
 .el-carousel__container {
   position: relative;
   height: 300px;
 }
-
 .el-carousel__arrow {
   position: absolute;
   top: 50%;
@@ -167,7 +24,7 @@
   text-align: center;
   cursor: pointer;
   outline: none;
-  background-color: rgba(31, 45, 61, 0.11);
+  background-color: #1f2d3d1c;
   border: none;
   border-radius: 50%;
   -webkit-transform: translateY(-50%);
@@ -178,18 +35,15 @@
 .el-carousel__arrow--left {
   left: 16px;
 }
-
 .el-carousel__arrow--right {
   right: 16px;
 }
-
 .el-carousel__arrow:hover {
-  background-color: rgba(31, 45, 61, 0.23);
+  background-color: #1f2d3d3b;
 }
 .el-carousel__arrow i {
   cursor: pointer;
 }
-
 .el-carousel__indicators {
   position: absolute;
   z-index: 2;
@@ -201,16 +55,14 @@
   bottom: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  transform: translate(-50%);
 }
-
 .el-carousel__indicators--vertical {
   top: 50%;
   right: 0;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-
 .el-carousel__indicators--outside {
   position: static;
   bottom: 26px;
@@ -225,7 +77,6 @@
   background-color: #c0c4cc;
   opacity: 0.24;
 }
-
 .el-carousel__indicators--labels {
   right: 0;
   left: 0;
@@ -242,7 +93,6 @@
 .el-carousel__indicators--labels .el-carousel__indicator {
   padding: 6px 4px;
 }
-
 .el-carousel__indicator {
   cursor: pointer;
   background-color: transparent;
@@ -254,7 +104,6 @@
   display: inline-block;
   padding: 12px 4px;
 }
-
 .el-carousel__indicator--vertical {
   padding: 4px 12px;
 }
@@ -262,11 +111,9 @@
   width: 2px;
   height: 15px;
 }
-
 .el-carousel__indicator.is-active button {
   opacity: 1;
 }
-
 .el-carousel__button {
   display: block;
   width: 30px;
@@ -281,17 +128,15 @@
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
 .carousel-arrow-left-enter,
 .carousel-arrow-left-leave-active {
   opacity: 0;
   -webkit-transform: translateY(-50%) translateX(-10px);
-  transform: translateY(-50%) translateX(-10px);
+  transform: translateY(-50%) translate(-10px);
 }
-
 .carousel-arrow-right-enter,
 .carousel-arrow-right-leave-active {
   opacity: 0;
   -webkit-transform: translateY(-50%) translateX(10px);
-  transform: translateY(-50%) translateX(10px);
+  transform: translateY(-50%) translate(10px);
 }

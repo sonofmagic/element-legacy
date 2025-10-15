@@ -1,144 +1,4 @@
 @charset "UTF-8";
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-radio {
   position: relative;
   display: inline-block;
@@ -173,7 +33,6 @@
 .el-radio.is-bordered + .el-radio.is-bordered {
   margin-left: 10px;
 }
-
 .el-radio--medium.is-bordered {
   height: 36px;
   padding: 10px 20px 0 10px;
@@ -186,7 +45,6 @@
   width: 14px;
   height: 14px;
 }
-
 .el-radio--small.is-bordered {
   height: 32px;
   padding: 8px 15px 0 10px;
@@ -199,7 +57,6 @@
   width: 12px;
   height: 12px;
 }
-
 .el-radio--mini.is-bordered {
   height: 28px;
   padding: 6px 15px 0 10px;
@@ -212,7 +69,6 @@
   width: 12px;
   height: 12px;
 }
-
 .el-radio:last-child {
   margin-right: 0;
 }
@@ -230,7 +86,7 @@
   background-color: #f5f7fa;
   border-color: #e4e7ed;
 }
-.el-radio__input.is-disabled .el-radio__inner::after {
+.el-radio__input.is-disabled .el-radio__inner:after {
   cursor: not-allowed;
   background-color: #f5f7fa;
 }
@@ -241,30 +97,27 @@
   background-color: #f5f7fa;
   border-color: #e4e7ed;
 }
-.el-radio__input.is-disabled.is-checked .el-radio__inner::after {
+.el-radio__input.is-disabled.is-checked .el-radio__inner:after {
   background-color: #c0c4cc;
 }
 .el-radio__input.is-disabled + span.el-radio__label {
   color: #c0c4cc;
   cursor: not-allowed;
 }
-
 .el-radio__input.is-checked .el-radio__inner {
   background: #409eff;
   border-color: #409eff;
 }
-.el-radio__input.is-checked .el-radio__inner::after {
+.el-radio__input.is-checked .el-radio__inner:after {
   -webkit-transform: translate(-50%, -50%) scale(1);
   transform: translate(-50%, -50%) scale(1);
 }
 .el-radio__input.is-checked + .el-radio__label {
   color: #409eff;
 }
-
 .el-radio__input.is-focus .el-radio__inner {
   border-color: #409eff;
 }
-
 .el-radio__inner {
   position: relative;
   -webkit-box-sizing: border-box;
@@ -280,7 +133,7 @@
 .el-radio__inner:hover {
   border-color: #409eff;
 }
-.el-radio__inner::after {
+.el-radio__inner:after {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -298,7 +151,6 @@
     transform 0.15s ease-in,
     -webkit-transform 0.15s ease-in;
 }
-
 .el-radio__original {
   position: absolute;
   inset: 0;
@@ -306,10 +158,6 @@
   margin: 0;
   outline: none;
   opacity: 0;
-}
-
-.el-radio:focus:not(.is-focus, :active, .is-disabled) {
-  /* 获得焦点时 样式提醒 */
 }
 .el-radio:focus:not(.is-focus, :active, .is-disabled) .el-radio__inner {
   -webkit-box-shadow: 0 0 2px 2px #409eff;

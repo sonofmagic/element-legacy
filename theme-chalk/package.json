@@ -23,15 +23,13 @@
     "src"
   ],
   "scripts": {
-    "build": "gulp build",
-    "test": "vitest run --root .. --config vitest.config.ts test/theme-chalk.spec.ts",
-    "test:update": "vitest run --root .. --config vitest.config.ts --update test/theme-chalk.spec.ts"
+    "build": "vite build --config vite.config.ts",
+    "test": "pnpm run build && vitest run --root .. --config vitest.config.ts test/theme-chalk.spec.ts",
+    "test:update": "pnpm run build && vitest run --root .. --config vitest.config.ts --update test/theme-chalk.spec.ts"
   },
   "devDependencies": {
-    "gulp": "^5.0.1",
-    "gulp-autoprefixer": "^10.0.0",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-sass": "6.0.1",
-    "sass": "1.93.2"
+    "autoprefixer": "^10.4.21",
+    "sass": "1.93.2",
+    "vite": "^7.1.10"
   }
 }

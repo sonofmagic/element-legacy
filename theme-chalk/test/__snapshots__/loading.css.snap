@@ -1,157 +1,15 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-loading-parent--relative {
   position: relative !important;
 }
-
 .el-loading-parent--hidden {
   overflow: hidden !important;
 }
-
 .el-loading-mask {
   position: absolute;
   inset: 0;
   z-index: 2000;
   margin: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #ffffffe6;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
@@ -165,7 +23,6 @@
   width: 50px;
   height: 50px;
 }
-
 .el-loading-spinner {
   position: absolute;
   top: 50%;
@@ -196,21 +53,18 @@
 .el-loading-spinner i {
   color: #409eff;
 }
-
 .el-loading-fade-enter,
 .el-loading-fade-leave-active {
   opacity: 0;
 }
-
 @-webkit-keyframes loading-rotate {
-  100% {
+  to {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @keyframes loading-rotate {
-  100% {
+  to {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
@@ -224,7 +78,7 @@
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -40px;
   }
-  100% {
+  to {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -120px;
   }
@@ -238,7 +92,7 @@
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -40px;
   }
-  100% {
+  to {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -120px;
   }

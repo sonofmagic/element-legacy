@@ -1,143 +1,3 @@
-/* BEM support Func
- -------------------------- */
-/* Element Chalk Variables */
-/* Transition
--------------------------- */
-/* Color
--------------------------- */
-/* 53a8ff */
-/* 66b1ff */
-/* 79bbff */
-/* 8cc5ff */
-/* a0cfff */
-/* b3d8ff */
-/* c6e2ff */
-/* d9ecff */
-/* ecf5ff */
-/* Link
--------------------------- */
-/* Border
--------------------------- */
-/* Fill
--------------------------- */
-/* Typography
--------------------------- */
-/* Size
--------------------------- */
-/* z-index
--------------------------- */
-/* Disable base
--------------------------- */
-/* Icon
--------------------------- */
-/* Checkbox
--------------------------- */
-/* Radio
--------------------------- */
-/* Select
--------------------------- */
-/* Alert
--------------------------- */
-/* MessageBox
--------------------------- */
-/* Message
--------------------------- */
-/* Notification
--------------------------- */
-/* Input
--------------------------- */
-/* Cascader
--------------------------- */
-/* Group
--------------------------- */
-/* Tab
--------------------------- */
-/* Button
--------------------------- */
-/* cascader
--------------------------- */
-/* Switch
--------------------------- */
-/* Dialog
--------------------------- */
-/* Table
--------------------------- */
-/* Pagination
--------------------------- */
-/* Popup
--------------------------- */
-/* Popover
--------------------------- */
-/* Tooltip
--------------------------- */
-/* Tag
--------------------------- */
-/* Tree
--------------------------- */
-/* Dropdown
--------------------------- */
-/* Badge
--------------------------- */
-/* Card
--------------------------- */
-/* Slider
--------------------------- */
-/* Steps
--------------------------- */
-/* Menu
--------------------------- */
-/* Rate
--------------------------- */
-/* DatePicker
--------------------------- */
-/* Loading
--------------------------- */
-/* Scrollbar
--------------------------- */
-/* Carousel
--------------------------- */
-/* Collapse
--------------------------- */
-/* Transfer
--------------------------- */
-/* Header
-  -------------------------- */
-/* Footer
--------------------------- */
-/* Main
--------------------------- */
-/* Timeline
--------------------------- */
-/* Backtop
--------------------------- */
-/* Link
--------------------------- */
-/* Calendar
--------------------------- */
-/* Form
--------------------------- */
-/* Avatar
--------------------------- */
-/* Empty
--------------------------- */
-/* Descriptions
--------------------------- */
-/* Skeleton
--------------------------- */
-/* Svg
---------------- */
-/* Result
--------------------------- */
-/* Break-point
--------------------------- */
-/* Break-points
- -------------------------- */
-/* Scrollbar
- -------------------------- */
-/* Placeholder
- -------------------------- */
-/* BEM
- -------------------------- */
 .el-link {
   position: relative;
   display: -webkit-inline-box;
@@ -161,7 +21,7 @@
   cursor: pointer;
   outline: none;
 }
-.el-link.is-underline:hover::after {
+.el-link.is-underline:hover:after {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -170,11 +30,9 @@
   content: "";
   border-bottom: 1px solid #409eff;
 }
-
 .el-link.is-disabled {
   cursor: not-allowed;
 }
-
 .el-link [class*="el-icon-"] + span {
   margin-left: 5px;
 }
@@ -184,94 +42,84 @@
 .el-link.el-link--default:hover {
   color: #409eff;
 }
-.el-link.el-link--default::after {
+.el-link.el-link--default:after {
   border-color: #409eff;
 }
 .el-link.el-link--default.is-disabled {
   color: #c0c4cc;
 }
-
 .el-link.el-link--primary {
   color: #409eff;
 }
 .el-link.el-link--primary:hover {
-  color: rgb(102.2, 177.4, 255);
+  color: #66b1ff;
 }
-.el-link.el-link--primary::after {
+.el-link.el-link--primary:after {
   border-color: #409eff;
 }
 .el-link.el-link--primary.is-disabled {
-  color: rgb(159.5, 206.5, 255);
+  color: #a0cfff;
 }
-
-.el-link.el-link--primary.is-underline:hover::after {
+.el-link.el-link--primary.is-underline:hover:after {
   border-color: #409eff;
 }
-
 .el-link.el-link--danger {
   color: #f56c6c;
 }
 .el-link.el-link--danger:hover {
-  color: rgb(247, 137.4, 137.4);
+  color: #f78989;
 }
-.el-link.el-link--danger::after {
+.el-link.el-link--danger:after {
   border-color: #f56c6c;
 }
 .el-link.el-link--danger.is-disabled {
-  color: rgb(250, 181.5, 181.5);
+  color: #fab6b6;
 }
-
-.el-link.el-link--danger.is-underline:hover::after {
+.el-link.el-link--danger.is-underline:hover:after {
   border-color: #f56c6c;
 }
-
 .el-link.el-link--success {
   color: #67c23a;
 }
 .el-link.el-link--success:hover {
-  color: rgb(133.4, 206.2, 97.4);
+  color: #85ce61;
 }
-.el-link.el-link--success::after {
+.el-link.el-link--success:after {
   border-color: #67c23a;
 }
 .el-link.el-link--success.is-disabled {
-  color: rgb(179, 224.5, 156.5);
+  color: #b3e19d;
 }
-
-.el-link.el-link--success.is-underline:hover::after {
+.el-link.el-link--success.is-underline:hover:after {
   border-color: #67c23a;
 }
-
 .el-link.el-link--warning {
   color: #e6a23c;
 }
 .el-link.el-link--warning:hover {
-  color: rgb(235, 180.6, 99);
+  color: #ebb563;
 }
-.el-link.el-link--warning::after {
+.el-link.el-link--warning:after {
   border-color: #e6a23c;
 }
 .el-link.el-link--warning.is-disabled {
-  color: rgb(242.5, 208.5, 157.5);
+  color: #f3d19e;
 }
-
-.el-link.el-link--warning.is-underline:hover::after {
+.el-link.el-link--warning.is-underline:hover:after {
   border-color: #e6a23c;
 }
-
 .el-link.el-link--info {
   color: #909399;
 }
 .el-link.el-link--info:hover {
-  color: rgb(166.2, 168.6, 173.4);
+  color: #a6a9ad;
 }
-.el-link.el-link--info::after {
+.el-link.el-link--info:after {
   border-color: #909399;
 }
 .el-link.el-link--info.is-disabled {
-  color: rgb(199.5, 201, 204);
+  color: #c8c9cc;
 }
-
-.el-link.el-link--info.is-underline:hover::after {
+.el-link.el-link--info.is-underline:hover:after {
   border-color: #909399;
 }
