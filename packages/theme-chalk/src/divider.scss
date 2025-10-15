@@ -2,32 +2,32 @@
 @use 'mixins/mixins';
 
 @include mixins.b(divider) {
-  background-color: var.$border-color-base;
   position: relative;
+  background-color: var.$border-color-base;
 
   @include mixins.m(horizontal) {
     display: block;
-    height: 1px;
     width: 100%;
+    height: 1px;
     margin: 24px 0;
   }
 
   @include mixins.m(vertical) {
+    position: relative;
     display: inline-block;
     width: 1px;
     height: 1em;
     margin: 0 8px;
     vertical-align: middle;
-    position: relative;
   }
 
   @include mixins.e(text) {
     position: absolute;
-    background-color: var.$color-white;
     padding: 0 20px;
+    font-size: 14px;
     font-weight: 500;
     color: var.$color-text-primary;
-    font-size: 14px;
+    background-color: var.$color-white;
 
     @include mixins.when(left) {
       left: 20px;

@@ -3,16 +3,16 @@
 
 @include mixins.b(select-dropdown) {
   @include mixins.e(item) {
-    font-size: var.$select-font-size;
-    padding: 0 20px;
     position: relative;
-    white-space: nowrap;
+    box-sizing: border-box;
+    height: var.$select-option-height;
+    padding: 0 20px;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var.$select-option-color;
-    height: var.$select-option-height;
+    font-size: var.$select-font-size;
     line-height: var.$select-option-height;
-    box-sizing: border-box;
+    color: var.$select-option-color;
+    white-space: nowrap;
     cursor: pointer;
 
     @include mixins.when(disabled) {
@@ -30,8 +30,8 @@
     }
 
     &.selected {
-      color: var.$select-option-selected-font-color;
       font-weight: bold;
+      color: var.$select-option-selected-font-color;
     }
   }
 }

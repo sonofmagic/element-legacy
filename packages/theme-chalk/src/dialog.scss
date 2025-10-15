@@ -5,29 +5,26 @@
 
 @include mixins.b(dialog) {
   position: relative;
+  box-sizing: border-box;
+  width: 50%;
   margin: 0 auto 50px;
   background: var.$dialog-background-color;
   border-radius: var.$border-radius-small;
   box-shadow: var.$dialog-box-shadow;
-  box-sizing: border-box;
-  width: 50%;
 
   @include mixins.when(fullscreen) {
     width: 100%;
+    height: 100%;
     margin-top: 0;
     margin-bottom: 0;
-    height: 100%;
     overflow: auto;
   }
 
   @include mixins.e(wrapper) {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: auto;
+    inset: 0;
     margin: 0;
+    overflow: auto;
   }
 
   @include mixins.e(header) {
@@ -40,11 +37,11 @@
     top: var.$dialog-padding-primary;
     right: var.$dialog-padding-primary;
     padding: 0;
+    font-size: var.$message-close-size;
+    cursor: pointer;
+    outline: none;
     background: transparent;
     border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: var.$message-close-size;
 
     .el-dialog__close {
       color: var.$color-info;
@@ -59,23 +56,23 @@
   }
 
   @include mixins.e(title) {
-    line-height: var.$dialog-font-line-height;
     font-size: var.$dialog-title-font-size;
+    line-height: var.$dialog-font-line-height;
     color: var.$color-text-primary;
   }
 
   @include mixins.e(body) {
     padding: (var.$dialog-padding-primary + 10px) var.$dialog-padding-primary;
-    color: var.$color-text-regular;
     font-size: var.$dialog-content-font-size;
+    color: var.$color-text-regular;
     word-break: break-all;
   }
 
   @include mixins.e(footer) {
+    box-sizing: border-box;
     padding: var.$dialog-padding-primary;
     padding-top: 10px;
     text-align: right;
-    box-sizing: border-box;
   }
 
   // 内容居中布局
@@ -83,8 +80,8 @@
     text-align: center;
 
     @include mixins.e(body) {
-      text-align: initial;
       padding: 25px (var.$dialog-padding-primary + 5px) 30px;
+      text-align: initial;
     }
 
     @include mixins.e(footer) {
@@ -103,22 +100,24 @@
 
 @keyframes dialog-fade-in {
   0% {
-    transform: translate3d(0, -20px, 0);
     opacity: 0;
+    transform: translate3d(0, -20px, 0);
   }
+
   100% {
-    transform: translate3d(0, 0, 0);
     opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes dialog-fade-out {
   0% {
-    transform: translate3d(0, 0, 0);
     opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
+
   100% {
-    transform: translate3d(0, -20px, 0);
     opacity: 0;
+    transform: translate3d(0, -20px, 0);
   }
 }

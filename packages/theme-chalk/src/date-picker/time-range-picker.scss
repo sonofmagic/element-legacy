@@ -7,26 +7,26 @@
 
   @include mixins.e(content) {
     position: relative;
-    text-align: center;
     padding: 10px;
+    text-align: center;
   }
 
   @include mixins.e(cell) {
     box-sizing: border-box;
-    margin: 0;
-    padding: 4px 7px 7px;
-    width: 50%;
     display: inline-block;
+    width: 50%;
+    padding: 4px 7px 7px;
+    margin: 0;
   }
 
   @include mixins.e(header) {
     margin-bottom: 5px;
-    text-align: center;
     font-size: 14px;
+    text-align: center;
   }
 
   @include mixins.e(body) {
-    border-radius: 2px;
     border: 1px solid var.$datepicker-border-color;
+    border-radius: 2px;
   }
 }

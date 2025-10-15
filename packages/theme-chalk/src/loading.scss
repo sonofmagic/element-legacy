@@ -13,13 +13,10 @@
 
 @include mixins.b(loading-mask) {
   position: absolute;
+  inset: 0;
   z-index: 2000;
-  background-color: rgba(255, 255, 255, 0.9);
   margin: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  background-color: rgb(255 255 255 / 90%);
   transition: opacity 0.3s;
 
   @include mixins.when(fullscreen) {
@@ -29,39 +26,39 @@
       margin-top: #{calc(-1 * var.$loading-fullscreen-spinner-size / 2)};
 
       .circular {
-        height: var.$loading-fullscreen-spinner-size;
         width: var.$loading-fullscreen-spinner-size;
+        height: var.$loading-fullscreen-spinner-size;
       }
     }
   }
 }
 
 @include mixins.b(loading-spinner) {
-  top: 50%;
-  margin-top: #{calc(-1 * var.$loading-spinner-size / 2)};
-  width: 100%;
-  text-align: center;
   position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: #{calc(-1 * var.$loading-spinner-size / 2)};
+  text-align: center;
 
   .el-loading-text {
-    color: var.$color-primary;
     margin: 3px 0;
     font-size: 14px;
+    color: var.$color-primary;
   }
 
   .circular {
-    height: var.$loading-spinner-size;
     width: var.$loading-spinner-size;
+    height: var.$loading-spinner-size;
     animation: loading-rotate 2s linear infinite;
   }
 
   .path {
-    animation: loading-dash 1.5s ease-in-out infinite;
+    stroke: var.$color-primary;
+    stroke-width: 2;
+    stroke-linecap: round;
     stroke-dasharray: 90, 150;
     stroke-dashoffset: 0;
-    stroke-width: 2;
-    stroke: var.$color-primary;
-    stroke-linecap: round;
+    animation: loading-dash 1.5s ease-in-out infinite;
   }
 
   i {
@@ -85,10 +82,12 @@
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
   }
+
   50% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -40px;
   }
+
   100% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -120px;

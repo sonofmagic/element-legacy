@@ -4,31 +4,35 @@
 @include mixins.b(statistic) {
   $statistic-justify: center;
   $statistic-align: center;
-  width: 100%;
+
   box-sizing: border-box;
-  margin: 0;
+  width: 100%;
   padding: 0;
-  color: var.$color-black;
-  font-variant: tabular-nums;
-  list-style: none;
+  margin: 0;
   font-feature-settings: 'tnum';
+  font-variant: tabular-nums;
+  color: var.$color-black;
   text-align: center;
+  list-style: none;
+
   .head {
     margin-bottom: 4px;
-    color: var.$color-text-regular;
     font-size: var.$font-size-small;
+    color: var.$color-text-regular;
   }
 
   .con {
-    font-family: Sans-serif;
     display: flex;
-    justify-content: $statistic-justify;
     align-items: $statistic-align;
+    justify-content: $statistic-justify;
+    font-family: sans-serif;
     color: var.$color-text-primary;
+
     .number {
-      font-size: var.$font-size-extra-large;
       padding: 0 4px;
+      font-size: var.$font-size-extra-large;
     }
+
     span {
       display: inline-block;
       margin: 0;

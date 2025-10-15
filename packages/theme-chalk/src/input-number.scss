@@ -13,24 +13,24 @@
     display: block;
 
     &__inner {
-      -webkit-appearance: none;
-      padding-left: #{var.$input-height + 10};
       padding-right: #{var.$input-height + 10};
+      padding-left: #{var.$input-height + 10};
       text-align: center;
+      appearance: none;
     }
   }
 
   @include mixins.e((increase, decrease)) {
     position: absolute;
-    z-index: 1;
     top: 1px;
+    z-index: 1;
     width: var.$input-height;
     height: auto;
-    text-align: center;
-    background: var.$background-color-base;
-    color: var.$color-text-regular;
-    cursor: pointer;
     font-size: 13px;
+    color: var.$color-text-regular;
+    text-align: center;
+    cursor: pointer;
+    background: var.$background-color-base;
 
     &:hover {
       color: var.$color-primary;
@@ -48,20 +48,20 @@
 
   @include mixins.e(increase) {
     right: 1px;
-    border-radius: 0 var.$border-radius-base var.$border-radius-base 0;
     border-left: var.$border-base;
+    border-radius: 0 var.$border-radius-base var.$border-radius-base 0;
   }
 
   @include mixins.e(decrease) {
     left: 1px;
-    border-radius: var.$border-radius-base 0 0 var.$border-radius-base;
     border-right: var.$border-base;
+    border-radius: var.$border-radius-base 0 0 var.$border-radius-base;
   }
 
   @include mixins.when(disabled) {
     @include mixins.e((increase, decrease)) {
-      border-color: var.$disabled-border-base;
       color: var.$disabled-border-base;
+      border-color: var.$disabled-border-base;
 
       &:hover {
         color: var.$disabled-border-base;
@@ -80,8 +80,8 @@
     }
 
     .el-input__inner {
-      padding-left: #{var.$input-medium-height + 7px};
       padding-right: #{var.$input-medium-height + 7px};
+      padding-left: #{var.$input-medium-height + 7px};
     }
   }
 
@@ -99,8 +99,8 @@
     }
 
     .el-input__inner {
-      padding-left: #{var.$input-small-height + 7};
       padding-right: #{var.$input-small-height + 7};
+      padding-left: #{var.$input-small-height + 7};
     }
   }
 
@@ -118,22 +118,22 @@
     }
 
     .el-input__inner {
-      padding-left: #{var.$input-mini-height + 7};
       padding-right: #{var.$input-mini-height + 7};
+      padding-left: #{var.$input-mini-height + 7};
     }
   }
 
   @include mixins.when(without-controls) {
     .el-input__inner {
-      padding-left: 15px;
       padding-right: 15px;
+      padding-left: 15px;
     }
   }
 
   @include mixins.when(controls-right) {
     .el-input__inner {
-      padding-left: 15px;
       padding-right: #{var.$input-height + 10};
+      padding-left: 15px;
     }
 
     @include mixins.e((increase, decrease)) {
@@ -146,15 +146,12 @@
     }
 
     @include mixins.e(increase) {
-      border-radius: 0 var.$border-radius-base 0 0;
       border-bottom: var.$border-base;
+      border-radius: 0 var.$border-radius-base 0 0;
     }
 
     @include mixins.e(decrease) {
-      right: 1px;
-      bottom: 1px;
-      top: auto;
-      left: auto;
+      inset: auto 1px 1px auto;
       border-right: none;
       border-left: var.$border-base;
       border-radius: 0 0 var.$border-radius-base 0;

@@ -4,27 +4,28 @@
 @use 'select';
 
 @include mixins.b(pagination) {
-  white-space: nowrap;
   padding: 2px 5px;
-  color: var.$pagination-font-color;
   font-weight: bold;
+  color: var.$pagination-font-color;
+  white-space: nowrap;
+
   @include utils.utils-clearfix;
 
   span:not([class*='suffix']),
   button {
+    box-sizing: border-box;
     display: inline-block;
-    font-size: var.$pagination-font-size;
     min-width: var.$pagination-button-width;
     height: var.$pagination-button-height;
+    font-size: var.$pagination-font-size;
     line-height: var.$pagination-button-height;
     vertical-align: top;
-    box-sizing: border-box;
   }
 
   .el-input__inner {
-    text-align: center;
-    -moz-appearance: textfield;
     line-height: normal;
+    text-align: center;
+    appearance: textfield;
   }
 
   // pagesize 的下拉 icon
@@ -44,9 +45,9 @@
   }
 
   button {
-    border: none;
     padding: 0 6px;
     background: transparent;
+    border: none;
 
     &:focus {
       outline: none;
@@ -58,19 +59,19 @@
 
     &:disabled {
       color: var.$pagination-button-disabled-color;
-      background-color: var.$pagination-button-disabled-background-color;
       cursor: not-allowed;
+      background-color: var.$pagination-button-disabled-background-color;
     }
   }
 
   .btn-prev,
   .btn-next {
-    background: center center no-repeat;
-    background-size: 16px;
-    background-color: var.$pagination-background-color;
-    cursor: pointer;
     margin: 0;
     color: var.$pagination-button-color;
+    cursor: pointer;
+    background: center center no-repeat;
+    background-color: var.$pagination-background-color;
+    background-size: 16px;
 
     .el-icon {
       display: block;
@@ -99,11 +100,11 @@
     .el-pager li.btn-quicknext,
     .el-pager li.btn-quickprev,
     .el-pager li:last-child {
-      border-color: transparent;
+      min-width: 22px;
+      height: 22px;
       font-size: 12px;
       line-height: 22px;
-      height: 22px;
-      min-width: 22px;
+      border-color: transparent;
     }
 
     .arrow.disabled {
@@ -123,6 +124,7 @@
 
     @include mixins.e(editor) {
       height: 22px;
+
       &.el-input .el-input__inner {
         height: 22px;
       }
@@ -135,8 +137,8 @@
     color: var.$color-text-regular;
 
     .el-input .el-input__inner {
-      font-size: var.$pagination-font-size;
       padding-left: 8px;
+      font-size: var.$pagination-font-size;
 
       &:hover {
         border-color: var.$pagination-hover-color;
@@ -165,13 +167,12 @@
   }
 
   @include mixins.e(editor) {
-    line-height: 18px;
-    padding: 0 2px;
-    height: var.$pagination-button-height;
-
-    text-align: center;
-    margin: 0 2px;
     box-sizing: border-box;
+    height: var.$pagination-button-height;
+    padding: 0 2px;
+    margin: 0 2px;
+    line-height: 18px;
+    text-align: center;
     border-radius: var.$pagination-border-radius;
 
     &.el-input {
@@ -184,8 +185,8 @@
 
     .el-input__inner::-webkit-inner-spin-button,
     .el-input__inner::-webkit-outer-spin-button {
-      -webkit-appearance: none;
       margin: 0;
+      appearance: none;
     }
   }
 
@@ -193,10 +194,10 @@
     .btn-prev,
     .btn-next,
     .el-pager li {
-      margin: 0 5px;
-      background-color: var.$color-info-lighter;
-      color: var.$color-text-regular;
       min-width: 30px;
+      margin: 0 5px;
+      color: var.$color-text-regular;
+      background-color: var.$color-info-lighter;
       border-radius: 2px;
 
       &.disabled {
@@ -219,8 +220,8 @@
       }
 
       &.active {
-        background-color: var.$color-primary;
         color: var.$color-white;
+        background-color: var.$color-primary;
       }
     }
 
@@ -228,39 +229,39 @@
       .btn-prev,
       .btn-next,
       .el-pager li {
-        margin: 0 3px;
         min-width: 22px;
+        margin: 0 3px;
       }
     }
   }
 }
 
 @include mixins.b(pager) {
-  user-select: none;
-  list-style: none;
   display: inline-block;
-  vertical-align: top;
-  font-size: 0;
   padding: 0;
   margin: 0;
+  font-size: 0;
+  vertical-align: top;
+  user-select: none;
+  list-style: none;
 
   .more::before {
     line-height: 30px;
   }
 
   li {
-    padding: 0 4px;
-    background: var.$pagination-background-color;
-    vertical-align: top;
+    box-sizing: border-box;
     display: inline-block;
-    font-size: var.$pagination-font-size;
     min-width: var.$pagination-button-width;
     height: var.$pagination-button-height;
-    line-height: var.$pagination-button-height;
-    cursor: pointer;
-    box-sizing: border-box;
-    text-align: center;
+    padding: 0 4px;
     margin: 0;
+    font-size: var.$pagination-font-size;
+    line-height: var.$pagination-button-height;
+    vertical-align: top;
+    text-align: center;
+    cursor: pointer;
+    background: var.$pagination-background-color;
 
     &.btn-quicknext,
     &.btn-quickprev {

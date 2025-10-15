@@ -2,11 +2,11 @@
 @use 'common/var';
 
 @include mixins.b(card) {
-  border-radius: var.$card-border-radius;
-  border: 1px solid var.$card-border-color;
-  background-color: var.$color-white;
   overflow: hidden;
   color: var.$color-text-primary;
+  background-color: var.$color-white;
+  border: 1px solid var.$card-border-color;
+  border-radius: var.$card-border-radius;
   transition: 0.3s;
 
   @include mixins.when(always-shadow) {
@@ -21,9 +21,9 @@
   }
 
   @include mixins.e(header) {
+    box-sizing: border-box;
     padding: #{var.$card-padding - 2 var.$card-padding};
     border-bottom: 1px solid var.$card-border-color;
-    box-sizing: border-box;
   }
 
   @include mixins.e(body) {

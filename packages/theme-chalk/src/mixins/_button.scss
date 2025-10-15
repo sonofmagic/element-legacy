@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use '../common/var';
+
 @mixin button-plain($color) {
   color: $color;
   background: color.mix(var.$color-white, $color, 90%);
@@ -7,16 +8,16 @@
 
   &:hover,
   &:focus {
+    color: var.$color-white;
     background: $color;
     border-color: $color;
-    color: var.$color-white;
   }
 
   &:active {
-    background: color.mix(var.$color-black, $color, var.$button-active-shade-percent);
-    border-color: color.mix(var.$color-black, $color, var.$button-active-shade-percent);
     color: var.$color-white;
     outline: none;
+    background: color.mix(var.$color-black, $color, var.$button-active-shade-percent);
+    border-color: color.mix(var.$color-black, $color, var.$button-active-shade-percent);
   }
 
   &.is-disabled {
@@ -38,22 +39,22 @@
 
   &:hover,
   &:focus {
+    color: $color;
     background: color.mix(var.$color-white, $background-color, var.$button-hover-tint-percent);
     border-color: color.mix(var.$color-white, $border-color, var.$button-hover-tint-percent);
-    color: $color;
   }
 
   &:active {
-    background: color.mix(var.$color-black, $background-color, var.$button-active-shade-percent);
-    border-color: color.mix(var.$color-black, $border-color, var.$button-active-shade-percent);
     color: $color;
     outline: none;
+    background: color.mix(var.$color-black, $background-color, var.$button-active-shade-percent);
+    border-color: color.mix(var.$color-black, $border-color, var.$button-active-shade-percent);
   }
 
   &.is-active {
+    color: $color;
     background: color.mix(var.$color-black, $background-color, var.$button-active-shade-percent);
     border-color: color.mix(var.$color-black, $border-color, var.$button-active-shade-percent);
-    color: $color;
   }
 
   &.is-disabled {
@@ -76,6 +77,7 @@
   padding: $padding-vertical $padding-horizontal;
   font-size: $font-size;
   border-radius: $border-radius;
+
   &.is-round {
     padding: $padding-vertical $padding-horizontal;
   }

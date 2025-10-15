@@ -8,36 +8,37 @@
   text-align: center;
   cursor: pointer;
   outline: none;
+
   @include mixins.e(input) {
     display: none;
   }
 
   @include mixins.e(tip) {
+    margin-top: 7px;
     font-size: 12px;
     color: var.$color-text-regular;
-    margin-top: 7px;
   }
 
   iframe {
     position: absolute;
-    z-index: -1;
     top: 0;
     left: 0;
+    z-index: -1;
     opacity: 0;
     filter: alpha(opacity=0);
   }
 
   /* 照片墙模式 */
   @include mixins.m(picture-card) {
-    background-color: #fbfdff;
-    border: 1px dashed #c0ccda;
-    border-radius: 6px;
     box-sizing: border-box;
     width: 148px;
     height: 148px;
-    cursor: pointer;
     line-height: 146px;
     vertical-align: top;
+    cursor: pointer;
+    background-color: #fbfdff;
+    border: 1px dashed #c0ccda;
+    border-radius: 6px;
 
     i {
       font-size: 28px;
@@ -45,13 +46,14 @@
     }
 
     &:hover {
-      border-color: var.$color-primary;
       color: var.$color-primary;
+      border-color: var.$color-primary;
     }
   }
+
   &:focus {
-    border-color: var.$color-primary;
     color: var.$color-primary;
+    border-color: var.$color-primary;
 
     .el-upload-dragger {
       border-color: var.$color-primary;
@@ -60,22 +62,22 @@
 }
 
 @include mixins.b(upload-dragger) {
-  background-color: #fff;
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
+  position: relative;
   box-sizing: border-box;
   width: 360px;
   height: 180px;
+  overflow: hidden;
   text-align: center;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  background-color: #fff;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
 
   .el-icon-upload {
-    font-size: 67px;
-    color: var.$color-text-placeholder;
     margin: 40px 0 16px;
+    font-size: 67px;
     line-height: 50px;
+    color: var.$color-text-placeholder;
   }
 
   + .el-upload__tip {
@@ -83,19 +85,19 @@
   }
 
   ~ .el-upload__files {
-    border-top: var.$border-base;
-    margin-top: 7px;
     padding-top: 5px;
+    margin-top: 7px;
+    border-top: var.$border-base;
   }
 
   .el-upload__text {
-    color: var.$color-text-regular;
     font-size: 14px;
+    color: var.$color-text-regular;
     text-align: center;
 
     em {
-      color: var.$color-primary;
       font-style: normal;
+      color: var.$color-primary;
     }
   }
 
@@ -104,26 +106,26 @@
   }
 
   @include mixins.when(dragover) {
-    background-color: rgba(32, 159, 255, 0.06);
+    background-color: rgb(32 159 255 / 6%);
     border: 2px dashed var.$color-primary;
   }
 }
 
 @include mixins.b(upload-list) {
-  margin: 0;
   padding: 0;
+  margin: 0;
   list-style: none;
 
   @include mixins.e(item) {
-    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-    font-size: 14px;
-    color: var.$color-text-regular;
-    line-height: 1.8;
-    margin-top: 5px;
     position: relative;
     box-sizing: border-box;
-    border-radius: 4px;
     width: 100%;
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var.$color-text-regular;
+    border-radius: 4px;
+    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 
     .el-progress {
       position: absolute;
@@ -133,13 +135,13 @@
 
     .el-progress__text {
       position: absolute;
-      right: 0;
       top: -13px;
+      right: 0;
     }
 
     .el-progress-bar {
-      margin-right: 0;
       padding-right: 0;
+      margin-right: 0;
     }
 
     &:first-child {
@@ -151,14 +153,15 @@
     }
 
     .el-icon-close {
-      display: none;
       position: absolute;
       top: 5px;
       right: 5px;
+      display: none;
+      color: var.$color-text-regular;
       cursor: pointer;
       opacity: 0.75;
-      color: var.$color-text-regular;
-      //transform: scale(.7);
+
+      // transform: scale(.7);
 
       &:hover {
         opacity: 1;
@@ -166,14 +169,14 @@
     }
 
     & .el-icon-close-tip {
-      display: none;
       position: absolute;
       top: 5px;
       right: 5px;
+      display: none;
       font-size: 12px;
+      color: var.$color-primary;
       cursor: pointer;
       opacity: 1;
-      color: var.$color-primary;
     }
 
     &:hover {
@@ -210,6 +213,7 @@
       &:active {
         /* click时 */
         outline-width: 0;
+
         .el-icon-close-tip {
           display: none;
         }
@@ -231,38 +235,38 @@
   }
 
   @include mixins.e(item-name) {
-    color: var.$color-text-regular;
     display: block;
+    padding-left: 4px;
     margin-right: 40px;
     overflow: hidden;
-    padding-left: 4px;
     text-overflow: ellipsis;
-    transition: color 0.3s;
+    color: var.$color-text-regular;
     white-space: nowrap;
+    transition: color 0.3s;
 
     [class^='el-icon'] {
       height: 100%;
       margin-right: 7px;
-      color: var.$color-text-secondary;
       line-height: inherit;
+      color: var.$color-text-secondary;
     }
   }
 
   @include mixins.e(item-status-label) {
     position: absolute;
-    right: 5px;
     top: 0;
-    line-height: inherit;
+    right: 5px;
     display: none;
+    line-height: inherit;
   }
 
   @include mixins.e(item-delete) {
     position: absolute;
-    right: 10px;
     top: 0;
+    right: 10px;
+    display: none;
     font-size: 12px;
     color: var.$color-text-regular;
-    display: none;
 
     &:hover {
       color: var.$color-primary;
@@ -270,20 +274,20 @@
   }
 
   @include mixins.m(picture-card) {
-    margin: 0;
     display: inline;
+    margin: 0;
     vertical-align: top;
 
     .el-upload-list__item {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 148px;
+      height: 148px;
+      margin: 0 8px 8px 0;
       overflow: hidden;
       background-color: #fff;
       border: 1px solid #c0ccda;
       border-radius: 6px;
-      box-sizing: border-box;
-      width: 148px;
-      height: 148px;
-      margin: 0 8px 8px 0;
-      display: inline-block;
 
       .el-icon-check,
       .el-icon-circle-check {
@@ -293,6 +297,7 @@
       .el-icon-close {
         display: none;
       }
+
       &:hover {
         .el-upload-list__item-status-label {
           display: none;
@@ -315,40 +320,41 @@
 
     .el-upload-list__item-status-label {
       position: absolute;
-      right: -15px;
       top: -6px;
+      right: -15px;
       width: 40px;
       height: 24px;
-      background: #13ce66;
       text-align: center;
+      background: #13ce66;
+      box-shadow: 0 0 1pc 1px rgb(0 0 0 / 20%);
       transform: rotate(45deg);
-      box-shadow: 0 0 1pc 1px rgba(0, 0, 0, 0.2);
 
       i {
-        font-size: 12px;
         margin-top: 11px;
+        font-size: 12px;
         transform: rotate(-45deg);
       }
     }
 
     .el-upload-list__item-actions {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      left: 0;
-      top: 0;
-      cursor: default;
-      text-align: center;
-      color: #fff;
-      opacity: 0;
       font-size: 20px;
-      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      text-align: center;
+      cursor: default;
+      background-color: rgb(0 0 0 / 50%);
+      opacity: 0;
       transition: opacity 0.3s;
+
       &::after {
         display: inline-block;
-        content: '';
         height: 100%;
         vertical-align: middle;
+        content: '';
       }
 
       span {
@@ -368,6 +374,7 @@
 
       &:hover {
         opacity: 1;
+
         span {
           display: inline-block;
         }
@@ -376,10 +383,10 @@
 
     .el-progress {
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       bottom: auto;
+      left: 50%;
       width: 126px;
+      transform: translate(-50%, -50%);
 
       .el-progress__text {
         top: 50%;
@@ -389,15 +396,15 @@
 
   @include mixins.m(picture) {
     .el-upload-list__item {
-      overflow: hidden;
       z-index: 0;
+      box-sizing: border-box;
+      height: 92px;
+      padding: 10px 10px 10px 90px;
+      margin-top: 10px;
+      overflow: hidden;
       background-color: #fff;
       border: 1px solid #c0ccda;
       border-radius: 6px;
-      box-sizing: border-box;
-      margin-top: 10px;
-      padding: 10px 10px 10px 90px;
-      height: 92px;
 
       .el-icon-check,
       .el-icon-circle-check {
@@ -406,10 +413,10 @@
 
       &:hover {
         .el-upload-list__item-status-label {
-          background: transparent;
-          box-shadow: none;
           top: -2px;
           right: -12px;
+          background: transparent;
+          box-shadow: none;
         }
 
         .el-progress__text {
@@ -419,8 +426,9 @@
 
       &.is-success {
         .el-upload-list__item-name {
-          line-height: 70px;
           margin-top: 0;
+          line-height: 70px;
+
           i {
             display: none;
           }
@@ -429,14 +437,14 @@
     }
 
     .el-upload-list__item-thumbnail {
-      vertical-align: middle;
+      position: relative;
+      z-index: 1;
+      float: left;
       display: inline-block;
       width: 70px;
       height: 70px;
-      float: left;
-      position: relative;
-      z-index: 1;
       margin-left: -80px;
+      vertical-align: middle;
       background-color: var.$color-white;
     }
 
@@ -445,28 +453,28 @@
       margin-top: 20px;
 
       i {
+        position: absolute;
+        top: 10px;
+        left: 9px;
         font-size: 70px;
         line-height: 1;
-        position: absolute;
-        left: 9px;
-        top: 10px;
       }
     }
 
     .el-upload-list__item-status-label {
       position: absolute;
-      right: -17px;
       top: -7px;
+      right: -17px;
       width: 46px;
       height: 26px;
-      background: #13ce66;
       text-align: center;
-      transform: rotate(45deg);
+      background: #13ce66;
       box-shadow: 0 1px 1px #ccc;
+      transform: rotate(45deg);
 
       i {
-        font-size: 12px;
         margin-top: 12px;
+        font-size: 12px;
         transform: rotate(-45deg);
       }
     }
@@ -480,13 +488,14 @@
 
 @include mixins.b(upload-cover) {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 10;
   cursor: default;
+
   @include utils.utils-vertical-center;
 
   img {
@@ -497,28 +506,28 @@
 
   @include mixins.e(label) {
     position: absolute;
-    right: -15px;
     top: -6px;
+    right: -15px;
     width: 40px;
     height: 24px;
-    background: #13ce66;
     text-align: center;
+    background: #13ce66;
+    box-shadow: 0 0 1pc 1px rgb(0 0 0 / 20%);
     transform: rotate(45deg);
-    box-shadow: 0 0 1pc 1px rgba(0, 0, 0, 0.2);
 
     i {
-      font-size: 12px;
       margin-top: 11px;
-      transform: rotate(-45deg);
+      font-size: 12px;
       color: #fff;
+      transform: rotate(-45deg);
     }
   }
 
   @include mixins.e(progress) {
-    display: inline-block;
-    vertical-align: middle;
     position: static;
+    display: inline-block;
     width: 243px;
+    vertical-align: middle;
 
     + .el-upload__inner {
       opacity: 0;
@@ -539,25 +548,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(#000, 0.72);
     text-align: center;
+    background-color: rgba(#000, 0.72);
 
-    .btn {
-      display: inline-block;
-      color: var.$color-white;
-      font-size: 14px;
-      cursor: pointer;
-      vertical-align: middle;
-      transition: var.$md-fade-transition;
-      margin-top: 60px;
+      .btn {
+        display: inline-block;
+        margin-top: 60px;
+        font-size: 14px;
+        vertical-align: middle;
+        color: var.$color-white;
+        cursor: pointer;
+        transition: var.$md-fade-transition;
 
-      i {
-        margin-top: 0;
-      }
-
-      span {
-        opacity: 0;
-        transition: opacity 0.15s linear;
+        span {
+          opacity: 0;
+          transition: opacity 0.15s linear;
       }
 
       &:not(:first-child) {
@@ -572,38 +577,38 @@
         }
       }
 
-      i {
-        color: var.$color-white;
-        display: block;
-        font-size: 24px;
-        line-height: inherit;
-        margin: 0 auto 5px;
+        i {
+          display: block;
+          margin: 0 auto 5px;
+          font-size: 24px;
+          line-height: inherit;
+          color: var.$color-white;
+        }
       }
-    }
   }
 
   @include mixins.e(title) {
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: var.$color-white;
-    height: 36px;
     width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: normal;
-    text-align: left;
+    height: 36px;
     padding: 0 10px;
     margin: 0;
-    line-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 14px;
+    font-weight: normal;
+    line-height: 36px;
     color: var.$color-text-primary;
+    text-align: left;
+    white-space: nowrap;
+    background-color: var.$color-white;
   }
 
   + .el-upload__inner {
-    opacity: 0;
     position: relative;
     z-index: 1;
+    opacity: 0;
   }
 }

@@ -2,16 +2,16 @@
 @use 'common/var';
 
 @include mixins.b(avatar) {
-  display: inline-block;
   box-sizing: border-box;
-  text-align: center;
-  overflow: hidden;
-  color: var.$avatar-font-color;
-  background: var.$avatar-background-color;
+  display: inline-block;
   width: var.$avatar-large-size;
   height: var.$avatar-large-size;
-  line-height: var.$avatar-large-size;
+  overflow: hidden;
   font-size: var.$avatar-text-font-size;
+  line-height: var.$avatar-large-size;
+  color: var.$avatar-font-color;
+  text-align: center;
+  background: var.$avatar-background-color;
 
   > img {
     display: block;

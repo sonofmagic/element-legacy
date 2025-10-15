@@ -2,10 +2,10 @@
 @use 'mixins/mixins';
 @use 'common/var';
 
-@mixin genTheme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight) {
+@mixin gen-theme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight) {
+  color: color.mix(var.$tag-primary-color, var.$color-white, $fontColorWeight);
   background-color: color.mix(var.$tag-primary-color, var.$color-white, $backgroundColorWeight);
   border-color: color.mix(var.$tag-primary-color, var.$color-white, $borderColorWeight);
-  color: color.mix(var.$tag-primary-color, var.$color-white, $fontColorWeight);
 
   @include mixins.when(hit) {
     border-color: var.$tag-primary-color;
@@ -13,6 +13,7 @@
 
   .el-tag__close {
     color: color.mix(var.$tag-primary-color, var.$color-white, $fontColorWeight);
+
     &:hover {
       color: var.$color-white;
       background-color: color.mix(var.$tag-primary-color, var.$color-white, $hoverColorWeight);
@@ -20,9 +21,9 @@
   }
 
   &.el-tag--info {
+    color: color.mix(var.$tag-info-color, var.$color-white, $fontColorWeight);
     background-color: color.mix(var.$tag-info-color, var.$color-white, $backgroundColorWeight);
     border-color: color.mix(var.$tag-info-color, var.$color-white, $borderColorWeight);
-    color: color.mix(var.$tag-info-color, var.$color-white, $fontColorWeight);
 
     @include mixins.when(hit) {
       border-color: var.$tag-info-color;
@@ -30,6 +31,7 @@
 
     .el-tag__close {
       color: color.mix(var.$tag-info-color, var.$color-white, $fontColorWeight);
+
       &:hover {
         color: var.$color-white;
         background-color: color.mix(var.$tag-info-color, var.$color-white, $hoverColorWeight);
@@ -38,9 +40,9 @@
   }
 
   &.el-tag--success {
+    color: color.mix(var.$tag-success-color, var.$color-white, $fontColorWeight);
     background-color: color.mix(var.$tag-success-color, var.$color-white, $backgroundColorWeight);
     border-color: color.mix(var.$tag-success-color, var.$color-white, $borderColorWeight);
-    color: color.mix(var.$tag-success-color, var.$color-white, $fontColorWeight);
 
     @include mixins.when(hit) {
       border-color: var.$tag-success-color;
@@ -48,6 +50,7 @@
 
     .el-tag__close {
       color: color.mix(var.$tag-success-color, var.$color-white, $fontColorWeight);
+
       &:hover {
         color: var.$color-white;
         background-color: color.mix(var.$tag-success-color, var.$color-white, $hoverColorWeight);
@@ -56,9 +59,9 @@
   }
 
   &.el-tag--warning {
+    color: color.mix(var.$tag-warning-color, var.$color-white, $fontColorWeight);
     background-color: color.mix(var.$tag-warning-color, var.$color-white, $backgroundColorWeight);
     border-color: color.mix(var.$tag-warning-color, var.$color-white, $borderColorWeight);
-    color: color.mix(var.$tag-warning-color, var.$color-white, $fontColorWeight);
 
     @include mixins.when(hit) {
       border-color: var.$tag-warning-color;
@@ -66,6 +69,7 @@
 
     .el-tag__close {
       color: color.mix(var.$tag-warning-color, var.$color-white, $fontColorWeight);
+
       &:hover {
         color: var.$color-white;
         background-color: color.mix(var.$tag-warning-color, var.$color-white, $hoverColorWeight);
@@ -74,9 +78,9 @@
   }
 
   &.el-tag--danger {
+    color: color.mix(var.$tag-danger-color, var.$color-white, $fontColorWeight);
     background-color: color.mix(var.$tag-danger-color, var.$color-white, $backgroundColorWeight);
     border-color: color.mix(var.$tag-danger-color, var.$color-white, $borderColorWeight);
-    color: color.mix(var.$tag-danger-color, var.$color-white, $fontColorWeight);
 
     @include mixins.when(hit) {
       border-color: var.$tag-danger-color;
@@ -84,6 +88,7 @@
 
     .el-tag__close {
       color: color.mix(var.$tag-danger-color, var.$color-white, $fontColorWeight);
+
       &:hover {
         color: var.$color-white;
         background-color: color.mix(var.$tag-danger-color, var.$color-white, $hoverColorWeight);
@@ -93,31 +98,32 @@
 }
 
 @include mixins.b(tag) {
-  @include genTheme(10%, 20%, 100%, 100%);
+  @include gen-theme(10%, 20%, 100%, 100%);
+
+  box-sizing: border-box;
   display: inline-block;
   height: 32px;
   padding: var.$tag-padding;
-  line-height: 30px;
   font-size: var.$tag-font-size;
+  line-height: 30px;
   color: var.$tag-primary-color;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: var.$tag-border-radius;
-  box-sizing: border-box;
   white-space: nowrap;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: var.$tag-border-radius;
 
   .el-icon-close {
-    border-radius: 50%;
-    text-align: center;
     position: relative;
-    cursor: pointer;
-    font-size: 12px;
-    height: 16px;
-    width: 16px;
-    line-height: 16px;
-    vertical-align: middle;
     top: -1px;
     right: -5px;
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
 
     &::before {
       display: block;
@@ -125,11 +131,11 @@
   }
 
   @include mixins.m(dark) {
-    @include genTheme(100%, 100%, 0%, 80%);
+    @include gen-theme(100%, 100%, 0%, 80%);
   }
 
   @include mixins.m(plain) {
-    @include genTheme(0%, 40%, 100%, 100%);
+    @include gen-theme(0%, 40%, 100%, 100%);
   }
 
   @include mixins.m(medium) {

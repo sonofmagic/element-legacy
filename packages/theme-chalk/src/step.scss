@@ -12,9 +12,9 @@
 
     // 只有未设置 space 的情况下才自适应宽度
     @include mixins.when(flex) {
-      flex-basis: auto !important;
-      flex-shrink: 0;
       flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto !important;
     }
 
     @include mixins.e((main, description)) {
@@ -55,20 +55,20 @@
   @include mixins.e(icon) {
     position: relative;
     z-index: 1;
+    box-sizing: border-box;
     display: inline-flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 24px;
     height: 24px;
     font-size: 14px;
-    box-sizing: border-box;
     background: var.$color-white;
     transition: 0.15s ease-out;
 
     @include mixins.when(text) {
-      border-radius: 50%;
       border: 2px solid;
       border-color: inherit;
+      border-radius: 50%;
     }
 
     @include mixins.when(icon) {
@@ -78,11 +78,11 @@
 
   @include mixins.e(icon-inner) {
     display: inline-block;
-    user-select: none;
-    text-align: center;
     font-weight: bold;
     line-height: 1;
     color: inherit;
+    text-align: center;
+    user-select: none;
 
     &[class*='el-icon']:not(.is-status) {
       font-size: 25px;
@@ -97,24 +97,24 @@
 
   @include mixins.e(line) {
     position: absolute;
-    border-color: inherit;
     background-color: var.$color-text-placeholder;
+    border-color: inherit;
   }
 
   @include mixins.e(line-inner) {
-    display: block;
-    border-width: 1px;
-    border-style: solid;
-    border-color: inherit;
-    transition: 0.15s ease-out;
     box-sizing: border-box;
+    display: block;
     width: 0;
     height: 0;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 1px;
+    transition: 0.15s ease-out;
   }
 
   @include mixins.e(main) {
-    white-space: normal;
     text-align: left;
+    white-space: normal;
   }
 
   @include mixins.e(title) {
@@ -147,8 +147,8 @@
     padding-right: 10%;
     margin-top: -5px;
     font-size: 12px;
-    line-height: 20px;
     font-weight: normal;
+    line-height: 20px;
 
     @include mixins.when(process) {
       color: var.$color-text-primary;
@@ -175,10 +175,10 @@
     display: inline-block;
 
     @include mixins.e(line) {
-      height: 2px;
       top: 11px;
-      left: 0;
       right: 0;
+      left: 0;
+      height: 2px;
     }
   }
 
@@ -191,20 +191,20 @@
     }
 
     @include mixins.e(main) {
-      padding-left: 10px;
       flex-grow: 1;
+      padding-left: 10px;
     }
 
     @include mixins.e(title) {
-      line-height: 24px;
       padding-bottom: 8px;
+      line-height: 24px;
     }
 
     @include mixins.e(line) {
-      width: 2px;
       top: 0;
       bottom: 0;
       left: 11px;
+      width: 2px;
     }
 
     @include mixins.e(icon) {
@@ -224,13 +224,13 @@
     }
 
     @include mixins.e(description) {
-      padding-left: 20%;
       padding-right: 20%;
+      padding-left: 20%;
     }
 
     @include mixins.e(line) {
-      left: 50%;
       right: -50%;
+      left: 50%;
     }
   }
 
@@ -240,15 +240,15 @@
 
     @include mixins.e(head) {
       width: auto;
-      font-size: 0;
       padding-right: 10px;
+      font-size: 0;
     }
 
     @include mixins.e(icon) {
-      background: transparent;
       width: 16px;
       height: 16px;
       font-size: 12px;
+      background: transparent;
     }
 
     @include mixins.e(icon-inner) {
@@ -264,8 +264,8 @@
     @include mixins.e(main) {
       position: relative;
       display: flex;
-      align-items: stretch;
       flex-grow: 1;
+      align-items: stretch;
     }
 
     @include mixins.e(title) {
@@ -281,18 +281,18 @@
     }
 
     @include mixins.e(arrow) {
-      flex-grow: 1;
       display: flex;
+      flex-grow: 1;
       align-items: center;
       justify-content: center;
 
       &::before,
       &::after {
-        content: '';
-        display: inline-block;
         position: absolute;
-        height: 15px;
+        display: inline-block;
         width: 1px;
+        height: 15px;
+        content: '';
         background: var.$color-text-placeholder;
       }
 

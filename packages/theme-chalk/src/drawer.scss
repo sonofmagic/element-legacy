@@ -5,6 +5,7 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -14,37 +15,37 @@
   @keyframes #{$direction}-drawer-in {
     0% {
       @if $direction == ltr {
-        transform: translate(-100%, 0px);
+        transform: translate(-100%, 0);
       }
 
       @if $direction == rtl {
-        transform: translate(100%, 0px);
+        transform: translate(100%, 0);
       }
 
       @if $direction == ttb {
-        transform: translate(0px, -100%);
+        transform: translate(0, -100%);
       }
 
       @if $direction == btt {
-        transform: translate(0px, 100%);
+        transform: translate(0, 100%);
       }
     }
 
     100% {
       @if $direction == ltr {
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
 
       @if $direction == rtl {
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
 
       @if $direction == ttb {
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
 
       @if $direction == btt {
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
     }
   }
@@ -52,37 +53,37 @@
   @keyframes #{$direction}-drawer-out {
     0% {
       @if $direction == ltr {
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
 
       @if $direction == rtl {
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
 
       @if $direction == ttb {
-        transform: translate(0px, 0px);
+        transform: translate(0, 0);
       }
 
       @if $direction == btt {
-        transform: translate(0px, 0);
+        transform: translate(0, 0);
       }
     }
 
     100% {
       @if $direction == ltr {
-        transform: translate(-100%, 0px);
+        transform: translate(-100%, 0);
       }
 
       @if $direction == rtl {
-        transform: translate(100%, 0px);
+        transform: translate(100%, 0);
       }
 
       @if $direction == ttb {
-        transform: translate(0px, -100%);
+        transform: translate(0, -100%);
       }
 
       @if $direction == btt {
-        transform: translate(0px, 100%);
+        transform: translate(0, 100%);
       }
     }
   }
@@ -110,15 +111,15 @@ $directions: rtl, ltr, ttb, btt;
 @include mixins.b(drawer) {
   position: absolute;
   box-sizing: border-box;
-  background-color: var.$dialog-background-color;
   display: flex;
   flex-direction: column;
-  box-shadow:
-    0 8px 10px -5px rgba(0, 0, 0, 0.2),
-    0 16px 24px 2px rgba(0, 0, 0, 0.14),
-    0 6px 30px 5px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   outline: 0;
+  background-color: var.$dialog-background-color;
+  box-shadow:
+    0 8px 10px -5px rgb(0 0 0 / 20%),
+    0 16px 24px 2px rgb(0 0 0 / 14%),
+    0 6px 30px 5px rgb(0 0 0 / 12%);
 
   @each $direction in $directions {
     @include animation-out($direction);
@@ -127,44 +128,43 @@ $directions: rtl, ltr, ttb, btt;
 
   &__wrapper {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
+    inset: 0;
     margin: 0;
+    overflow: hidden;
   }
 
   &__header {
-    align-items: center;
-    color: rgb(114, 118, 123);
     display: flex;
-    margin-bottom: 32px;
+    align-items: center;
     padding: var.$dialog-padding-primary;
     padding-bottom: 0;
+    margin-bottom: 32px;
+    color: rgb(114 118 123);
+
     & > :first-child {
       flex: 1;
     }
   }
 
   &__title {
-    margin: 0;
     flex: 1;
-    line-height: inherit;
+    margin: 0;
     font-size: 1rem;
+    line-height: inherit;
   }
 
   &__close-btn {
-    border: none;
-    cursor: pointer;
     font-size: var.$font-size-extra-large;
     color: inherit;
+    cursor: pointer;
     background-color: transparent;
+    border: none;
   }
 
   &__body {
     flex: 1;
     overflow: auto;
+
     & > * {
       box-sizing: border-box;
     }
@@ -172,16 +172,16 @@ $directions: rtl, ltr, ttb, btt;
 
   &.ltr,
   &.rtl {
-    height: 100%;
     top: 0;
     bottom: 0;
+    height: 100%;
   }
 
   &.ttb,
   &.btt {
-    width: 100%;
-    left: 0;
     right: 0;
+    left: 0;
+    width: 100%;
   }
 
   &.ltr {
@@ -203,12 +203,9 @@ $directions: rtl, ltr, ttb, btt;
 
 .el-drawer__container {
   position: relative;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  height: 100%;
+  inset: 0;
   width: 100%;
+  height: 100%;
 }
 
 .el-drawer-fade-enter-active {

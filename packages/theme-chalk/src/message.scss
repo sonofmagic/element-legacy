@@ -2,25 +2,25 @@
 @use 'common/var';
 
 @include mixins.b(message) {
-  min-width: var.$message-min-width;
-  box-sizing: border-box;
-  border-radius: var.$border-radius-base;
-  border-width: var.$border-width-base;
-  border-style: var.$border-style-base;
-  border-color: var.$border-color-lighter;
   position: fixed;
-  left: 50%;
   top: 20px;
-  transform: translateX(-50%);
+  left: 50%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-width: var.$message-min-width;
+  padding: var.$message-padding;
+  overflow: hidden;
   background-color: var.$message-background-color;
+  border-color: var.$border-color-lighter;
+  border-style: var.$border-style-base;
+  border-width: var.$border-width-base;
+  border-radius: var.$border-radius-base;
+  transform: translateX(-50%);
   transition:
     opacity 0.3s,
     transform 0.4s,
     top 0.4s;
-  overflow: hidden;
-  padding: var.$message-padding;
-  display: flex;
-  align-items: center;
 
   @include mixins.when(center) {
     justify-content: center;
@@ -77,6 +77,7 @@
     padding: 0;
     font-size: 14px;
     line-height: 1;
+
     &:focus {
       outline-width: 0;
     }
@@ -86,14 +87,15 @@
     position: absolute;
     top: 50%;
     right: 15px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: var.$message-close-icon-color;
     font-size: var.$message-close-size;
+    color: var.$message-close-icon-color;
+    cursor: pointer;
+    transform: translateY(-50%);
 
     &:focus {
       outline-width: 0;
     }
+
     &:hover {
       color: var.$message-close-hover-color;
     }

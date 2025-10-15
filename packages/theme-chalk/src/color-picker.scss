@@ -3,9 +3,9 @@
 
 @include mixins.b(color-predefine) {
   display: flex;
-  font-size: 12px;
-  margin-top: 8px;
   width: 280px;
+  margin-top: 8px;
+  font-size: 12px;
 
   @include mixins.e(colors) {
     display: flex;
@@ -14,11 +14,11 @@
   }
 
   @include mixins.e(color-selector) {
-    margin: 0 0 8px 8px;
     width: 20px;
     height: 20px;
-    border-radius: 4px;
+    margin: 0 0 8px 8px;
     cursor: pointer;
+    border-radius: 4px;
 
     &:nth-child(10n + 1) {
       margin-left: 0;
@@ -35,7 +35,7 @@
     }
 
     @include mixins.when(alpha) {
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==");
     }
   }
 }
@@ -45,28 +45,28 @@
   box-sizing: border-box;
   width: 280px;
   height: 12px;
-  background-color: #f00;
   padding: 0 2px;
+  background-color: #f00;
 
   @include mixins.e(bar) {
     position: relative;
-    background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
     height: 100%;
+    background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
   }
 
   @include mixins.e(thumb) {
     position: absolute;
-    cursor: pointer;
-    box-sizing: border-box;
-    left: 0;
     top: 0;
+    left: 0;
+    z-index: 1;
+    box-sizing: border-box;
     width: 4px;
     height: 100%;
-    border-radius: 1px;
+    cursor: pointer;
     background: #fff;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    border-radius: 1px;
+    box-shadow: 0 0 2px rgb(0 0 0 / 60%);
   }
 
   @include mixins.when(vertical) {
@@ -79,8 +79,8 @@
     }
 
     .el-color-hue-slider__thumb {
-      left: 0;
       top: 0;
+      left: 0;
       width: 100%;
       height: 4px;
     }
@@ -94,32 +94,29 @@
 
   @include mixins.e(('white', 'black')) {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
   }
 
   @include mixins.e('white') {
-    background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+    background: linear-gradient(to right, #fff, rgb(255 255 255 / 0%));
   }
 
   @include mixins.e('black') {
-    background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, #000, rgb(0 0 0 / 0%));
   }
 
   @include mixins.e(cursor) {
     position: absolute;
 
     > div {
-      cursor: head;
       width: 4px;
       height: 4px;
+      cursor: head;
+      border-radius: 50%;
       box-shadow:
         0 0 0 1.5px #fff,
-        inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
-        0 0 1px 2px rgba(0, 0, 0, 0.4);
-      border-radius: 50%;
+        inset 0 0 1px 1px rgb(0 0 0 / 30%),
+        0 0 1px 2px rgb(0 0 0 / 40%);
       transform: translate(-2px, -2px);
     }
   }
@@ -130,27 +127,27 @@
   box-sizing: border-box;
   width: 280px;
   height: 12px;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==");
 
   @include mixins.e(bar) {
     position: relative;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
     height: 100%;
+    background: linear-gradient(to right, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 100%) 100%);
   }
 
   @include mixins.e(thumb) {
     position: absolute;
-    cursor: pointer;
-    box-sizing: border-box;
-    left: 0;
     top: 0;
+    left: 0;
+    z-index: 1;
+    box-sizing: border-box;
     width: 4px;
     height: 100%;
-    border-radius: 1px;
+    cursor: pointer;
     background: #fff;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    border-radius: 1px;
+    box-shadow: 0 0 2px rgb(0 0 0 / 60%);
   }
 
   @include mixins.when(vertical) {
@@ -158,12 +155,12 @@
     height: 180px;
 
     .el-color-alpha-slider__bar {
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+      background: linear-gradient(to bottom, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 100%) 100%);
     }
 
     .el-color-alpha-slider__thumb {
-      left: 0;
       top: 0;
+      left: 0;
       width: 100%;
       height: 4px;
     }
@@ -177,9 +174,9 @@
     margin-bottom: 6px;
 
     &::after {
-      content: '';
-      display: table;
       clear: both;
+      display: table;
+      content: '';
     }
   }
 
@@ -190,27 +187,28 @@
 
   @include mixins.e(value) {
     float: left;
-    line-height: 26px;
-    font-size: 12px;
-    color: var.$color-black;
     width: 160px;
+    font-size: 12px;
+    line-height: 26px;
+    color: var.$color-black;
   }
 
   @include mixins.e(btn) {
-    border: 1px solid #dcdcdc;
-    color: #333;
-    line-height: 24px;
-    border-radius: 2px;
     padding: 0 20px;
-    cursor: pointer;
-    background-color: transparent;
-    outline: none;
     font-size: 12px;
+    line-height: 24px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #dcdcdc;
+    border-radius: 2px;
 
     &[disabled] {
-      color: #cccccc;
+      color: #ccc;
       cursor: not-allowed;
     }
+
     &:hover {
       color: var.$color-primary;
       border-color: var.$color-primary;
@@ -218,11 +216,12 @@
   }
 
   @include mixins.e(link-btn) {
-    cursor: pointer;
-    color: var.$color-primary;
-    text-decoration: none;
     padding: 15px;
     font-size: 12px;
+    color: var.$color-primary;
+    text-decoration: none;
+    cursor: pointer;
+
     &:hover {
       color: tint(var.$color-primary, var.$button-hover-tint-percent);
     }
@@ -230,10 +229,10 @@
 }
 
 @include mixins.b(color-picker) {
-  display: inline-block;
   position: relative;
-  line-height: normal;
+  display: inline-block;
   height: 40px;
+  line-height: normal;
 
   @include mixins.when(disabled) {
     .el-color-picker__trigger {
@@ -245,13 +244,13 @@
     height: 36px;
 
     .el-color-picker__trigger {
-      height: 36px;
       width: 36px;
+      height: 36px;
     }
 
     .el-color-picker__mask {
-      height: 34px;
       width: 34px;
+      height: 34px;
     }
   }
 
@@ -259,13 +258,13 @@
     height: 32px;
 
     .el-color-picker__trigger {
-      height: 32px;
       width: 32px;
+      height: 32px;
     }
 
     .el-color-picker__mask {
-      height: 30px;
       width: 30px;
+      height: 30px;
     }
 
     .el-color-picker__icon,
@@ -278,13 +277,13 @@
     height: 28px;
 
     .el-color-picker__trigger {
-      height: 28px;
       width: 28px;
+      height: 28px;
     }
 
     .el-color-picker__mask {
-      height: 26px;
       width: 26px;
+      height: 26px;
     }
 
     .el-color-picker__icon,
@@ -294,79 +293,76 @@
   }
 
   @include mixins.e(mask) {
-    height: 38px;
-    width: 38px;
-    border-radius: 4px;
     position: absolute;
     top: 1px;
     left: 1px;
     z-index: 1;
+    width: 38px;
+    height: 38px;
     cursor: not-allowed;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgb(255 255 255 / 70%);
+    border-radius: 4px;
   }
 
   @include mixins.e(trigger) {
-    display: inline-block;
+    position: relative;
     box-sizing: border-box;
-    height: 40px;
+    display: inline-block;
     width: 40px;
+    height: 40px;
     padding: 4px;
+    font-size: 0;
+    cursor: pointer;
     border: 1px solid #e6e6e6;
     border-radius: 4px;
-    font-size: 0;
-    position: relative;
-    cursor: pointer;
   }
 
   @include mixins.e(color) {
     position: relative;
-    display: block;
     box-sizing: border-box;
-    border: 1px solid #999;
-    border-radius: var.$border-radius-small;
+    display: block;
     width: 100%;
     height: 100%;
     text-align: center;
+    border: 1px solid #999;
+    border-radius: var.$border-radius-small;
 
     @include mixins.when(alpha) {
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==");
     }
   }
 
   @include mixins.e(color-inner) {
     position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
   }
 
   @include mixins.e(empty) {
-    font-size: 12px;
-    color: #999;
     position: absolute;
     top: 50%;
     left: 50%;
+    font-size: 12px;
+    color: #999;
     transform: translate3d(-50%, -50%, 0);
   }
 
   @include mixins.e(icon) {
-    display: inline-block;
     position: absolute;
-    width: 100%;
     top: 50%;
     left: 50%;
-    transform: translate3d(-50%, -50%, 0);
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
     color: var.$color-white;
     text-align: center;
-    font-size: 12px;
+    transform: translate3d(-50%, -50%, 0);
   }
 
   @include mixins.e(panel) {
     position: absolute;
     z-index: 10;
-    padding: 6px;
     box-sizing: content-box;
+    padding: 6px;
     background-color: var.$color-white;
     border: 1px solid var.$border-color-lighter;
     border-radius: var.$border-radius-base;

@@ -1,6 +1,6 @@
 @use '../common/var';
 @use '../mixins/mixins';
-@use 'picker-panel.scss';
+@use 'picker-panel';
 
 @include mixins.b(date-picker) {
   width: 322px;
@@ -22,8 +22,8 @@
   }
 
   table {
-    table-layout: fixed;
     width: 100%;
+    table-layout: fixed;
   }
 
   @include mixins.e(editor-wrap) {
@@ -34,12 +34,12 @@
 
   @include mixins.e(time-header) {
     position: relative;
-    border-bottom: 1px solid var.$datepicker-inner-border-color;
-    font-size: 12px;
-    padding: 8px 5px 5px 5px;
+    box-sizing: border-box;
     display: table;
     width: 100%;
-    box-sizing: border-box;
+    padding: 8px 5px 5px;
+    font-size: 12px;
+    border-bottom: 1px solid var.$datepicker-inner-border-color;
   }
 
   @include mixins.e(header) {
@@ -47,8 +47,8 @@
     text-align: center;
 
     @include mixins.m(bordered) {
-      margin-bottom: 0;
       padding-bottom: 12px;
+      margin-bottom: 0;
       border-bottom: solid 1px var.$border-color-lighter;
 
       & + .el-picker-panel__content {
@@ -58,13 +58,13 @@
   }
 
   @include mixins.e(header-label) {
+    padding: 0 5px;
     font-size: 16px;
     font-weight: 500;
-    padding: 0 5px;
     line-height: 22px;
+    color: var.$color-text-regular;
     text-align: center;
     cursor: pointer;
-    color: var.$color-text-regular;
 
     &:hover {
       color: var.$datepicker-hover-font-color;
@@ -90,8 +90,8 @@
 
   @include mixins.e(time-label) {
     float: left;
-    cursor: pointer;
-    line-height: 30px;
     margin-left: 10px;
+    line-height: 30px;
+    cursor: pointer;
   }
 }

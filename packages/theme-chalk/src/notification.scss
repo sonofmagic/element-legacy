@@ -2,14 +2,15 @@
 @use 'common/var';
 
 @include mixins.b(notification) {
+  position: fixed;
+  box-sizing: border-box;
   display: flex;
   width: var.$notification-width;
   padding: var.$notification-padding;
-  border-radius: var.$notification-radius;
-  box-sizing: border-box;
-  border: 1px solid var.$notification-border-color;
-  position: fixed;
+  overflow: hidden;
   background-color: var.$color-white;
+  border: 1px solid var.$notification-border-color;
+  border-radius: var.$notification-radius;
   box-shadow: var.$notification-shadow;
   transition:
     opacity 0.3s,
@@ -18,7 +19,6 @@
     right 0.3s,
     top 0.4s,
     bottom 0.3s;
-  overflow: hidden;
 
   &.right {
     right: 16px;
@@ -29,21 +29,21 @@
   }
 
   @include mixins.e(group) {
-    margin-left: var.$notification-group-margin-left;
     margin-right: var.$notification-group-margin-right;
+    margin-left: var.$notification-group-margin-left;
   }
 
   @include mixins.e(title) {
-    font-weight: bold;
-    font-size: var.$notification-title-font-size;
-    color: var.$notification-title-color;
     margin: 0;
+    font-size: var.$notification-title-font-size;
+    font-weight: bold;
+    color: var.$notification-title-color;
   }
 
   @include mixins.e(content) {
+    margin: 6px 0 0;
     font-size: var.$notification-content-font-size;
     line-height: 21px;
-    margin: 6px 0 0 0;
     color: var.$notification-content-color;
     text-align: justify;
 
@@ -53,8 +53,8 @@
   }
 
   @include mixins.e(icon) {
-    height: var.$notification-icon-size;
     width: var.$notification-icon-size;
+    height: var.$notification-icon-size;
     font-size: var.$notification-icon-size;
   }
 
@@ -62,9 +62,9 @@
     position: absolute;
     top: 18px;
     right: 15px;
-    cursor: pointer;
-    color: var.$notification-close-color;
     font-size: var.$notification-close-font-size;
+    color: var.$notification-close-color;
+    cursor: pointer;
 
     &:hover {
       color: var.$notification-close-hover-color;

@@ -11,27 +11,27 @@ $typeMap: (
 );
 
 @include mixins.b(link) {
+  position: relative;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  vertical-align: middle;
-  position: relative;
-  text-decoration: none;
-  outline: none;
-  cursor: pointer;
   padding: 0;
   font-size: var.$link-font-size;
   font-weight: var.$link-font-weight;
+  vertical-align: middle;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
 
   @include mixins.when(underline) {
-    &:hover:after {
-      content: '';
+    &:hover::after {
       position: absolute;
-      left: 0;
       right: 0;
-      height: 0;
       bottom: 0;
+      left: 0;
+      height: 0;
+      content: '';
       border-bottom: 1px solid var.$link-default-active-color;
     }
   }
@@ -48,12 +48,15 @@ $typeMap: (
 
   &.el-link--default {
     color: var.$link-default-font-color;
+
     &:hover {
       color: var.$link-default-active-color;
     }
-    &:after {
+
+    &::after {
       border-color: var.$link-default-active-color;
     }
+
     @include mixins.when(disabled) {
       color: var.$link-disabled-font-color;
     }
@@ -62,17 +65,21 @@ $typeMap: (
   @each $type, $primaryColor in $typeMap {
     &.el-link--#{$type} {
       color: $primaryColor;
+
       &:hover {
         color: color.mix($primaryColor, var.$color-white, 80%);
       }
-      &:after {
+
+      &::after {
         border-color: $primaryColor;
       }
+
       @include mixins.when(disabled) {
         color: color.mix($primaryColor, var.$color-white, 50%);
       }
+
       @include mixins.when(underline) {
-        &:hover:after {
+        &:hover::after {
           border-color: $primaryColor;
         }
       }

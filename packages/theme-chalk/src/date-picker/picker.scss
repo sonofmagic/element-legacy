@@ -45,25 +45,25 @@
   }
 
   .el-range__icon {
-    font-size: 14px;
-    margin-left: -5px;
-    color: var.$color-text-placeholder;
     float: left;
+    margin-left: -5px;
+    font-size: 14px;
     line-height: 32px;
+    color: var.$color-text-placeholder;
   }
 
   .el-range-input {
-    appearance: none;
-    border: none;
-    outline: none;
     display: inline-block;
-    height: 100%;
-    margin: 0;
-    padding: 0;
     width: 39%;
-    text-align: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
     font-size: var.$font-size-base;
     color: var.$color-text-regular;
+    text-align: center;
+    appearance: none;
+    outline: none;
+    border: none;
 
     &::placeholder {
       color: var.$color-text-placeholder;
@@ -72,23 +72,23 @@
 
   .el-range-separator {
     display: inline-block;
+    width: 5%;
     height: 100%;
     padding: 0 5px;
     margin: 0;
-    text-align: center;
-    line-height: 32px;
     font-size: 14px;
-    width: 5%;
+    line-height: 32px;
     color: var.$color-text-primary;
+    text-align: center;
   }
 
   .el-range__close-icon {
-    font-size: 14px;
-    color: var.$color-text-placeholder;
-    width: 25px;
-    display: inline-block;
     float: right;
+    display: inline-block;
+    width: 25px;
+    font-size: 14px;
     line-height: 32px;
+    color: var.$color-text-placeholder;
   }
 }
 
@@ -117,8 +117,8 @@
     }
 
     .el-range-separator {
-      line-height: 28px;
       font-size: var.$input-medium-font-size;
+      line-height: 28px;
     }
 
     .el-range-input {
@@ -137,8 +137,8 @@
     }
 
     .el-range-separator {
-      line-height: 24px;
       font-size: var.$input-small-font-size;
+      line-height: 24px;
     }
 
     .el-range-input {
@@ -157,8 +157,8 @@
     }
 
     .el-range-separator {
-      line-height: 20px;
       font-size: var.$input-mini-font-size;
+      line-height: 20px;
     }
 
     .el-range-input {
@@ -172,10 +172,10 @@
   }
 
   @include mixins.when(disabled) {
-    background-color: var.$input-disabled-fill;
-    border-color: var.$input-disabled-border;
     color: var.$input-disabled-color;
     cursor: not-allowed;
+    background-color: var.$input-disabled-fill;
+    border-color: var.$input-disabled-border;
 
     &:hover,
     &:focus {
@@ -183,9 +183,10 @@
     }
 
     input {
-      background-color: var.$input-disabled-fill;
       color: var.$input-disabled-color;
       cursor: not-allowed;
+      background-color: var.$input-disabled-fill;
+
       &::placeholder {
         color: var.$input-disabled-placeholder-color;
       }

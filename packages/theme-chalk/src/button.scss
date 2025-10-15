@@ -6,22 +6,24 @@
 @use 'mixins/utils';
 
 @include mixins.b(button) {
+  box-sizing: border-box;
   display: inline-block;
+  margin: 0;
+  font-weight: var.$button-font-weight;
   line-height: 1;
+  color: var.$button-default-font-color;
+  text-align: center;
   white-space: nowrap;
+  appearance: none;
   cursor: pointer;
+  outline: none;
   background: var.$button-default-background-color;
   border: var.$border-base;
   border-color: var.$button-default-border-color;
-  color: var.$button-default-font-color;
-  -webkit-appearance: none;
-  text-align: center;
-  box-sizing: border-box;
-  outline: none;
-  margin: 0;
   transition: 0.1s;
-  font-weight: var.$button-font-weight;
+
   @include utils.utils-user-select(none);
+
   & + & {
     margin-left: 10px;
   }
@@ -36,14 +38,14 @@
   &:hover,
   &:focus {
     color: var.$color-primary;
-    border-color: var.$color-primary-light-7;
     background-color: var.$color-primary-light-9;
+    border-color: var.$color-primary-light-7;
   }
 
   &:active {
     color: color.mix(var.$color-black, var.$color-primary, var.$button-active-shade-percent);
-    border-color: color.mix(var.$color-black, var.$color-primary, var.$button-active-shade-percent);
     outline: none;
+    border-color: color.mix(var.$color-black, var.$color-primary, var.$button-active-shade-percent);
   }
 
   &::-moz-focus-inner {
@@ -59,16 +61,16 @@
   @include mixins.when(plain) {
     &:hover,
     &:focus {
+      color: var.$color-primary;
       background: var.$color-white;
       border-color: var.$color-primary;
-      color: var.$color-primary;
     }
 
     &:active {
-      background: var.$color-white;
-      border-color: color.mix(var.$color-black, var.$color-primary, var.$button-active-shade-percent);
       color: color.mix(var.$color-black, var.$color-primary, var.$button-active-shade-percent);
       outline: none;
+      background: var.$color-white;
+      border-color: color.mix(var.$color-black, var.$color-primary, var.$button-active-shade-percent);
     }
   }
 
@@ -83,8 +85,8 @@
     &:focus {
       color: var.$button-disabled-font-color;
       cursor: not-allowed;
-      background-image: none;
       background-color: var.$button-disabled-background-color;
+      background-image: none;
       border-color: var.$button-disabled-border-color;
     }
 
@@ -96,9 +98,9 @@
       &,
       &:hover,
       &:focus {
+        color: var.$button-disabled-font-color;
         background-color: var.$color-white;
         border-color: var.$button-disabled-border-color;
-        color: var.$button-disabled-font-color;
       }
     }
   }
@@ -107,26 +109,26 @@
     position: relative;
     pointer-events: none;
 
-    &:before {
+    &::before {
+      position: absolute;
+      inset: -1px;
       pointer-events: none;
       content: '';
-      position: absolute;
-      left: -1px;
-      top: -1px;
-      right: -1px;
-      bottom: -1px;
+      background-color: rgb(255 255 255 / 35%);
       border-radius: inherit;
-      background-color: rgba(255, 255, 255, 0.35);
     }
   }
+
   @include mixins.when(round) {
-    border-radius: 20px;
     padding: 12px 23px;
+    border-radius: 20px;
   }
+
   @include mixins.when(circle) {
-    border-radius: 50%;
     padding: var.$button-padding-vertical;
+    border-radius: 50%;
   }
+
   @include mixins.m(primary) {
     @include button.button-variant(
       var.$button-primary-font-color,
@@ -134,6 +136,7 @@
       var.$button-primary-border-color
     );
   }
+
   @include mixins.m(success) {
     @include button.button-variant(
       var.$button-success-font-color,
@@ -141,6 +144,7 @@
       var.$button-success-border-color
     );
   }
+
   @include mixins.m(warning) {
     @include button.button-variant(
       var.$button-warning-font-color,
@@ -148,6 +152,7 @@
       var.$button-warning-border-color
     );
   }
+
   @include mixins.m(danger) {
     @include button.button-variant(
       var.$button-danger-font-color,
@@ -155,6 +160,7 @@
       var.$button-danger-border-color
     );
   }
+
   @include mixins.m(info) {
     @include button.button-variant(
       var.$button-info-font-color,
@@ -162,6 +168,7 @@
       var.$button-info-border-color
     );
   }
+
   @include mixins.m(medium) {
     @include button.button-size(
       var.$button-medium-padding-vertical,
@@ -169,10 +176,12 @@
       var.$button-medium-font-size,
       var.$button-medium-border-radius
     );
+
     @include mixins.when(circle) {
       padding: var.$button-medium-padding-vertical;
     }
   }
+
   @include mixins.m(small) {
     @include button.button-size(
       var.$button-small-padding-vertical,
@@ -180,10 +189,12 @@
       var.$button-small-font-size,
       var.$button-small-border-radius
     );
+
     @include mixins.when(circle) {
       padding: var.$button-small-padding-vertical;
     }
   }
+
   @include mixins.m(mini) {
     @include button.button-size(
       var.$button-mini-padding-vertical,
@@ -191,27 +202,30 @@
       var.$button-mini-font-size,
       var.$button-mini-border-radius
     );
+
     @include mixins.when(circle) {
       padding: var.$button-mini-padding-vertical;
     }
   }
+
   @include mixins.m(text) {
-    border-color: transparent;
+    padding-right: 0;
+    padding-left: 0;
     color: var.$color-primary;
     background: transparent;
-    padding-left: 0;
-    padding-right: 0;
+    border-color: transparent;
 
     &:hover,
     &:focus {
       color: color.mix(var.$color-white, var.$color-primary, var.$button-hover-tint-percent);
-      border-color: transparent;
       background-color: transparent;
+      border-color: transparent;
     }
+
     &:active {
       color: color.mix(var.$color-black, var.$color-primary, var.$button-active-shade-percent);
-      border-color: transparent;
       background-color: transparent;
+      border-color: transparent;
     }
 
     &.is-disabled,
@@ -224,31 +238,34 @@
 
 @include mixins.b(button-group) {
   @include utils.utils-clearfix;
+
   display: inline-block;
   vertical-align: middle;
 
   & > .el-button {
-    float: left;
     position: relative;
+    float: left;
+
     & + .el-button {
       margin-left: 0;
     }
+
     &.is-disabled {
       z-index: 1;
     }
+
     &:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
+
     &:last-child {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
+
     &:first-child:last-child {
-      border-top-right-radius: var.$button-border-radius;
-      border-bottom-right-radius: var.$button-border-radius;
-      border-top-left-radius: var.$button-border-radius;
-      border-bottom-left-radius: var.$button-border-radius;
+      border-radius: var.$button-border-radius var.$button-border-radius var.$button-border-radius var.$button-border-radius;
 
       &.is-round {
         border-radius: 20px;
@@ -258,9 +275,11 @@
         border-radius: 50%;
       }
     }
-    &:not(:first-child):not(:last-child) {
+
+    &:not(:first-child, :last-child) {
       border-radius: 0;
     }
+
     &:not(:last-child) {
       margin-right: -1px;
     }
@@ -280,9 +299,9 @@
 
   & > .el-dropdown {
     & > .el-button {
+      border-left-color: rgba(var.$color-white, 0.5);
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
-      border-left-color: rgba(var.$color-white, 0.5);
     }
   }
 
@@ -291,12 +310,14 @@
       &:first-child {
         border-right-color: rgba(var.$color-white, 0.5);
       }
+
       &:last-child {
         border-left-color: rgba(var.$color-white, 0.5);
       }
-      &:not(:first-child):not(:last-child) {
-        border-left-color: rgba(var.$color-white, 0.5);
+
+      &:not(:first-child, :last-child) {
         border-right-color: rgba(var.$color-white, 0.5);
+        border-left-color: rgba(var.$color-white, 0.5);
       }
     }
   }

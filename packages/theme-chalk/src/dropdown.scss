@@ -5,34 +5,35 @@
 @use 'popper';
 
 @include mixins.b(dropdown) {
-  display: inline-block;
   position: relative;
-  color: var.$color-text-regular;
+  display: inline-block;
   font-size: var.$font-size-base;
+  color: var.$color-text-regular;
 
   .el-button-group {
     display: block;
+
     .el-button {
       float: none;
     }
   }
 
   & .el-dropdown__caret-button {
-    padding-left: 5px;
-    padding-right: 5px;
     position: relative;
+    padding-right: 5px;
+    padding-left: 5px;
     border-left: none;
 
     &::before {
       $gap: 5px;
 
-      content: '';
       position: absolute;
-      display: block;
-      width: 1px;
       top: $gap;
       bottom: $gap;
       left: 0;
+      display: block;
+      width: 1px;
+      content: '';
       background: color.mix(white, transparent, 50%);
     }
 
@@ -51,9 +52,10 @@
       padding-left: 0;
     }
   }
+
   @include mixins.e(icon) {
-    font-size: 12px;
     margin: 0 3px;
+    font-size: 12px;
   }
 
   .el-dropdown-selfdefine {
@@ -65,8 +67,8 @@
   }
 
   [disabled] {
-    cursor: not-allowed;
     color: var.$font-color-disabled-base;
+    cursor: not-allowed;
   }
 }
 
@@ -83,18 +85,19 @@
   box-shadow: var.$dropdown-menu-box-shadow;
 
   @include mixins.e(item) {
-    list-style: none;
-    line-height: 36px;
     padding: 0 20px;
     margin: 0;
     font-size: var.$font-size-base;
+    line-height: 36px;
     color: var.$color-text-regular;
     cursor: pointer;
     outline: none;
+    list-style: none;
+
     &:not(.is-disabled):hover,
     &:focus {
-      background-color: var.$dropdown-menuItem-hover-fill;
       color: var.$dropdown-menuItem-hover-color;
+      background-color: var.$dropdown-menuItem-hover-fill;
     }
 
     i {
@@ -108,19 +111,19 @@
       margin-top: $divided-offset;
       border-top: 1px solid var.$border-color-lighter;
 
-      &:before {
-        content: '';
-        height: $divided-offset;
+      &::before {
         display: block;
+        height: $divided-offset;
         margin: 0 -20px;
+        content: '';
         background-color: var.$color-white;
       }
     }
 
     @include mixins.when(disabled) {
-      cursor: default;
       color: var.$font-color-disabled-base;
       pointer-events: none;
+      cursor: default;
     }
   }
 
@@ -128,15 +131,16 @@
     padding: 6px 0;
 
     @include mixins.e(item) {
-      line-height: 30px;
       padding: 0 17px;
       font-size: 14px;
+      line-height: 30px;
 
       &.el-dropdown-menu__item--divided {
         $divided-offset: 6px;
+
         margin-top: $divided-offset;
 
-        &:before {
+        &::before {
           height: $divided-offset;
           margin: 0 -17px;
         }
@@ -148,15 +152,16 @@
     padding: 6px 0;
 
     @include mixins.e(item) {
-      line-height: 27px;
       padding: 0 15px;
       font-size: 13px;
+      line-height: 27px;
 
       &.el-dropdown-menu__item--divided {
         $divided-offset: 4px;
+
         margin-top: $divided-offset;
 
-        &:before {
+        &::before {
           height: $divided-offset;
           margin: 0 -15px;
         }
@@ -168,15 +173,16 @@
     padding: 3px 0;
 
     @include mixins.e(item) {
-      line-height: 24px;
       padding: 0 10px;
       font-size: 12px;
+      line-height: 24px;
 
       &.el-dropdown-menu__item--divided {
         $divided-offset: 3px;
+
         margin-top: $divided-offset;
 
-        &:before {
+        &::before {
           height: $divided-offset;
           margin: 0 -10px;
         }

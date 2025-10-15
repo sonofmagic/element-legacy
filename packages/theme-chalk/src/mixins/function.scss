@@ -7,11 +7,12 @@
 @function selectorToString($selector) {
   $selector: meta.inspect($selector);
   $selector: string.slice($selector, 2, -2);
+
   @return $selector;
 }
 
 @function containsModifier($selector) {
-  $selector: selectorToString($selector);
+  $selector: selectortostring($selector);
 
   @if string.index($selector, config.$modifier-separator) {
     @return true;
@@ -21,7 +22,7 @@
 }
 
 @function containWhenFlag($selector) {
-  $selector: selectorToString($selector);
+  $selector: selectortostring($selector);
 
   @if string.index($selector, '.' + config.$state-prefix) {
     @return true;
@@ -31,7 +32,7 @@
 }
 
 @function containPseudoClass($selector) {
-  $selector: selectorToString($selector);
+  $selector: selectortostring($selector);
 
   @if string.index($selector, ':') {
     @return true;

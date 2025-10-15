@@ -3,21 +3,21 @@
 
 @include mixins.b(badge) {
   position: relative;
-  vertical-align: middle;
   display: inline-block;
+  vertical-align: middle;
 
   @include mixins.e(content) {
-    background-color: var.$badge-background-color;
-    border-radius: var.$badge-radius;
-    color: var.$color-white;
     display: inline-block;
-    font-size: var.$badge-font-size;
     height: var.$badge-size;
-    line-height: var.$badge-size;
     padding: 0 var.$badge-padding;
+    font-size: var.$badge-font-size;
+    line-height: var.$badge-size;
+    color: var.$color-white;
     text-align: center;
     white-space: nowrap;
+    background-color: var.$badge-background-color;
     border: 1px solid var.$color-white;
+    border-radius: var.$badge-radius;
 
     @include mixins.when(fixed) {
       position: absolute;
@@ -31,10 +31,10 @@
     }
 
     @include mixins.when(dot) {
-      height: 8px;
-      width: 8px;
-      padding: 0;
       right: 0;
+      width: 8px;
+      height: 8px;
+      padding: 0;
       border-radius: 50%;
     }
 

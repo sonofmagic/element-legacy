@@ -6,42 +6,42 @@
 @include mixins.b(table-column) {
   @include mixins.m(selection) {
     .cell {
-      padding-left: 14px;
       padding-right: 14px;
+      padding-left: 14px;
     }
   }
 }
 
 @include mixins.b(table-filter) {
-  border: solid 1px var.$border-color-lighter;
-  border-radius: 2px;
-  background-color: var.$color-white;
-  box-shadow: var.$dropdown-menu-box-shadow;
   box-sizing: border-box;
   margin: 2px 0;
+  background-color: var.$color-white;
+  border: solid 1px var.$border-color-lighter;
+  border-radius: 2px;
+  box-shadow: var.$dropdown-menu-box-shadow;
 
   /** used for dropdown mode */
   @include mixins.e(list) {
+    min-width: 100px;
     padding: 5px 0;
     margin: 0;
     list-style: none;
-    min-width: 100px;
   }
 
   @include mixins.e(list-item) {
-    line-height: 36px;
     padding: 0 10px;
-    cursor: pointer;
     font-size: var.$font-size-base;
+    line-height: 36px;
+    cursor: pointer;
 
     &:hover {
-      background-color: var.$dropdown-menuItem-hover-fill;
       color: var.$dropdown-menuItem-hover-color;
+      background-color: var.$dropdown-menuItem-hover-fill;
     }
 
     @include mixins.when(active) {
-      background-color: var.$color-primary;
       color: var.$color-white;
+      background-color: var.$color-primary;
     }
   }
 
@@ -50,16 +50,16 @@
   }
 
   @include mixins.e(bottom) {
-    border-top: 1px solid var.$border-color-lighter;
     padding: 8px;
+    border-top: 1px solid var.$border-color-lighter;
 
     button {
-      background: transparent;
-      border: none;
+      padding: 0 3px;
+      font-size: var.$font-size-small;
       color: var.$color-text-regular;
       cursor: pointer;
-      font-size: var.$font-size-small;
-      padding: 0 3px;
+      background: transparent;
+      border: none;
 
       &:hover {
         color: var.$color-primary;

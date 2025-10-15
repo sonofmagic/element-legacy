@@ -1,5 +1,5 @@
 @use 'mixins/mixins';
-@use 'mixins/_button';
+@use 'mixins/button';
 @use 'common/var';
 
 @include mixins.b(radio-button) {
@@ -8,22 +8,22 @@
   outline: none;
 
   @include mixins.e(inner) {
+    position: relative;
+    box-sizing: border-box;
     display: inline-block;
+    margin: 0;
+    font-weight: var.$button-font-weight;
     line-height: 1;
-    white-space: nowrap;
     vertical-align: middle;
+    color: var.$button-default-font-color;
+    text-align: center;
+    white-space: nowrap;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
     background: var.$button-default-background-color;
     border: var.$border-base;
-    font-weight: var.$button-font-weight;
     border-left: 0;
-    color: var.$button-default-font-color;
-    -webkit-appearance: none;
-    text-align: center;
-    box-sizing: border-box;
-    outline: none;
-    margin: 0;
-    position: relative;
-    cursor: pointer;
     transition: var.$all-transition;
 
     @include button.button-size(var.$button-padding-vertical, var.$button-padding-horizontal, var.$button-font-size, 0);
@@ -50,10 +50,10 @@
   }
 
   @include mixins.e(orig-radio) {
-    opacity: 0;
-    outline: none;
     position: absolute;
     z-index: -1;
+    outline: none;
+    opacity: 0;
 
     &:checked {
       & + .el-radio-button__inner {
@@ -68,11 +68,12 @@
       & + .el-radio-button__inner {
         color: var.$button-disabled-font-color;
         cursor: not-allowed;
-        background-image: none;
         background-color: var.$button-disabled-background-color;
+        background-image: none;
         border-color: var.$button-disabled-border-color;
         box-shadow: none;
       }
+
       &:checked + .el-radio-button__inner {
         background-color: var.$radio-button-disabled-checked-fill;
       }
@@ -101,6 +102,7 @@
       );
     }
   }
+
   @include mixins.m(small) {
     & .el-radio-button__inner {
       @include button.button-size(
@@ -111,6 +113,7 @@
       );
     }
   }
+
   @include mixins.m(mini) {
     & .el-radio-button__inner {
       @include button.button-size(
@@ -122,8 +125,8 @@
     }
   }
 
-  &:focus:not(.is-focus):not(:active):not(.is-disabled) {
-    /*获得焦点时 样式提醒*/
+  &:focus:not(.is-focus, :active, .is-disabled) {
+    /* 获得焦点时 样式提醒 */
     box-shadow: 0 0 2px 2px var.$radio-button-checked-border-color;
   }
 }

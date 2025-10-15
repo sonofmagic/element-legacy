@@ -12,6 +12,7 @@
       display: inline-flex;
       align-items: baseline;
     }
+
     .el-descriptions-item__content {
       flex: 1;
     }
@@ -20,23 +21,24 @@
   @include mixins.e(label) {
     &.has-colon {
       &::after {
-        content: ':';
         position: relative;
         top: -0.5px;
+        content: ':';
       }
     }
+
     &.is-bordered-label {
       font-weight: bold;
       color: var.$color-text-secondary;
       background: var.$descriptions-item-bordered-label-background;
     }
+
     &:not(.is-bordered-label) {
       margin-right: 10px;
     }
   }
 
   @include mixins.e(content) {
-    word-break: break-word;
     overflow-wrap: break-word;
   }
 }

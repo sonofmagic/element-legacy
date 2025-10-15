@@ -6,8 +6,8 @@
 
   @include mixins.m(simple) {
     padding: 13px 8%;
-    border-radius: 4px;
     background: var.$background-color-base;
+    border-radius: 4px;
   }
 
   @include mixins.m(horizontal) {
@@ -15,7 +15,7 @@
   }
 
   @include mixins.m(vertical) {
-    height: 100%;
     flex-flow: column;
+    height: 100%;
   }
 }

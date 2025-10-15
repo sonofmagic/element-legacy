@@ -5,6 +5,7 @@
 @include mixins.b(breadcrumb) {
   font-size: 14px;
   line-height: 1;
+
   @include utils.utils-clearfix;
 
   @include mixins.e(separator) {
@@ -27,9 +28,9 @@
       &.is-link,
       & a {
         font-weight: bold;
+        color: var.$color-text-primary;
         text-decoration: none;
         transition: var.$color-transition-base;
-        color: var.$color-text-primary;
 
         &:hover {
           color: var.$color-primary;

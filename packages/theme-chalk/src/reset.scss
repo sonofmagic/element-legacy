@@ -4,8 +4,8 @@
 body {
   font-family:
     'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-  font-weight: 400;
   font-size: var.$font-size-base;
+  font-weight: 400;
   color: var.$color-black;
   -webkit-font-smoothing: antialiased;
 }
@@ -30,8 +30,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: var.$color-text-regular;
   font-weight: inherit;
+  color: var.$color-text-regular;
 
   &:first-child {
     margin-top: 0;
@@ -86,5 +86,5 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #eee;
 }

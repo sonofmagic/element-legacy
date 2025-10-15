@@ -4,20 +4,20 @@
 @use 'common/transition';
 
 @mixin menu-item {
-  height: 56px;
-  line-height: 56px;
-  font-size: var.$menu-item-font-size;
-  color: var.$menu-item-font-color;
-  padding: 0 20px;
-  list-style: none;
-  cursor: pointer;
   position: relative;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 0 20px;
+  font-size: var.$menu-item-font-size;
+  line-height: 56px;
+  color: var.$menu-item-font-color;
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
   transition:
     border-color 0.3s,
     background-color 0.3s,
     color 0.3s;
-  box-sizing: border-box;
-  white-space: nowrap;
 
   * {
     vertical-align: middle;
@@ -34,33 +34,36 @@
   }
 
   @include mixins.when(disabled) {
-    opacity: 0.25;
     cursor: not-allowed;
     background: none !important;
+    opacity: 0.25;
   }
 }
 
 @include mixins.b(menu) {
-  border-right: solid 1px #e6e6e6;
-  list-style: none;
   position: relative;
-  margin: 0;
   padding-left: 0;
+  margin: 0;
+  list-style: none;
   background-color: var.$menu-background-color;
+  border-right: solid 1px #e6e6e6;
+
   @include utils.utils-clearfix;
+
   &.el-menu--horizontal {
     border-bottom: solid 1px #e6e6e6;
   }
 
   @include mixins.m(horizontal) {
     border-right: none;
+
     & > .el-menu-item {
       float: left;
       height: 60px;
-      line-height: 60px;
       margin: 0;
-      border-bottom: 2px solid transparent;
+      line-height: 60px;
       color: var.$color-text-secondary;
+      border-bottom: 2px solid transparent;
 
       a,
       a:hover {
@@ -72,12 +75,14 @@
         background-color: #fff;
       }
     }
+
     & > .el-submenu {
       float: left;
 
       &:focus,
       &:hover {
         outline: none;
+
         .el-submenu__title {
           color: var.$color-text-primary;
         }
@@ -85,73 +90,81 @@
 
       &.is-active {
         .el-submenu__title {
-          border-bottom: 2px solid var.$color-primary;
           color: var.$color-text-primary;
+          border-bottom: 2px solid var.$color-primary;
         }
       }
 
       & .el-submenu__title {
         height: 60px;
         line-height: 60px;
-        border-bottom: 2px solid transparent;
         color: var.$color-text-secondary;
+        border-bottom: 2px solid transparent;
 
         &:hover {
           background-color: #fff;
         }
       }
+
       & .el-submenu__icon-arrow {
         position: static;
-        vertical-align: middle;
-        margin-left: 8px;
         margin-top: -3px;
+        margin-left: 8px;
+        vertical-align: middle;
       }
     }
+
     & .el-menu {
       & .el-menu-item,
       & .el-submenu__title {
-        background-color: var.$color-white;
         float: none;
         height: 36px;
-        line-height: 36px;
         padding: 0 10px;
+        line-height: 36px;
         color: var.$color-text-secondary;
+        background-color: var.$color-white;
       }
+
       & .el-menu-item.is-active,
       & .el-submenu.is-active > .el-submenu__title {
         color: var.$color-text-primary;
       }
     }
+
     & .el-menu-item:not(.is-disabled):hover,
     & .el-menu-item:not(.is-disabled):focus {
+      color: var.$color-text-primary;
       outline: none;
-      color: var.$color-text-primary;
     }
+
     & > .el-menu-item.is-active {
-      border-bottom: 2px solid var.$color-primary;
       color: var.$color-text-primary;
+      border-bottom: 2px solid var.$color-primary;
     }
   }
+
   @include mixins.m(collapse) {
     width: 64px;
 
     > .el-menu-item,
     > .el-submenu > .el-submenu__title {
       [class^='el-icon-'] {
+        width: 24px;
         margin: 0;
         vertical-align: middle;
-        width: 24px;
         text-align: center;
       }
+
       .el-submenu__icon-arrow {
         display: none;
       }
+
       span {
-        height: 0;
-        width: 0;
-        overflow: hidden;
-        visibility: hidden;
         display: inline-block;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        overflow: hidden;
       }
     }
 
@@ -165,12 +178,13 @@
 
     .el-submenu {
       position: relative;
+
       & .el-menu {
         position: absolute;
-        margin-left: 5px;
         top: 0;
         left: 100%;
         z-index: 10;
+        margin-left: 5px;
         border: 1px solid var.$border-color-light;
         border-radius: var.$border-radius-small;
         box-shadow: var.$box-shadow-light;
@@ -183,35 +197,40 @@
       }
     }
   }
+
   @include mixins.m(popup) {
     z-index: 100;
     min-width: 200px;
-    border: none;
     padding: 5px 0;
+    border: none;
     border-radius: var.$border-radius-small;
     box-shadow: var.$box-shadow-light;
 
     &-bottom-start {
       margin-top: 5px;
     }
+
     &-right-start {
-      margin-left: 5px;
       margin-right: 5px;
+      margin-left: 5px;
     }
   }
 }
+
 @include mixins.b(menu-item) {
   @include menu-item;
 
   & [class^='el-icon-'] {
-    margin-right: 5px;
     width: 24px;
-    text-align: center;
+    margin-right: 5px;
     font-size: 18px;
     vertical-align: middle;
+    text-align: center;
   }
+
   @include mixins.when(active) {
     color: var.$color-primary;
+
     i {
       color: inherit;
     }
@@ -219,9 +238,9 @@
 }
 
 @include mixins.b(submenu) {
-  list-style: none;
-  margin: 0;
   padding-left: 0;
+  margin: 0;
+  list-style: none;
 
   @include mixins.e(title) {
     @include menu-item;
@@ -230,47 +249,54 @@
       background-color: var.$menu-item-hover-fill;
     }
   }
+
   & .el-menu {
     border: none;
   }
+
   & .el-menu-item {
-    height: 50px;
-    line-height: 50px;
-    padding: 0 45px;
     min-width: 200px;
+    height: 50px;
+    padding: 0 45px;
+    line-height: 50px;
   }
+
   @include mixins.e(icon-arrow) {
     position: absolute;
     top: 50%;
     right: 20px;
     margin-top: -7px;
-    transition: transform 0.3s;
     font-size: 12px;
+    transition: transform 0.3s;
   }
+
   @include mixins.when(active) {
     .el-submenu__title {
       border-bottom-color: var.$color-primary;
     }
   }
+
   @include mixins.when(opened) {
     > .el-submenu__title .el-submenu__icon-arrow {
       transform: rotateZ(180deg);
     }
   }
+
   @include mixins.when(disabled) {
     .el-submenu__title,
     .el-menu-item {
-      opacity: 0.25;
       cursor: not-allowed;
       background: none !important;
+      opacity: 0.25;
     }
   }
+
   [class^='el-icon-'] {
-    vertical-align: middle;
-    margin-right: 5px;
     width: 24px;
-    text-align: center;
+    margin-right: 5px;
     font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
   }
 }
 
@@ -278,15 +304,16 @@
   > ul {
     padding: 0;
   }
+
   @include mixins.e(title) {
     padding: 7px 0 7px 20px;
-    line-height: normal;
     font-size: 12px;
+    line-height: normal;
     color: var.$color-text-secondary;
   }
 }
 
 .horizontal-collapse-transition .el-submenu__title .el-submenu__icon-arrow {
-  transition: 0.2s;
   opacity: 0;
+  transition: 0.2s;
 }

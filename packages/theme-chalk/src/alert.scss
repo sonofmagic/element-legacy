@@ -2,17 +2,17 @@
 @use 'common/var';
 
 @include mixins.b(alert) {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: var.$alert-padding;
   margin: 0;
-  box-sizing: border-box;
-  border-radius: var.$alert-border-radius;
-  position: relative;
-  background-color: var.$color-white;
   overflow: hidden;
+  background-color: var.$color-white;
+  border-radius: var.$alert-border-radius;
   opacity: 1;
-  display: flex;
-  align-items: center;
   transition: opacity 0.2s;
 
   @include mixins.when(light) {
@@ -25,6 +25,7 @@
     .el-alert__closebtn {
       color: var.$color-white;
     }
+
     .el-alert__description {
       color: var.$color-white;
     }
@@ -36,8 +37,8 @@
 
   @include mixins.m(success) {
     &.is-light {
-      background-color: var.$alert-success-color;
       color: var.$color-success;
+      background-color: var.$alert-success-color;
 
       .el-alert__description {
         color: var.$color-success;
@@ -45,20 +46,20 @@
     }
 
     &.is-dark {
-      background-color: var.$color-success;
       color: var.$color-white;
+      background-color: var.$color-success;
     }
   }
 
   @include mixins.m(info) {
     &.is-light {
-      background-color: var.$alert-info-color;
       color: var.$color-info;
+      background-color: var.$alert-info-color;
     }
 
     &.is-dark {
-      background-color: var.$color-info;
       color: var.$color-white;
+      background-color: var.$color-info;
     }
 
     .el-alert__description {
@@ -68,8 +69,8 @@
 
   @include mixins.m(warning) {
     &.is-light {
-      background-color: var.$alert-warning-color;
       color: var.$color-warning;
+      background-color: var.$alert-warning-color;
 
       .el-alert__description {
         color: var.$color-warning;
@@ -77,15 +78,15 @@
     }
 
     &.is-dark {
-      background-color: var.$color-warning;
       color: var.$color-white;
+      background-color: var.$color-warning;
     }
   }
 
   @include mixins.m(error) {
     &.is-light {
-      background-color: var.$alert-danger-color;
       color: var.$color-danger;
+      background-color: var.$alert-danger-color;
 
       .el-alert__description {
         color: var.$color-danger;
@@ -93,8 +94,8 @@
     }
 
     &.is-dark {
-      background-color: var.$color-danger;
       color: var.$color-white;
+      background-color: var.$color-danger;
     }
   }
 
@@ -104,39 +105,41 @@
   }
 
   @include mixins.e(icon) {
-    font-size: var.$alert-icon-size;
     width: var.$alert-icon-size;
+    font-size: var.$alert-icon-size;
+
     @include mixins.when(big) {
-      font-size: var.$alert-icon-large-size;
       width: var.$alert-icon-large-size;
+      font-size: var.$alert-icon-large-size;
     }
   }
 
   @include mixins.e(title) {
     font-size: var.$alert-title-font-size;
     line-height: 18px;
+
     @include mixins.when(bold) {
       font-weight: bold;
     }
   }
 
-  & .el-alert__description {
+  .el-alert__description {
+    margin: 5px 0 0;
     font-size: var.$alert-description-font-size;
-    margin: 5px 0 0 0;
   }
 
   @include mixins.e(closebtn) {
-    font-size: var.$alert-close-font-size;
-    opacity: 1;
     position: absolute;
     top: 12px;
     right: 15px;
+    font-size: var.$alert-close-font-size;
     cursor: pointer;
+    opacity: 1;
 
     @include mixins.when(customed) {
-      font-style: normal;
-      font-size: var.$alert-close-customed-font-size;
       top: 9px;
+      font-size: var.$alert-close-customed-font-size;
+      font-style: normal;
     }
   }
 }

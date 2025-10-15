@@ -6,30 +6,31 @@
 
 @include mixins.b(table) {
   position: relative;
-  overflow: hidden;
   box-sizing: border-box;
   flex: 1;
   width: 100%;
   max-width: 100%;
-  background-color: var.$color-white;
+  overflow: hidden;
   font-size: 14px;
   color: var.$table-font-color;
+  background-color: var.$color-white;
 
   // 数据为空
   @include mixins.e(empty-block) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     min-height: 60px;
     text-align: center;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   @include mixins.e(empty-text) {
+    width: 50%;
+
     // min-height doesn't work in IE10 and IE11 https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
     // set empty text line height up to contrainer min-height as workaround.
     line-height: 60px;
-    width: 50%;
     color: var.$color-text-secondary;
   }
 
@@ -43,11 +44,11 @@
 
   @include mixins.e(expand-icon) {
     position: relative;
-    cursor: pointer;
-    color: #666;
-    font-size: 12px;
-    transition: transform 0.2s ease-in-out;
     height: 20px;
+    font-size: 12px;
+    color: #666;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 
     @include mixins.m(expanded) {
       transform: rotate(90deg);
@@ -55,10 +56,10 @@
 
     > .el-icon {
       position: absolute;
-      left: 50%;
       top: 50%;
-      margin-left: -5px;
+      left: 50%;
       margin-top: -5px;
+      margin-left: -5px;
     }
   }
 
@@ -107,8 +108,8 @@
   }
 
   thead {
-    color: var.$table-header-font-color;
     font-weight: 500;
+    color: var.$table-header-font-color;
 
     &.is-group {
       th.el-table__cell {
@@ -118,12 +119,12 @@
   }
 
   .el-table__cell {
-    padding: 12px 0;
-    min-width: 0;
+    position: relative;
     box-sizing: border-box;
+    min-width: 0;
+    padding: 12px 0;
     text-overflow: ellipsis;
     vertical-align: middle;
-    position: relative;
     text-align: left;
 
     @include mixins.when(center) {
@@ -136,9 +137,9 @@
 
     &.gutter {
       width: 15px;
+      padding: 0;
       border-right-width: 0;
       border-bottom-width: 0;
-      padding: 0;
     }
 
     &.is-hidden {
@@ -156,6 +157,7 @@
 
   @include mixins.m(small) {
     font-size: 12px;
+
     .el-table__cell {
       padding: 8px 0;
     }
@@ -163,6 +165,7 @@
 
   @include mixins.m(mini) {
     font-size: 12px;
+
     .el-table__cell {
       padding: 6px 0;
     }
@@ -191,13 +194,13 @@
     background-color: var.$table-header-background-color;
 
     > .cell {
-      display: inline-block;
-      box-sizing: border-box;
       position: relative;
-      vertical-align: middle;
-      padding-left: 10px;
-      padding-right: 10px;
+      box-sizing: border-box;
+      display: inline-block;
       width: 100%;
+      padding-right: 10px;
+      padding-left: 10px;
+      vertical-align: middle;
 
       &.highlight {
         color: var.$color-primary;
@@ -206,13 +209,13 @@
 
     &.required > div::before {
       display: inline-block;
-      content: '';
       width: 8px;
       height: 8px;
-      border-radius: 50%;
-      background: #ff4d51;
       margin-right: 5px;
       vertical-align: middle;
+      content: '';
+      background: #ff4d51;
+      border-radius: 50%;
     }
   }
 
@@ -228,17 +231,17 @@
 
   .cell {
     box-sizing: border-box;
+    padding-right: 10px;
+    padding-left: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: normal;
-    word-break: break-all;
     line-height: 23px;
-    padding-left: 10px;
-    padding-right: 10px;
+    word-break: break-all;
+    white-space: normal;
 
     &.el-tooltip {
-      white-space: nowrap;
       min-width: 50px;
+      white-space: nowrap;
     }
   }
 
@@ -247,15 +250,16 @@
     border: var.$table-border;
 
     @include mixins.share-rule(border-pseudo) {
-      content: '';
       position: absolute;
-      background-color: var.$table-border-color;
       z-index: 1;
+      content: '';
+      background-color: var.$table-border-color;
     }
 
     // 表格右部伪 border
     &::after {
       @include mixins.extend-rule(border-pseudo);
+
       top: 0;
       right: 0;
       width: 1px;
@@ -266,8 +270,9 @@
   // 表格底部伪 border，总是有的
   &::before {
     @include mixins.extend-rule(border-pseudo);
-    left: 0;
+
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 1px;
   }
@@ -307,19 +312,18 @@
     position: absolute;
     top: 0;
     left: 0;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: hidden;
     box-shadow: var.$table-fixed-box-shadow;
 
     &::before {
-      content: '';
       position: absolute;
-      left: 0;
       bottom: 0;
+      left: 0;
+      z-index: 4;
       width: 100%;
       height: 1px;
+      content: '';
       background-color: var.$border-color-lighter;
-      z-index: 4;
     }
   }
 
@@ -333,43 +337,43 @@
 
   @include mixins.e(fixed-right) {
     top: 0;
-    left: auto;
     right: 0;
+    left: auto;
 
     .el-table__fixed-header-wrapper,
     .el-table__fixed-body-wrapper,
     .el-table__fixed-footer-wrapper {
-      left: auto;
       right: 0;
+      left: auto;
     }
   }
 
   @include mixins.e(fixed-header-wrapper) {
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
     z-index: 3;
   }
 
   @include mixins.e(fixed-footer-wrapper) {
     position: absolute;
-    left: 0;
     bottom: 0;
+    left: 0;
     z-index: 3;
 
     & tbody td.el-table__cell {
-      border-top: var.$table-border;
-      background-color: var.$table-row-hover-background-color;
       color: var.$table-font-color;
+      background-color: var.$table-row-hover-background-color;
+      border-top: var.$table-border;
     }
   }
 
   @include mixins.e(fixed-body-wrapper) {
     position: absolute;
-    left: 0;
     top: 37px;
-    overflow: hidden;
+    left: 0;
     z-index: 3;
+    overflow: hidden;
   }
 
   @include mixins.e((header-wrapper, body-wrapper, footer-wrapper)) {
@@ -378,6 +382,7 @@
 
   @include mixins.e(footer-wrapper) {
     margin-top: -1px;
+
     td.el-table__cell {
       border-top: var.$table-border;
     }
@@ -392,14 +397,14 @@
     overflow: hidden;
 
     & tbody td.el-table__cell {
-      background-color: var.$table-row-hover-background-color;
       color: var.$table-font-color;
+      background-color: var.$table-row-hover-background-color;
     }
   }
 
   @include mixins.e(body-wrapper) {
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 
     @include mixins.when(scrolling-none) {
       ~ .el-table__fixed,
@@ -436,32 +441,32 @@
   }
 
   .caret-wrapper {
+    position: relative;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    height: 34px;
     width: 24px;
+    height: 34px;
+    overflow: initial;
     vertical-align: middle;
     cursor: pointer;
-    overflow: initial;
-    position: relative;
   }
 
   .sort-caret {
+    position: absolute;
+    left: 7px;
     width: 0;
     height: 0;
     border: solid 5px transparent;
-    position: absolute;
-    left: 7px;
 
     &.ascending {
-      border-bottom-color: var.$color-text-placeholder;
       top: 5px;
+      border-bottom-color: var.$color-text-placeholder;
     }
 
     &.descending {
-      border-top-color: var.$color-text-placeholder;
       bottom: 7px;
+      border-top-color: var.$color-text-placeholder;
     }
   }
 
@@ -474,9 +479,9 @@
   }
 
   .hidden-columns {
-    visibility: hidden;
     position: absolute;
     z-index: -1;
+    visibility: hidden;
   }
 
   @include mixins.m(striped) {
@@ -516,12 +521,12 @@
 
   @include mixins.e(column-resize-proxy) {
     position: absolute;
-    left: 200px;
     top: 0;
     bottom: 0;
+    left: 200px;
+    z-index: 10;
     width: 0;
     border-left: var.$table-border;
-    z-index: 10;
   }
 
   @include mixins.e(column-filter-trigger) {
@@ -530,8 +535,8 @@
     cursor: pointer;
 
     & i {
-      color: var.$color-info;
       font-size: 12px;
+      color: var.$color-info;
       transform: scale(0.75);
     }
   }
@@ -560,10 +565,10 @@
     .el-table__expand-icon {
       display: inline-block;
       width: 20px;
-      line-height: 20px;
       height: 20px;
-      text-align: center;
       margin-right: 3px;
+      line-height: 20px;
+      text-align: center;
     }
   }
 }

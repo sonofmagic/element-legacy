@@ -2,24 +2,27 @@
 @use '../mixins/mixins';
 
 @include mixins.b(month-table) {
-  font-size: 12px;
   margin: -1px;
+  font-size: 12px;
   border-collapse: collapse;
 
   td {
+    padding: 8px 0;
     text-align: center;
-    padding: 8px 0px;
     cursor: pointer;
+
     & div {
+      box-sizing: border-box;
       height: 48px;
       padding: 6px 0;
-      box-sizing: border-box;
     }
+
     &.today {
       .cell {
-        color: var.$color-primary;
         font-weight: bold;
+        color: var.$color-primary;
       }
+
       &.start-date .cell,
       &.end-date .cell {
         color: var.$color-white;
@@ -27,9 +30,9 @@
     }
 
     &.disabled .cell {
-      background-color: var.$background-color-base;
-      cursor: not-allowed;
       color: var.$color-text-placeholder;
+      cursor: not-allowed;
+      background-color: var.$background-color-base;
 
       &:hover {
         color: var.$color-text-placeholder;
@@ -37,13 +40,14 @@
     }
 
     .cell {
+      display: block;
       width: 60px;
       height: 36px;
-      display: block;
+      margin: 0 auto;
       line-height: 36px;
       color: var.$datepicker-font-color;
-      margin: 0 auto;
       border-radius: 18px;
+
       &:hover {
         color: var.$datepicker-hover-font-color;
       }
@@ -51,10 +55,12 @@
 
     &.in-range div {
       background-color: var.$datepicker-inrange-background-color;
+
       &:hover {
         background-color: var.$datepicker-inrange-hover-background-color;
       }
     }
+
     &.start-date div,
     &.end-date div {
       color: var.$color-white;

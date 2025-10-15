@@ -29,13 +29,13 @@
         background-color: var.$select-option-hover-background;
       }
 
-      &::after {
-        position: absolute;
-        right: 20px;
-        font-family: element-icons;
-        font-size: 12px;
-        font-weight: bold;
-        content: '\e6da';
+        &::after {
+          position: absolute;
+          right: 20px;
+          font-family: element-icons, sans-serif;
+          font-size: 12px;
+          font-weight: bold;
+          content: '\e6da';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }

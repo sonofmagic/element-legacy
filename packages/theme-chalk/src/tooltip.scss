@@ -6,15 +6,16 @@
   &:focus:hover {
     outline-width: 0;
   }
+
   @include mixins.e(popper) {
     position: absolute;
-    border-radius: 4px;
-    padding: var.$tooltip-padding;
     z-index: var.$index-popper;
+    min-width: 10px;
+    padding: var.$tooltip-padding;
     font-size: var.$tooltip-font-size;
     line-height: 1.2;
-    min-width: 10px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-radius: 4px;
 
     .popper__arrow,
     .popper__arrow::after {
@@ -105,8 +106,8 @@
     }
 
     @include mixins.when(dark) {
-      background: var.$tooltip-fill;
       color: var.$tooltip-color;
+      background: var.$tooltip-fill;
     }
 
     @include mixins.when(light) {
@@ -115,24 +116,31 @@
 
       &[x-placement^='top'] .popper__arrow {
         border-top-color: var.$tooltip-fill;
+
         &::after {
           border-top-color: var.$tooltip-color;
         }
       }
+
       &[x-placement^='bottom'] .popper__arrow {
         border-bottom-color: var.$tooltip-fill;
+
         &::after {
           border-bottom-color: var.$tooltip-color;
         }
       }
+
       &[x-placement^='left'] .popper__arrow {
         border-left-color: var.$tooltip-fill;
+
         &::after {
           border-left-color: var.$tooltip-color;
         }
       }
+
       &[x-placement^='right'] .popper__arrow {
         border-right-color: var.$tooltip-fill;
+
         &::after {
           border-right-color: var.$tooltip-color;
         }

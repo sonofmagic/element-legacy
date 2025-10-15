@@ -2,8 +2,8 @@
 @use '../mixins/mixins';
 
 @include mixins.b(year-table) {
-  font-size: 12px;
   margin: -1px;
+  font-size: 12px;
   border-collapse: collapse;
 
   .el-icon {
@@ -11,21 +11,21 @@
   }
 
   td {
-    text-align: center;
     padding: 20px 3px;
+    text-align: center;
     cursor: pointer;
 
     &.today {
       .cell {
-        color: var.$color-primary;
         font-weight: bold;
+        color: var.$color-primary;
       }
     }
 
     &.disabled .cell {
-      background-color: var.$background-color-base;
-      cursor: not-allowed;
       color: var.$color-text-placeholder;
+      cursor: not-allowed;
+      background-color: var.$background-color-base;
 
       &:hover {
         color: var.$color-text-placeholder;
@@ -33,12 +33,12 @@
     }
 
     .cell {
+      display: block;
       width: 48px;
       height: 32px;
-      display: block;
+      margin: 0 auto;
       line-height: 32px;
       color: var.$datepicker-font-color;
-      margin: 0 auto;
 
       &:hover {
         color: var.$datepicker-hover-font-color;

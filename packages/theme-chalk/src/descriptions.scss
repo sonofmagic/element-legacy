@@ -9,8 +9,8 @@
 
   @include mixins.e(header) {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: var.$descriptions-header-margin-bottom;
 
     @include mixins.e(title) {
@@ -24,15 +24,15 @@
     background-color: var.$color-white;
 
     .el-descriptions__table {
-      border-collapse: collapse;
       width: 100%;
       table-layout: fixed;
+      border-collapse: collapse;
 
       .el-descriptions-item__cell {
         box-sizing: border-box;
-        text-align: left;
         font-weight: normal;
         line-height: 1.5;
+        text-align: left;
 
         @include mixins.when(left) {
           text-align: left;
@@ -51,9 +51,10 @@
 
   .is-bordered {
     table-layout: auto;
+
     .el-descriptions-item__cell {
-      border: var.$descriptions-table-border;
       padding: 12px 10px;
+      border: var.$descriptions-table-border;
     }
   }
 

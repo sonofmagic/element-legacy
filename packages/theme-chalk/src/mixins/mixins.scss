@@ -32,9 +32,9 @@
     }
 
     &-thumb {
-      border-radius: 5px;
       width: 6px;
       background: $scrollbar-thumb-background;
+      border-radius: 5px;
     }
 
     &-corner {
@@ -45,8 +45,8 @@
       background: $scrollbar-track-background;
 
       &-piece {
-        background: $scrollbar-track-background;
         width: 6px;
+        background: $scrollbar-track-background;
       }
     }
   }
@@ -82,6 +82,7 @@
   $E: $element !global;
   $selector: &;
   $currentSelector: '';
+
   @each $unit in $element {
     $currentSelector: #{$currentSelector + '.' + $B + config.$element-separator + $unit + ','};
   }
@@ -106,6 +107,7 @@
 @mixin m($modifier) {
   $selector: &;
   $currentSelector: '';
+
   @each $unit in $modifier {
     $currentSelector: #{$currentSelector + & + config.$modifier-separator + $unit + ','};
   }

@@ -9,8 +9,8 @@
 @use 'scrollbar';
 
 @include mixins.b(select) {
-  display: inline-block;
   position: relative;
+  display: inline-block;
 
   .el-select__tags > span {
     display: contents;
@@ -23,8 +23,8 @@
   }
 
   .el-input__inner {
-    cursor: pointer;
     padding-right: 35px;
+    cursor: pointer;
 
     &:focus {
       border-color: var.$select-input-focus-border-color;
@@ -33,11 +33,11 @@
 
   .el-input {
     & .el-select__caret {
-      color: var.$select-input-color;
       font-size: var.$select-input-font-size;
-      transition: transform 0.3s;
-      transform: rotateZ(180deg);
+      color: var.$select-input-color;
       cursor: pointer;
+      transform: rotateZ(180deg);
+      transition: transform 0.3s;
 
       @include mixins.when(reverse) {
         transform: rotateZ(0deg);
@@ -45,10 +45,10 @@
 
       @include mixins.when(show-close) {
         font-size: var.$select-font-size;
-        text-align: center;
-        transform: rotateZ(180deg);
-        border-radius: var.$border-radius-circle;
         color: var.$select-input-color;
+        text-align: center;
+        border-radius: var.$border-radius-circle;
+        transform: rotateZ(180deg);
         transition: var.$color-transition-base;
 
         &:hover {
@@ -77,29 +77,30 @@
   }
 
   @include mixins.e(input) {
-    border: none;
-    outline: none;
+    height: 28px;
     padding: 0;
     margin-left: 15px;
-    color: var.$select-multiple-input-color;
     font-size: var.$select-font-size;
+    color: var.$select-multiple-input-color;
     appearance: none;
-    height: 28px;
+    outline: none;
     background-color: transparent;
+    border: none;
+
     @include mixins.when(mini) {
       height: 14px;
     }
   }
 
   @include mixins.e(close) {
-    cursor: pointer;
     position: absolute;
     top: 8px;
-    z-index: var.$index-top;
     right: 25px;
-    color: var.$select-input-color;
-    line-height: 18px;
+    z-index: var.$index-top;
     font-size: var.$select-input-font-size;
+    line-height: 18px;
+    color: var.$select-input-color;
+    cursor: pointer;
 
     &:hover {
       color: var.$select-close-hover-color;
@@ -108,14 +109,14 @@
 
   @include mixins.e(tags) {
     position: absolute;
+    top: 50%;
+    z-index: var.$index-normal;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     line-height: normal;
     white-space: normal;
-    z-index: var.$index-normal;
-    top: 50%;
     transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
   }
 
   @include mixins.e(tags-text) {
@@ -125,18 +126,18 @@
 
   .el-tag {
     box-sizing: border-box;
-    border-color: transparent;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
     margin: 2px 0 2px 6px;
     background-color: #f0f2f5;
-    display: flex;
-    max-width: 100%;
-    align-items: center;
+    border-color: transparent;
 
     &__close.el-icon-close {
-      background-color: var.$color-text-placeholder;
       top: 0;
-      color: var.$color-white;
       flex-shrink: 0;
+      color: var.$color-white;
+      background-color: var.$color-text-placeholder;
 
       &:hover {
         background-color: var.$color-text-secondary;

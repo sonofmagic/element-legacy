@@ -1,6 +1,6 @@
 @use 'mixins/mixins';
 @use 'common/var';
-@use 'skeleton-item.scss';
+@use 'skeleton-item';
 @use 'mixins/config';
 
 @mixin skeleton-color() {
@@ -13,6 +13,7 @@
   0% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0 50%;
   }
@@ -20,6 +21,7 @@
 
 @include mixins.b(skeleton) {
   width: 100%;
+
   @each $unit in (first-line, paragraph) {
     @include mixins.e($unit) {
       height: 16px;
@@ -30,7 +32,7 @@
 
   @include mixins.when(animated) {
     .#{config.$namespace}-skeleton__item {
-      @include skeleton-color();
+      @include skeleton-color;
     }
   }
 }
