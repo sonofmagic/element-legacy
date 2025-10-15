@@ -61,7 +61,7 @@ import Locale from 'element-ui/src/mixins/locale';
 import fecha from 'element-ui/src/utils/date';
 import ElButton from 'element-ui/packages/button';
 import ElButtonGroup from 'element-ui/packages/button-group';
-import DateTable from './date-table';
+import DateTable from './date-table.vue';
 import { validateRangeInOneMonth } from 'element-ui/src/utils/date-util';
 
 const validTypes = ['prev-month', 'today', 'next-month'];

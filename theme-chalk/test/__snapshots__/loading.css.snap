@@ -1,0 +1,99 @@
+.el-loading-parent--relative {
+  position: relative !important;
+}
+.el-loading-parent--hidden {
+  overflow: hidden !important;
+}
+.el-loading-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 2000;
+  margin: 0;
+  background-color: #ffffffe6;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.el-loading-mask.is-fullscreen {
+  position: fixed;
+}
+.el-loading-mask.is-fullscreen .el-loading-spinner {
+  margin-top: -25px;
+}
+.el-loading-mask.is-fullscreen .el-loading-spinner .circular {
+  width: 50px;
+  height: 50px;
+}
+.el-loading-spinner {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: -21px;
+  text-align: center;
+}
+.el-loading-spinner .el-loading-text {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #409eff;
+}
+.el-loading-spinner .circular {
+  width: 42px;
+  height: 42px;
+  -webkit-animation: loading-rotate 2s linear infinite;
+  animation: loading-rotate 2s linear infinite;
+}
+.el-loading-spinner .path {
+  stroke: #409eff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  -webkit-animation: loading-dash 1.5s ease-in-out infinite;
+  animation: loading-dash 1.5s ease-in-out infinite;
+}
+.el-loading-spinner i {
+  color: #409eff;
+}
+.el-loading-fade-enter,
+.el-loading-fade-leave-active {
+  opacity: 0;
+}
+@-webkit-keyframes loading-rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading-rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+  to {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+  to {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}

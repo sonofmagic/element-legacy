@@ -1,4 +1,5 @@
 ## Container
+
 Container components for scaffolding basic structure of the page:
 
 `<el-container>`: wrapper container. When nested with a `<el-header>` or `<el-footer>`, all its child elements will be vertically arranged. Otherwise horizontally.
@@ -18,6 +19,7 @@ These components use flex for layout, so please make sure your browser supports 
 ### Common layouts
 
 :::demo
+
 ```html
 <el-container>
   <el-header>Header</el-header>
@@ -72,46 +74,49 @@ These components use flex for layout, so please make sure your browser supports 
 </el-container>
 
 <style>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
+  .el-header,
+  .el-footer {
+    background-color: #b3c0d1;
     color: #333;
     text-align: center;
     line-height: 60px;
   }
-  
+
   .el-aside {
-    background-color: #D3DCE6;
+    background-color: #d3dce6;
     color: #333;
     text-align: center;
     line-height: 200px;
   }
-  
+
   .el-main {
-    background-color: #E9EEF3;
+    background-color: #e9eef3;
     color: #333;
     text-align: center;
     line-height: 160px;
   }
-  
+
   body > .el-container {
     margin-bottom: 40px;
   }
-  
+
   .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
     line-height: 260px;
   }
-  
+
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
   }
 </style>
 ```
+
 :::
 
 ### Example
 
 :::demo
+
 ```html
 <el-container style="height: 500px; border: 1px solid #eee">
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
@@ -163,7 +168,7 @@ These components use flex for layout, so please make sure your browser supports 
       </el-submenu>
     </el-menu>
   </el-aside>
-  
+
   <el-container>
     <el-header style="text-align: right; font-size: 12px">
       <el-dropdown>
@@ -176,15 +181,12 @@ These components use flex for layout, so please make sure your browser supports 
       </el-dropdown>
       <span>Tom</span>
     </el-header>
-    
+
     <el-main>
       <el-table :data="tableData">
-        <el-table-column prop="date" label="Date" width="140">
-        </el-table-column>
-        <el-table-column prop="name" label="Name" width="120">
-        </el-table-column>
-        <el-table-column prop="address" label="Address">
-        </el-table-column>
+        <el-table-column prop="date" label="Date" width="140"> </el-table-column>
+        <el-table-column prop="name" label="Name" width="120"> </el-table-column>
+        <el-table-column prop="address" label="Address"> </el-table-column>
       </el-table>
     </el-main>
   </el-container>
@@ -192,11 +194,11 @@ These components use flex for layout, so please make sure your browser supports 
 
 <style>
   .el-header {
-    background-color: #B3C0D1;
+    background-color: #b3c0d1;
     color: #333;
     line-height: 60px;
   }
-  
+
   .el-aside {
     color: #333;
   }
@@ -208,33 +210,38 @@ These components use flex for layout, so please make sure your browser supports 
       const item = {
         date: '2016-05-02',
         name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      };
-      return {
-        tableData: Array(20).fill(item)
+        address: 'No. 189, Grove St, Los Angeles',
       }
-    }
-  };
+      return {
+        tableData: Array(20).fill(item),
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 ### Container Attributes
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
+
+| Attribute | Description                         | Type   | Accepted Values       | Default                                                                    |
+| --------- | ----------------------------------- | ------ | --------------------- | -------------------------------------------------------------------------- |
 | direction | layout direction for child elements | string | horizontal / vertical | vertical when nested with `el-header` or `el-footer`; horizontal otherwise |
 
 ### Header Attributes
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| height | height of the header | string | — | 60px |
+
+| Attribute | Description          | Type   | Accepted Values | Default |
+| --------- | -------------------- | ------ | --------------- | ------- |
+| height    | height of the header | string | —               | 60px    |
 
 ### Aside Attributes
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| width | width of the side section | string | — | 300px |
+
+| Attribute | Description               | Type   | Accepted Values | Default |
+| --------- | ------------------------- | ------ | --------------- | ------- |
+| width     | width of the side section | string | —               | 300px   |
 
 ### Footer Attributes
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| height | height of the footer | string | — | 60px |
+
+| Attribute | Description          | Type   | Accepted Values | Default |
+| --------- | -------------------- | ------ | --------------- | ------- |
+| height    | height of the footer | string | —               | 60px    |

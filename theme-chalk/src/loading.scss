@@ -1,0 +1,95 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@include mixins.b(loading-parent) {
+  @include mixins.m(relative) {
+    position: relative !important;
+  }
+
+  @include mixins.m(hidden) {
+    overflow: hidden !important;
+  }
+}
+
+@include mixins.b(loading-mask) {
+  position: absolute;
+  inset: 0;
+  z-index: 2000;
+  margin: 0;
+  background-color: rgb(255 255 255 / 90%);
+  transition: opacity 0.3s;
+
+  @include mixins.when(fullscreen) {
+    position: fixed;
+
+    .el-loading-spinner {
+      margin-top: #{calc(-1 * var.$loading-fullscreen-spinner-size / 2)};
+
+      .circular {
+        width: var.$loading-fullscreen-spinner-size;
+        height: var.$loading-fullscreen-spinner-size;
+      }
+    }
+  }
+}
+
+@include mixins.b(loading-spinner) {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: #{calc(-1 * var.$loading-spinner-size / 2)};
+  text-align: center;
+
+  .el-loading-text {
+    margin: 3px 0;
+    font-size: 14px;
+    color: var.$color-primary;
+  }
+
+  .circular {
+    width: var.$loading-spinner-size;
+    height: var.$loading-spinner-size;
+    animation: loading-rotate 2s linear infinite;
+  }
+
+  .path {
+    stroke: var.$color-primary;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    animation: loading-dash 1.5s ease-in-out infinite;
+  }
+
+  i {
+    color: var.$color-primary;
+  }
+}
+
+.el-loading-fade-enter,
+.el-loading-fade-leave-active {
+  opacity: 0;
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}

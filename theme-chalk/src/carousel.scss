@@ -1,0 +1,164 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@include mixins.b(carousel) {
+  position: relative;
+
+  @include mixins.m(horizontal) {
+    overflow-x: hidden;
+  }
+
+  @include mixins.m(vertical) {
+    overflow-y: hidden;
+  }
+
+  @include mixins.e(container) {
+    position: relative;
+    height: 300px;
+  }
+
+  @include mixins.e(arrow) {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    width: var.$carousel-arrow-size;
+    height: var.$carousel-arrow-size;
+    padding: 0;
+    margin: 0;
+    font-size: var.$carousel-arrow-font-size;
+    color: var.$color-white;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    background-color: var.$carousel-arrow-background;
+    border: none;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: 0.3s;
+
+    @include mixins.m(left) {
+      left: 16px;
+    }
+
+    @include mixins.m(right) {
+      right: 16px;
+    }
+
+    &:hover {
+      background-color: var.$carousel-arrow-hover-background;
+    }
+
+    & i {
+      cursor: pointer;
+    }
+  }
+
+  @include mixins.e(indicators) {
+    position: absolute;
+    z-index: #{var.$index-normal + 1};
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    @include mixins.m(horizontal) {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @include mixins.m(vertical) {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
+
+    @include mixins.m(outside) {
+      position: static;
+      bottom: #{var.$carousel-indicator-height + var.$carousel-indicator-padding-vertical * 2};
+      text-align: center;
+      transform: none;
+
+      .el-carousel__indicator:hover button {
+        opacity: 0.64;
+      }
+
+      button {
+        background-color: var.$carousel-indicator-out-color;
+        opacity: 0.24;
+      }
+    }
+
+    @include mixins.m(labels) {
+      right: 0;
+      left: 0;
+      text-align: center;
+      transform: none;
+
+      .el-carousel__button {
+        width: auto;
+        height: auto;
+        padding: 2px 18px;
+        font-size: 12px;
+      }
+
+      .el-carousel__indicator {
+        padding: 6px 4px;
+      }
+    }
+  }
+
+  @include mixins.e(indicator) {
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover button {
+      opacity: 0.72;
+    }
+
+    @include mixins.m(horizontal) {
+      display: inline-block;
+      padding: var.$carousel-indicator-padding-vertical var.$carousel-indicator-padding-horizontal;
+    }
+
+    @include mixins.m(vertical) {
+      padding: var.$carousel-indicator-padding-horizontal var.$carousel-indicator-padding-vertical;
+
+      .el-carousel__button {
+        width: var.$carousel-indicator-height;
+        height: #{calc(var.$carousel-indicator-width / 2)};
+      }
+    }
+
+    @include mixins.when(active) {
+      button {
+        opacity: 1;
+      }
+    }
+  }
+
+  @include mixins.e(button) {
+    display: block;
+    width: var.$carousel-indicator-width;
+    height: var.$carousel-indicator-height;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    background-color: var.$color-white;
+    border: none;
+    opacity: 0.48;
+    transition: 0.3s;
+  }
+}
+
+.carousel-arrow-left-enter,
+.carousel-arrow-left-leave-active {
+  opacity: 0;
+  transform: translateY(-50%) translateX(-10px);
+}
+
+.carousel-arrow-right-enter,
+.carousel-arrow-right-leave-active {
+  opacity: 0;
+  transform: translateY(-50%) translateX(10px);
+}

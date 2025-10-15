@@ -1,0 +1,18 @@
+import { execSync } from 'node:child_process'
+import { resolve } from 'node:path'
+import process from 'node:process'
+import chokidar from 'chokidar'
+
+const templates = resolve(process.cwd(), './examples/pages/template')
+
+const watcher = chokidar.watch([templates])
+
+watcher.on('ready', () => {
+  watcher.on('change', () => {
+    exec('npm run i18n')
+  })
+})
+
+function exec(cmd: string) {
+  execSync(cmd, { stdio: 'inherit' })
+}

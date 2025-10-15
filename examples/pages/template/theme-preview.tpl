@@ -54,10 +54,10 @@
   </div>
 </template>
 <script>
-import bus from '../../bus.js';
-import ThemeConfigurator from '../../components/theme-configurator';
-import ComponentsPreview from '../../components/theme/components-preview';
-import BasicTokensPreview from '../../components/theme/basic-tokens-preview';
+import bus from '../../bus.ts';
+import ThemeConfigurator from '../../components/theme-configurator/index.vue';
+import ComponentsPreview from '../../components/theme/components-preview.vue';
+import BasicTokensPreview from '../../components/theme/basic-tokens-preview.vue';
 import {
   loadPreviewFromLocal,
   loadUserThemeFromLocal,
@@ -69,7 +69,7 @@ import {
 import {
   ACTION_APPLY_THEME
 } from '../../components/theme/constant.js';
-import throttle from 'throttle-debounce/throttle';
+import { throttle } from 'throttle-debounce';
 import { getActionDisplayName } from '../../components/theme-configurator/utils/utils';
 
 const maxUserTheme = 8;
@@ -96,7 +96,7 @@ export default {
     }
   },
   created() {
-    this.throttledHandleScroll = throttle(10, true, index => {
+    this.throttledHandleScroll = throttle(10, index => {
       this.handleScroll(index);
     });
   },

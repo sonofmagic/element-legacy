@@ -1,6 +1,6 @@
-<script>
-import UploadList from './upload-list';
-import Upload from './upload';
+<script lang="jsx">
+import UploadList from './upload-list.vue';
+import Upload from './upload.vue';
 import ElProgress from 'element-ui/packages/progress';
 import Migrating from 'element-ui/src/mixins/migrating';
 

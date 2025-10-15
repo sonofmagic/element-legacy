@@ -1,0 +1,35 @@
+{
+  "name": "@element-legacy/theme-chalk",
+  "version": "0.0.0",
+  "description": "Element component chalk theme.",
+  "style": "lib/index.css",
+  "author": "yi.shyang@ele.me",
+  "license": "MIT",
+  "homepage": "https://github.com/ElementUI/theme-chalk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElementUI/theme-chalk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ElementUI/theme-chalk/issues"
+  },
+  "keywords": [
+    "element",
+    "theme"
+  ],
+  "main": "lib/index.css",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build --config vite.config.ts",
+    "test": "pnpm run build && vitest run --root .. --config vitest.config.ts test/theme-chalk.spec.ts",
+    "test:update": "pnpm run build && vitest run --root .. --config vitest.config.ts --update test/theme-chalk.spec.ts"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "sass": "1.93.2",
+    "vite": "^7.1.10"
+  }
+}

@@ -1,23 +1,74 @@
+<script>
+import Color from '../color'
+
+export default {
+  props: {
+    colors: { type: Array, required: true },
+    color: { required: true },
+  },
+  data() {
+    return {
+      rgbaColors: this.parseColors(this.colors, this.color),
+    }
+  },
+  watch: {
+    '$parent.currentColor': function (val) {
+      const color = new Color()
+      color.fromString(val)
+
+      this.rgbaColors.forEach((item) => {
+        item.selected = color.compare(item)
+      })
+    },
+    colors(newVal) {
+      this.rgbaColors = this.parseColors(newVal, this.color)
+    },
+    color(newVal) {
+      this.rgbaColors = this.parseColors(this.colors, newVal)
+    },
+  },
+  methods: {
+    handleSelect(index) {
+      this.color.fromString(this.colors[index].value)
+      this.$emit('select', this.colors[index])
+    },
+    parseColors(colors, color) {
+      return colors.map((value) => {
+        const c = new Color()
+        c.enableAlpha = true
+        c.format = 'rgba'
+        c.fromString(value.value)
+        c.info = value
+        c.selected = c.value === color.value
+        return c
+      })
+    },
+  },
+}
+</script>
+
 <template>
   <div class="el-color-predefine color-list-container">
     <div class="el-color-predefine__colors color-list">
-      <div class="color-list-item"
-           :class="{selected: item.selected, 'is-alpha': item._alpha < 100}"
-           v-for="(item, index) in rgbaColors"
-           :key="colors[index].variable"
-           @click="handleSelect(index)">
-        <span class="color-list-item-ball" :style="{'background-color': item.value}">
-        </span>
+      <div
+        v-for="(item, index) in rgbaColors"
+        :key="colors[index].variable"
+        class="color-list-item"
+        :class="{ 'selected': item.selected, 'is-alpha': item._alpha < 100 }"
+        @click="handleSelect(index)"
+      >
+        <span class="color-list-item-ball" :style="{ 'background-color': item.value }" />
         <div class="color-list-item-label">
-          {{item.info.label}} 
+          {{ item.info.label }}
           <div class="color-list-item-value">
-            {{item.info.value}} 
+            {{ item.info.value }}
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <style>
   .color-list-container {
     border-top: 1px solid #EBEEF5;
@@ -56,56 +107,7 @@
     width: 85%;
     overflow: hidden;
   }
-  .color-list-item-value { 
+  .color-list-item-value {
     float: right;
   }
 </style>
-
-<script>
-  import Color from '../color';
-
-  export default {
-    props: {
-      colors: { type: Array, required: true },
-      color: { required: true }
-    },
-    data() {
-      return {
-        rgbaColors: this.parseColors(this.colors, this.color)
-      };
-    },
-    methods: {
-      handleSelect(index) {
-        this.color.fromString(this.colors[index].value);
-        this.$emit('select', this.colors[index]);
-      },
-      parseColors(colors, color) {
-        return colors.map(value => {
-          const c = new Color();
-          c.enableAlpha = true;
-          c.format = 'rgba';
-          c.fromString(value.value);
-          c.info = value;
-          c.selected = c.value === color.value;
-          return c;
-        });
-      }
-    },
-    watch: {
-      '$parent.currentColor'(val) {
-        const color = new Color();
-        color.fromString(val);
-
-        this.rgbaColors.forEach(item => {
-          item.selected = color.compare(item);
-        });
-      },
-      colors(newVal) {
-        this.rgbaColors = this.parseColors(newVal, this.color);
-      },
-      color(newVal) {
-        this.rgbaColors = this.parseColors(this.colors, newVal);
-      }
-    }
-  };
-</script>

@@ -1,0 +1,187 @@
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'input';
+@use 'popper';
+@use 'tag';
+@use 'cascader-panel';
+
+@include mixins.b(cascader) {
+  position: relative;
+  display: inline-block;
+  font-size: var.$font-size-base;
+  line-height: var.$input-height;
+
+  &:not(.is-disabled):hover {
+    .el-input__inner {
+      cursor: pointer;
+      border-color: var.$input-hover-border;
+    }
+  }
+
+  .el-input {
+    cursor: pointer;
+
+    .el-input__inner {
+      text-overflow: ellipsis;
+
+      &:focus {
+        border-color: var.$input-focus-border;
+      }
+    }
+
+    .el-icon-arrow-down {
+      font-size: 14px;
+      transition: transform 0.3s;
+
+      @include mixins.when(reverse) {
+        transform: rotateZ(180deg);
+      }
+    }
+
+    .el-icon-circle-close:hover {
+      color: var.$input-clear-hover-color;
+    }
+
+    @include mixins.when(focus) {
+      .el-input__inner {
+        border-color: var.$input-focus-border;
+      }
+    }
+  }
+
+  @include mixins.m(medium) {
+    font-size: var.$input-medium-font-size;
+    line-height: var.$input-medium-height;
+  }
+
+  @include mixins.m(small) {
+    font-size: var.$input-small-font-size;
+    line-height: var.$input-small-height;
+  }
+
+  @include mixins.m(mini) {
+    font-size: var.$input-mini-font-size;
+    line-height: var.$input-mini-height;
+  }
+
+  @include mixins.when(disabled) {
+    .el-cascader__label {
+      z-index: #{var.$index-normal + 1};
+      color: var.$disabled-color-base;
+    }
+  }
+
+  @include mixins.e(dropdown) {
+    margin: 5px 0;
+    font-size: var.$cascader-menu-font-size;
+    background: var.$cascader-menu-fill;
+    border: var.$cascader-menu-border;
+    border-radius: var.$cascader-menu-radius;
+    box-shadow: var.$cascader-menu-shadow;
+  }
+
+  @include mixins.e(tags) {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    left: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: normal;
+    text-align: left;
+    transform: translateY(-50%);
+
+    .el-tag {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      margin: 2px 0 2px 6px;
+      text-overflow: ellipsis;
+      background: var.$cascader-tag-background;
+
+      &:not(.is-hit) {
+        border-color: transparent;
+      }
+
+      > span {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .el-icon-close {
+        flex: none;
+        color: var.$color-white;
+        background-color: var.$color-text-placeholder;
+
+        &:hover {
+          background-color: var.$color-text-secondary;
+        }
+      }
+    }
+  }
+
+  @include mixins.e(suggestion-panel) {
+    border-radius: var.$cascader-menu-radius;
+
+    &.el-scrollbar {
+      overflow: hidden;
+    }
+  }
+
+  @include mixins.e(suggestion-list) {
+    max-height: 204px;
+    padding: 6px 0;
+    margin: 0;
+    font-size: var.$font-size-base;
+    color: var.$cascader-menu-font-color;
+    text-align: center;
+  }
+
+  @include mixins.e(suggestion-item) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 34px;
+    padding: 0 15px;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      background: var.$cascader-node-background-hover;
+    }
+
+    &.is-checked {
+      font-weight: bold;
+      color: var.$cascader-menu-selected-font-color;
+    }
+
+    > span {
+      margin-right: 10px;
+    }
+  }
+
+  @include mixins.e(empty-text) {
+    margin: 10px 0;
+    color: var.$cascader-color-empty;
+  }
+
+  @include mixins.e(search-input) {
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 60px;
+    height: 24px;
+    padding: 0;
+    margin: 2px 0 2px 15px;
+    color: var.$cascader-menu-font-color;
+    outline: none;
+    border: none;
+
+    &::placeholder {
+      color: var.$color-text-placeholder;
+    }
+  }
+}

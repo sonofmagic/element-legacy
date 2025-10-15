@@ -1,0 +1,40 @@
+.el-statistic {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  font-variant: tabular-nums;
+  color: #000;
+  text-align: center;
+  list-style: none;
+}
+.el-statistic .head {
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: #606266;
+}
+.el-statistic .con {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: sans-serif;
+  color: #303133;
+}
+.el-statistic .con .number {
+  padding: 0 4px;
+  font-size: 20px;
+}
+.el-statistic .con span {
+  display: inline-block;
+  margin: 0;
+  line-height: 100%;
+}

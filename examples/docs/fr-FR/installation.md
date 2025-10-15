@@ -14,13 +14,13 @@ Obtenez la dernière version via [unpkg.com/element-ui](https://unpkg.com/elemen
 
 ```html
 <!-- import du CSS -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" />
 <!-- import du JavaScript -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 ```
 
 :::tip
-Il est recommandé de fixer la version d'Element lors de l'utilisation du CDN. Référez-vous à  [unpkg.com](https://unpkg.com) pour plus d'informations.
+Il est recommandé de fixer la version d'Element lors de l'utilisation du CDN. Référez-vous à [unpkg.com](https://unpkg.com) pour plus d'informations.
 :::
 
 ### Hello world

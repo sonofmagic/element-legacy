@@ -1,6 +1,6 @@
 <script>
-  import bus from '../../bus';
-  import { tintColor } from '../../color.js';
+  import bus from '../../bus.ts';
+  import { tintColor } from '../../color.ts';
   import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant.js';
   const varMap = {
     'primary': '$--color-primary',
@@ -91,6 +91,7 @@
 </script>
 
 ## Color
+
 Element utiliza un conjunto de paletas para especificar colores, y así, proporcionar una apariencia y sensación coherente para los productos que construye.
 
 ### Color principal
@@ -99,17 +100,17 @@ El color principal de Element es el azul brillante y amigable.
 
 <el-row :gutter="12">
   <el-col :span="10" :xs="{span: 12}">
-    <div 
+    <div
       class="demo-color-box"
       :style="{ background: primary }"
     >
       Brand Color<div class="value">#409EFF</div>
-    <div 
+    <div
       class="bg-color-sub"
       :style="{ background: tintColor(primary, 0.9) }"
     >
-    <div 
-      class="bg-blue-sub-item" 
+    <div
+      class="bg-blue-sub-item"
       v-for="(item, key) in Array(8)"
       :key="key"
       :style="{ background: tintColor(primary, (key + 1) / 10) }"
@@ -129,11 +130,11 @@ Además del color principal, se necesitan utilizar distintos colores para difere
     <div class="demo-color-box"
     :style="{ background: success }"
     >Success<div class="value">#67C23A</div>
-      <div 
+      <div
         class="bg-color-sub"
       >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(success, (key + 8) / 10) }"
@@ -146,11 +147,11 @@ Además del color principal, se necesitan utilizar distintos colores para difere
     <div class="demo-color-box"
     :style="{ background: warning }"
     >Warning<div class="value">#E6A23C</div>
-      <div 
+      <div
           class="bg-color-sub"
         >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(warning, (key + 8) / 10) }"
@@ -163,11 +164,11 @@ Además del color principal, se necesitan utilizar distintos colores para difere
     <div class="demo-color-box"
     :style="{ background: danger }"
     >Danger<div class="value">#F56C6C</div>
-      <div 
+      <div
           class="bg-color-sub"
         >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(danger, (key + 8) / 10) }"
@@ -180,11 +181,11 @@ Además del color principal, se necesitan utilizar distintos colores para difere
     <div class="demo-color-box"
     :style="{ background: info }"
     >Info<div class="value">#909399</div>
-      <div 
+      <div
           class="bg-color-sub"
         >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(info, (key + 8) / 10) }"
@@ -235,7 +236,7 @@ Los colores neutrales son para texto, fondos y bordes. Puede usar diferentes col
   </el-col>
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box-group">
-      <div 
+      <div
       class="demo-color-box demo-color-box-other"
       :style="{ background: black }"
       >Basic Black<div class="value">{{black}}</div></div>

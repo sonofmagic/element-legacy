@@ -1,0 +1,32 @@
+.el-select-group {
+  padding: 0;
+  margin: 0;
+}
+.el-select-group__wrap {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.el-select-group__wrap:not(:last-of-type) {
+  padding-bottom: 24px;
+}
+.el-select-group__wrap:not(:last-of-type):after {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+  left: 20px;
+  display: block;
+  height: 1px;
+  content: "";
+  background: #e4e7ed;
+}
+.el-select-group__title {
+  padding-left: 20px;
+  font-size: 12px;
+  line-height: 30px;
+  color: #909399;
+}
+.el-select-group .el-select-dropdown__item {
+  padding-left: 20px;
+}

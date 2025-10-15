@@ -1,0 +1,112 @@
+.el-notification {
+  position: fixed;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 330px;
+  padding: 14px 26px 14px 13px;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px #0000001a;
+  -webkit-transition:
+    opacity 0.3s,
+    left 0.3s,
+    right 0.3s,
+    top 0.4s,
+    bottom 0.3s,
+    -webkit-transform 0.3s;
+  transition:
+    opacity 0.3s,
+    left 0.3s,
+    right 0.3s,
+    top 0.4s,
+    bottom 0.3s,
+    -webkit-transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s,
+    left 0.3s,
+    right 0.3s,
+    top 0.4s,
+    bottom 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s,
+    left 0.3s,
+    right 0.3s,
+    top 0.4s,
+    bottom 0.3s,
+    -webkit-transform 0.3s;
+}
+.el-notification.right {
+  right: 16px;
+}
+.el-notification.left {
+  left: 16px;
+}
+.el-notification__group {
+  margin-right: 8px;
+  margin-left: 13px;
+}
+.el-notification__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #303133;
+}
+.el-notification__content {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 21px;
+  color: #606266;
+  text-align: justify;
+}
+.el-notification__content p {
+  margin: 0;
+}
+.el-notification__icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+.el-notification__closeBtn {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  font-size: 16px;
+  color: #909399;
+  cursor: pointer;
+}
+.el-notification__closeBtn:hover {
+  color: #606266;
+}
+.el-notification .el-icon-success {
+  color: #67c23a;
+}
+.el-notification .el-icon-error {
+  color: #f56c6c;
+}
+.el-notification .el-icon-info {
+  color: #909399;
+}
+.el-notification .el-icon-warning {
+  color: #e6a23c;
+}
+.el-notification-fade-enter.right {
+  right: 0;
+  -webkit-transform: translateX(100%);
+  transform: translate(100%);
+}
+.el-notification-fade-enter.left {
+  left: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translate(-100%);
+}
+.el-notification-fade-leave-active {
+  opacity: 0;
+}

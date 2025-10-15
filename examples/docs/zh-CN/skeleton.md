@@ -51,14 +51,12 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
 <template>
   <el-skeleton style="width: 240px">
     <template slot="template">
-      <el-skeleton-item variant="image" style="width: 240px; height: 240px;" />
-      <div style="padding: 14px;">
+      <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
+      <div style="padding: 14px">
         <el-skeleton-item variant="p" style="width: 50%" />
-        <div
-          style="display: flex; align-items: center; justify-items: space-between;"
-        >
-          <el-skeleton-item variant="text" style="margin-right: 16px;" />
-          <el-skeleton-item variant="text" style="width: 30%;" />
+        <div style="display: flex; align-items: center; justify-items: space-between">
+          <el-skeleton-item variant="text" style="margin-right: 16px" />
+          <el-skeleton-item variant="text" style="width: 30%" />
         </div>
       </div>
     </template>
@@ -79,22 +77,17 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
 <template>
   <div style="width: 240px">
     <p>
-      <label style="margin-right: 16px;">切换 Loading</label>
+      <label style="margin-right: 16px">切换 Loading</label>
       <el-switch v-model="loading" />
     </p>
     <el-skeleton style="width: 240px" :loading="loading" animated>
       <template slot="template">
-        <el-skeleton-item
-          variant="image"
-          style="width: 240px; height: 240px;"
-        />
-        <div style="padding: 14px;">
-          <el-skeleton-item variant="h3" style="width: 50%;" />
-          <div
-            style="display: flex; align-items: center; justify-items: space-between; margin-top: 16px; height: 16px;"
-          >
-            <el-skeleton-item variant="text" style="margin-right: 16px;" />
-            <el-skeleton-item variant="text" style="width: 30%;" />
+        <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="h3" style="width: 50%" />
+          <div style="display: flex; align-items: center; justify-items: space-between; margin-top: 16px; height: 16px">
+            <el-skeleton-item variant="text" style="margin-right: 16px" />
+            <el-skeleton-item variant="text" style="width: 30%" />
           </div>
         </div>
       </template>
@@ -104,7 +97,7 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
             src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
             class="image"
           />
-          <div style="padding: 14px;">
+          <div style="padding: 14px">
             <span>好吃的汉堡</span>
             <div class="bottom card-header">
               <span class="time">{{ currentDate }}</span>
@@ -119,10 +112,10 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
 
 <script>
   export default {
-    data () {
+    data() {
       return {
         loading: true,
-        currentDate: '2021-06-01'
+        currentDate: '2021-06-01',
       }
     },
   }
@@ -141,37 +134,27 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
 
 :::demo
 
-
 ```html
 <template>
   <div style="width: 400px">
     <p>
       <el-button @click="setLoading">点我重新加载</el-button>
     </p>
-    <el-skeleton style="width:400px" :loading="loading" animated :count="3">
+    <el-skeleton style="width: 400px" :loading="loading" animated :count="3">
       <template slot="template">
-        <el-skeleton-item
-          variant="image"
-          style="width: 400px; height: 267px;"
-        />
-        <div style="padding: 14px;">
-          <el-skeleton-item variant="h3" style="width: 50%;" />
-          <div
-            style="display: flex; align-items: center; justify-items: space-between; margin-top: 16px; height: 16px;"
-          >
-            <el-skeleton-item variant="text" style="margin-right: 16px;" />
-            <el-skeleton-item variant="text" style="width: 30%;" />
+        <el-skeleton-item variant="image" style="width: 400px; height: 267px" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="h3" style="width: 50%" />
+          <div style="display: flex; align-items: center; justify-items: space-between; margin-top: 16px; height: 16px">
+            <el-skeleton-item variant="text" style="margin-right: 16px" />
+            <el-skeleton-item variant="text" style="width: 30%" />
           </div>
         </div>
       </template>
       <template>
-        <el-card
-          :body-style="{ padding: '0px', marginBottom: '1px' }"
-          v-for="item in lists"
-          :key="item.name"
-        >
+        <el-card :body-style="{ padding: '0px', marginBottom: '1px' }" v-for="item in lists" :key="item.name">
           <img :src="item.imgUrl" class="image multi-content" />
-          <div style="padding: 14px;">
+          <div style="padding: 14px">
             <span>{{ item.name }}</span>
             <div class="bottom card-header">
               <span class="time">{{ currentDate }}</span>
@@ -197,18 +180,15 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
       this.loading = false
       this.lists = [
         {
-          imgUrl:
-            'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+          imgUrl: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
           name: '鹿',
         },
         {
-          imgUrl:
-            'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+          imgUrl: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
           name: '马',
         },
         {
-          imgUrl:
-            'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+          imgUrl: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
           name: '山狮',
         },
       ]
@@ -235,27 +215,17 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
 <template>
   <div style="width: 240px">
     <p>
-      <label style="margin-right: 16px;">切换 Loading</label>
+      <label style="margin-right: 16px">切换 Loading</label>
       <el-switch v-model="loading" />
     </p>
-    <el-skeleton
-      style="width: 240px"
-      :loading="loading"
-      animated
-      :throttle="500"
-    >
+    <el-skeleton style="width: 240px" :loading="loading" animated :throttle="500">
       <template slot="template">
-        <el-skeleton-item
-          variant="image"
-          style="width: 240px; height: 240px;"
-        />
-        <div style="padding: 14px;">
-          <el-skeleton-item variant="h3" style="width: 50%;" />
-          <div
-            style="display: flex; align-items: center; justify-items: space-between; margin-top: 16px; height: 16px;"
-          >
-            <el-skeleton-item variant="text" style="margin-right: 16px;" />
-            <el-skeleton-item variant="text" style="width: 30%;" />
+        <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="h3" style="width: 50%" />
+          <div style="display: flex; align-items: center; justify-items: space-between; margin-top: 16px; height: 16px">
+            <el-skeleton-item variant="text" style="margin-right: 16px" />
+            <el-skeleton-item variant="text" style="width: 30%" />
           </div>
         </div>
       </template>
@@ -265,7 +235,7 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
             src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
             class="image"
           />
-          <div style="padding: 14px;">
+          <div style="padding: 14px">
             <span>好吃的汉堡</span>
             <div class="bottom card-header">
               <span class="time">{{ currentDate }}</span>
@@ -283,7 +253,7 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
     data() {
       return {
         loading: false,
-        currentDate: '2021-06-01'
+        currentDate: '2021-06-01',
       }
     },
   }
@@ -298,19 +268,19 @@ Element 提供的排版模式有时候并不满足要求，当您想要用自己
 | -------- | ------------------------------------------- | ------- | ------------ | ------ |
 | animated | 是否使用动画                                | boolean | true / false | false  |
 | count    | 渲染多少个 template, 建议使用尽可能小的数字 | number  | integer      | 1      |
-| loading  | 是否显示 skeleton 骨架屏                    | boolean | true / false | true |
+| loading  | 是否显示 skeleton 骨架屏                    | boolean | true / false | true   |
 | rows     | 骨架屏段落数量                              | number  | 正整数       | 4      |
 | throttle | 延迟占位 DOM 渲染的时间, 单位是毫秒         | number  | 正整数       | 0      |
 
 ### Skeleton Item Attributes
 
-| 参数    | 说明                     | 类型         | 可选值                                                               | 默认值 |
-| ------- | ------------------------ | ------------ | -------------------------------------------------------------------- | ------ |
+| 参数    | 说明                     | 类型         | 可选值                                                        | 默认值 |
+| ------- | ------------------------ | ------------ | ------------------------------------------------------------- | ------ |
 | variant | 当前显示的占位元素的样式 | Enum(string) | p / h1 / h3 / text / caption / button / image / circle / rect | text   |
 
 ### Skeleton Slots
 
 | name     | description          |
 | -------- | -------------------- |
-| default  | 用来展示真实 UI     |
+| default  | 用来展示真实 UI      |
 | template | 用来展示自定义占位符 |

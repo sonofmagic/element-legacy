@@ -1,0 +1,38 @@
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'skeleton-item';
+@use 'mixins/config';
+
+@mixin skeleton-color() {
+  background: linear-gradient(90deg, var.$skeleton-color 25%, var.$skeleton-to-color 37%, var.$skeleton-color 63%);
+  background-size: 400% 100%;
+  animation: #{config.$namespace}-skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes #{config.$namespace}-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@include mixins.b(skeleton) {
+  width: 100%;
+
+  @each $unit in (first-line, paragraph) {
+    @include mixins.e($unit) {
+      height: 16px;
+      margin-top: 16px;
+      background: var.$skeleton-color;
+    }
+  }
+
+  @include mixins.when(animated) {
+    .#{config.$namespace}-skeleton__item {
+      @include skeleton-color;
+    }
+  }
+}

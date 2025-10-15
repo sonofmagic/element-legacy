@@ -1,0 +1,118 @@
+@use '../common/var';
+@use '../mixins/mixins';
+
+@include mixins.b(picker-panel) {
+  margin: 5px 0;
+  line-height: 30px;
+  color: var.$color-text-regular;
+  background: var.$color-white;
+  border: 1px solid var.$datepicker-border-color;
+  border-radius: var.$border-radius-base;
+  box-shadow: var.$box-shadow-light;
+
+  @include mixins.e((body, body-wrapper)) {
+    &::after {
+      clear: both;
+      display: table;
+      content: '';
+    }
+  }
+
+  @include mixins.e(content) {
+    position: relative;
+    margin: 15px;
+  }
+
+  @include mixins.e(footer) {
+    position: relative;
+    padding: 4px;
+    font-size: 0;
+    text-align: right;
+    background-color: var.$color-white;
+    border-top: 1px solid var.$datepicker-inner-border-color;
+  }
+
+  @include mixins.e(shortcut) {
+    display: block;
+    width: 100%;
+    padding-left: 12px;
+    font-size: 14px;
+    line-height: 28px;
+    color: var.$datepicker-font-color;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    border: 0;
+
+    &:hover {
+      color: var.$datepicker-hover-font-color;
+    }
+
+    &.active {
+      color: var.$datepicker-active-color;
+      background-color: #e6f1fe;
+    }
+  }
+
+  @include mixins.e(btn) {
+    padding: 0 20px;
+    font-size: 12px;
+    line-height: 24px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #dcdcdc;
+    border-radius: 2px;
+
+    &[disabled] {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+
+  @include mixins.e(icon-btn) {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var.$datepicker-icon-color;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    border: 0;
+
+    &:hover {
+      color: var.$datepicker-hover-font-color;
+    }
+
+    @include mixins.when(disabled) {
+      color: var.$font-color-disabled-base;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  @include mixins.e(link-btn) {
+    vertical-align: middle;
+  }
+}
+
+.el-picker-panel *[slot='sidebar'],
+.el-picker-panel__sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 110px;
+  padding-top: 6px;
+  overflow: auto;
+  background-color: var.$color-white;
+  border-right: 1px solid var.$datepicker-inner-border-color;
+}
+
+.el-picker-panel *[slot='sidebar'] + .el-picker-panel__body,
+.el-picker-panel__sidebar + .el-picker-panel__body {
+  margin-left: 110px;
+}

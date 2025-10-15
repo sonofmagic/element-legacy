@@ -1,0 +1,47 @@
+@use 'common/var';
+@use 'mixins/mixins';
+
+@include mixins.b(divider) {
+  position: relative;
+  background-color: var.$border-color-base;
+
+  @include mixins.m(horizontal) {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 24px 0;
+  }
+
+  @include mixins.m(vertical) {
+    position: relative;
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+
+  @include mixins.e(text) {
+    position: absolute;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var.$color-text-primary;
+    background-color: var.$color-white;
+
+    @include mixins.when(left) {
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    @include mixins.when(center) {
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    @include mixins.when(right) {
+      right: 20px;
+      transform: translateY(-50%);
+    }
+  }
+}

@@ -1,0 +1,50 @@
+.el-badge {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.el-badge__content {
+  display: inline-block;
+  height: 18px;
+  padding: 0 6px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #f56c6c;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+.el-badge__content.is-fixed {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  -webkit-transform: translateY(-50%) translateX(100%);
+  transform: translateY(-50%) translate(100%);
+}
+.el-badge__content.is-fixed.is-dot {
+  right: 5px;
+}
+.el-badge__content.is-dot {
+  right: 0;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+}
+.el-badge__content--primary {
+  background-color: #409eff;
+}
+.el-badge__content--success {
+  background-color: #67c23a;
+}
+.el-badge__content--warning {
+  background-color: #e6a23c;
+}
+.el-badge__content--info {
+  background-color: #909399;
+}
+.el-badge__content--danger {
+  background-color: #f56c6c;
+}

@@ -11,11 +11,7 @@ Dialog pops up a dialog box, and it's quite customizable.
 ```html
 <el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
 
-<el-dialog
-  title="Tips"
-  :visible.sync="dialogVisible"
-  width="30%"
-  :before-close="handleClose">
+<el-dialog title="Tips" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
   <span>This is a message</span>
   <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">Cancel</el-button>
@@ -27,21 +23,22 @@ Dialog pops up a dialog box, and it's quite customizable.
   export default {
     data() {
       return {
-        dialogVisible: false
-      };
+        dialogVisible: false,
+      }
     },
     methods: {
       handleClose(done) {
         this.$confirm('Are you sure to close this dialog?')
-          .then(_ => {
-            done();
+          .then((_) => {
+            done()
           })
-          .catch(_ => {});
-      }
-    }
-  };
+          .catch((_) => {})
+      },
+    },
+  }
 </script>
 ```
+
 :::
 
 :::tip
@@ -91,23 +88,28 @@ The content of Dialog can be anything, even a table or a form. This example show
   export default {
     data() {
       return {
-        gridData: [{
-          date: '2016-05-02',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }, {
-          date: '2016-05-04',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }, {
-          date: '2016-05-01',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }, {
-          date: '2016-05-03',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District'
-        }],
+        gridData: [
+          {
+            date: '2016-05-02',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+          {
+            date: '2016-05-04',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+          {
+            date: '2016-05-01',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+          {
+            date: '2016-05-03',
+            name: 'John Smith',
+            address: 'No.1518,  Jinshajiang Road, Putuo District',
+          },
+        ],
         dialogTableVisible: false,
         dialogFormVisible: false,
         form: {
@@ -118,30 +120,28 @@ The content of Dialog can be anything, even a table or a form. This example show
           delivery: false,
           type: [],
           resource: '',
-          desc: ''
+          desc: '',
         },
-        formLabelWidth: '120px'
-      };
-    }
-  };
+        formLabelWidth: '120px',
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 ### Nested Dialog
+
 If a Dialog is nested in another Dialog, `append-to-body` is required.
 :::demo Normally we do not recommend using nested Dialog. If you need multiple Dialogs rendered on the page, you can simply flat them so that they're siblings to each other. If you must nest a Dialog inside another Dialog, set `append-to-body` of the nested Dialog to true, and it will append to body instead of its parent node, so both Dialogs can be correctly rendered.
+
 ```html
 <template>
   <el-button type="text" @click="outerVisible = true">open the outer Dialog</el-button>
-  
+
   <el-dialog title="Outer Dialog" :visible.sync="outerVisible">
-    <el-dialog
-        width="30%"
-        title="Inner Dialog"
-        :visible.sync="innerVisible"
-        append-to-body>
-    </el-dialog>
+    <el-dialog width="30%" title="Inner Dialog" :visible.sync="innerVisible" append-to-body> </el-dialog>
     <div slot="footer" class="dialog-footer">
       <el-button @click="outerVisible = false">Cancel</el-button>
       <el-button type="primary" @click="innerVisible = true">open the inner Dialog</el-button>
@@ -154,15 +154,17 @@ If a Dialog is nested in another Dialog, `append-to-body` is required.
     data() {
       return {
         outerVisible: false,
-        innerVisible: false
-      };
-    }
+        innerVisible: false,
+      }
+    },
   }
 </script>
 ```
+
 :::
 
 ### Centered content
+
 Dialog's content can be centered.
 
 :::demo Setting `center` to `true` will center dialog's header and footer horizontally. `center` only affects Dialog's header and footer. The body of Dialog can be anything, so sometimes it may not look good when centered. You need to write some CSS if you wish to center the body as well.
@@ -170,11 +172,7 @@ Dialog's content can be centered.
 ```html
 <el-button type="text" @click="centerDialogVisible = true">Click to open the Dialog</el-button>
 
-<el-dialog
-  title="Warning"
-  :visible.sync="centerDialogVisible"
-  width="30%"
-  center>
+<el-dialog title="Warning" :visible.sync="centerDialogVisible" width="30%" center>
   <span>It should be noted that the content will not be aligned in center by default</span>
   <span slot="footer" class="dialog-footer">
     <el-button @click="centerDialogVisible = false">Cancel</el-button>
@@ -186,12 +184,13 @@ Dialog's content can be centered.
   export default {
     data() {
       return {
-        centerDialogVisible: false
-      };
-    }
-  };
+        centerDialogVisible: false,
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 :::tip
@@ -204,37 +203,38 @@ If the variable bound to `visible` is managed in Vuex store, the `.sync` can not
 
 ### Attributes
 
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| visible   | visibility of Dialog, supports the .sync modifier | boolean | — | false |
-| title     | title of Dialog. Can also be passed with a named slot (see the following table) | string    | — | — |
-| width     | width of Dialog | string    | — | 50% |
-| fullscreen     | whether the Dialog takes up full screen | boolean    | — | false |
-| top      | value for `margin-top` of Dialog CSS | string    | — | 15vh |
-| modal     | whether a mask is displayed | boolean   | — | true |
-| modal-append-to-body     | whether to append modal to body element. If false, the modal will be appended to Dialog's parent element | boolean   | — | true |
-| append-to-body     | whether to append Dialog itself to body. A nested Dialog should have this attribute set to `true` | boolean   | — | false |
-| lock-scroll     | whether scroll of body is disabled while Dialog is displayed | boolean   | — | true |
-| custom-class      | custom class names for Dialog | string    | — | — |
-| close-on-click-modal | whether the Dialog can be closed by clicking the mask | boolean    | — | true |
-| close-on-press-escape | whether the Dialog can be closed by pressing ESC | boolean    | — | true |
-| show-close | whether to show a close button | boolean    | — | true |
-| before-close | callback before Dialog closes, and it will prevent Dialog from closing | function(done)，done is used to close the Dialog | — | — |
-| center | whether to align the header and footer in center | boolean | — | false |
-| destroy-on-close | Destroy elements in Dialog when closed   | boolean | — | false |
+| Attribute             | Description                                                                                              | Type                                             | Accepted Values | Default |
+| --------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | --------------- | ------- |
+| visible               | visibility of Dialog, supports the .sync modifier                                                        | boolean                                          | —               | false   |
+| title                 | title of Dialog. Can also be passed with a named slot (see the following table)                          | string                                           | —               | —       |
+| width                 | width of Dialog                                                                                          | string                                           | —               | 50%     |
+| fullscreen            | whether the Dialog takes up full screen                                                                  | boolean                                          | —               | false   |
+| top                   | value for `margin-top` of Dialog CSS                                                                     | string                                           | —               | 15vh    |
+| modal                 | whether a mask is displayed                                                                              | boolean                                          | —               | true    |
+| modal-append-to-body  | whether to append modal to body element. If false, the modal will be appended to Dialog's parent element | boolean                                          | —               | true    |
+| append-to-body        | whether to append Dialog itself to body. A nested Dialog should have this attribute set to `true`        | boolean                                          | —               | false   |
+| lock-scroll           | whether scroll of body is disabled while Dialog is displayed                                             | boolean                                          | —               | true    |
+| custom-class          | custom class names for Dialog                                                                            | string                                           | —               | —       |
+| close-on-click-modal  | whether the Dialog can be closed by clicking the mask                                                    | boolean                                          | —               | true    |
+| close-on-press-escape | whether the Dialog can be closed by pressing ESC                                                         | boolean                                          | —               | true    |
+| show-close            | whether to show a close button                                                                           | boolean                                          | —               | true    |
+| before-close          | callback before Dialog closes, and it will prevent Dialog from closing                                   | function(done)，done is used to close the Dialog | —               | —       |
+| center                | whether to align the header and footer in center                                                         | boolean                                          | —               | false   |
+| destroy-on-close      | Destroy elements in Dialog when closed                                                                   | boolean                                          | —               | false   |
 
 ### Slot
 
-| Name | Description |
-|------|--------|
-| — | content of Dialog |
-| title | content of the Dialog title |
+| Name   | Description                  |
+| ------ | ---------------------------- |
+| —      | content of Dialog            |
+| title  | content of the Dialog title  |
 | footer | content of the Dialog footer |
 
 ### Events
-| Event Name | Description | Parameters |
-|---------- |-------- |---------- |
-| open | triggers when the Dialog opens | — |
-| opened | triggers when the Dialog opening animation ends | — |
-| close | triggers when the Dialog closes | — |
-| closed | triggers when the Dialog closing animation ends | — |
+
+| Event Name | Description                                     | Parameters |
+| ---------- | ----------------------------------------------- | ---------- |
+| open       | triggers when the Dialog opens                  | —          |
+| opened     | triggers when the Dialog opening animation ends | —          |
+| close      | triggers when the Dialog closes                 | —          |
+| closed     | triggers when the Dialog closing animation ends | —          |

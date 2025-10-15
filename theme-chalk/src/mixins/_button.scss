@@ -1,0 +1,84 @@
+@use 'sass:color';
+@use '../common/var';
+
+@mixin button-plain($color) {
+  color: $color;
+  background: color.mix(var.$color-white, $color, 90%);
+  border-color: color.mix(var.$color-white, $color, 60%);
+
+  &:hover,
+  &:focus {
+    color: var.$color-white;
+    background: $color;
+    border-color: $color;
+  }
+
+  &:active {
+    color: var.$color-white;
+    outline: none;
+    background: color.mix(var.$color-black, $color, var.$button-active-shade-percent);
+    border-color: color.mix(var.$color-black, $color, var.$button-active-shade-percent);
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: color.mix(var.$color-white, $color, 40%);
+      background-color: color.mix(var.$color-white, $color, 90%);
+      border-color: color.mix(var.$color-white, $color, 80%);
+    }
+  }
+}
+
+@mixin button-variant($color, $background-color, $border-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
+
+  &:hover,
+  &:focus {
+    color: $color;
+    background: color.mix(var.$color-white, $background-color, var.$button-hover-tint-percent);
+    border-color: color.mix(var.$color-white, $border-color, var.$button-hover-tint-percent);
+  }
+
+  &:active {
+    color: $color;
+    outline: none;
+    background: color.mix(var.$color-black, $background-color, var.$button-active-shade-percent);
+    border-color: color.mix(var.$color-black, $border-color, var.$button-active-shade-percent);
+  }
+
+  &.is-active {
+    color: $color;
+    background: color.mix(var.$color-black, $background-color, var.$button-active-shade-percent);
+    border-color: color.mix(var.$color-black, $border-color, var.$button-active-shade-percent);
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: var.$color-white;
+      background-color: color.mix($background-color, var.$color-white);
+      border-color: color.mix($border-color, var.$color-white);
+    }
+  }
+
+  &.is-plain {
+    @include button-plain($background-color);
+  }
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+
+  &.is-round {
+    padding: $padding-vertical $padding-horizontal;
+  }
+}

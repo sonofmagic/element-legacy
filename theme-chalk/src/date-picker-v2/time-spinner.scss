@@ -1,0 +1,159 @@
+@use '../common/var';
+@use '../mixins/mixins';
+
+@include mixins.b(time-spinner-v2) {
+  --el-time-spinner-v2-cell-height: 32px;
+  --el-time-spinner-v2-scroll-height: calc(var(--el-time-spinner-v2-cell-height) * 7 + 34px);
+
+  display: flex;
+
+  &.has-seconds {
+    .el-time-spinner-v2__wrapper {
+      flex-basis: calc(100% / 3);
+    }
+  }
+
+  &:not(.has-seconds) {
+    .el-time-spinner-v2__wrapper {
+      flex-basis: calc(100% / 2);
+    }
+  }
+
+  @include mixins.e(wrapper) {
+    position: relative;
+    flex: 1 1 0%;
+    min-width: 0;
+    background-color: var.$color-white;
+    border-radius: var.$border-radius-base;
+
+    &.el-scrollbar {
+      overflow: hidden;
+    }
+
+    &.el-scrollbar .el-scrollbar__wrap {
+      max-height: var(--el-time-spinner-v2-scroll-height);
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    &.el-scrollbar .el-scrollbar__wrap--hidden-default {
+      padding-bottom: 0;
+    }
+
+    &.el-scrollbar .el-scrollbar__view {
+      width: 100%;
+    }
+
+    @include mixins.when(arrow) {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 32px 0;
+      overflow: hidden;
+      text-align: center;
+
+      .el-time-spinner-v2__list {
+        margin: 0;
+      }
+
+      .el-time-spinner-v2__item:hover:not(.disabled, .active) {
+        background: var.$color-white;
+      }
+    }
+  }
+
+  @include mixins.e(arrow) {
+    position: absolute;
+    left: 0;
+    z-index: var.$index-normal;
+    width: 100%;
+    height: 28px;
+    font-size: 14px;
+    line-height: 28px;
+    color: var.$color-text-secondary;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: var.$color-primary;
+    }
+
+    &.el-icon-arrow-up {
+      top: 4px;
+    }
+
+    &.el-icon-arrow-down {
+      bottom: 4px;
+    }
+  }
+
+  @include mixins.e(list) {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    &::after {
+      display: block;
+      height: calc(var(--el-time-spinner-v2-scroll-height) - var(--el-time-spinner-v2-cell-height));
+      content: '';
+    }
+  }
+
+  @include mixins.e(item) {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 9px 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: var.$color-text-regular;
+    border-radius: var.$border-radius-base;
+    transition: var.$color-transition-base, background-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      width: 40px;
+      height: 22px;
+      content: '';
+      background-color: transparent;
+      border-radius: var.$border-radius-base;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    &:hover:not(.disabled, .active) {
+      color: var.$color-primary;
+      cursor: pointer;
+    }
+
+    &:hover:not(.disabled, .active)::before {
+      background-color: var.$color-primary-light-9;
+    }
+
+    &.active:not(.disabled) {
+      font-weight: 500;
+      color: var.$color-primary;
+    }
+
+    &.active:not(.disabled)::before {
+      background-color: var.$color-primary-light-9;
+    }
+
+    &.disabled {
+      color: var.$color-text-placeholder;
+      cursor: not-allowed;
+    }
+
+    & + .el-time-spinner-v2__item {
+      margin-top: 4px;
+    }
+  }
+}

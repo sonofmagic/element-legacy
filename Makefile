@@ -18,10 +18,10 @@ play:
 	npm run dev:play
 
 new:
-	node build/bin/new.js $(filter-out $@,$(MAKECMDGOALS))
+	pnpm exec tsx build/bin/new.ts $(filter-out $@,$(MAKECMDGOALS))
 
 new-lang:
-	node build/bin/new-lang.js $(filter-out $@,$(MAKECMDGOALS))
+	pnpm exec tsx build/bin/new-lang.ts $(filter-out $@,$(MAKECMDGOALS))
 
 dist: install
 	npm run dist

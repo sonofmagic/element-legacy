@@ -1,0 +1,116 @@
+.el-alert {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  margin: 0;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 4px;
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+.el-alert.is-light .el-alert__closebtn {
+  color: #c0c4cc;
+}
+.el-alert.is-dark .el-alert__closebtn,
+.el-alert.is-dark .el-alert__description {
+  color: #fff;
+}
+.el-alert.is-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.el-alert--success.is-light {
+  color: #67c23a;
+  background-color: #f0f9eb;
+}
+.el-alert--success.is-light .el-alert__description {
+  color: #67c23a;
+}
+.el-alert--success.is-dark {
+  color: #fff;
+  background-color: #67c23a;
+}
+.el-alert--info.is-light {
+  color: #909399;
+  background-color: #f4f4f5;
+}
+.el-alert--info.is-dark {
+  color: #fff;
+  background-color: #909399;
+}
+.el-alert--info .el-alert__description {
+  color: #909399;
+}
+.el-alert--warning.is-light {
+  color: #e6a23c;
+  background-color: #fdf6ec;
+}
+.el-alert--warning.is-light .el-alert__description {
+  color: #e6a23c;
+}
+.el-alert--warning.is-dark {
+  color: #fff;
+  background-color: #e6a23c;
+}
+.el-alert--error.is-light {
+  color: #f56c6c;
+  background-color: #fef0f0;
+}
+.el-alert--error.is-light .el-alert__description {
+  color: #f56c6c;
+}
+.el-alert--error.is-dark {
+  color: #fff;
+  background-color: #f56c6c;
+}
+.el-alert__content {
+  display: table-cell;
+  padding: 0 8px;
+}
+.el-alert__icon {
+  width: 16px;
+  font-size: 16px;
+}
+.el-alert__icon.is-big {
+  width: 28px;
+  font-size: 28px;
+}
+.el-alert__title {
+  font-size: 13px;
+  line-height: 18px;
+}
+.el-alert__title.is-bold {
+  font-weight: 700;
+}
+.el-alert .el-alert__description {
+  margin: 5px 0 0;
+  font-size: 12px;
+}
+.el-alert__closebtn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 1;
+}
+.el-alert__closebtn.is-customed {
+  top: 9px;
+  font-size: 13px;
+  font-style: normal;
+}
+.el-alert-fade-enter,
+.el-alert-fade-leave-active {
+  opacity: 0;
+}

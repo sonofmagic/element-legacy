@@ -1,4 +1,5 @@
 ## Container
+
 Les composants Container servent à structurer la page:
 
 `<el-container>`: Conteneur de wrapping. Quand il est placé à l'intérieur de `<el-header>` ou `<el-footer>`, tous les éléments enfants seront placés verticalement. Dans le cas contraire ils seront placés horizontalement.
@@ -18,6 +19,7 @@ Ces composants utilisent flexbox, assurez vous que le navigateur supporte cette 
 ### Mises en page habituelles
 
 :::demo
+
 ```html
 <el-container>
   <el-header>Header</el-header>
@@ -72,22 +74,23 @@ Ces composants utilisent flexbox, assurez vous que le navigateur supporte cette 
 </el-container>
 
 <style>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
+  .el-header,
+  .el-footer {
+    background-color: #b3c0d1;
     color: #333;
     text-align: center;
     line-height: 60px;
   }
 
   .el-aside {
-    background-color: #D3DCE6;
+    background-color: #d3dce6;
     color: #333;
     text-align: center;
     line-height: 200px;
   }
 
   .el-main {
-    background-color: #E9EEF3;
+    background-color: #e9eef3;
     color: #333;
     text-align: center;
     line-height: 160px;
@@ -107,11 +110,13 @@ Ces composants utilisent flexbox, assurez vous que le navigateur supporte cette 
   }
 </style>
 ```
+
 :::
 
 ### Exemple
 
 :::demo
+
 ```html
 <el-container style="height: 500px; border: 1px solid #eee">
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
@@ -179,12 +184,9 @@ Ces composants utilisent flexbox, assurez vous que le navigateur supporte cette 
 
     <el-main>
       <el-table :data="tableData">
-        <el-table-column prop="date" label="Date" width="140">
-        </el-table-column>
-        <el-table-column prop="name" label="Name" width="120">
-        </el-table-column>
-        <el-table-column prop="address" label="Address">
-        </el-table-column>
+        <el-table-column prop="date" label="Date" width="140"> </el-table-column>
+        <el-table-column prop="name" label="Name" width="120"> </el-table-column>
+        <el-table-column prop="address" label="Address"> </el-table-column>
       </el-table>
     </el-main>
   </el-container>
@@ -192,7 +194,7 @@ Ces composants utilisent flexbox, assurez vous que le navigateur supporte cette 
 
 <style>
   .el-header {
-    background-color: #B3C0D1;
+    background-color: #b3c0d1;
     color: #333;
     line-height: 60px;
   }
@@ -208,33 +210,38 @@ Ces composants utilisent flexbox, assurez vous que le navigateur supporte cette 
       const item = {
         date: '2016-05-02',
         name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      };
-      return {
-        tableData: Array(20).fill(item)
+        address: 'No. 189, Grove St, Los Angeles',
       }
-    }
-  };
+      return {
+        tableData: Array(20).fill(item),
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 ### Attributs de Container
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
+
+| Attribut  | Description                                      | Type   | Valeurs acceptées     | Défaut                                                           |
+| --------- | ------------------------------------------------ | ------ | --------------------- | ---------------------------------------------------------------- |
 | direction | Direction d'affichage pour les éléments enfants. | string | horizontal / vertical | vertical quand dans `el-header` ou `el-footer`; horizontal sinon |
 
 ### Attributs de Header
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| height | Hauteur du header. | string | — | 60px |
+
+| Attribut | Description        | Type   | Valeurs acceptées | Défaut |
+| -------- | ------------------ | ------ | ----------------- | ------ |
+| height   | Hauteur du header. | string | —                 | 60px   |
 
 ### Attributs de Aside
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| width | Largeur de la section. | string | — | 300px |
+
+| Attribut | Description            | Type   | Valeurs acceptées | Défaut |
+| -------- | ---------------------- | ------ | ----------------- | ------ |
+| width    | Largeur de la section. | string | —                 | 300px  |
 
 ### Attributs de Footer
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| height | Hauteur du footer. | string | — | 60px |
+
+| Attribut | Description        | Type   | Valeurs acceptées | Défaut |
+| -------- | ------------------ | ------ | ----------------- | ------ |
+| height   | Hauteur du footer. | string | —                 | 60px   |

@@ -1,0 +1,61 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@include mixins.b(result) {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var.$result-padding;
+  text-align: center;
+
+  @include mixins.e(icon) {
+    svg {
+      width: var.$result-icon-font-size;
+      height: var.$result-icon-font-size;
+    }
+  }
+
+  @include mixins.e(title) {
+    margin-top: var.$result-title-margin-top;
+
+    p {
+      margin: 0;
+      font-size: var.$result-title-font-size;
+      line-height: 1.3;
+      color: var.$color-text-primary;
+    }
+  }
+
+  @include mixins.e(subtitle) {
+    margin-top: var.$result-subtitle-margin-top;
+
+    p {
+      margin: 0;
+      font-size: var.$font-size-base;
+      line-height: 1.3;
+      color: var.$color-text-regular;
+    }
+  }
+
+  @include mixins.e(extra) {
+    margin-top: var.$result-extra-margin-top;
+  }
+
+  .icon-success {
+    fill: var.$result-success-color;
+  }
+
+  .icon-error {
+    fill: var.$result-danger-color;
+  }
+
+  .icon-info {
+    fill: var.$result-info-color;
+  }
+
+  .icon-warning {
+    fill: var.$result-warning-color;
+  }
+}

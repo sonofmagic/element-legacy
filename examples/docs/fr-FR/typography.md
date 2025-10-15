@@ -1,5 +1,5 @@
 <script>
-  import bus from '../../bus';
+  import bus from '../../bus.ts';
   import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant.js';
   const varMap = [
     '$--font-size-extra-large',
@@ -136,7 +136,7 @@ Nous avons créé une convention de police d'écriture afin d'assurer la meilleu
 ### Font Line Height
 
 <div>
-<img class="lineH-left" src="~examples/assets/images/typography.png" />
+<img class="lineH-left" src="/assets/images/typography.png" />
 <ul class="lineH-right">
 <li>line-height:1 <span>No line height</span></li>
 <li>line-height:1.3 <span>Compact</span></li>
@@ -148,5 +148,6 @@ Nous avons créé une convention de police d'écriture afin d'assurer la meilleu
 ### Font-family
 
 ```css
-font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+font-family:
+  'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 ```

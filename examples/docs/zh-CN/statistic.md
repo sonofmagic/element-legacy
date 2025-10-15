@@ -15,32 +15,19 @@
     <el-row :gutter="20">
       <el-col :span="6">
         <div>
-          <el-statistic
-            group-separator=","
-            :precision="2"
-            :value="value2"
-            :title="title"
-          ></el-statistic>
+          <el-statistic group-separator="," :precision="2" :value="value2" :title="title"></el-statistic>
         </div>
       </el-col>
       <el-col :span="6">
         <div>
           <el-statistic title="男女比">
-            <template slot="formatter">
-              456/2
-            </template>
+            <template slot="formatter"> 456/2 </template>
           </el-statistic>
         </div>
       </el-col>
       <el-col :span="6">
         <div>
-          <el-statistic
-            group-separator=","
-            :precision="2"
-            decimal-separator="."
-            :value="value1"
-            :title="title"
-          >
+          <el-statistic group-separator="," :precision="2" decimal-separator="." :value="value1" :title="title">
             <template slot="prefix">
               <i class="el-icon-s-flag" style="color: red"></i>
             </template>
@@ -55,11 +42,7 @@
           <el-statistic :value="like ? 521 : 520" title="Feedback">
             <template slot="suffix">
               <span @click="like = !like" class="like">
-                <i
-                  class="el-icon-star-on"
-                  style="color:red"
-                  v-show="!!like"
-                ></i>
+                <i class="el-icon-star-on" style="color: red" v-show="!!like"></i>
                 <i class="el-icon-star-off" v-show="!like"></i>
               </span>
             </template>
@@ -77,10 +60,10 @@
         like: true,
         value1: 4154.564,
         value2: 1314,
-        title: "增长人数",
-      };
+        title: '增长人数',
+      }
     },
-  };
+  }
 </script>
 <style lang="scss">
   .like {
@@ -105,61 +88,40 @@
   <div>
     <el-row :gutter="20">
       <el-col :span="14">
-        <el-card shadow="hover" style="width: 100%;">
-          <div style="width: 100%; display: inline-block; ">
+        <el-card shadow="hover" style="width: 100%">
+          <div style="width: 100%; display: inline-block">
             <el-statistic :value="deadline2" time-indices title="🎉商品降价🎉">
+              <template slot="suffix"> 抢购即将开始 </template>
+            </el-statistic>
+          </div>
+        </el-card>
+        <el-card shadow="hover" style="width: 100%; margin-top: 20px">
+          <div style="width: 100%; display: inline-block">
+            <el-statistic @finish="hilarity" :value="deadline3" time-indices title="时间游戏">
               <template slot="suffix">
-                抢购即将开始
+                <el-button type="primary " size="mini" @click="add">add 10s</el-button>
               </template>
             </el-statistic>
           </div>
         </el-card>
-        <el-card shadow="hover" style="width: 100%;margin-top: 20px; ">
-          <div style="width: 100%; display: inline-block; ">
-            <el-statistic
-              @finish="hilarity"
-              :value="deadline3"
-              time-indices
-              title="时间游戏"
-            >
-              <template slot="suffix">
-                <el-button type="primary " size="mini" @click="add"
-                  >add 10s</el-button
-                >
-              </template>
-            </el-statistic>
-          </div>
-        </el-card>
-        <el-card shadow="hover" style="width: 100%;margin-top: 20px; ">
-          <div style="width: 100%; display: inline-block;">
-            <el-statistic
-              format="DD天HH小时mm分钟"
-              :value="deadline5"
-              time-indices
-              title="🚩距离立夏还有："
-            >
+        <el-card shadow="hover" style="width: 100%; margin-top: 20px">
+          <div style="width: 100%; display: inline-block">
+            <el-statistic format="DD天HH小时mm分钟" :value="deadline5" time-indices title="🚩距离立夏还有：">
             </el-statistic>
           </div>
         </el-card>
       </el-col>
       <el-col :span="10">
-        <el-card shadow="hover" style="width: 100%;">
+        <el-card shadow="hover" style="width: 100%">
           <div slot="header" class="clearfix">
             <span>文嘉《明日歌》</span>
-            <el-button
-              style="float: right; padding: 3px 0"
-              type="text"
-              @click="clickFn"
-              >暂停</el-button
-            >
+            <el-button style="float: right; padding: 3px 0" type="text" @click="clickFn">暂停</el-button>
           </div>
-          <div style="font-size: 18px;text-align: center; margin-top: 35px;">
-            明日复明日
-          </div>
-          <div style="font-size: 18px;text-align: center;">明日何其多</div>
-          <div style="font-size: 18px;text-align: center;">我生待明日</div>
-          <div style="font-size: 18px;text-align: center;">万事成蹉跎</div>
-          <div style="margin-top: 35px;"></div>
+          <div style="font-size: 18px; text-align: center; margin-top: 35px">明日复明日</div>
+          <div style="font-size: 18px; text-align: center">明日何其多</div>
+          <div style="font-size: 18px; text-align: center">我生待明日</div>
+          <div style="font-size: 18px; text-align: center">万事成蹉跎</div>
+          <div style="margin-top: 35px"></div>
           <el-statistic
             ref="statistic"
             @finish="hilarity"
@@ -182,27 +144,27 @@
         deadline2: Date.now() + 1000 * 60 * 60 * 8,
         deadline3: Date.now() + 1000 * 60 * 30,
         deadline4: Date.now() + (new Date().setHours(23, 59, 59) - Date.now()),
-        deadline5: new Date("2023-05-06"),
+        deadline5: new Date('2023-05-06'),
         stop: true,
-      };
+      }
     },
     methods: {
       hilarity() {
         this.$notify({
-          title: "提示",
-          message: "时间已到",
+          title: '提示',
+          message: '时间已到',
           duration: 0,
-        });
+        })
       },
       clickFn() {
-        this.$refs.statistic.suspend(this.stop);
-        this.stop = !this.stop;
+        this.$refs.statistic.suspend(this.stop)
+        this.stop = !this.stop
       },
       add() {
-        this.deadline3 = this.deadline3 + 1000 * 10;
+        this.deadline3 = this.deadline3 + 1000 * 10
       },
     },
-  };
+  }
 </script>
 ```
 

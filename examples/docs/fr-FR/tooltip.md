@@ -7,6 +7,7 @@ Permet d'afficher des informations au passage de la souris sur un élément.
 Tooltip a 9 emplacements.
 
 :::demo L'attribut `content` détermine le contenu à afficher. L'attribut `placement` détermine la position du tooltip. Sa valeur est sous la forme `[orientation]-[alignment]` avec quatre orientations `top`, `left`, `right`, `bottom` et trois alignements `start`, `end`, `null`, le défaut étant `null`. Par exemple, `placement="left-end"` affichera la tooltip sur la gauche de l'élément et le bas de la tooltip sera aligné avec le bas de l'élément.
+
 ```html
 <div class="box">
   <div class="top">
@@ -94,14 +95,15 @@ Tooltip a 9 emplacements.
   }
 </style>
 ```
-:::
 
+:::
 
 ### Thèmes
 
 Tooltip a deux thèmes: `dark` et `light`。
 
 :::demo Utilisez `effect` pour modifier le thème, le défaut étant `dark`.
+
 ```html
 <el-tooltip content="Top center" placement="top">
   <el-button>Dark</el-button>
@@ -110,6 +112,7 @@ Tooltip a deux thèmes: `dark` et `light`。
   <el-button>Light</el-button>
 </el-tooltip>
 ```
+
 :::
 
 ### Plus de contenu
@@ -117,12 +120,14 @@ Tooltip a deux thèmes: `dark` et `light`。
 Vous pouvez afficher plus de lignes et formater leur contenu.
 
 :::demo Utiliser un slot nommé `content` au lieu de l'attribut.
+
 ```html
 <el-tooltip placement="top">
-  <div slot="content">Multiples lignes<br/>Seconde ligne</div>
+  <div slot="content">Multiples lignes<br />Seconde ligne</div>
   <el-button>Top center</el-button>
 </el-tooltip>
 ```
+
 :::
 
 ### Usage avancé
@@ -136,6 +141,7 @@ Vous pouvez utiliser d'autres attributs pour un usage plus poussé:
 En réalité, Tooltip est une extension de [Vue-popper](https://github.com/element-component/vue-popper), vous pouvez donc utiliser n'importe quel attribut de Vue-popper.
 
 :::demo
+
 ```html
 <template>
   <el-tooltip :disabled="disabled" content="Cliquez pour désactiver le tooltip" placement="bottom" effect="light">
@@ -147,27 +153,28 @@ En réalité, Tooltip est une extension de [Vue-popper](https://github.com/eleme
   export default {
     data() {
       return {
-        disabled: false
-      };
-    }
-  };
+        disabled: false,
+      }
+    },
+  }
 </script>
 
 <style>
   .slide-fade-enter-active {
-    transition: all .3s ease;
+    transition: all 0.3s ease;
   }
   .slide-fade-leave-active {
-    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
   }
-  .slide-fade-enter, .expand-fade-leave-active {
+  .slide-fade-enter,
+  .expand-fade-leave-active {
     margin-left: 20px;
     opacity: 0;
   }
 </style>
 ```
-:::
 
+:::
 
 :::tip
 Le composant `router-link` n'est pas supporté par tooltip, utilisez plutôt `vm.$router.push`.
@@ -175,23 +182,22 @@ Le composant `router-link` n'est pas supporté par tooltip, utilisez plutôt `vm
 Les éléments de formulaire désactivés ne sont pas supportés par Tooltip, plus d'informations sur [MDN](https://developer.mozilla.org/en-US/docs/Web/Events/mouseenter). Vous aurez besoin de mettre ces éléments dans un conteneur pour que cela fonctionne.
 :::
 
-
 ### Attributs
 
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|----------------|---------|-----------|-------------|--------|
-| effect | Thème du Tooltip.  | string   | dark/light  | dark  |
-| content | Contenu à afficher, écrasé par `slot#content`. | String   | — | — |
-| placement | Position du Tooltip. | string |  top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end |  bottom |
-| value / v-model | Visibilité du Tooltip. | boolean | — |  false |
-| disabled | Si le Tooltip est désactivé. | boolean | — |  false |
-| offset | Décalage du Tooltip. | number | — |  0 |
-| transition | Animation de transition. | string | — | el-fade-in-linear |
-| visible-arrow | Si une flèche doit être affichée. Pour plus d'information, voir [Vue-popper](https://github.com/element-component/vue-popper). | boolean | — | true |
-| popper-options | Paramètres [popper.js](https://popper.js.org/docs/v2/). | Object | Se référer à  [popper.js](https://popper.js.org/docs/v2/). | `{ boundariesElement: 'body', gpuAcceleration: false }` |
-| open-delay | Délai avant l'apparition en millisecondes. | number | — | 0 |
-| manual | Si le contrôle du Tooltip doit être manuel. `mouseenter` et `mouseleave` n'auront pas d'effet si `true`. | boolean | — | false |
-| popper-class | Classe du popper de Tooltip. | string | — | — |
-| enterable | Si la souris peut entrer dans la Tooltip. | Boolean | — | true |
-| hide-after | Délai avant disparition. | number | — | 0 |
-| tabindex   | [tabindex](https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/tabindex) de Tooltip. | number | — | 0 |
+| Attribut        | Description                                                                                                                    | Type    | Valeurs acceptées                                                                                         | Défaut                                                  |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| effect          | Thème du Tooltip.                                                                                                              | string  | dark/light                                                                                                | dark                                                    |
+| content         | Contenu à afficher, écrasé par `slot#content`.                                                                                 | String  | —                                                                                                         | —                                                       |
+| placement       | Position du Tooltip.                                                                                                           | string  | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom                                                  |
+| value / v-model | Visibilité du Tooltip.                                                                                                         | boolean | —                                                                                                         | false                                                   |
+| disabled        | Si le Tooltip est désactivé.                                                                                                   | boolean | —                                                                                                         | false                                                   |
+| offset          | Décalage du Tooltip.                                                                                                           | number  | —                                                                                                         | 0                                                       |
+| transition      | Animation de transition.                                                                                                       | string  | —                                                                                                         | el-fade-in-linear                                       |
+| visible-arrow   | Si une flèche doit être affichée. Pour plus d'information, voir [Vue-popper](https://github.com/element-component/vue-popper). | boolean | —                                                                                                         | true                                                    |
+| popper-options  | Paramètres [popper.js](https://popper.js.org/docs/v2/).                                                                        | Object  | Se référer à [popper.js](https://popper.js.org/docs/v2/).                                                 | `{ boundariesElement: 'body', gpuAcceleration: false }` |
+| open-delay      | Délai avant l'apparition en millisecondes.                                                                                     | number  | —                                                                                                         | 0                                                       |
+| manual          | Si le contrôle du Tooltip doit être manuel. `mouseenter` et `mouseleave` n'auront pas d'effet si `true`.                       | boolean | —                                                                                                         | false                                                   |
+| popper-class    | Classe du popper de Tooltip.                                                                                                   | string  | —                                                                                                         | —                                                       |
+| enterable       | Si la souris peut entrer dans la Tooltip.                                                                                      | Boolean | —                                                                                                         | true                                                    |
+| hide-after      | Délai avant disparition.                                                                                                       | number  | —                                                                                                         | 0                                                       |
+| tabindex        | [tabindex](https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/tabindex) de Tooltip.                           | number  | —                                                                                                         | 0                                                       |

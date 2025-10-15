@@ -1,3 +1,49 @@
+<script>
+import { getStyleDisplayName } from '../utils/utils.js'
+
+export default {
+  props: {
+    config: {
+      type: Object,
+    },
+    userConfig: {
+      type: Object,
+    },
+    golbalValue: {
+      type: Object,
+    },
+    componentName: {
+      type: String,
+    },
+  },
+  computed: {
+    mergedValue() {
+      return this.userConfig[this.config.key] || this.config.value
+    },
+    displayName() {
+      return getStyleDisplayName(this.config, this.componentName)
+    },
+    displayKeyName() {
+      if (this.config.name) {
+        return this.config.key.replace('$--', '')
+      }
+      return this.config.key.replace(`$--${this.componentName}-`, '')
+    },
+    isGlobal() {
+      return !this.config.value.startsWith('$')
+    },
+  },
+  methods: {
+    onChange(value) {
+      this.$emit('onChange', {
+        key: this.config.key,
+        value,
+      })
+    },
+  },
+}
+</script>
+
 <style>
     .config {
       padding: 5px 0;
@@ -35,47 +81,3 @@
       vertical-align: bottom;
     }
 </style>
-<script>
-import { getStyleDisplayName } from '../utils/utils.js';
-export default {
-  props: {
-    config: {
-      type: Object
-    },
-    userConfig: {
-      type: Object
-    },
-    golbalValue: {
-      type: Object
-    },
-    componentName: {
-      type: String
-    }
-  },
-  computed: {
-    mergedValue() {
-      return this.userConfig[this.config.key] || this.config.value;
-    },
-    displayName() {
-      return getStyleDisplayName(this.config, this.componentName);
-    },
-    displayKeyName() {
-      if (this.config.name) {
-        return this.config.key.replace('$--', '');
-      }
-      return this.config.key.replace(`$--${this.componentName}-`, '');
-    },
-    isGlobal() {
-      return !this.config.value.startsWith('$');
-    }
-  },
-  methods: {
-    onChange(value) {
-      this.$emit('onChange', {
-        key: this.config.key,
-        value
-      });
-    }
-  }
-};
-</script>

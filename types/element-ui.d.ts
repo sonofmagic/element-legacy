@@ -1,18 +1,29 @@
-import Vue, { PluginObject } from 'vue'
-import { ElementUIComponent, ElementUIComponentSize, ElementUIHorizontalAlignment } from './component'
+import type { PluginObject } from 'vue'
+import type Vue from 'vue'
+import type { ElementUIComponent, ElementUIComponentSize, ElementUIHorizontalAlignment } from './component'
 
+import type { ElInfiniteScroll } from './infinite-scroll'
+import type { ElLoading } from './loading'
+import type { ElMessage } from './message'
+import type { ElMessageBox } from './message-box'
+import type { ElNotification } from './notification'
+import type { TreeData } from './tree'
 import { ElAlert } from './alert'
 import { ElAside } from './aside'
 import { ElAutocomplete } from './autocomplete'
+import { ElAvatar } from './avatar'
+import { ElBacktop } from './backtop'
 import { ElBadge } from './badge'
 import { ElBreadcrumb } from './breadcrumb'
 import { ElBreadcrumbItem } from './breadcrumb-item'
 import { ElButton } from './button'
 import { ElButtonGroup } from './button-group'
+import { ElCalendar } from './calendar'
 import { ElCard } from './card'
 import { ElCarousel } from './carousel'
 import { ElCarouselItem } from './carousel-item'
 import { ElCascader } from './cascader'
+import { ElCascaderPanel } from './cascader-panel'
 import { ElCheckbox } from './checkbox'
 import { ElCheckboxButton } from './checkbox-button'
 import { ElCheckboxGroup } from './checkbox-group'
@@ -22,77 +33,69 @@ import { ElCollapseItem } from './collapse-item'
 import { ElColorPicker } from './color-picker'
 import { ElContainer } from './container'
 import { ElDatePicker } from './date-picker'
+import { ElDatePickerV2 } from './date-picker-v2'
+import { ElDescriptions } from './descriptions'
+import { ElDescriptionsItem } from './descriptions-item'
 import { ElDialog } from './dialog'
+import { ElDivider } from './divider'
+import { ElDrawer } from './drawer'
 import { ElDropdown } from './dropdown'
 import { ElDropdownItem } from './dropdown-item'
 import { ElDropdownMenu } from './dropdown-menu'
+import { ElEmpty } from './empty'
 import { ElFooter } from './footer'
 import { ElForm } from './form'
 import { ElFormItem } from './form-item'
 import { ElHeader } from './header'
+import { ElIcon } from './icon'
+import { ElImage } from './image'
 import { ElInput } from './input'
 import { ElInputNumber } from './input-number'
-import { ElLoading } from './loading'
+import { ElLink } from './link'
 import { ElMain } from './main'
 import { ElMenu } from './menu'
 import { ElMenuItem } from './menu-item'
 import { ElMenuItemGroup } from './menu-item-group'
-import { ElMessage } from './message'
-import { ElMessageBox } from './message-box'
-import { ElNotification } from './notification'
 import { ElOption } from './option'
 import { ElOptionGroup } from './option-group'
+import { ElPageHeader } from './page-header'
 import { ElPagination } from './pagination'
+import { ElPopconfirm } from './popconfirm'
 import { ElPopover } from './popover'
 import { ElProgress } from './progress'
-import { ElRate } from './rate'
 import { ElRadio } from './radio'
 import { ElRadioButton } from './radio-button'
 import { ElRadioGroup } from './radio-group'
+import { ElRate } from './rate'
+import { ElResult } from './result'
 import { ElRow } from './row'
 import { ElSelect } from './select'
+import { ElSkeleton } from './skeleton'
+import { ElSkeletonItem } from './skeleton-item'
 import { ElSlider } from './slider'
+import { ElSpinner } from './spinner'
+import { ElStatistic } from './statistic'
 import { ElStep } from './step'
 import { ElSteps } from './steps'
 import { ElSubmenu } from './submenu'
 import { ElSwitch } from './switch'
+import { ElTabPane } from './tab-pane'
 import { ElTable } from './table'
 import { ElTableColumn } from './table-column'
-import { ElTag } from './tag'
 import { ElTabs } from './tabs'
-import { ElTabPane } from './tab-pane'
-import { ElTimeline } from './timeline'
-import { ElTimelineItem } from './timeline-item'
+import { ElTag } from './tag'
 import { ElTimePicker } from './time-picker'
 import { ElTimeSelect } from './time-select'
+import { ElTimeline } from './timeline'
+import { ElTimelineItem } from './timeline-item'
 import { ElTooltip } from './tooltip'
 import { ElTransfer } from './transfer'
-import { ElTree, TreeData } from './tree'
+import { ElTree } from './tree'
 import { ElUpload } from './upload'
-import { ElLink } from './link'
-import { ElDivider } from './divider'
-import { ElIcon } from './icon'
-import { ElCalendar } from './calendar'
-import { ElImage } from './image'
-import { ElBacktop } from './backtop'
-import { ElInfiniteScroll } from './infinite-scroll'
-import { ElPageHeader } from './page-header'
-import { ElAvatar } from './avatar'
-import { ElDrawer } from './drawer'
-import { ElPopconfirm } from './popconfirm'
-import { ElSkeleton } from './skeleton'
-import { ElSkeletonItem } from './skeleton-item'
-import { ElCascaderPanel } from './cascader-panel'
-import { ElEmpty } from './empty'
-import { ElSpinner } from './spinner'
-import { ElDescriptions } from './descriptions'
-import { ElDescriptionsItem } from './descriptions-item'
-import { ElResult } from './result'
-import { ElStatistic } from './statistic'
 
 export interface InstallationOptions {
-  locale: any,
-  i18n: any,
+  locale: any
+  i18n: any
   size: string
 }
 
@@ -104,7 +107,7 @@ export const version: string
  * Please do not invoke this method directly.
  * Call `Vue.use(ElementUI)` to install.
  */
-export function install (vue: typeof Vue, options: InstallationOptions): void
+export function install(vue: typeof Vue, options: InstallationOptions): void
 
 /** ElementUI component common definition */
 export type Component = ElementUIComponent
@@ -191,6 +194,9 @@ export class Container extends ElContainer {}
 
 /** Date Picker Component */
 export class DatePicker extends ElDatePicker {}
+
+/** Date Picker V2 Component */
+export class DatePickerV2 extends ElDatePickerV2 {}
 
 /** Dialog Component */
 export class Dialog extends ElDialog {}
@@ -340,7 +346,7 @@ export class Calendar extends ElCalendar {}
 export class Backtop extends ElBacktop {}
 
 /** InfiniteScroll Directive */
-export const InfiniteScroll: PluginObject<ElInfiniteScroll>;
+export const InfiniteScroll: PluginObject<ElInfiniteScroll>
 
 /** PageHeader Component */
 export class PageHeader extends ElPageHeader {}

@@ -1,0 +1,85 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@mixin circle-size($size) {
+  width: $size;
+  height: $size;
+  line-height: $size;
+}
+
+@include mixins.b(skeleton) {
+  @include mixins.e(item) {
+    display: inline-block;
+    width: 100%;
+    height: 16px;
+    background: var.$skeleton-color;
+    border-radius: var.$border-radius-base;
+  }
+
+  @include mixins.e(circle) {
+    border-radius: 50%;
+
+    @include circle-size(var.$avatar-medium-size);
+
+    @include mixins.m(lg) {
+      @include circle-size(var.$avatar-large-size);
+    }
+
+    @include mixins.m(md) {
+      @include circle-size(var.$avatar-small-size);
+    }
+  }
+
+  @include mixins.e(button) {
+    width: 64px;
+    height: 40px;
+    border-radius: 4px;
+  }
+
+  @include mixins.e(p) {
+    width: 100%;
+
+    @include mixins.when(last) {
+      width: 61%;
+    }
+
+    @include mixins.when(first) {
+      width: 33%;
+    }
+  }
+
+  @include mixins.e(text) {
+    width: 100%;
+    height: var.$font-size-small;
+  }
+
+  @include mixins.e(caption) {
+    height: var.$font-size-extra-small;
+  }
+
+  @include mixins.e(h1) {
+    height: var.$font-size-extra-large;
+  }
+
+  @include mixins.e(h3) {
+    height: var.$font-size-large;
+  }
+
+  @include mixins.e(h5) {
+    height: var.$font-size-medium;
+  }
+
+  @include mixins.e(image) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: unset;
+    border-radius: 0;
+
+    svg {
+      width: 22%;
+      height: 22%;
+      fill: var.$svg-monochrome-grey;
+    }
+  }
+}

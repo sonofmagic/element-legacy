@@ -1,0 +1,125 @@
+.el-progress {
+  position: relative;
+  line-height: 1;
+}
+.el-progress__text {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 14px;
+  line-height: 1;
+  vertical-align: middle;
+  color: #606266;
+}
+.el-progress__text i {
+  display: block;
+  vertical-align: middle;
+}
+.el-progress--circle,
+.el-progress--dashboard {
+  display: inline-block;
+}
+.el-progress--circle .el-progress__text,
+.el-progress--dashboard .el-progress__text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  -webkit-transform: translate(0, -50%);
+  transform: translateY(-50%);
+}
+.el-progress--circle .el-progress__text i,
+.el-progress--dashboard .el-progress__text i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.el-progress--without-text .el-progress__text {
+  display: none;
+}
+.el-progress--without-text .el-progress-bar {
+  display: block;
+  padding-right: 0;
+  margin-right: 0;
+}
+.el-progress--text-inside .el-progress-bar {
+  padding-right: 0;
+  margin-right: 0;
+}
+.el-progress.is-success .el-progress-bar__inner {
+  background-color: #67c23a;
+}
+.el-progress.is-success .el-progress__text {
+  color: #67c23a;
+}
+.el-progress.is-warning .el-progress-bar__inner {
+  background-color: #e6a23c;
+}
+.el-progress.is-warning .el-progress__text {
+  color: #e6a23c;
+}
+.el-progress.is-exception .el-progress-bar__inner {
+  background-color: #f56c6c;
+}
+.el-progress.is-exception .el-progress__text {
+  color: #f56c6c;
+}
+.el-progress-bar {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+  padding-right: 50px;
+  margin-right: -55px;
+  vertical-align: middle;
+}
+.el-progress-bar__outer {
+  position: relative;
+  height: 6px;
+  overflow: hidden;
+  vertical-align: middle;
+  background-color: #ebeef5;
+  border-radius: 100px;
+}
+.el-progress-bar__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+  background-color: #409eff;
+  border-radius: 100px;
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+}
+.el-progress-bar__inner:after {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  content: "";
+}
+.el-progress-bar__innerText {
+  display: inline-block;
+  margin: 0 5px;
+  font-size: 12px;
+  vertical-align: middle;
+  color: #fff;
+}
+@-webkit-keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 32px 0;
+  }
+}
+@keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 32px 0;
+  }
+}

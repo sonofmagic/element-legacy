@@ -1,0 +1,170 @@
+@use 'sass:color';
+@use 'mixins/mixins';
+@use 'common/var';
+
+@mixin gen-theme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight) {
+  color: color.mix(var.$tag-primary-color, var.$color-white, $fontColorWeight);
+  background-color: color.mix(var.$tag-primary-color, var.$color-white, $backgroundColorWeight);
+  border-color: color.mix(var.$tag-primary-color, var.$color-white, $borderColorWeight);
+
+  @include mixins.when(hit) {
+    border-color: var.$tag-primary-color;
+  }
+
+  .el-tag__close {
+    color: color.mix(var.$tag-primary-color, var.$color-white, $fontColorWeight);
+
+    &:hover {
+      color: var.$color-white;
+      background-color: color.mix(var.$tag-primary-color, var.$color-white, $hoverColorWeight);
+    }
+  }
+
+  &.el-tag--info {
+    color: color.mix(var.$tag-info-color, var.$color-white, $fontColorWeight);
+    background-color: color.mix(var.$tag-info-color, var.$color-white, $backgroundColorWeight);
+    border-color: color.mix(var.$tag-info-color, var.$color-white, $borderColorWeight);
+
+    @include mixins.when(hit) {
+      border-color: var.$tag-info-color;
+    }
+
+    .el-tag__close {
+      color: color.mix(var.$tag-info-color, var.$color-white, $fontColorWeight);
+
+      &:hover {
+        color: var.$color-white;
+        background-color: color.mix(var.$tag-info-color, var.$color-white, $hoverColorWeight);
+      }
+    }
+  }
+
+  &.el-tag--success {
+    color: color.mix(var.$tag-success-color, var.$color-white, $fontColorWeight);
+    background-color: color.mix(var.$tag-success-color, var.$color-white, $backgroundColorWeight);
+    border-color: color.mix(var.$tag-success-color, var.$color-white, $borderColorWeight);
+
+    @include mixins.when(hit) {
+      border-color: var.$tag-success-color;
+    }
+
+    .el-tag__close {
+      color: color.mix(var.$tag-success-color, var.$color-white, $fontColorWeight);
+
+      &:hover {
+        color: var.$color-white;
+        background-color: color.mix(var.$tag-success-color, var.$color-white, $hoverColorWeight);
+      }
+    }
+  }
+
+  &.el-tag--warning {
+    color: color.mix(var.$tag-warning-color, var.$color-white, $fontColorWeight);
+    background-color: color.mix(var.$tag-warning-color, var.$color-white, $backgroundColorWeight);
+    border-color: color.mix(var.$tag-warning-color, var.$color-white, $borderColorWeight);
+
+    @include mixins.when(hit) {
+      border-color: var.$tag-warning-color;
+    }
+
+    .el-tag__close {
+      color: color.mix(var.$tag-warning-color, var.$color-white, $fontColorWeight);
+
+      &:hover {
+        color: var.$color-white;
+        background-color: color.mix(var.$tag-warning-color, var.$color-white, $hoverColorWeight);
+      }
+    }
+  }
+
+  &.el-tag--danger {
+    color: color.mix(var.$tag-danger-color, var.$color-white, $fontColorWeight);
+    background-color: color.mix(var.$tag-danger-color, var.$color-white, $backgroundColorWeight);
+    border-color: color.mix(var.$tag-danger-color, var.$color-white, $borderColorWeight);
+
+    @include mixins.when(hit) {
+      border-color: var.$tag-danger-color;
+    }
+
+    .el-tag__close {
+      color: color.mix(var.$tag-danger-color, var.$color-white, $fontColorWeight);
+
+      &:hover {
+        color: var.$color-white;
+        background-color: color.mix(var.$tag-danger-color, var.$color-white, $hoverColorWeight);
+      }
+    }
+  }
+}
+
+@include mixins.b(tag) {
+  @include gen-theme(10%, 20%, 100%, 100%);
+
+  box-sizing: border-box;
+  display: inline-block;
+  height: 32px;
+  padding: var.$tag-padding;
+  font-size: var.$tag-font-size;
+  line-height: 30px;
+  color: var.$tag-primary-color;
+  white-space: nowrap;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: var.$tag-border-radius;
+
+  .el-icon-close {
+    position: relative;
+    top: -1px;
+    right: -5px;
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+
+    &::before {
+      display: block;
+    }
+  }
+
+  @include mixins.m(dark) {
+    @include gen-theme(100%, 100%, 0%, 80%);
+  }
+
+  @include mixins.m(plain) {
+    @include gen-theme(0%, 40%, 100%, 100%);
+  }
+
+  @include mixins.m(medium) {
+    height: 28px;
+    line-height: 26px;
+
+    .el-icon-close {
+      transform: scale(0.8);
+    }
+  }
+
+  @include mixins.m(small) {
+    height: 24px;
+    padding: 0 8px;
+    line-height: 22px;
+
+    .el-icon-close {
+      transform: scale(0.8);
+    }
+  }
+
+  @include mixins.m(mini) {
+    height: 20px;
+    padding: 0 5px;
+    line-height: 19px;
+
+    .el-icon-close {
+      margin-left: -3px;
+      transform: scale(0.7);
+    }
+  }
+}

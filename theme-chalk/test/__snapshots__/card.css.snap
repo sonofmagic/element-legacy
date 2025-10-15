@@ -1,0 +1,27 @@
+.el-card {
+  overflow: hidden;
+  color: #303133;
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.el-card.is-always-shadow {
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px #0000001a;
+}
+.el-card.is-hover-shadow:hover,
+.el-card.is-hover-shadow:focus {
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px #0000001a;
+}
+.el-card__header {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 18px 20px;
+  border-bottom: 1px solid #ebeef5;
+}
+.el-card__body {
+  padding: 20px;
+}

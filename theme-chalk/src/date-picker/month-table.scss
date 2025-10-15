@@ -1,0 +1,89 @@
+@use '../common/var';
+@use '../mixins/mixins';
+
+@include mixins.b(month-table) {
+  margin: -1px;
+  font-size: 12px;
+  border-collapse: collapse;
+
+  td {
+    padding: 8px 0;
+    text-align: center;
+    cursor: pointer;
+
+    & div {
+      box-sizing: border-box;
+      height: 48px;
+      padding: 6px 0;
+    }
+
+    &.today {
+      .cell {
+        font-weight: bold;
+        color: var.$color-primary;
+      }
+
+      &.start-date .cell,
+      &.end-date .cell {
+        color: var.$color-white;
+      }
+    }
+
+    &.disabled .cell {
+      color: var.$color-text-placeholder;
+      cursor: not-allowed;
+      background-color: var.$background-color-base;
+
+      &:hover {
+        color: var.$color-text-placeholder;
+      }
+    }
+
+    .cell {
+      display: block;
+      width: 60px;
+      height: 36px;
+      margin: 0 auto;
+      line-height: 36px;
+      color: var.$datepicker-font-color;
+      border-radius: 18px;
+
+      &:hover {
+        color: var.$datepicker-hover-font-color;
+      }
+    }
+
+    &.in-range div {
+      background-color: var.$datepicker-inrange-background-color;
+
+      &:hover {
+        background-color: var.$datepicker-inrange-hover-background-color;
+      }
+    }
+
+    &.start-date div,
+    &.end-date div {
+      color: var.$color-white;
+    }
+
+    &.start-date .cell,
+    &.end-date .cell {
+      color: var.$color-white;
+      background-color: var.$datepicker-active-color;
+    }
+
+    &.start-date div {
+      border-top-left-radius: 24px;
+      border-bottom-left-radius: 24px;
+    }
+
+    &.end-date div {
+      border-top-right-radius: 24px;
+      border-bottom-right-radius: 24px;
+    }
+
+    &.current:not(.disabled) .cell {
+      color: var.$datepicker-active-color;
+    }
+  }
+}

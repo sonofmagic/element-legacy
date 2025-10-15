@@ -1,0 +1,209 @@
+@use 'mixins/mixins';
+@use 'mixins/utils';
+@use 'mixins/button';
+@use 'common/var';
+
+@include mixins.b(radio) {
+  position: relative;
+  display: inline-block;
+  margin-right: 30px;
+  font-size: var.$font-size-base;
+  font-weight: var.$radio-font-weight;
+  line-height: 1;
+  color: var.$radio-font-color;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+
+  @include utils.utils-user-select(none);
+
+  @include mixins.when(bordered) {
+    box-sizing: border-box;
+    height: var.$radio-bordered-height;
+    padding: var.$radio-bordered-padding;
+    border: var.$border-base;
+    border-radius: var.$border-radius-base;
+
+    &.is-checked {
+      border-color: var.$color-primary;
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      border-color: var.$border-color-lighter;
+    }
+
+    & + .el-radio.is-bordered {
+      margin-left: 10px;
+    }
+  }
+
+  @include mixins.m(medium) {
+    &.is-bordered {
+      height: var.$radio-bordered-medium-height;
+      padding: var.$radio-bordered-medium-padding;
+      border-radius: var.$button-medium-border-radius;
+
+      .el-radio__label {
+        font-size: var.$button-medium-font-size;
+      }
+
+      .el-radio__inner {
+        width: var.$radio-bordered-medium-input-width;
+        height: var.$radio-bordered-medium-input-height;
+      }
+    }
+  }
+
+  @include mixins.m(small) {
+    &.is-bordered {
+      height: var.$radio-bordered-small-height;
+      padding: var.$radio-bordered-small-padding;
+      border-radius: var.$button-small-border-radius;
+
+      .el-radio__label {
+        font-size: var.$button-small-font-size;
+      }
+
+      .el-radio__inner {
+        width: var.$radio-bordered-small-input-width;
+        height: var.$radio-bordered-small-input-height;
+      }
+    }
+  }
+
+  @include mixins.m(mini) {
+    &.is-bordered {
+      height: var.$radio-bordered-mini-height;
+      padding: var.$radio-bordered-mini-padding;
+      border-radius: var.$button-mini-border-radius;
+
+      .el-radio__label {
+        font-size: var.$button-mini-font-size;
+      }
+
+      .el-radio__inner {
+        width: var.$radio-bordered-mini-input-width;
+        height: var.$radio-bordered-mini-input-height;
+      }
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @include mixins.e(input) {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+
+    @include mixins.when(disabled) {
+      .el-radio__inner {
+        cursor: not-allowed;
+        background-color: var.$radio-disabled-input-fill;
+        border-color: var.$radio-disabled-input-border-color;
+
+        &::after {
+          cursor: not-allowed;
+          background-color: var.$radio-disabled-icon-color;
+        }
+
+        & + .el-radio__label {
+          cursor: not-allowed;
+        }
+      }
+
+      &.is-checked {
+        .el-radio__inner {
+          background-color: var.$radio-disabled-checked-input-fill;
+          border-color: var.$radio-disabled-checked-input-border-color;
+
+          &::after {
+            background-color: var.$radio-disabled-checked-icon-color;
+          }
+        }
+      }
+
+      & + span.el-radio__label {
+        color: var.$color-text-placeholder;
+        cursor: not-allowed;
+      }
+    }
+
+    @include mixins.when(checked) {
+      .el-radio__inner {
+        background: var.$radio-checked-icon-color;
+        border-color: var.$radio-checked-input-border-color;
+
+        &::after {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      & + .el-radio__label {
+        color: var.$radio-checked-font-color;
+      }
+    }
+
+    @include mixins.when(focus) {
+      .el-radio__inner {
+        border-color: var.$radio-input-border-color-hover;
+      }
+    }
+  }
+
+  @include mixins.e(inner) {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    width: var.$radio-input-width;
+    height: var.$radio-input-height;
+    cursor: pointer;
+    background-color: var.$radio-input-background-color;
+    border: var.$radio-input-border;
+    border-radius: var.$radio-input-border-radius;
+
+    &:hover {
+      border-color: var.$radio-input-border-color-hover;
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      content: '';
+      background-color: var.$color-white;
+      border-radius: var.$radio-input-border-radius;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.15s ease-in;
+    }
+  }
+
+  @include mixins.e(original) {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    margin: 0;
+    outline: none;
+    opacity: 0;
+  }
+
+  &:focus:not(.is-focus, :active, .is-disabled) {
+    /* 获得焦点时 样式提醒 */
+    .el-radio__inner {
+      box-shadow: 0 0 2px 2px var.$radio-input-border-color-hover;
+    }
+  }
+
+  @include mixins.e(label) {
+    padding-left: 10px;
+    font-size: var.$radio-font-size;
+  }
+}

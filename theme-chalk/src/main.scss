@@ -1,0 +1,13 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@include mixins.b(main) {
+  box-sizing: border-box;
+
+  // IE11 supports the <main> element partially https://caniuse.com/#search=main
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  padding: var.$main-padding;
+  overflow: auto;
+}

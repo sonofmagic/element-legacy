@@ -1,22 +1,119 @@
+<script>
+import borderRadiusEditor from './editor/borderRadius.vue'
+import boxShadowEditor from './editor/boxShadow.vue'
+import ColorEditor from './editor/color.vue'
+import fontLineHeightEditor from './editor/fontLineHeight.vue'
+import fontSizeEditor from './editor/fontSize.vue'
+import fontWeightEditor from './editor/fontWeight.vue'
+import simpleTextEditor from './editor/simpleText.vue'
+import { filterConfigType } from './utils/utils.js'
+
+export default {
+  components: {
+    ColorEditor,
+    FontSizeEditor: fontSizeEditor,
+    FontLineHeightEditor: fontLineHeightEditor,
+    SimpleTextEditor: simpleTextEditor,
+    BorderRadiusEditor: borderRadiusEditor,
+    BoxShadowEditor: boxShadowEditor,
+    FontWeightEditor: fontWeightEditor,
+  },
+  props: {
+    defaultConfig: {
+      type: Array,
+    },
+    currentConfig: {
+      type: Object,
+    },
+    userConfig: {
+      type: Object,
+    },
+    globalValue: {
+      type: Object,
+    },
+  },
+  data() {
+    return {
+      categoryDisplay: {},
+    }
+  },
+  computed: {
+    configName() {
+      return this.currentConfig.name
+    },
+    userConfigByType() {
+      return this.userConfig[filterConfigType(this.configName)]
+    },
+    configByOrder() {
+      const list = this.currentConfig && Array.isArray(this.currentConfig.config)
+        ? this.currentConfig.config
+        : []
+      return [...list].sort((a, b) => (a.order - b.order))
+    },
+  },
+  watch: {
+    currentConfig: {
+      handler() {
+        this.$nextTick(() => {
+          this.$refs.mainPanel.scrollTo(0, 0)
+        })
+      },
+    },
+  },
+  methods: {
+    editorComponent(type) {
+      switch (type) {
+        case 'color':
+          return ColorEditor
+        case 'fontWeight':
+          return fontWeightEditor
+        case 'fontSize':
+          return fontSizeEditor
+        case 'fontLineHeight':
+          return fontLineHeightEditor
+        case 'borderRadius':
+          return borderRadiusEditor
+        case 'boxShadow':
+          return boxShadowEditor
+        default:
+          return simpleTextEditor
+      }
+    },
+    onChange(e) {
+      this.$emit('onChange', e)
+    },
+    showCategory(name, key) {
+      if (!name) {
+        return false
+      }
+      if (!this.categoryDisplay[name] || this.categoryDisplay[name] === key) {
+        this.categoryDisplay[name] = key
+        return true
+      }
+      return false
+    },
+  },
+}
+</script>
+
 <template>
-  <div class="editor-main" ref="mainPanel">
+  <div ref="mainPanel" class="editor-main">
     <!-- <span>{{configName}}</span> -->
     <div v-for="(config, key) in configByOrder" :key="key">
-      <span 
+      <span
         v-if="showCategory(config.category, key + 1)"
         class="category-name"
       >
-        {{config.category}}
+        {{ config.category }}
       </span>
-      <component 
+      <component
         :is="editorComponent(config.type)"
-        :componentName=configName
-        :config=config
-        :userConfig=userConfigByType
-        :golbalValue=globalValue
-        @onChange=onChange
-      >
-      </component>
+        :componentName="configName"
+        :config="config"
+        :userConfig="userConfigByType"
+        :golbalValue="globalValue"
+        @onChange="onChange"
+      />
     </div>
   </div>
 </template>
@@ -33,98 +130,3 @@
   margin: 13px 0 3px 0;
 }
 </style>
-
-<script>
-import ColorEditor from './editor/color';
-import fontWeightEditor from './editor/fontWeight';
-import fontSizeEditor from './editor/fontSize';
-import fontLineHeightEditor from './editor/fontLineHeight';
-import borderRadiusEditor from './editor/borderRadius';
-import boxShadowEditor from './editor/boxShadow';
-import simpleTextEditor from './editor/simpleText';
-import { filterConfigType } from './utils/utils.js';
-
-export default {
-  components: {
-    ColorEditor,
-    fontSizeEditor,
-    fontLineHeightEditor,
-    simpleTextEditor,
-    borderRadiusEditor,
-    boxShadowEditor,
-    fontWeightEditor
-  },
-  props: {
-    defaultConfig: {
-      type: Array
-    },
-    currentConfig: {
-      type: Object
-    },
-    userConfig: {
-      type: Object
-    },
-    globalValue: {
-      type: Object
-    }
-  },
-  computed: {
-    configName() {
-      return this.currentConfig.name;
-    },
-    userConfigByType() {
-      return this.userConfig[filterConfigType(this.configName)];
-    },
-    configByOrder() {
-      return this.currentConfig.config.sort((a, b) => (a.order - b.order));
-    }
-  },
-  methods: {
-    editorComponent(type) {
-      switch (type) {
-        case 'color':
-          return ColorEditor;
-        case 'fontWeight':
-          return fontWeightEditor;
-        case 'fontSize':
-          return fontSizeEditor;
-        case 'fontLineHeight':
-          return fontLineHeightEditor;
-        case 'borderRadius':
-          return borderRadiusEditor;
-        case 'boxShadow':
-          return boxShadowEditor;
-        default:
-          return simpleTextEditor;
-      }
-    },
-    onChange(e) {
-      this.$emit('onChange', e);
-    },
-    showCategory(name, key) {
-      if (!name) {
-        return false;
-      }
-      if (!this.categoryDisplay[name] || this.categoryDisplay[name] === key) {
-        this.categoryDisplay[name] = key;
-        return true;
-      }
-      return false;
-    }
-  },
-  data() {
-    return {
-      categoryDisplay: {}
-    };
-  },
-  watch: {
-    currentConfig: {
-      handler() {
-        this.$nextTick(() => {
-          this.$refs.mainPanel.scrollTo(0, 0);
-        });
-      }
-    }
-  }
-};
-</script>

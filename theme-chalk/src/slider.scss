@@ -1,0 +1,258 @@
+@use 'mixins/mixins';
+@use 'mixins/utils';
+@use 'input-number';
+@use 'tooltip';
+@use 'common/var';
+
+@include mixins.b(slider) {
+  @include utils.utils-clearfix;
+
+  @include mixins.e(runway) {
+    position: relative;
+    width: 100%;
+    height: var.$slider-height;
+    margin: var.$slider-margin;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: var.$slider-runway-background-color;
+    border-radius: var.$slider-border-radius;
+
+    &.show-input {
+      width: auto;
+      margin-right: 160px;
+    }
+
+    &.disabled {
+      cursor: default;
+
+      .el-slider__bar {
+        background-color: var.$slider-disable-color;
+      }
+
+      .el-slider__button-wrapper {
+        &:hover,
+        &.hover {
+          cursor: not-allowed;
+        }
+
+        &.dragging {
+          cursor: not-allowed;
+        }
+      }
+
+      .el-slider__button {
+        border-color: var.$slider-disable-color;
+
+        &:hover,
+        &.hover,
+        &.dragging {
+          transform: scale(1);
+        }
+
+        &:hover,
+        &.hover {
+          cursor: not-allowed;
+        }
+
+        &.dragging {
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  @include mixins.e(input) {
+    float: right;
+    width: 130px;
+    margin-top: 3px;
+
+    &.el-input-number--mini {
+      margin-top: 5px;
+    }
+
+    &.el-input-number--medium {
+      margin-top: 0;
+    }
+
+    &.el-input-number--large {
+      margin-top: -2px;
+    }
+  }
+
+  @include mixins.e(bar) {
+    position: absolute;
+    height: var.$slider-height;
+    background-color: var.$slider-main-background-color;
+    border-top-left-radius: var.$slider-border-radius;
+    border-bottom-left-radius: var.$slider-border-radius;
+  }
+
+  @include mixins.e(button-wrapper) {
+    position: absolute;
+    top: var.$slider-button-wrapper-offset;
+    z-index: 1001;
+    width: var.$slider-button-wrapper-size;
+    height: var.$slider-button-wrapper-size;
+    line-height: normal;
+    text-align: center;
+    user-select: none;
+    background-color: transparent;
+    transform: translateX(-50%);
+
+    @include utils.utils-vertical-center;
+
+    .el-tooltip {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &:hover,
+    &.hover {
+      cursor: grab;
+    }
+
+    &.dragging {
+      cursor: grabbing;
+    }
+  }
+
+  @include mixins.e(button) {
+    width: var.$slider-button-size;
+    height: var.$slider-button-size;
+    user-select: none;
+    background-color: var.$color-white;
+    border: solid 2px var.$slider-main-background-color;
+    border-radius: 50%;
+    transition: 0.2s;
+
+    &:hover,
+    &.hover,
+    &.dragging {
+      transform: scale(1.2);
+    }
+
+    &:hover,
+    &.hover {
+      cursor: grab;
+    }
+
+    &.dragging {
+      cursor: grabbing;
+    }
+  }
+
+  @include mixins.e(stop) {
+    position: absolute;
+    width: var.$slider-height;
+    height: var.$slider-height;
+    background-color: var.$slider-stop-background-color;
+    border-radius: var.$border-radius-circle;
+    transform: translateX(-50%);
+  }
+
+  @include mixins.e(marks) {
+    top: 0;
+    left: 12px;
+    width: 18px;
+    height: 100%;
+
+    @include mixins.e(marks-text) {
+      position: absolute;
+      margin-top: 15px;
+      font-size: 14px;
+      color: var.$color-info;
+      transform: translateX(-50%);
+    }
+  }
+
+  @include mixins.when(vertical) {
+    position: relative;
+
+    .el-slider__runway {
+      width: var.$slider-height;
+      height: 100%;
+      margin: 0 16px;
+    }
+
+    .el-slider__bar {
+      width: var.$slider-height;
+      height: auto;
+      border-radius: 0 0 3px 3px;
+    }
+
+    .el-slider__button-wrapper {
+      top: auto;
+      left: var.$slider-button-wrapper-offset;
+      transform: translateY(50%);
+    }
+
+    .el-slider__stop {
+      transform: translateY(50%);
+    }
+
+    &.el-slider--with-input {
+      padding-bottom: #{var.$input-medium-height + 22px};
+
+      .el-slider__input {
+        position: absolute;
+        bottom: 22px;
+        float: none;
+        width: 36px;
+        margin-top: 15px;
+        overflow: visible;
+
+        .el-input__inner {
+          padding-right: 5px;
+          padding-left: 5px;
+          text-align: center;
+        }
+
+        .el-input-number__decrease,
+        .el-input-number__increase {
+          top: var.$input-small-height;
+          box-sizing: border-box;
+          margin-top: -1px;
+          line-height: 20px;
+          border: var.$input-border;
+          transition: var.$border-transition-base;
+        }
+
+        .el-input-number__decrease {
+          right: 18px;
+          width: 18px;
+          border-bottom-left-radius: var.$input-border-radius;
+        }
+
+        .el-input-number__increase {
+          width: 19px;
+          border-bottom-right-radius: var.$input-border-radius;
+
+          & ~ .el-input .el-input__inner {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &:hover {
+          .el-input-number__decrease,
+          .el-input-number__increase {
+            border-color: var.$input-hover-border;
+          }
+        }
+
+        &:active {
+          .el-input-number__decrease,
+          .el-input-number__increase {
+            border-color: var.$input-focus-border;
+          }
+        }
+      }
+    }
+
+    @include mixins.e(marks-text) {
+      left: 15px;
+      margin-top: 0;
+      transform: translateY(50%);
+    }
+  }
+}

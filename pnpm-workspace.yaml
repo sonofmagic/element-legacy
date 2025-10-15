@@ -1,0 +1,10 @@
+packages:
+  - .
+  - 'apps/*'
+  - theme-chalk
+  - examples
+  - '!**/test/**'
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - esbuild

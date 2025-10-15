@@ -1,0 +1,69 @@
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'common/transition';
+
+@include mixins.b(collapse) {
+  border-top: 1px solid var.$collapse-border-color;
+  border-bottom: 1px solid var.$collapse-border-color;
+}
+
+@include mixins.b(collapse-item) {
+  @include mixins.when(disabled) {
+    .el-collapse-item__header {
+      color: var.$font-color-disabled-base;
+      cursor: not-allowed;
+    }
+  }
+
+  @include mixins.e(header) {
+    display: flex;
+    align-items: center;
+    height: var.$collapse-header-height;
+    font-size: var.$collapse-header-font-size;
+    font-weight: 500;
+    line-height: var.$collapse-header-height;
+    color: var.$collapse-header-font-color;
+    cursor: pointer;
+    outline: none;
+    background-color: var.$collapse-header-background-color;
+    border-bottom: 1px solid var.$collapse-border-color;
+    transition: border-bottom-color 0.3s;
+
+    @include mixins.e(arrow) {
+      margin: 0 8px 0 auto;
+      font-weight: 300;
+      transition: transform 0.3s;
+
+      @include mixins.when(active) {
+        transform: rotate(90deg);
+      }
+    }
+
+    &.focusing:focus:not(:hover) {
+      color: var.$color-primary;
+    }
+
+    @include mixins.when(active) {
+      border-bottom-color: transparent;
+    }
+  }
+
+  @include mixins.e(wrap) {
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: var.$collapse-content-background-color;
+    border-bottom: 1px solid var.$collapse-border-color;
+    will-change: height;
+  }
+
+  @include mixins.e(content) {
+    padding-bottom: 25px;
+    font-size: var.$collapse-content-font-size;
+    line-height: 1.7692;
+    color: var.$collapse-content-font-color;
+  }
+
+  &:last-child {
+    margin-bottom: -1px;
+  }
+}

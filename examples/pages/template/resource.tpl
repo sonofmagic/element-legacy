@@ -129,7 +129,7 @@
   <div class="page-container page-resource">
     <h2><%= 1 ></h2>
     <!--<div class="resource-placeholder">-->
-      <!--<img src="~examples/assets/images/resource-placeholder.svg" alt="">-->
+      <!--<img src="/assets/images/resource-placeholder.svg" alt="">-->
       <!--<h4><%= placeholder1 ></h4>-->
       <!--<p><%= placeholder2 ></p>-->
     <!--</div>-->
@@ -139,29 +139,27 @@
       <ul class="container">
         <li>
           <div class="card">
-            <img src="~examples/assets/images/Axure-Components.svg" alt="">
+            <img src="/assets/images/Axure-Components.svg" alt="">
             <h3><%= 3 ></h3>
             <p><%= 4 ></p>
             <a
-              onclick="ga('send', 'event', 'ResourceDownload', 'Download', 'Axure');" 
               href="https://github.com/ElementUI/Resources/raw/master/Element_Components_v2.1.0.rplib"
             ><%= 5 ></a>
           </div>
         </li>
         <li>
           <div class="card">
-            <img src="~examples/assets/images/Sketch-Template.svg" alt="">
+            <img src="/assets/images/Sketch-Template.svg" alt="">
             <h3><%= 6 ></h3>
             <p><%= 7 ></p>
             <a 
-              onclick="ga('send', 'event', 'ResourceDownload', 'Download', 'Sketch');"
               href="https://github.com/ElementUI/Resources/raw/master/Element%20UI%20Kit_v2.0.sketch"
             ><%= 5 ></a>
           </div>
         </li>
         <!--<li>-->
           <!--<div class="card">-->
-            <!--<img src="~examples/assets/images/Module.svg" alt="">-->
+            <!--<img src="/assets/images/Module.svg" alt="">-->
             <!--<h3><%= 8 ></h3>-->
             <!--<p><%= 9 ></p>-->
             <!--<a href="https://github.com/ElementUI/Resources/raw/master/Element%20Components%20Documentation.zip"><%= 5 ></a>-->

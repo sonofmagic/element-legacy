@@ -1,5 +1,5 @@
 <script>
-  import bus from '../../bus';
+  import bus from '../../bus.ts';
   import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant.js';
   const varMap = {
     '$--box-shadow-light': 'boxShadowLight',
@@ -98,15 +98,15 @@ There are few radius styles to choose.
   <el-col :span="6" :xs="{span: 12}">
     <div class="title">Small Radius</div>
     <div class="value">border-radius: {{borderRadiusSmall}}</div>
-    <div 
-      class="radius" 
+    <div
+      class="radius"
       :style="{ borderRadius: borderRadiusSmall }"
     ></div>
   </el-col>
   <el-col :span="6" :xs="{span: 12}">
     <div class="title">Large Radius</div>
     <div class="value">border-radius: {{borderRadiusBase}}</div>
-    <div 
+    <div
       class="radius"
       :style="{ borderRadius: borderRadiusBase }"
     ></div>
@@ -122,13 +122,13 @@ There are few radius styles to choose.
 
 There are few shadow styles to choose.
 
-<div 
+<div
 class="demo-shadow"
 :style="{ boxShadow: boxShadowBase }"
 ></div>
 <span class="demo-shadow-text">Basic Shadow box-shadow: {{boxShadowBase}}</span>
 
-<div 
+<div
 class="demo-shadow"
 :style="{ boxShadow: boxShadowLight }"
 ></div>

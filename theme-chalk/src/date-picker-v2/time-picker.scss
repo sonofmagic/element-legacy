@@ -1,0 +1,73 @@
+@use '../common/var';
+@use '../mixins/mixins';
+
+@include mixins.b(time-panel-v2) {
+  position: absolute;
+  left: 0;
+  z-index: var.$index-top;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  margin: 5px 0;
+  user-select: none;
+  background-color: var.$color-white;
+  border: solid 1px var.$datepicker-border-color;
+  border-radius: 2px;
+  box-shadow: var.$box-shadow-light;
+
+  @include mixins.e(current) {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 53px;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #303133;
+  }
+
+  @include mixins.e(content) {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    font-size: 0;
+
+    .el-time-spinner-v2 {
+      display: flex;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+  }
+
+  @include mixins.e(footer) {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 4px;
+    line-height: 25px;
+    text-align: right;
+    border-top: 1px solid var.$datepicker-inner-border-color;
+  }
+
+  @include mixins.e(btn) {
+    padding: 0 5px;
+    margin: 0 5px;
+    font-size: 12px;
+    line-height: 28px;
+    color: var.$color-text-primary;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    border: none;
+
+    &.confirm {
+      font-weight: 800;
+      color: var.$datepicker-active-color;
+    }
+  }
+}

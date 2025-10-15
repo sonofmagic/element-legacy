@@ -1,0 +1,192 @@
+@use 'sass:color';
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'button';
+@use 'popper';
+
+@include mixins.b(dropdown) {
+  position: relative;
+  display: inline-block;
+  font-size: var.$font-size-base;
+  color: var.$color-text-regular;
+
+  .el-button-group {
+    display: block;
+
+    .el-button {
+      float: none;
+    }
+  }
+
+  & .el-dropdown__caret-button {
+    position: relative;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-left: none;
+
+    &::before {
+      $gap: 5px;
+
+      position: absolute;
+      top: $gap;
+      bottom: $gap;
+      left: 0;
+      display: block;
+      width: 1px;
+      content: '';
+      background: color.mix(white, transparent, 50%);
+    }
+
+    &.el-button--default::before {
+      background: color.mix(var.$button-default-border-color, transparent, 50%);
+    }
+
+    &:hover {
+      &:not(.is-disabled)::before {
+        top: 0;
+        bottom: 0;
+      }
+    }
+
+    & .el-dropdown__icon {
+      padding-left: 0;
+    }
+  }
+
+  @include mixins.e(icon) {
+    margin: 0 3px;
+    font-size: 12px;
+  }
+
+  .el-dropdown-selfdefine {
+    // 自定义
+    &:focus:active,
+    &:focus:not(.focusing) {
+      outline-width: 0;
+    }
+  }
+
+  [disabled] {
+    color: var.$font-color-disabled-base;
+    cursor: not-allowed;
+  }
+}
+
+@include mixins.b(dropdown-menu) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 10px 0;
+  margin: 5px 0;
+  background-color: var.$color-white;
+  border: 1px solid var.$border-color-lighter;
+  border-radius: var.$border-radius-base;
+  box-shadow: var.$dropdown-menu-box-shadow;
+
+  @include mixins.e(item) {
+    padding: 0 20px;
+    margin: 0;
+    font-size: var.$font-size-base;
+    line-height: 36px;
+    color: var.$color-text-regular;
+    cursor: pointer;
+    outline: none;
+    list-style: none;
+
+    &:not(.is-disabled):hover,
+    &:focus {
+      color: var.$dropdown-menuItem-hover-color;
+      background-color: var.$dropdown-menuItem-hover-fill;
+    }
+
+    i {
+      margin-right: 5px;
+    }
+
+    @include mixins.m(divided) {
+      $divided-offset: 6px;
+
+      position: relative;
+      margin-top: $divided-offset;
+      border-top: 1px solid var.$border-color-lighter;
+
+      &::before {
+        display: block;
+        height: $divided-offset;
+        margin: 0 -20px;
+        content: '';
+        background-color: var.$color-white;
+      }
+    }
+
+    @include mixins.when(disabled) {
+      color: var.$font-color-disabled-base;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  @include mixins.m(medium) {
+    padding: 6px 0;
+
+    @include mixins.e(item) {
+      padding: 0 17px;
+      font-size: 14px;
+      line-height: 30px;
+
+      &.el-dropdown-menu__item--divided {
+        $divided-offset: 6px;
+
+        margin-top: $divided-offset;
+
+        &::before {
+          height: $divided-offset;
+          margin: 0 -17px;
+        }
+      }
+    }
+  }
+
+  @include mixins.m(small) {
+    padding: 6px 0;
+
+    @include mixins.e(item) {
+      padding: 0 15px;
+      font-size: 13px;
+      line-height: 27px;
+
+      &.el-dropdown-menu__item--divided {
+        $divided-offset: 4px;
+
+        margin-top: $divided-offset;
+
+        &::before {
+          height: $divided-offset;
+          margin: 0 -15px;
+        }
+      }
+    }
+  }
+
+  @include mixins.m(mini) {
+    padding: 3px 0;
+
+    @include mixins.e(item) {
+      padding: 0 10px;
+      font-size: 12px;
+      line-height: 24px;
+
+      &.el-dropdown-menu__item--divided {
+        $divided-offset: 3px;
+
+        margin-top: $divided-offset;
+
+        &::before {
+          height: $divided-offset;
+          margin: 0 -10px;
+        }
+      }
+    }
+  }
+}

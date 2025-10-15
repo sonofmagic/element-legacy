@@ -1,0 +1,14 @@
+@use 'mixins/mixins';
+
+@include mixins.b(container) {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-basis: auto;
+  flex-direction: row;
+  min-width: 0;
+
+  @include mixins.when(vertical) {
+    flex-direction: column;
+  }
+}

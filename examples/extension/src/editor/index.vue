@@ -1,13 +1,13 @@
-<template>
-  <editor />
-</template>
-
 <script>
-import editor from './editor';
+import editor from './editor.vue'
 
 export default {
   components: {
-    editor
-  }
-};
+    Editor: editor,
+  },
+}
 </script>
+
+<template>
+  <Editor />
+</template>

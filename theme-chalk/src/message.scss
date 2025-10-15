@@ -1,0 +1,125 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@include mixins.b(message) {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-width: var.$message-min-width;
+  padding: var.$message-padding;
+  overflow: hidden;
+  background-color: var.$message-background-color;
+  border-color: var.$border-color-lighter;
+  border-style: var.$border-style-base;
+  border-width: var.$border-width-base;
+  border-radius: var.$border-radius-base;
+  transform: translateX(-50%);
+  transition:
+    opacity 0.3s,
+    transform 0.4s,
+    top 0.4s;
+
+  @include mixins.when(center) {
+    justify-content: center;
+  }
+
+  @include mixins.when(closable) {
+    .el-message__content {
+      padding-right: 16px;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  @include mixins.m(info) {
+    .el-message__content {
+      color: var.$message-info-font-color;
+    }
+  }
+
+  @include mixins.m(success) {
+    background-color: var.$color-success-lighter;
+    border-color: var.$color-success-light;
+
+    .el-message__content {
+      color: var.$message-success-font-color;
+    }
+  }
+
+  @include mixins.m(warning) {
+    background-color: var.$color-warning-lighter;
+    border-color: var.$color-warning-light;
+
+    .el-message__content {
+      color: var.$message-warning-font-color;
+    }
+  }
+
+  @include mixins.m(error) {
+    background-color: var.$color-danger-lighter;
+    border-color: var.$color-danger-light;
+
+    .el-message__content {
+      color: var.$message-danger-font-color;
+    }
+  }
+
+  @include mixins.e(icon) {
+    margin-right: 10px;
+  }
+
+  @include mixins.e(content) {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+
+    &:focus {
+      outline-width: 0;
+    }
+  }
+
+  @include mixins.e(closeBtn) {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    font-size: var.$message-close-size;
+    color: var.$message-close-icon-color;
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    &:focus {
+      outline-width: 0;
+    }
+
+    &:hover {
+      color: var.$message-close-hover-color;
+    }
+  }
+
+  & .el-icon-success {
+    color: var.$message-success-font-color;
+  }
+
+  & .el-icon-error {
+    color: var.$message-danger-font-color;
+  }
+
+  & .el-icon-info {
+    color: var.$message-info-font-color;
+  }
+
+  & .el-icon-warning {
+    color: var.$message-warning-font-color;
+  }
+}
+
+.el-message-fade-enter,
+.el-message-fade-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}

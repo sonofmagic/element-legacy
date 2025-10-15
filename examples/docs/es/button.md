@@ -43,6 +43,7 @@ Botones comúnmente usados.
   <el-button type="danger" icon="el-icon-delete" circle></el-button>
 </el-row>
 ```
+
 :::
 
 ### Botón deshabilitado
@@ -70,6 +71,7 @@ El atributo `disabled` determina su un botón esta deshabilitado.
   <el-button type="danger" plain disabled>Danger</el-button>
 </el-row>
 ```
+
 :::
 
 ### Botón de texto
@@ -77,10 +79,12 @@ El atributo `disabled` determina su un botón esta deshabilitado.
 Botones sin borde ni fondo.
 
 :::demo
+
 ```html
 <el-button type="text">Text Button</el-button>
 <el-button type="text" disabled>Text Button</el-button>
 ```
+
 :::
 
 ### Botón icono
@@ -96,6 +100,7 @@ Use iconos para darle mayor significado a Button. Se puede usar simplemente un i
 <el-button type="primary" icon="el-icon-search">Search</el-button>
 <el-button type="primary">Upload<i class="el-icon-upload el-icon-right"></i></el-button>
 ```
+
 :::
 
 ### Grupo de botones
@@ -115,9 +120,10 @@ Mostrar un grupo de botones puede ser usado para mostrar un grupo de operaciones
   <el-button type="primary" icon="el-icon-delete"></el-button>
 </el-button-group>
 ```
+
 :::
 
-### Botón de descarga 
+### Botón de descarga
 
 Cuando se hace clic en un botón para descargar datos, el botón muestra un estado de descarga.
 
@@ -126,6 +132,7 @@ Cuando se hace clic en un botón para descargar datos, el botón muestra un esta
 ```html
 <el-button type="primary" :loading="true">Loading</el-button>
 ```
+
 :::
 
 ### Tamaños
@@ -148,9 +155,11 @@ Además del tamaño por defecto, el componente Button provee tres tamaños adici
   <el-button size="mini" round>Mini</el-button>
 </el-row>
 ```
+
 :::
 
 ### Atributos
+
 | Atributo    | Descripción                                   | Tipo    | Valores aceptados                                  | Por defecto |
 | ----------- | --------------------------------------------- | ------- | -------------------------------------------------- | ----------- |
 | size        | tamaño del botón                              | string  | medium / small / mini                              | —           |
@@ -163,4 +172,3 @@ Además del tamaño por defecto, el componente Button provee tres tamaños adici
 | icon        | nombre de la clase del icono                  | string  | —                                                  | —           |
 | autofocus   | misma funcionalidad que la nativa `autofocus` | boolean | —                                                  | false       |
 | native-type | misma funcionalidad que la nativa `type`      | string  | button / submit / reset                            | button      |
-

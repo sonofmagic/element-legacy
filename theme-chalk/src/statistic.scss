@@ -1,0 +1,42 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@include mixins.b(statistic) {
+  $statistic-justify: center;
+  $statistic-align: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-feature-settings: 'tnum';
+  font-variant: tabular-nums;
+  color: var.$color-black;
+  text-align: center;
+  list-style: none;
+
+  .head {
+    margin-bottom: 4px;
+    font-size: var.$font-size-small;
+    color: var.$color-text-regular;
+  }
+
+  .con {
+    display: flex;
+    align-items: $statistic-align;
+    justify-content: $statistic-justify;
+    font-family: sans-serif;
+    color: var.$color-text-primary;
+
+    .number {
+      padding: 0 4px;
+      font-size: var.$font-size-extra-large;
+    }
+
+    span {
+      display: inline-block;
+      margin: 0;
+      line-height: 100%;
+    }
+  }
+}

@@ -5,14 +5,6 @@
       "path": "/changelog"
     },
     {
-      "name": "Element React",
-      "href": "https://elemefe.github.io/element-react/"
-    },
-    {
-      "name": "Element Angular",
-      "href": "https://element-angular.faas.ele.me/"
-    },
-    {
       "name": "开发指南",
       "children": [
         {
@@ -119,6 +111,10 @@
             {
               "path": "/date-picker",
               "title": "DatePicker 日期选择器"
+            },
+            {
+              "path": "/date-picker-v2",
+              "title": "DatePicker v2 日期选择器"
             },
             {
               "path": "/datetime-picker",
@@ -323,14 +319,6 @@
       "path": "/changelog"
     },
     {
-      "name": "Element React",
-      "href": "https://elemefe.github.io/element-react/"
-    },
-    {
-      "name": "Element Angular",
-      "href": "https://element-angular.faas.ele.me/"
-    },
-    {
       "name": "Development",
       "children": [
         {
@@ -437,6 +425,10 @@
             {
               "path": "/date-picker",
               "title": "DatePicker"
+            },
+            {
+              "path": "/date-picker-v2",
+              "title": "DatePicker V2"
             },
             {
               "path": "/datetime-picker",
@@ -641,14 +633,6 @@
       "path": "/changelog"
     },
     {
-      "name": "Element React",
-      "href": "https://elemefe.github.io/element-react/"
-    },
-    {
-      "name": "Element Angular",
-      "href": "https://element-angular.faas.ele.me/"
-    },
-    {
       "name": "Development",
       "children": [
         {
@@ -755,6 +739,10 @@
             {
               "path": "/date-picker",
               "title": "DatePicker"
+            },
+            {
+              "path": "/date-picker-v2",
+              "title": "DatePicker V2"
             },
             {
               "path": "/datetime-picker",
@@ -959,14 +947,6 @@
       "path": "/changelog"
     },
     {
-      "name": "Element pour React",
-      "href": "https://elemefe.github.io/element-react/"
-    },
-    {
-      "name": "Element pour Angular",
-      "href": "https://element-angular.faas.ele.me/"
-    },
-    {
       "name": "Développement",
       "children": [
         {
@@ -1073,6 +1053,10 @@
             {
               "path": "/date-picker",
               "title": "DatePicker"
+            },
+            {
+              "path": "/date-picker-v2",
+              "title": "DatePicker V2"
             },
             {
               "path": "/datetime-picker",

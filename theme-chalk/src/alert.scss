@@ -1,0 +1,150 @@
+@use 'mixins/mixins';
+@use 'common/var';
+
+@include mixins.b(alert) {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var.$alert-padding;
+  margin: 0;
+  overflow: hidden;
+  background-color: var.$color-white;
+  border-radius: var.$alert-border-radius;
+  opacity: 1;
+  transition: opacity 0.2s;
+
+  @include mixins.when(light) {
+    .el-alert__closebtn {
+      color: var.$color-text-placeholder;
+    }
+  }
+
+  @include mixins.when(dark) {
+    .el-alert__closebtn {
+      color: var.$color-white;
+    }
+
+    .el-alert__description {
+      color: var.$color-white;
+    }
+  }
+
+  @include mixins.when(center) {
+    justify-content: center;
+  }
+
+  @include mixins.m(success) {
+    &.is-light {
+      color: var.$color-success;
+      background-color: var.$alert-success-color;
+
+      .el-alert__description {
+        color: var.$color-success;
+      }
+    }
+
+    &.is-dark {
+      color: var.$color-white;
+      background-color: var.$color-success;
+    }
+  }
+
+  @include mixins.m(info) {
+    &.is-light {
+      color: var.$color-info;
+      background-color: var.$alert-info-color;
+    }
+
+    &.is-dark {
+      color: var.$color-white;
+      background-color: var.$color-info;
+    }
+
+    .el-alert__description {
+      color: var.$color-info;
+    }
+  }
+
+  @include mixins.m(warning) {
+    &.is-light {
+      color: var.$color-warning;
+      background-color: var.$alert-warning-color;
+
+      .el-alert__description {
+        color: var.$color-warning;
+      }
+    }
+
+    &.is-dark {
+      color: var.$color-white;
+      background-color: var.$color-warning;
+    }
+  }
+
+  @include mixins.m(error) {
+    &.is-light {
+      color: var.$color-danger;
+      background-color: var.$alert-danger-color;
+
+      .el-alert__description {
+        color: var.$color-danger;
+      }
+    }
+
+    &.is-dark {
+      color: var.$color-white;
+      background-color: var.$color-danger;
+    }
+  }
+
+  @include mixins.e(content) {
+    display: table-cell;
+    padding: 0 8px;
+  }
+
+  @include mixins.e(icon) {
+    width: var.$alert-icon-size;
+    font-size: var.$alert-icon-size;
+
+    @include mixins.when(big) {
+      width: var.$alert-icon-large-size;
+      font-size: var.$alert-icon-large-size;
+    }
+  }
+
+  @include mixins.e(title) {
+    font-size: var.$alert-title-font-size;
+    line-height: 18px;
+
+    @include mixins.when(bold) {
+      font-weight: bold;
+    }
+  }
+
+  .el-alert__description {
+    margin: 5px 0 0;
+    font-size: var.$alert-description-font-size;
+  }
+
+  @include mixins.e(closebtn) {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: var.$alert-close-font-size;
+    cursor: pointer;
+    opacity: 1;
+
+    @include mixins.when(customed) {
+      top: 9px;
+      font-size: var.$alert-close-customed-font-size;
+      font-style: normal;
+    }
+  }
+}
+
+.el-alert-fade-enter,
+.el-alert-fade-leave-active {
+  opacity: 0;
+}

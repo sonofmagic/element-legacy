@@ -1,0 +1,115 @@
+@use '../common/var';
+@use '../mixins/mixins';
+
+@include mixins.b(time-spinner) {
+  &.has-seconds {
+    .el-time-spinner__wrapper {
+      width: 33.3%;
+    }
+  }
+
+  @include mixins.e(wrapper) {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    max-height: 190px;
+    overflow: auto;
+    vertical-align: top;
+
+    &.el-scrollbar {
+      overflow: hidden;
+    }
+
+    & .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default) {
+      padding-bottom: 15px;
+    }
+
+    @include mixins.when(arrow) {
+      box-sizing: border-box;
+      overflow: hidden;
+      text-align: center;
+
+      .el-time-spinner__list {
+        transform: translateY(-32px);
+      }
+
+      .el-time-spinner__item:hover:not(.disabled, .active) {
+        cursor: default;
+        background: var.$color-white;
+      }
+    }
+  }
+
+  @include mixins.e(arrow) {
+    position: absolute;
+    left: 0;
+    z-index: var.$index-normal;
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    line-height: 30px;
+    color: var.$color-text-secondary;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: var.$color-primary;
+    }
+
+    &.el-icon-arrow-up {
+      top: 10px;
+    }
+
+    &.el-icon-arrow-down {
+      bottom: 10px;
+    }
+  }
+
+  @include mixins.e(input) {
+    &.el-input {
+      width: 70%;
+
+      .el-input__inner {
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  @include mixins.e(list) {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+
+    &::after,
+    &::before {
+      display: block;
+      width: 100%;
+      height: 80px;
+      content: '';
+    }
+  }
+
+  @include mixins.e(item) {
+    height: 32px;
+    font-size: 12px;
+    line-height: 32px;
+    color: var.$color-text-regular;
+
+    &:hover:not(.disabled, .active) {
+      cursor: pointer;
+      background: var.$background-color-base;
+    }
+
+    &.active:not(.disabled) {
+      font-weight: bold;
+      color: var.$color-text-primary;
+    }
+
+    &.disabled {
+      color: var.$color-text-placeholder;
+      cursor: not-allowed;
+    }
+  }
+}

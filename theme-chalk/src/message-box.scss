@@ -1,0 +1,226 @@
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'common/popup';
+@use 'button';
+@use 'input';
+
+@include mixins.b(message-box) {
+  display: inline-block;
+  width: var.$msgbox-width;
+  padding-bottom: 10px;
+  overflow: hidden;
+  font-size: var.$messagebox-font-size;
+  vertical-align: middle;
+  text-align: left;
+  background-color: var.$color-white;
+  border: 1px solid var.$border-color-lighter;
+  border-radius: var.$msgbox-border-radius;
+  box-shadow: var.$box-shadow-light;
+  backface-visibility: hidden;
+
+  @include mixins.e(wrapper) {
+    position: fixed;
+    inset: 0;
+    text-align: center;
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: '';
+    }
+  }
+
+  @include mixins.e(header) {
+    position: relative;
+    padding: var.$msgbox-padding-primary;
+    padding-bottom: 10px;
+  }
+
+  @include mixins.e(title) {
+    padding-left: 0;
+    margin-bottom: 0;
+    font-size: var.$messagebox-font-size;
+    line-height: 1;
+    color: var.$messagebox-title-color;
+  }
+
+  @include mixins.e(headerbtn) {
+    position: absolute;
+    top: var.$msgbox-padding-primary;
+    right: var.$msgbox-padding-primary;
+    padding: 0;
+    font-size: var.$message-close-size;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    border: none;
+
+    .el-message-box__close {
+      color: var.$color-info;
+    }
+
+    &:focus,
+    &:hover {
+      .el-message-box__close {
+        color: var.$color-primary;
+      }
+    }
+  }
+
+  @include mixins.e(content) {
+    padding: 10px var.$msgbox-padding-primary;
+    font-size: var.$messagebox-content-font-size;
+    color: var.$messagebox-content-color;
+  }
+
+  @include mixins.e(container) {
+    position: relative;
+  }
+
+  @include mixins.e(input) {
+    padding-top: 15px;
+
+    & input.invalid {
+      border-color: var.$color-danger;
+
+      &:focus {
+        border-color: var.$color-danger;
+      }
+    }
+  }
+
+  @include mixins.e(status) {
+    position: absolute;
+    top: 50%;
+    font-size: 24px !important;
+    transform: translateY(-50%);
+
+    &::before {
+      // 防止图标切割
+      padding-left: 1px;
+    }
+
+    + .el-message-box__message {
+      padding-right: 12px;
+      padding-left: 36px;
+    }
+
+    &.el-icon-success {
+      color: var.$messagebox-success-color;
+    }
+
+    &.el-icon-info {
+      color: var.$messagebox-info-color;
+    }
+
+    &.el-icon-warning {
+      color: var.$messagebox-warning-color;
+    }
+
+    &.el-icon-error {
+      color: var.$messagebox-danger-color;
+    }
+  }
+
+  @include mixins.e(message) {
+    margin: 0;
+
+    & p {
+      margin: 0;
+      line-height: 24px;
+    }
+  }
+
+  @include mixins.e(errormsg) {
+    min-height: 18px;
+    margin-top: 2px;
+    font-size: var.$messagebox-error-font-size;
+    color: var.$color-danger;
+  }
+
+  @include mixins.e(btns) {
+    padding: 5px 15px 0;
+    text-align: right;
+
+    & button:nth-child(2) {
+      margin-left: 10px;
+    }
+  }
+
+  @include mixins.e(btns-reverse) {
+    flex-direction: row-reverse;
+  }
+
+  // centerAlign 布局
+  @include mixins.m(center) {
+    padding-bottom: 30px;
+
+    @include mixins.e(header) {
+      padding-top: 30px;
+    }
+
+    @include mixins.e(title) {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include mixins.e(status) {
+      position: relative;
+      top: auto;
+      padding-right: 5px;
+      text-align: center;
+      transform: translateY(-1px);
+    }
+
+    @include mixins.e(message) {
+      margin-left: 0;
+    }
+
+    @include mixins.e((btns, content)) {
+      text-align: center;
+    }
+
+    @include mixins.e(content) {
+      $padding-horizontal: var.$msgbox-padding-primary + 12px;
+
+      padding-right: $padding-horizontal;
+      padding-left: $padding-horizontal;
+    }
+  }
+}
+
+.msgbox-fade-enter-active {
+  animation: msgbox-fade-in 0.3s;
+}
+
+.msgbox-fade-leave-active {
+  animation: msgbox-fade-out 0.3s;
+}
+
+@keyframes msgbox-fade-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes msgbox-fade-out {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+}

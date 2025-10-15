@@ -1,0 +1,112 @@
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'descriptions-item';
+
+@include mixins.b(descriptions) {
+  box-sizing: border-box;
+  font-size: var.$font-size-base;
+  color: var.$color-text-primary;
+
+  @include mixins.e(header) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var.$descriptions-header-margin-bottom;
+
+    @include mixins.e(title) {
+      font-size: var.$descriptions-title-font-size;
+      font-weight: bold;
+    }
+  }
+
+  @include mixins.e(body) {
+    color: var.$color-text-regular;
+    background-color: var.$color-white;
+
+    .el-descriptions__table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+
+      .el-descriptions-item__cell {
+        box-sizing: border-box;
+        font-weight: normal;
+        line-height: 1.5;
+        text-align: left;
+
+        @include mixins.when(left) {
+          text-align: left;
+        }
+
+        @include mixins.when(center) {
+          text-align: center;
+        }
+
+        @include mixins.when(right) {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .is-bordered {
+    table-layout: auto;
+
+    .el-descriptions-item__cell {
+      padding: 12px 10px;
+      border: var.$descriptions-table-border;
+    }
+  }
+
+  :not(.is-bordered) {
+    .el-descriptions-item__cell {
+      padding-bottom: 12px;
+    }
+  }
+
+  @include mixins.m(medium) {
+    &.is-bordered {
+      .el-descriptions-item__cell {
+        padding: 10px;
+      }
+    }
+
+    &:not(.is-bordered) {
+      .el-descriptions-item__cell {
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  @include mixins.m(small) {
+    font-size: 12px;
+
+    &.is-bordered {
+      .el-descriptions-item__cell {
+        padding: 8px 10px;
+      }
+    }
+
+    &:not(.is-bordered) {
+      .el-descriptions-item__cell {
+        padding-bottom: 8px;
+      }
+    }
+  }
+
+  @include mixins.m(mini) {
+    font-size: 12px;
+
+    &.is-bordered {
+      .el-descriptions-item__cell {
+        padding: 6px 10px;
+      }
+    }
+
+    &:not(.is-bordered) {
+      .el-descriptions-item__cell {
+        padding-bottom: 6px;
+      }
+    }
+  }
+}

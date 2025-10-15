@@ -1,0 +1,37 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "element-ui": [
+        "../src"
+      ],
+      "main": [
+        "../src"
+      ],
+      "main/*": [
+        "../src/*"
+      ],
+      "packages/*": [
+        "../packages/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "vite/client"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.vue",
+    "./**/*.js",
+    "./**/*.json",
+    "./**/*.md"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

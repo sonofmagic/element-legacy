@@ -1,0 +1,181 @@
+@use 'mixins/mixins';
+@use 'common/var';
+@use 'input';
+@use 'sass:math';
+
+@include mixins.b(input-number) {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  line-height: #{var.$input-height - 2};
+
+  .el-input {
+    display: block;
+
+    &__inner {
+      padding-right: #{var.$input-height + 10};
+      padding-left: #{var.$input-height + 10};
+      text-align: center;
+      appearance: none;
+    }
+  }
+
+  @include mixins.e((increase, decrease)) {
+    position: absolute;
+    top: 1px;
+    z-index: 1;
+    width: var.$input-height;
+    height: auto;
+    font-size: 13px;
+    color: var.$color-text-regular;
+    text-align: center;
+    cursor: pointer;
+    background: var.$background-color-base;
+
+    &:hover {
+      color: var.$color-primary;
+
+      &:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled) {
+        border-color: var.$input-focus-border;
+      }
+    }
+
+    &.is-disabled {
+      color: var.$disabled-color-base;
+      cursor: not-allowed;
+    }
+  }
+
+  @include mixins.e(increase) {
+    right: 1px;
+    border-left: var.$border-base;
+    border-radius: 0 var.$border-radius-base var.$border-radius-base 0;
+  }
+
+  @include mixins.e(decrease) {
+    left: 1px;
+    border-right: var.$border-base;
+    border-radius: var.$border-radius-base 0 0 var.$border-radius-base;
+  }
+
+  @include mixins.when(disabled) {
+    @include mixins.e((increase, decrease)) {
+      color: var.$disabled-border-base;
+      border-color: var.$disabled-border-base;
+
+      &:hover {
+        color: var.$disabled-border-base;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  @include mixins.m(medium) {
+    width: 200px;
+    line-height: #{var.$input-medium-height - 2px};
+
+    @include mixins.e((increase, decrease)) {
+      width: var.$input-medium-height;
+      font-size: var.$input-medium-font-size;
+    }
+
+    .el-input__inner {
+      padding-right: #{var.$input-medium-height + 7px};
+      padding-left: #{var.$input-medium-height + 7px};
+    }
+  }
+
+  @include mixins.m(small) {
+    width: 130px;
+    line-height: #{var.$input-small-height - 2};
+
+    @include mixins.e((increase, decrease)) {
+      width: var.$input-small-height;
+      font-size: var.$input-small-font-size;
+
+      [class*='el-icon'] {
+        transform: scale(0.9);
+      }
+    }
+
+    .el-input__inner {
+      padding-right: #{var.$input-small-height + 7};
+      padding-left: #{var.$input-small-height + 7};
+    }
+  }
+
+  @include mixins.m(mini) {
+    width: 130px;
+    line-height: #{var.$input-mini-height - 2};
+
+    @include mixins.e((increase, decrease)) {
+      width: var.$input-mini-height;
+      font-size: var.$input-mini-font-size;
+
+      [class*='el-icon'] {
+        transform: scale(0.8);
+      }
+    }
+
+    .el-input__inner {
+      padding-right: #{var.$input-mini-height + 7};
+      padding-left: #{var.$input-mini-height + 7};
+    }
+  }
+
+  @include mixins.when(without-controls) {
+    .el-input__inner {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+
+  @include mixins.when(controls-right) {
+    .el-input__inner {
+      padding-right: #{var.$input-height + 10};
+      padding-left: 15px;
+    }
+
+    @include mixins.e((increase, decrease)) {
+      height: auto;
+      line-height: #{calc((var.$input-height - 2px) / 2)};
+
+      [class*='el-icon'] {
+        transform: scale(0.8);
+      }
+    }
+
+    @include mixins.e(increase) {
+      border-bottom: var.$border-base;
+      border-radius: 0 var.$border-radius-base 0 0;
+    }
+
+    @include mixins.e(decrease) {
+      inset: auto 1px 1px auto;
+      border-right: none;
+      border-left: var.$border-base;
+      border-radius: 0 0 var.$border-radius-base 0;
+    }
+
+    &[class*='medium'] {
+      [class*='increase'],
+      [class*='decrease'] {
+        line-height: #{calc((var.$input-medium-height - 2px) / 2)};
+      }
+    }
+
+    &[class*='small'] {
+      [class*='increase'],
+      [class*='decrease'] {
+        line-height: #{calc((var.$input-small-height - 2px) / 2)};
+      }
+    }
+
+    &[class*='mini'] {
+      [class*='increase'],
+      [class*='decrease'] {
+        line-height: #{math.div(var.$input-mini-height - 2, 2)};
+      }
+    }
+  }
+}

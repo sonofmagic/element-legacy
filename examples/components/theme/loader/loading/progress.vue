@@ -1,12 +1,3 @@
-<template>
-  <div class="progress" :style="{
-    'width': percent+'%',
-    'height': height,
-    'background-color': canSuccess? successColor() : failedColor(),
-    'opacity': show ? 1 : 0
-  }"></div>
-</template>
-
 <script>
 /* eslint-disable */
 export default {
@@ -92,6 +83,15 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="progress" :style="{
+    'width': percent+'%',
+    'height': height,
+    'background-color': canSuccess? successColor() : failedColor(),
+    'opacity': show ? 1 : 0
+  }"></div>
+</template>
 
 <style scoped>
 .progress {

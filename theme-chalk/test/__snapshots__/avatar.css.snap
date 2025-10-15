@@ -1,0 +1,42 @@
+.el-avatar {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+  background: #c0c4cc;
+}
+.el-avatar > img {
+  display: block;
+  height: 100%;
+  vertical-align: middle;
+}
+.el-avatar--circle {
+  border-radius: 50%;
+}
+.el-avatar--square {
+  border-radius: 4px;
+}
+.el-avatar--icon {
+  font-size: 18px;
+}
+.el-avatar--large {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.el-avatar--medium {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+}
+.el-avatar--small {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+}
