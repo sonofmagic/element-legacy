@@ -35,7 +35,7 @@
   "scripts": {
     "bootstrap": "pnpm i",
     "build:file": "tsx build/bin/iconInit.ts & tsx build/bin/build-entry.ts & tsx build/bin/i18n.ts & tsx build/bin/version.ts",
-    "build:theme": "tsx build/bin/gen-cssfile.ts && pnpm --filter element-ui-legacy-theme-chalk run build && cp-cli theme-chalk/lib lib/theme-chalk",
+    "build:theme": "tsx build/bin/gen-cssfile.ts && pnpm --filter @element-legacy/theme-chalk run build && cp-cli theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --extensions '.ts,.tsx,.js' --out-dir lib --ignore 'src/index.ts,**/*.d.ts'",
     "build:umd": "tsx build/bin/build-locale.ts",
     "build": "vite build",
@@ -96,6 +96,7 @@
     "@types/gulp-sass": "^5.0.4",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^24.7.2",
+    "@types/semver": "^7.7.1",
     "@vitejs/plugin-vue2": "^2.3.4",
     "@vitejs/plugin-vue2-jsx": "^1.1.1",
     "@vitest/coverage-v8": "~3.2.4",
@@ -156,7 +157,6 @@
     "vue-router": "^3.0.1",
     "vue-template-compiler": "2.7.16",
     "vue-template-es2015-compiler": "^1.6.0",
-    "yaml": "^2.8.1",
-    "@types/semver": "^7.7.1"
+    "yaml": "^2.8.1"
   }
 }
