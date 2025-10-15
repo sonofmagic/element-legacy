@@ -1,8 +1,7 @@
 'use strict'
 
 const { series, src, dest } = require('gulp')
-const autoprefixer = require('gulp-autoprefixer')
-const cssmin = require('gulp-cssmin')
+const { default: autoprefixer } = require('gulp-autoprefixer')
 const gulpSass = require('gulp-sass')
 const dartSass = require('sass')
 
@@ -14,6 +13,7 @@ function compile() {
     .pipe(sass.sync(
       {
         silenceDeprecations: [],
+        outputStyle: 'compressed',
       },
     ))
     .pipe(autoprefixer({
@@ -23,13 +23,11 @@ function compile() {
     // .pipe(postcss([postcssDiscardComments({
 
     // })]))
-    .pipe(cssmin())
     .pipe(dest('./lib'))
 }
 
 function copyfont() {
   return src('./src/fonts/**')
-    .pipe(cssmin())
     .pipe(dest('./lib/fonts'))
 }
 

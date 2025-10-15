@@ -39,6 +39,7 @@ export default defineConfig(
         environment: 'jsdom',
         include: [
           'test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
+          'theme-chalk\/test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
         ],
         globals: true,
       },

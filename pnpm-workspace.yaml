@@ -1,6 +1,6 @@
 packages:
   - 'apps/*'
-  - 'theme-chalk'
+  - theme-chalk
   - '!**/test/**'
   - examples
 
