@@ -89,7 +89,7 @@ describe('${ComponentName}', () => {
 `,
   },
   {
-    filename: join('../../theme-chalk/src', `${componentname}.scss`),
+    filename: join('../../apps/theme-chalk/src', `${componentname}.scss`),
     content: `@import "mixins/mixins";
 @import "common/var";
 
@@ -117,7 +117,7 @@ fileSave(join(__dirname, '../../components.json'))
   .write(JSON.stringify(componentsFile, null, '  '), 'utf8')
   .end('\n')
 
-const sassPath = join(__dirname, '../../theme-chalk/src/index.scss')
+const sassPath = join(__dirname, '../../apps/theme-chalk/src/index.scss')
 const sassImportText = `${readFileSync(sassPath)}@import "./${componentname}.scss";`
 fileSave(sassPath)
   .write(sassImportText, 'utf8')

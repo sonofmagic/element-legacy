@@ -37,7 +37,7 @@
   "scripts": {
     "bootstrap": "pnpm i",
     "build:file": "tsx build/bin/iconInit.ts & tsx build/bin/build-entry.ts & tsx build/bin/i18n.ts & tsx build/bin/version.ts",
-    "build:theme": "tsx build/bin/gen-cssfile.ts && pnpm --filter @element-legacy/theme-chalk run build && cp-cli theme-chalk/lib lib/theme-chalk",
+    "build:theme": "tsx build/bin/gen-cssfile.ts && pnpm --filter @element-legacy/theme-chalk run build && cp-cli apps/theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --extensions '.ts,.tsx,.js' --out-dir lib --ignore 'src/index.ts,**/*.d.ts'",
     "build:umd": "tsx build/bin/build-locale.ts",
     "build": "vite build",

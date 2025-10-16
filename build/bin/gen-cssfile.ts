@@ -11,7 +11,7 @@ const components = Object.keys(require('../../components.json') as Record<string
 const themes = [
   'theme-chalk',
 ]
-const basePath = resolve(__dirname, '../../')
+const basePath = resolve(__dirname, '../../apps')
 
 function fileExists(filePath: string) {
   try {
