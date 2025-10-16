@@ -310,7 +310,7 @@ importers:
         specifier: ^7.1.10
         version: 7.1.10(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.1)
 
-  examples:
+  apps/docs:
     devDependencies:
       markdown-it:
         specifier: ^14.1.0

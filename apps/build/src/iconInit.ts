@@ -2,7 +2,7 @@ import { readFileSync, writeFile } from 'node:fs'
 import postcss from 'postcss'
 import { createWorkspaceContext } from './context'
 
-const { resolveFromApps, resolveFromExamples } = createWorkspaceContext(import.meta.url)
+const { resolveFromApps, resolveFromDocs } = createWorkspaceContext(import.meta.url)
 
 const fontFile = readFileSync(resolveFromApps('theme-chalk', 'src', 'icon.scss'), 'utf8')
 const nodes = postcss.parse(fontFile).nodes ?? []
@@ -19,4 +19,4 @@ nodes.forEach((node) => {
 
 classList.reverse()
 
-writeFile(resolveFromExamples('icon.json'), JSON.stringify(classList), () => {})
+writeFile(resolveFromDocs('icon.json'), JSON.stringify(classList), () => {})

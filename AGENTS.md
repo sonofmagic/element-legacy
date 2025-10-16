@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-Element UI 2.x component library. `src/` holds the plugin entry, global mixins, and shared utilities. Each UI component lives under `packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `apps/build/src`. Shared theme assets reside in `apps/theme-chalk`. Demo and extension assets live under `examples/`, including documentation content in `examples/docs`. Tests split between `test/unit` for Vitest specs and `test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `apps/build/` and `scripts/`.
+Element UI 2.x component library. `src/` holds the plugin entry, global mixins, and shared utilities. Each UI component lives under `packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `apps/build/src`. Shared theme assets reside in `apps/theme-chalk`. Demo and extension assets live under `apps/docs/`, including documentation content in `apps/docs/docs`. Tests split between `test/unit` for Vitest specs and `test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `apps/build/` and `scripts/`.
 
 ## Build, Test, and Development Commands
 
@@ -18,4 +18,4 @@ Vitest drives unit tests with a jsdom environment; specs live beside fixtures un
 
 ## Commit & Pull Request Guidelines
 
-Commitlint (`commitlint.config.ts`) enforces Conventional Commits (`type(scope): subject`). Scope should match the affected package (e.g., `feat(button): add loading size`). Use present-tense subjects and limit to 72 characters. Pull requests need a clear summary, reproduction steps when fixing bugs, and links to issues or discussions. Include screenshots or GIFs for visual changes and note any documentation updates under `examples/docs`. Ensure CI passes before requesting review.
+Commitlint (`commitlint.config.ts`) enforces Conventional Commits (`type(scope): subject`). Scope should match the affected package (e.g., `feat(button): add loading size`). Use present-tense subjects and limit to 72 characters. Pull requests need a clear summary, reproduction steps when fixing bugs, and links to issues or discussions. Include screenshots or GIFs for visual changes and note any documentation updates under `apps/docs/docs`. Ensure CI passes before requesting review.

@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs'
 import process from 'node:process'
 import { createWorkspaceContext } from './context'
 
-const { require: workspaceRequire, resolveFromExamples, resolveFromRoot } = createWorkspaceContext(import.meta.url)
+const { require: workspaceRequire, resolveFromDocs, resolveFromRoot } = createWorkspaceContext(import.meta.url)
 
 const pkg = workspaceRequire(resolveFromRoot('package.json')) as { version?: string }
 
@@ -16,4 +16,4 @@ if (!content[version]) {
   content[version] = '2.15'
 }
 
-writeFileSync(resolveFromExamples('versions.json'), JSON.stringify(content))
+writeFileSync(resolveFromDocs('versions.json'), JSON.stringify(content))

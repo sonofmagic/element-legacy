@@ -2,8 +2,8 @@ import { execSync } from 'node:child_process'
 import chokidar from 'chokidar'
 import { createWorkspaceContext } from './context'
 
-const { resolveFromExamples } = createWorkspaceContext(import.meta.url)
-const templates = resolveFromExamples('pages', 'template')
+const { resolveFromDocs } = createWorkspaceContext(import.meta.url)
+const templates = resolveFromDocs('pages', 'template')
 
 const watcher = chokidar.watch([templates])
 

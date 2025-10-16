@@ -11,7 +11,7 @@ interface FileDescriptor {
 const {
   require: workspaceRequire,
   resolveFromApps,
-  resolveFromExamples,
+  resolveFromDocs,
   resolveFromPackages,
   resolveFromRoot,
 } = createWorkspaceContext(import.meta.url)
@@ -59,19 +59,19 @@ export default {
 </script>`,
   },
   {
-    path: resolveFromExamples('docs', 'zh-CN', `${componentname}.md`),
+    path: resolveFromDocs('docs', 'zh-CN', `${componentname}.md`),
     content: `## ${ComponentName} ${chineseName}`,
   },
   {
-    path: resolveFromExamples('docs', 'en-US', `${componentname}.md`),
+    path: resolveFromDocs('docs', 'en-US', `${componentname}.md`),
     content: `## ${ComponentName}`,
   },
   {
-    path: resolveFromExamples('docs', 'es', `${componentname}.md`),
+    path: resolveFromDocs('docs', 'es', `${componentname}.md`),
     content: `## ${ComponentName}`,
   },
   {
-    path: resolveFromExamples('docs', 'fr-FR', `${componentname}.md`),
+    path: resolveFromDocs('docs', 'fr-FR', `${componentname}.md`),
     content: `## ${ComponentName}`,
   },
   {
@@ -155,7 +155,7 @@ files.forEach((file) => {
     .end('\n')
 })
 
-const navConfigFile = workspaceRequire(resolveFromExamples('nav.config.json')) as Record<string, any[]>
+const navConfigFile = workspaceRequire(resolveFromDocs('nav.config.json')) as Record<string, any[]>
 
 Object.keys(navConfigFile).forEach((lang) => {
   const groups = navConfigFile[lang][4].groups
@@ -167,7 +167,7 @@ Object.keys(navConfigFile).forEach((lang) => {
   })
 })
 
-fileSave(resolveFromExamples('nav.config.json'))
+fileSave(resolveFromDocs('nav.config.json'))
   .write(JSON.stringify(navConfigFile, null, '  '), 'utf8')
   .end('\n')
 

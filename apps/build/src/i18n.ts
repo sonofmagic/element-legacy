@@ -6,12 +6,12 @@ interface LangConfigEntry {
   pages: Record<string, Record<string, string>>
 }
 
-const { require: workspaceRequire, resolveFromExamples } = createWorkspaceContext(import.meta.url)
+const { require: workspaceRequire, resolveFromDocs } = createWorkspaceContext(import.meta.url)
 
-const langConfig = workspaceRequire(resolveFromExamples('i18n', 'page.json')) as LangConfigEntry[]
+const langConfig = workspaceRequire(resolveFromDocs('i18n', 'page.json')) as LangConfigEntry[]
 
 langConfig.forEach((lang) => {
-  const pageDir = resolveFromExamples('pages', lang.lang)
+  const pageDir = resolveFromDocs('pages', lang.lang)
 
   try {
     statSync(pageDir)
@@ -21,8 +21,8 @@ langConfig.forEach((lang) => {
   }
 
   Object.keys(lang.pages).forEach((page) => {
-    const templatePath = resolveFromExamples('pages', 'template', `${page}.tpl`)
-    const outputPath = resolveFromExamples('pages', lang.lang, `${page}.vue`)
+    const templatePath = resolveFromDocs('pages', 'template', `${page}.tpl`)
+    const outputPath = resolveFromDocs('pages', lang.lang, `${page}.vue`)
     let content = readFileSync(templatePath, 'utf8')
     const pairs = lang.pages[page]
 

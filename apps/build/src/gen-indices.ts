@@ -14,7 +14,7 @@ interface DocIndexRecord {
   content: string
 }
 
-const { require: workspaceRequire, resolveFromExamples } = createWorkspaceContext(import.meta.url)
+const { require: workspaceRequire, resolveFromDocs } = createWorkspaceContext(import.meta.url)
 
 const key = workspaceRequire('./algolia-key') as string
 
@@ -36,7 +36,7 @@ function removeCodeAndCustomBlocks(content: string) {
 }
 
 async function collectRecordsFor(lang: LanguageKey): Promise<DocIndexRecord[]> {
-  const docsDirectory = resolveFromExamples('docs', lang)
+  const docsDirectory = resolveFromDocs('docs', lang)
   const files = await readdir(docsDirectory)
   const indices: DocIndexRecord[] = []
 
@@ -46,7 +46,7 @@ async function collectRecordsFor(lang: LanguageKey): Promise<DocIndexRecord[]> {
     }
 
     const component = file.replace('.md', '')
-    const content = await readFile(resolveFromExamples('docs', lang, file), 'utf8')
+    const content = await readFile(resolveFromDocs('docs', lang, file), 'utf8')
     const rawHeadings = removeCodeAndCustomBlocks(content).match(/#{2,4}[^#]*/g) ?? []
     const normalizedHeadings = rawHeadings
       .map(heading => heading.replace(/\n+/g, '\n').split('\n').filter(Boolean))

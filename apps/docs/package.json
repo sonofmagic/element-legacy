@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sonofmagic/element.git",
-    "directory": "examples"
+    "directory": "apps/docs"
   },
   "bugs": {
     "url": "https://github.com/sonofmagic/element/issues"
@@ -21,8 +21,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "tsx ../apps/build/src/i18n.ts && vite",
-    "build": "tsx ../apps/build/src/i18n.ts && vite build"
+    "dev": "tsx ../build/src/i18n.ts && vite",
+    "build": "tsx ../build/src/i18n.ts && vite build"
   },
   "devDependencies": {
     "markdown-it": "^14.1.0",

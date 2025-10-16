@@ -8,7 +8,7 @@ export interface WorkspaceContext {
   rootDir: string
   resolveFromRoot: (...segments: string[]) => string
   resolveFromApps: (...segments: string[]) => string
-  resolveFromExamples: (...segments: string[]) => string
+  resolveFromDocs: (...segments: string[]) => string
   resolveFromPackages: (...segments: string[]) => string
   resolveFromSrc: (...segments: string[]) => string
   resolveFromLib: (...segments: string[]) => string
@@ -27,7 +27,7 @@ export function createWorkspaceContext(metaUrl: string): WorkspaceContext {
     rootDir,
     resolveFromRoot: resolver,
     resolveFromApps: (...segments: string[]) => resolver('apps', ...segments),
-    resolveFromExamples: (...segments: string[]) => resolver('examples', ...segments),
+    resolveFromDocs: (...segments: string[]) => resolver('apps', 'docs', ...segments),
     resolveFromPackages: (...segments: string[]) => resolver('packages', ...segments),
     resolveFromSrc: (...segments: string[]) => resolver('src', ...segments),
     resolveFromLib: (...segments: string[]) => resolver('lib', ...segments),
