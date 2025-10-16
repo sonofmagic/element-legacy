@@ -1,21 +1,23 @@
 {
   "name": "@element-legacy/theme-chalk",
   "version": "0.0.1",
-  "description": "Element component chalk theme.",
+  "description": "Element Legacy component chalk theme.",
   "style": "lib/index.css",
-  "author": "yi.shyang@ele.me",
+  "author": "Element Legacy Maintainers",
   "license": "MIT",
-  "homepage": "https://github.com/ElementUI/theme-chalk#readme",
+  "homepage": "http://el.icebreaker.top/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ElementUI/theme-chalk.git"
+    "url": "git+https://github.com/sonofmagic/element.git",
+    "directory": "theme-chalk"
   },
   "bugs": {
-    "url": "https://github.com/ElementUI/theme-chalk/issues"
+    "url": "https://github.com/sonofmagic/element/issues"
   },
   "keywords": [
     "element",
-    "theme"
+    "theme",
+    "element-legacy"
   ],
   "main": "lib/index.css",
   "files": [

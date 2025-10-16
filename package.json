@@ -3,20 +3,23 @@
   "type": "module",
   "version": "0.0.1",
   "packageManager": "pnpm@10.18.3",
-  "description": "A Component Library for Vue.js.",
+  "description": "Community-maintained Element UI 2.x components for Vue 2.",
   "license": "MIT",
-  "homepage": "http://element.eleme.io",
+  "author": "Element Legacy Maintainers",
+  "homepage": "http://el.icebreaker.top/",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ElemeFE/element.git"
+    "url": "git+https://github.com/sonofmagic/element.git"
   },
   "bugs": {
-    "url": "https://github.com/ElemeFE/element/issues"
+    "url": "https://github.com/sonofmagic/element/issues"
   },
   "keywords": [
     "eleme",
     "vue",
-    "components"
+    "components",
+    "element-ui",
+    "element-legacy"
   ],
   "main": "lib/index.cjs",
   "module": "lib/index.js",
@@ -28,7 +31,6 @@
     "lib",
     "packages",
     "src",
-    "theme-chalk",
     "types",
     "web-types.json"
   ],
