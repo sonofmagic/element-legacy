@@ -1,8 +1,7 @@
 {
   "name": "element-legacy",
   "type": "module",
-  "version": "0.0.2",
-  "packageManager": "pnpm@10.18.3",
+  "version": "0.0.3",
   "description": "Community-maintained Element UI 2.x components for Vue 2.",
   "author": "Element Legacy Maintainers",
   "license": "MIT",
