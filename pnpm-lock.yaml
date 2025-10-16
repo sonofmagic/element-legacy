@@ -71,6 +71,9 @@ importers:
       '@vue/tsconfig':
         specifier: ^0.8.1
         version: 0.8.1(typescript@5.9.3)(vue@2.7.16)
+      autoprefixer:
+        specifier: ^10.4.21
+        version: 10.4.21(postcss@8.5.6)
       ci-info:
         specifier: ^4.3.1
         version: 4.3.1
@@ -223,17 +226,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
 
-  packages/theme-chalk:
-    devDependencies:
-      autoprefixer:
-        specifier: ^10.4.21
-        version: 10.4.21(postcss@8.5.6)
-      sass:
-        specifier: 1.93.2
-        version: 1.93.2
-      vite:
-        specifier: ^7.1.10
-        version: 7.1.10(@types/node@24.7.2)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.1)
+  packages/theme-chalk: {}
 
   packages/ui:
     dependencies:

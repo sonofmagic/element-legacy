@@ -25,13 +25,8 @@
     "src"
   ],
   "scripts": {
-    "build": "vite build --config vite.config.ts",
-    "test": "pnpm run build && vitest run --root .. --config vitest.config.ts test/theme-chalk.spec.ts",
-    "test:update": "pnpm run build && vitest run --root .. --config vitest.config.ts --update test/theme-chalk.spec.ts"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "sass": "1.93.2",
-    "vite": "^7.1.10"
+    "build": "vite build",
+    "test:dev": "vitest",
+    "test": "vitest run"
   }
 }
