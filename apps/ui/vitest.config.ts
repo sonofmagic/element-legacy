@@ -26,7 +26,7 @@ export default defineConfig(
         projects: [
           '.',
           'packages/*',
-          'apps/*',
+          '../theme-chalk',
         ],
         coverage: {
           enabled: true,
@@ -39,7 +39,7 @@ export default defineConfig(
         environment: 'jsdom',
         include: [
           'test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
-          'apps\/theme-chalk\/test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
+          '..\/theme-chalk\/test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
         ],
         globals: true,
       },

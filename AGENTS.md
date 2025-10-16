@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-Element UI 2.x component library. `src/` holds the plugin entry, global mixins, and shared utilities. Each UI component lives under `packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `apps/build/src`. Shared theme assets reside in `apps/theme-chalk`. Demo and extension assets live under `apps/docs/`, including documentation content in `apps/docs/docs`. Tests split between `test/unit` for Vitest specs and `test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `apps/build/` and `scripts/`.
+Element UI 2.x component library now lives under `apps/ui`. `apps/ui/src/` holds the plugin entry, global mixins, and shared utilities. Each UI component resides in `apps/ui/packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `apps/build/src`. Shared theme assets reside in `apps/theme-chalk`. Demo and extension assets live under `apps/docs/`, including documentation content in `apps/docs/docs`. Tests split between `apps/ui/test/unit` for Vitest specs and `apps/ui/test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `apps/build/` and `scripts/`.
 
 ## Build, Test, and Development Commands
 
@@ -10,7 +10,7 @@ Install dependencies with `pnpm bootstrap`. For the local docs playground run `p
 
 ## Coding Style & Naming Conventions
 
-The repo targets Vue 2 (`eslint.config.mjs` sets `vueVersion: 2`). JavaScript and TypeScript files use two-space indentation and prefer named exports for shared utilities. Component folders mirror kebab-case package names, while component constructors remain PascalCase (e.g., `packages/button` exports `ElButton`). Run `pnpm exec eslint "packages/**" "src/**"` and `pnpm exec stylelint "apps/theme-chalk/src/**/*.scss"` before pushing. Lint-staged auto-fixes JS/TS/Vue/Markdown on commit.
+The repo targets Vue 2 (`eslint.config.mjs` sets `vueVersion: 2`). JavaScript and TypeScript files use two-space indentation and prefer named exports for shared utilities. Component folders mirror kebab-case package names, while component constructors remain PascalCase (e.g., `apps/ui/packages/button` exports `ElButton`). Run `pnpm exec eslint "apps/ui/packages/**" "apps/ui/src/**"` and `pnpm exec stylelint "apps/theme-chalk/src/**/*.scss"` before pushing. Lint-staged auto-fixes JS/TS/Vue/Markdown on commit.
 
 ## Testing Guidelines
 

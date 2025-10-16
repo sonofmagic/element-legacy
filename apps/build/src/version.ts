@@ -2,9 +2,9 @@ import { writeFileSync } from 'node:fs'
 import process from 'node:process'
 import { createWorkspaceContext } from './context'
 
-const { require: workspaceRequire, resolveFromDocs, resolveFromRoot } = createWorkspaceContext(import.meta.url)
+const { require: workspaceRequire, resolveFromDocs, resolveFromUi } = createWorkspaceContext(import.meta.url)
 
-const pkg = workspaceRequire(resolveFromRoot('package.json')) as { version?: string }
+const pkg = workspaceRequire(resolveFromUi('package.json')) as { version?: string }
 
 const version = process.env.VERSION || pkg.version || ''
 

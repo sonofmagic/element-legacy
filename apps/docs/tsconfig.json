@@ -4,16 +4,16 @@
     "baseUrl": ".",
     "paths": {
       "element-ui": [
-        "../src"
+        "../ui/src"
       ],
       "main": [
-        "../src"
+        "../ui/src"
       ],
       "main/*": [
-        "../src/*"
+        "../ui/src/*"
       ],
       "packages/*": [
-        "../packages/*"
+        "../ui/packages/*"
       ]
     },
     "resolveJsonModule": true,

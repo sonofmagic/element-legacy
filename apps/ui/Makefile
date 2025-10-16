@@ -18,10 +18,10 @@ play:
 	npm run dev:play
 
 new:
-	pnpm exec tsx apps/build/src/new.ts $(filter-out $@,$(MAKECMDGOALS))
+	pnpm exec tsx ../build/src/new.ts $(filter-out $@,$(MAKECMDGOALS))
 
 new-lang:
-	pnpm exec tsx apps/build/src/new-lang.ts $(filter-out $@,$(MAKECMDGOALS))
+	pnpm exec tsx ../build/src/new-lang.ts $(filter-out $@,$(MAKECMDGOALS))
 
 dist: install
 	npm run dist

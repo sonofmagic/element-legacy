@@ -1,15 +1,13 @@
 import { statSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
 import { createWorkspaceContext } from './context'
 
-const { require: workspaceRequire, resolveFromRoot } = createWorkspaceContext(import.meta.url)
+const { require: workspaceRequire, resolveFromApps, resolveFromUi } = createWorkspaceContext(import.meta.url)
 
-const components = Object.keys(workspaceRequire(resolveFromRoot('components.json')) as Record<string, string>)
+const components = Object.keys(workspaceRequire(resolveFromUi('components.json')) as Record<string, string>)
 
 const themes = [
   'theme-chalk',
 ]
-const basePath = resolveFromRoot('apps')
 
 function fileExists(filePath: string) {
   try {
@@ -23,6 +21,7 @@ function fileExists(filePath: string) {
 themes.forEach((theme) => {
   const isSCSS = theme !== 'theme-default'
   let indexContent = isSCSS ? '@use \'./base\';\n' : '@use \'./base.css\';\n'
+  const resolveTheme = (...segments: string[]) => resolveFromApps(theme, ...segments)
 
   components.forEach((key) => {
     if (['icon', 'option', 'option-group'].includes(key)) {
@@ -31,7 +30,7 @@ themes.forEach((theme) => {
 
     const fileName = `${key}${isSCSS ? '.scss' : '.css'}`
     indexContent += `@use './${key}';\n`
-    const filePath = resolve(basePath, theme, 'src', fileName)
+    const filePath = resolveTheme('src', fileName)
 
     if (!fileExists(filePath)) {
       writeFileSync(filePath, '', 'utf8')
@@ -39,5 +38,5 @@ themes.forEach((theme) => {
     }
   })
 
-  writeFileSync(resolve(basePath, theme, 'src', isSCSS ? 'index.scss' : 'index.css'), indexContent)
+  writeFileSync(resolveTheme('src', isSCSS ? 'index.scss' : 'index.css'), indexContent)
 })

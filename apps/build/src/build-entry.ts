@@ -6,12 +6,12 @@ import { createWorkspaceContext } from './context'
 type TemplateRenderer = (template: string, context: Record<string, string>) => string
 type ComponentDictionary = Record<string, string>
 
-const { require: workspaceRequire, resolveFromRoot } = createWorkspaceContext(import.meta.url)
+const { require: workspaceRequire, resolveFromUi } = createWorkspaceContext(import.meta.url)
 const render = workspaceRequire('json-templater/string') as TemplateRenderer
 const uppercamelcase = workspaceRequire('uppercamelcase') as (value: string) => string
-const pkg = workspaceRequire(resolveFromRoot('package.json')) as { version?: string }
-const rawComponents = workspaceRequire(resolveFromRoot('components.json')) as ComponentDictionary
-const OUTPUT_PATH = resolveFromRoot('src', 'index.ts')
+const pkg = workspaceRequire(resolveFromUi('package.json')) as { version?: string }
+const rawComponents = workspaceRequire(resolveFromUi('components.json')) as ComponentDictionary
+const OUTPUT_PATH = resolveFromUi('src', 'index.ts')
 
 const IMPORT_TEMPLATE = 'import {{name}} from \'../packages/{{package}}/index\';'
 const INSTALL_COMPONENT_TEMPLATE = '  {{name}}'

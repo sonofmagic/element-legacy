@@ -13,7 +13,7 @@ const {
   resolveFromApps,
   resolveFromDocs,
   resolveFromPackages,
-  resolveFromRoot,
+  resolveFromUi,
 } = createWorkspaceContext(import.meta.url)
 
 console.log()
@@ -75,7 +75,7 @@ export default {
     content: `## ${ComponentName}`,
   },
   {
-    path: resolveFromRoot('test', 'unit', 'specs', `${componentname}.spec.js`),
+    path: resolveFromUi('test', 'unit', 'specs', `${componentname}.spec.js`),
     content: `import { createTest, destroyVM } from '../util';
 import ${ComponentName} from 'packages/${componentname}';
 
@@ -101,7 +101,7 @@ describe('${ComponentName}', () => {
 }`,
   },
   {
-    path: resolveFromRoot('types', `${componentname}.d.ts`),
+    path: resolveFromUi('types', `${componentname}.d.ts`),
     content: `import { ElementUIComponent } from './component'
 
 /** ${ComponentName} Component */
@@ -110,14 +110,14 @@ export declare class El${ComponentName} extends ElementUIComponent {
   },
 ]
 
-const componentsFile = workspaceRequire(resolveFromRoot('components.json')) as Record<string, string>
+const componentsFile = workspaceRequire(resolveFromUi('components.json')) as Record<string, string>
 
 if (componentsFile[componentname]) {
   console.error(`${componentname} 已存在.`)
   process.exit(1)
 }
 componentsFile[componentname] = `./packages/${componentname}/index.js`
-fileSave(resolveFromRoot('components.json'))
+fileSave(resolveFromUi('components.json'))
   .write(JSON.stringify(componentsFile, null, '  '), 'utf8')
   .end('\n')
 
@@ -127,7 +127,7 @@ fileSave(sassPath)
   .write(sassImportText, 'utf8')
   .end('\n')
 
-const elementTsPath = resolveFromRoot('types', 'element-ui.d.ts')
+const elementTsPath = resolveFromUi('types', 'element-ui.d.ts')
 
 let elementTsText = `${readFileSync(elementTsPath)}
 /** ${ComponentName} Component */

@@ -8,8 +8,8 @@ import { setupMarkdownContainers } from './markdown/setup'
 export default defineConfig({
   resolve: {
     alias: {
-      'element-ui': path.resolve(import.meta.dirname, '..'),
-      'main': path.resolve(import.meta.dirname, '../src'),
+      'element-ui': path.resolve(import.meta.dirname, '../ui'),
+      'main': path.resolve(import.meta.dirname, '../ui/src'),
     },
   },
   plugins: [
