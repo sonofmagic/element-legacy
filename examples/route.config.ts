@@ -186,16 +186,19 @@ route.push({
   component: Play,
 })
 
-const userLanguage = localStorage.getItem('ELEMENT_LANGUAGE') || window.navigator.language || 'en-US'
-let defaultPath = '/en-US'
-if (userLanguage.includes('zh-')) {
-  defaultPath = '/zh-CN'
+const userLanguage = localStorage.getItem('ELEMENT_LANGUAGE') || window.navigator.language || 'zh-CN'
+let defaultPath = '/zh-CN'
+if (userLanguage.includes('en')) {
+  defaultPath = '/en-US'
 }
 else if (userLanguage.includes('es')) {
   defaultPath = '/es'
 }
 else if (userLanguage.includes('fr')) {
   defaultPath = '/fr-FR'
+}
+else if (userLanguage.includes('zh-')) {
+  defaultPath = '/zh-CN'
 }
 
 route = route.concat([

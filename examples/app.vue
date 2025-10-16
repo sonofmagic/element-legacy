@@ -37,39 +37,12 @@ export default {
 
   watch: {
     lang(val) {
-      if (val === 'zh-CN') {
-        this.suggestJump()
-      }
       localize(val)
     },
   },
 
   mounted() {
     localize(this.lang)
-    if (this.lang === 'zh-CN') {
-      this.suggestJump()
-    }
-  },
-
-  methods: {
-    suggestJump() {
-      if (process.env.NODE_ENV !== 'production') { return }
-
-      const href = location.href
-      const preferGithub = localStorage.getItem('PREFER_GITHUB')
-      const cnHref = href.includes('eleme.cn') || href.includes('element-cn') || href.includes('element.faas')
-      if (cnHref || preferGithub) { return }
-      setTimeout(() => {
-        if (this.lang !== 'zh-CN') { return }
-        this.$confirm('建议大陆用户访问部署在国内的站点，是否跳转？', '提示')
-          .then(() => {
-            location.replace('https://element.eleme.cn')
-          })
-          .catch(() => {
-            localStorage.setItem('PREFER_GITHUB', 'true')
-          })
-      }, 1000)
-    },
   },
 }
 </script>
