@@ -22,16 +22,22 @@ function relativeElementImportPlugin({ mappings }) {
 }
 
 function rewriteSource(sourceNode, state, mappings) {
-  if (!sourceNode || !sourceNode.value) { return }
+  if (!sourceNode || !sourceNode.value) {
+    return
+  }
   const sourceValue = sourceNode.value
   const match = Object.keys(mappings).find(prefix => sourceValue === prefix || sourceValue.startsWith(`${prefix}/`))
-  if (!match) { return }
+  if (!match) {
+    return
+  }
 
   const remainder = sourceValue.slice(match.length).replace(/^\//, '')
   const targetBase = mappings[match]
   const targetPath = path.resolve(targetBase, remainder)
   const filename = state.file?.opts?.filename
-  if (!filename) { return }
+  if (!filename) {
+    return
+  }
 
   const fromDir = path.dirname(filename)
   let relativePath = path.relative(fromDir, targetPath)
