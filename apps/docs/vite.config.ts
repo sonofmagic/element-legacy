@@ -10,6 +10,7 @@ export default defineConfig({
     alias: {
       'element-ui': path.resolve(import.meta.dirname, '../ui'),
       'main': path.resolve(import.meta.dirname, '../ui/src'),
+      // 'vue/compiler-sfc': 'vue-template-compiler',
     },
   },
   plugins: [

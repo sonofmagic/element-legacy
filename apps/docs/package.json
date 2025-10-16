@@ -20,6 +20,10 @@
     "vue"
   ],
   "main": "index.js",
+  "dependencies": {
+    "algoliasearch": "^5.40.0",
+    "highlight.js": "^11.11.1"
+  },
   "scripts": {
     "dev": "tsx ../build/src/i18n.ts && vite",
     "build": "tsx ../build/src/i18n.ts && vite build"
@@ -27,6 +31,7 @@
   "devDependencies": {
     "markdown-it": "^14.1.0",
     "markdown-it-container": "^4.0.0",
-    "unplugin-vue-markdown": "^29.2.0"
+    "unplugin-vue-markdown": "^29.2.0",
+    "vue-template-compiler": "^2.7.16"
   }
 }
