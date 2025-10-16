@@ -8,7 +8,7 @@
   ],
   "dependencies": {
     "@babel/core": "^7.28.4",
-    "algoliasearch": "^5.40.0",
+    "algoliasearch": "^5.40.1",
     "chokidar": "^4.0.3",
     "file-save": "^0.2.0",
     "json-templater": "^1.0.4",

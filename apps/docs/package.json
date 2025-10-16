@@ -20,13 +20,13 @@
     "vue"
   ],
   "main": "index.js",
-  "dependencies": {
-    "algoliasearch": "^5.40.0",
-    "highlight.js": "^11.11.1"
-  },
   "scripts": {
     "dev": "tsx ../../packages-private/build/src/i18n.ts && vite",
     "build": "tsx ../../packages-private/build/src/i18n.ts && vite build"
+  },
+  "dependencies": {
+    "algoliasearch": "^5.40.1",
+    "highlight.js": "^11.11.1"
   },
   "devDependencies": {
     "markdown-it": "^14.1.0",
