@@ -1,20 +1,17 @@
 import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
-import { createRequire } from 'node:module'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { createWorkspaceContext } from './context'
 
 interface LangConfigEntry {
   lang: string
   pages: Record<string, Record<string, string>>
 }
 
-const require = createRequire(import.meta.url)
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const { require: workspaceRequire, resolveFromExamples } = createWorkspaceContext(import.meta.url)
 
-const langConfig = require('../../examples/i18n/page.json') as LangConfigEntry[]
+const langConfig = workspaceRequire(resolveFromExamples('i18n', 'page.json')) as LangConfigEntry[]
 
 langConfig.forEach((lang) => {
-  const pageDir = resolve(__dirname, `../../examples/pages/${lang.lang}`)
+  const pageDir = resolveFromExamples('pages', lang.lang)
 
   try {
     statSync(pageDir)
@@ -24,8 +21,8 @@ langConfig.forEach((lang) => {
   }
 
   Object.keys(lang.pages).forEach((page) => {
-    const templatePath = resolve(__dirname, `../../examples/pages/template/${page}.tpl`)
-    const outputPath = resolve(__dirname, `../../examples/pages/${lang.lang}/${page}.vue`)
+    const templatePath = resolveFromExamples('pages', 'template', `${page}.tpl`)
+    const outputPath = resolveFromExamples('pages', lang.lang, `${page}.vue`)
     let content = readFileSync(templatePath, 'utf8')
     const pairs = lang.pages[page]
 

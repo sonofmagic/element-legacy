@@ -271,6 +271,33 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
 
+  apps/build:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.28.4
+        version: 7.28.4
+      algoliasearch:
+        specifier: ^5.40.0
+        version: 5.40.0
+      chokidar:
+        specifier: ^4.0.3
+        version: 4.0.3
+      file-save:
+        specifier: ^0.2.0
+        version: 0.2.0
+      json-templater:
+        specifier: ^1.0.4
+        version: 1.2.0
+      postcss:
+        specifier: ^8.5.6
+        version: 8.5.6
+      transliteration:
+        specifier: ^2.3.5
+        version: 2.3.5
+      uppercamelcase:
+        specifier: ^3.0.0
+        version: 3.0.0
+
   apps/theme-chalk:
     devDependencies:
       autoprefixer:

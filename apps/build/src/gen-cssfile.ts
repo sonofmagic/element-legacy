@@ -1,17 +1,15 @@
 import { statSync, writeFileSync } from 'node:fs'
-import { createRequire } from 'node:module'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
+import { createWorkspaceContext } from './context'
 
-const require = createRequire(import.meta.url)
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const { require: workspaceRequire, resolveFromRoot } = createWorkspaceContext(import.meta.url)
 
-const components = Object.keys(require('../../components.json') as Record<string, string>)
+const components = Object.keys(workspaceRequire(resolveFromRoot('components.json')) as Record<string, string>)
 
 const themes = [
   'theme-chalk',
 ]
-const basePath = resolve(__dirname, '../../apps')
+const basePath = resolveFromRoot('apps')
 
 function fileExists(filePath: string) {
   try {

@@ -1,10 +1,12 @@
 <script>
 import { algoliasearch } from 'algoliasearch'
 
+const searchClient = algoliasearch('4C63BTGP6S', '0729c3c7f4dc8db7395ad0b19c0748d2')
+
 export default {
   data() {
     return {
-      index: null,
+      indexName: '',
       query: '',
       isEmpty: false,
       langs: {
@@ -58,18 +60,23 @@ export default {
 
   methods: {
     initIndex() {
-      const client = algoliasearch('4C63BTGP6S', '0729c3c7f4dc8db7395ad0b19c0748d2')
-      this.index = client.initIndex(`element-${this.lang ? this.langs[this.lang].index : 'zh'}`)
+      this.indexName = `element-${this.lang ? this.langs[this.lang].index : 'zh'}`
     },
 
-    querySearch(query, cb) {
+    async querySearch(query, cb) {
       if (!query) { return }
-      this.index.search({ query, hitsPerPage: 6 }, (err, res) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-        if (res.hits.length > 0) {
+      if (!this.indexName) {
+        this.initIndex()
+      }
+      try {
+        const res = await searchClient.searchSingleIndex({
+          indexName: this.indexName,
+          searchParams: {
+            query,
+            hitsPerPage: 6,
+          },
+        })
+        if (res.hits?.length) {
           this.isEmpty = false
           cb(res.hits.map((hit) => {
             let content = hit._highlightResult.content.value.replace(/\s+/g, ' ')
@@ -95,7 +102,12 @@ export default {
           this.isEmpty = true
           cb([{ isEmpty: true }])
         }
-      })
+      }
+      catch (err) {
+        console.error(err)
+        this.isEmpty = true
+        cb([{ isEmpty: true }])
+      }
     },
 
     handleSelect(val) {

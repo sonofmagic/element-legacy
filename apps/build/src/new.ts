@@ -1,16 +1,20 @@
 import { mkdirSync, readFileSync } from 'node:fs'
-import { createRequire } from 'node:module'
-import { dirname, join, resolve } from 'node:path'
+import { dirname, join } from 'node:path'
 import process from 'node:process'
-import { fileURLToPath } from 'node:url'
+import { createWorkspaceContext } from './context'
 
 interface FileDescriptor {
-  filename: string
+  path: string
   content: string
 }
 
-const require = createRequire(import.meta.url)
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const {
+  require: workspaceRequire,
+  resolveFromApps,
+  resolveFromExamples,
+  resolveFromPackages,
+  resolveFromRoot,
+} = createWorkspaceContext(import.meta.url)
 
 console.log()
 process.on('exit', () => {
@@ -22,17 +26,17 @@ if (!process.argv[2]) {
   process.exit(1)
 }
 
-const fileSave = require('file-save') as any
-const uppercamelcase = require('uppercamelcase') as (value: string) => string
+const fileSave = workspaceRequire('file-save') as any
+const uppercamelcase = workspaceRequire('uppercamelcase') as (value: string) => string
 
 const componentname = process.argv[2]
 const chineseName = process.argv[3] || componentname
 const ComponentName = uppercamelcase(componentname)
-const PackagePath = resolve(__dirname, '../../packages', componentname)
+const packagePath = resolveFromPackages(componentname)
 
 const files: FileDescriptor[] = [
   {
-    filename: 'index.js',
+    path: join(packagePath, 'index.js'),
     content: `import ${ComponentName} from './src/main.vue';
 
 /* istanbul ignore next */
@@ -43,7 +47,7 @@ ${ComponentName}.install = function(Vue) {
 export default ${ComponentName};`,
   },
   {
-    filename: 'src/main.vue',
+    path: join(packagePath, 'src/main.vue'),
     content: `<template>
   <div class="el-${componentname}"></div>
 </template>
@@ -55,23 +59,23 @@ export default {
 </script>`,
   },
   {
-    filename: join('../../examples/docs/zh-CN', `${componentname}.md`),
+    path: resolveFromExamples('docs', 'zh-CN', `${componentname}.md`),
     content: `## ${ComponentName} ${chineseName}`,
   },
   {
-    filename: join('../../examples/docs/en-US', `${componentname}.md`),
+    path: resolveFromExamples('docs', 'en-US', `${componentname}.md`),
     content: `## ${ComponentName}`,
   },
   {
-    filename: join('../../examples/docs/es', `${componentname}.md`),
+    path: resolveFromExamples('docs', 'es', `${componentname}.md`),
     content: `## ${ComponentName}`,
   },
   {
-    filename: join('../../examples/docs/fr-FR', `${componentname}.md`),
+    path: resolveFromExamples('docs', 'fr-FR', `${componentname}.md`),
     content: `## ${ComponentName}`,
   },
   {
-    filename: join('../../test/unit/specs', `${componentname}.spec.js`),
+    path: resolveFromRoot('test', 'unit', 'specs', `${componentname}.spec.js`),
     content: `import { createTest, destroyVM } from '../util';
 import ${ComponentName} from 'packages/${componentname}';
 
@@ -89,7 +93,7 @@ describe('${ComponentName}', () => {
 `,
   },
   {
-    filename: join('../../apps/theme-chalk/src', `${componentname}.scss`),
+    path: resolveFromApps('theme-chalk', 'src', `${componentname}.scss`),
     content: `@import "mixins/mixins";
 @import "common/var";
 
@@ -97,7 +101,7 @@ describe('${ComponentName}', () => {
 }`,
   },
   {
-    filename: join('../../types', `${componentname}.d.ts`),
+    path: resolveFromRoot('types', `${componentname}.d.ts`),
     content: `import { ElementUIComponent } from './component'
 
 /** ${ComponentName} Component */
@@ -106,24 +110,24 @@ export declare class El${ComponentName} extends ElementUIComponent {
   },
 ]
 
-const componentsFile = require('../../components.json') as Record<string, string>
+const componentsFile = workspaceRequire(resolveFromRoot('components.json')) as Record<string, string>
 
 if (componentsFile[componentname]) {
   console.error(`${componentname} 已存在.`)
   process.exit(1)
 }
 componentsFile[componentname] = `./packages/${componentname}/index.js`
-fileSave(join(__dirname, '../../components.json'))
+fileSave(resolveFromRoot('components.json'))
   .write(JSON.stringify(componentsFile, null, '  '), 'utf8')
   .end('\n')
 
-const sassPath = join(__dirname, '../../apps/theme-chalk/src/index.scss')
+const sassPath = resolveFromApps('theme-chalk', 'src', 'index.scss')
 const sassImportText = `${readFileSync(sassPath)}@import "./${componentname}.scss";`
 fileSave(sassPath)
   .write(sassImportText, 'utf8')
   .end('\n')
 
-const elementTsPath = join(__dirname, '../../types/element-ui.d.ts')
+const elementTsPath = resolveFromRoot('types', 'element-ui.d.ts')
 
 let elementTsText = `${readFileSync(elementTsPath)}
 /** ${ComponentName} Component */
@@ -139,20 +143,19 @@ fileSave(elementTsPath)
   .end('\n')
 
 files.forEach((file) => {
-  const filePath = join(PackagePath, file.filename)
-  const dir = dirname(filePath)
+  const dir = dirname(file.path)
   try {
     mkdirSync(dir, { recursive: true })
   }
   catch {
     // directory already exists
   }
-  fileSave(filePath)
+  fileSave(file.path)
     .write(file.content, 'utf8')
     .end('\n')
 })
 
-const navConfigFile = require('../../examples/nav.config.json') as Record<string, any[]>
+const navConfigFile = workspaceRequire(resolveFromExamples('nav.config.json')) as Record<string, any[]>
 
 Object.keys(navConfigFile).forEach((lang) => {
   const groups = navConfigFile[lang][4].groups
@@ -164,7 +167,7 @@ Object.keys(navConfigFile).forEach((lang) => {
   })
 })
 
-fileSave(join(__dirname, '../../examples/nav.config.json'))
+fileSave(resolveFromExamples('nav.config.json'))
   .write(JSON.stringify(navConfigFile, null, '  '), 'utf8')
   .end('\n')
 

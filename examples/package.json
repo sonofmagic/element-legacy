@@ -21,8 +21,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "tsx ../build/bin/i18n.ts && vite",
-    "build": "tsx ../build/bin/i18n.ts && vite build"
+    "dev": "tsx ../apps/build/src/i18n.ts && vite",
+    "build": "tsx ../apps/build/src/i18n.ts && vite build"
   },
   "devDependencies": {
     "markdown-it": "^14.1.0",

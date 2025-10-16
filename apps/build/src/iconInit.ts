@@ -1,11 +1,10 @@
 import { readFileSync, writeFile } from 'node:fs'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import postcss from 'postcss'
+import { createWorkspaceContext } from './context'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const { resolveFromApps, resolveFromExamples } = createWorkspaceContext(import.meta.url)
 
-const fontFile = readFileSync(resolve(__dirname, '../../apps/theme-chalk/src/icon.scss'), 'utf8')
+const fontFile = readFileSync(resolveFromApps('theme-chalk', 'src', 'icon.scss'), 'utf8')
 const nodes = postcss.parse(fontFile).nodes ?? []
 const classList: string[] = []
 
@@ -20,4 +19,4 @@ nodes.forEach((node) => {
 
 classList.reverse()
 
-writeFile(resolve(__dirname, '../../examples/icon.json'), JSON.stringify(classList), () => {})
+writeFile(resolveFromExamples('icon.json'), JSON.stringify(classList), () => {})

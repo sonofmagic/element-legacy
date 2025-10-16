@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-Element UI 2.x component library. `src/` holds the plugin entry, global mixins, and shared utilities. Each UI component lives under `packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `build/bin`. Shared theme assets reside in `apps/theme-chalk`. Demo and extension assets live under `examples/`, including documentation content in `examples/docs`. Tests split between `test/unit` for Vitest specs and `test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `build/` and `scripts/`.
+Element UI 2.x component library. `src/` holds the plugin entry, global mixins, and shared utilities. Each UI component lives under `packages/<component>/` with component logic in `src` or `index.js`, aggregated via the scripts in `apps/build/src`. Shared theme assets reside in `apps/theme-chalk`. Demo and extension assets live under `examples/`, including documentation content in `examples/docs`. Tests split between `test/unit` for Vitest specs and `test/ssr` for server-render checks. Reusable tooling and automation scripts sit under `apps/build/` and `scripts/`.
 
 ## Build, Test, and Development Commands
 
