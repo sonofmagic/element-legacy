@@ -1,5 +1,8 @@
 packages:
-  - 'apps/*'
+  - '.'
+  - 'packages/*'
+  - 'packages-private/*'
+  - 'apps/docs'
   - '!**/test/**'
 
 onlyBuiltDependencies:

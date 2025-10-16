@@ -2,9 +2,9 @@ import { readFileSync, writeFile } from 'node:fs'
 import postcss from 'postcss'
 import { createWorkspaceContext } from './context'
 
-const { resolveFromApps, resolveFromDocs } = createWorkspaceContext(import.meta.url)
+const { resolveFromPackagesRoot, resolveFromDocs } = createWorkspaceContext(import.meta.url)
 
-const fontFile = readFileSync(resolveFromApps('theme-chalk', 'src', 'icon.scss'), 'utf8')
+const fontFile = readFileSync(resolveFromPackagesRoot('theme-chalk', 'src', 'icon.scss'), 'utf8')
 const nodes = postcss.parse(fontFile).nodes ?? []
 const classList: string[] = []
 

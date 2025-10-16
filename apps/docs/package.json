@@ -25,8 +25,8 @@
     "highlight.js": "^11.11.1"
   },
   "scripts": {
-    "dev": "tsx ../build/src/i18n.ts && vite",
-    "build": "tsx ../build/src/i18n.ts && vite build"
+    "dev": "tsx ../../packages-private/build/src/i18n.ts && vite",
+    "build": "tsx ../../packages-private/build/src/i18n.ts && vite build"
   },
   "devDependencies": {
     "markdown-it": "^14.1.0",

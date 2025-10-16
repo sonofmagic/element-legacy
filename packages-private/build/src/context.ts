@@ -7,7 +7,7 @@ export interface WorkspaceContext {
   dir: string
   rootDir: string
   resolveFromRoot: (...segments: string[]) => string
-  resolveFromApps: (...segments: string[]) => string
+  resolveFromPackagesRoot: (...segments: string[]) => string
   resolveFromUi: (...segments: string[]) => string
   resolveFromDocs: (...segments: string[]) => string
   resolveFromPackages: (...segments: string[]) => string
@@ -21,14 +21,15 @@ export function createWorkspaceContext(metaUrl: string): WorkspaceContext {
   const dir = dirname(fileURLToPath(metaUrl))
   const rootDir = resolve(dir, '../../..')
   const resolver = (...segments: string[]) => resolve(rootDir, ...segments)
-  const resolveFromUi = (...segments: string[]) => resolver('apps', 'ui', ...segments)
+  const resolveFromUi = (...segments: string[]) => resolver('packages', 'ui', ...segments)
+  const resolveFromPackagesRoot = (...segments: string[]) => resolver('packages', ...segments)
 
   return {
     require: createRequire(metaUrl),
     dir,
     rootDir,
     resolveFromRoot: resolver,
-    resolveFromApps: (...segments: string[]) => resolver('apps', ...segments),
+    resolveFromPackagesRoot,
     resolveFromUi,
     resolveFromDocs: (...segments: string[]) => resolver('apps', 'docs', ...segments),
     resolveFromPackages: (...segments: string[]) => resolveFromUi('packages', ...segments),

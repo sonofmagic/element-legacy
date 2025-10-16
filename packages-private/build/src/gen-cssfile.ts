@@ -1,7 +1,7 @@
 import { statSync, writeFileSync } from 'node:fs'
 import { createWorkspaceContext } from './context'
 
-const { require: workspaceRequire, resolveFromApps, resolveFromUi } = createWorkspaceContext(import.meta.url)
+const { require: workspaceRequire, resolveFromPackagesRoot, resolveFromUi } = createWorkspaceContext(import.meta.url)
 
 const components = Object.keys(workspaceRequire(resolveFromUi('components.json')) as Record<string, string>)
 
@@ -21,7 +21,7 @@ function fileExists(filePath: string) {
 themes.forEach((theme) => {
   const isSCSS = theme !== 'theme-default'
   let indexContent = isSCSS ? '@use \'./base\';\n' : '@use \'./base.css\';\n'
-  const resolveTheme = (...segments: string[]) => resolveFromApps(theme, ...segments)
+  const resolveTheme = (...segments: string[]) => resolveFromPackagesRoot('theme-chalk', ...segments)
 
   components.forEach((key) => {
     if (['icon', 'option', 'option-group'].includes(key)) {

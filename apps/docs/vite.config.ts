@@ -8,8 +8,8 @@ import { setupMarkdownContainers } from './markdown/setup'
 export default defineConfig({
   resolve: {
     alias: {
-      'element-ui': path.resolve(import.meta.dirname, '../ui'),
-      'main': path.resolve(import.meta.dirname, '../ui/src'),
+      'element-ui': path.resolve(import.meta.dirname, '../../packages/ui'),
+      'main': path.resolve(import.meta.dirname, '../../packages/ui/src'),
       // 'vue/compiler-sfc': 'vue-template-compiler',
     },
   },

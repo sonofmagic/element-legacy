@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sonofmagic/element.git",
-    "directory": "apps/theme-chalk"
+    "directory": "packages/theme-chalk"
   },
   "bugs": {
     "url": "https://github.com/sonofmagic/element/issues"

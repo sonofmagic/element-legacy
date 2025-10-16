@@ -10,7 +10,7 @@ interface FileDescriptor {
 
 const {
   require: workspaceRequire,
-  resolveFromApps,
+  resolveFromPackagesRoot,
   resolveFromDocs,
   resolveFromPackages,
   resolveFromUi,
@@ -93,7 +93,7 @@ describe('${ComponentName}', () => {
 `,
   },
   {
-    path: resolveFromApps('theme-chalk', 'src', `${componentname}.scss`),
+    path: resolveFromPackagesRoot('theme-chalk', 'src', `${componentname}.scss`),
     content: `@import "mixins/mixins";
 @import "common/var";
 
@@ -121,7 +121,7 @@ fileSave(resolveFromUi('components.json'))
   .write(JSON.stringify(componentsFile, null, '  '), 'utf8')
   .end('\n')
 
-const sassPath = resolveFromApps('theme-chalk', 'src', 'index.scss')
+const sassPath = resolveFromPackagesRoot('theme-chalk', 'src', 'index.scss')
 const sassImportText = `${readFileSync(sassPath)}@import "./${componentname}.scss";`
 fileSave(sassPath)
   .write(sassImportText, 'utf8')

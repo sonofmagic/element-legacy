@@ -9,7 +9,8 @@
   "homepage": "http://el.icebreaker.top/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sonofmagic/element.git"
+    "url": "git+https://github.com/sonofmagic/element.git",
+    "directory": "packages/ui"
   },
   "bugs": {
     "url": "https://github.com/sonofmagic/element/issues"
@@ -36,21 +37,21 @@
   ],
   "scripts": {
     "bootstrap": "pnpm i",
-    "build:file": "tsx ../build/src/iconInit.ts & tsx ../build/src/build-entry.ts & tsx ../build/src/i18n.ts & tsx ../build/src/version.ts",
-    "build:theme": "tsx ../build/src/gen-cssfile.ts && pnpm --filter @element-legacy/theme-chalk run build && cp-cli ../theme-chalk/lib lib/theme-chalk",
+    "build:file": "tsx ../../packages-private/build/src/iconInit.ts & tsx ../../packages-private/build/src/build-entry.ts & tsx ../../packages-private/build/src/i18n.ts & tsx ../../packages-private/build/src/version.ts",
+    "build:theme": "tsx ../../packages-private/build/src/gen-cssfile.ts && pnpm --filter @element-legacy/theme-chalk run build && cp-cli ../theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --extensions '.ts,.tsx,.js' --out-dir lib --ignore 'src/index.ts,**/*.d.ts'",
-    "build:umd": "tsx ../build/src/build-locale.ts",
+    "build:umd": "tsx ../../packages-private/build/src/build-locale.ts",
     "build": "vite build",
     "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
-    "deploy:build": "npm run build:file && cross-env NODE_ENV=production webpack --config ../build/webpack.demo.js && echo element.eleme.io>>../docs/element-ui/CNAME",
-    "deploy:extension": "cross-env NODE_ENV=production webpack --config ../build/webpack.extension.js",
-    "dev:extension": "rimraf ../docs/extension/dist && cross-env NODE_ENV=development webpack --watch --config ../build/webpack.extension.js",
-    "dev": "npm run bootstrap && npm run build:file && cross-env NODE_ENV=development webpack-dev-server --config ../build/webpack.demo.js & tsx ../build/src/template.ts",
-    "dev:play": "npm run build:file && cross-env NODE_ENV=development PLAY_ENV=true webpack-dev-server --config ../build/webpack.demo.js",
+    "deploy:build": "npm run build:file && cross-env NODE_ENV=production webpack --config ../../packages-private/build/webpack.demo.js && echo element.eleme.io>>../../apps/docs/element-ui/CNAME",
+    "deploy:extension": "cross-env NODE_ENV=production webpack --config ../../packages-private/build/webpack.extension.js",
+    "dev:extension": "rimraf ../../apps/docs/extension/dist && cross-env NODE_ENV=development webpack --watch --config ../../packages-private/build/webpack.extension.js",
+    "dev": "npm run bootstrap && npm run build:file && cross-env NODE_ENV=development webpack-dev-server --config ../../packages-private/build/webpack.demo.js & tsx ../../packages-private/build/src/template.ts",
+    "dev:play": "npm run build:file && cross-env NODE_ENV=development PLAY_ENV=true webpack-dev-server --config ../../packages-private/build/webpack.demo.js",
     "dist": "npm run clean && npm run build:file && npm run lint && npm run build && npm run build:utils && npm run build:theme",
-    "i18n": "tsx ../build/src/i18n.ts",
+    "i18n": "tsx ../../packages-private/build/src/i18n.ts",
     "lint": "",
-    "pub": "npm run bootstrap && sh ../build/git-release.sh && sh ../build/release.sh && tsx ../build/src/gen-indices.ts",
+    "pub": "npm run bootstrap && sh ../../packages-private/build/git-release.sh && sh ../../packages-private/build/release.sh && tsx ../../packages-private/build/src/gen-indices.ts",
     "publish-packages": "turbo run build lint test && changeset version && changeset publish",
     "test": "vitest run",
     "test:dev": "vitest",
