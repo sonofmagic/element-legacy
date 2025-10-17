@@ -1,6 +1,5 @@
 import type { ComponentOptions } from 'vue'
 import type { Route } from 'vue-router'
-import hljs from 'highlight.js'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Element from '../../packages/ui/src/index'
@@ -62,13 +61,6 @@ const router = new VueRouter({
 })
 
 router.afterEach((route: Route) => {
-  // https://github.com/highlightjs/highlight.js/issues/909#issuecomment-131686186
-  Vue.nextTick(() => {
-    const blocks = document.querySelectorAll<HTMLElement>('pre code:not(.hljs)')
-    blocks.forEach((block) => {
-      hljs.highlightBlock(block)
-    })
-  })
   const lang = (route.meta?.lang as keyof typeof title) || 'en-US'
   const data = title[lang]
   if (data) {

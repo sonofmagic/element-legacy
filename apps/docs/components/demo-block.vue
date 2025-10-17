@@ -267,15 +267,13 @@ export default {
         margin: 0;
       }
 
-      code.hljs {
+      pre.shiki {
         margin: 0;
-        border: none;
-        max-height: none;
         border-radius: 0;
+      }
 
-        &::before {
-          content: none;
-        }
+      pre.shiki code {
+        max-height: none;
       }
     }
 
