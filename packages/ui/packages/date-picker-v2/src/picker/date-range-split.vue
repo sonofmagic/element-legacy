@@ -1,5 +1,6 @@
 <script lang="ts">
 // @ts-nocheck
+import Locale from 'element-ui/src/mixins/locale'
 import Picker from '../picker.vue'
 import {
   parseAsFormatAndType,
@@ -22,6 +23,8 @@ export default {
   components: {
     BaseDatePicker,
   },
+
+  mixins: [Locale],
 
   inject: {
     elForm: {
@@ -49,10 +52,33 @@ export default {
     return {
       startValue: start,
       endValue: end,
+      activeField: null,
+      highlightStyle: {
+        opacity: 0,
+      },
     }
   },
 
   computed: {
+    containerClasses(): Array<string> {
+      const classes: Array<string> = []
+
+      if (this.pickerSize) {
+        classes.push(`el-range-editor-v2--${this.pickerSize}`)
+        classes.push(`el-date-range-editor-v2--${this.pickerSize}`)
+      }
+
+      if (this.pickerDisabled) {
+        classes.push('is-disabled')
+      }
+
+      if (this.activeField) {
+        classes.push('is-active')
+      }
+
+      return classes
+    },
+
     pickerDisabled(): boolean {
       return this.disabled || (this.elForm || {}).disabled
     },
@@ -63,11 +89,11 @@ export default {
     },
 
     startPlaceholderText(): string {
-      return this.startPlaceholder || this.placeholder || ''
+      return this.startPlaceholder || this.placeholder || this.t('el.datepicker.startDate')
     },
 
     endPlaceholderText(): string {
-      return this.endPlaceholder || this.placeholder || ''
+      return this.endPlaceholder || this.placeholder || this.t('el.datepicker.endDate')
     },
 
     startName(): string | undefined {
@@ -138,8 +164,37 @@ export default {
         if (!valueEquals(end, this.endValue)) {
           this.endValue = end
         }
+        if (this.activeField) {
+          this.$nextTick(() => {
+            this.updateHighlight()
+          })
+        }
       },
     },
+    pickerDisabled(val: boolean) {
+      if (val && this.activeField) {
+        this.activeField = null
+        this.$emit('blur', this)
+      }
+    },
+    activeField() {
+      this.$nextTick(() => {
+        this.updateHighlight()
+      })
+    },
+  },
+
+  mounted() {
+    this.updateHighlight()
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', this.handleResize)
+    }
+  },
+
+  beforeDestroy() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.handleResize)
+    }
   },
 
   methods: {
@@ -153,12 +208,29 @@ export default {
     blur() {
       const pickerStart: any = this.$refs.startPicker
       const pickerEnd: any = this.$refs.endPicker
-      if (pickerStart && typeof pickerStart.blur === 'function') {
-        pickerStart.blur()
+      if (!this.activeField) {
+        return
       }
-      if (pickerEnd && typeof pickerEnd.blur === 'function') {
-        pickerEnd.blur()
+
+      if (this.activeField === 'start') {
+        if (pickerStart && typeof pickerStart.blur === 'function') {
+          pickerStart.blur()
+        }
       }
+      else if (this.activeField === 'end') {
+        if (pickerEnd && typeof pickerEnd.blur === 'function') {
+          pickerEnd.blur()
+        }
+      }
+
+      this.activeField = null
+    },
+
+    handleResize() {
+      if (!this.activeField) {
+        return
+      }
+      this.updateHighlight()
     },
 
     normalizeRange(value: any): [any, any] {
@@ -191,18 +263,66 @@ export default {
 
     handleStartChange() {
       this.emitModel('change')
+      this.focusEndInput()
     },
 
     handleEndChange() {
       this.emitModel('change')
     },
 
-    handleFieldFocus() {
-      this.$emit('focus', this)
+    handleStartFocus() {
+      this.handleFieldFocus('start')
     },
 
-    handleFieldBlur() {
-      this.$emit('blur', this)
+    handleEndFocus() {
+      this.handleFieldFocus('end')
+    },
+
+    handleStartBlur() {
+      this.handleFieldBlur('start')
+    },
+
+    handleEndBlur() {
+      this.handleFieldBlur('end')
+    },
+
+    focusEndInput() {
+      if (this.pickerDisabled) {
+        return
+      }
+      this.$nextTick(() => {
+        const endPicker: any = this.$refs.endPicker
+        if (endPicker && typeof endPicker.focus === 'function') {
+          endPicker.focus()
+        }
+        else {
+          this.handleFieldFocus('end')
+        }
+      })
+    },
+
+    handleFieldFocus(role: 'start' | 'end') {
+      if (this.pickerDisabled) {
+        return
+      }
+      const wasInactive = !this.activeField
+      this.activeField = role
+
+      if (wasInactive) {
+        this.$emit('focus', this)
+      }
+    },
+
+    handleFieldBlur(role: 'start' | 'end') {
+      setTimeout(() => {
+        if (this.activeField === role) {
+          this.activeField = null
+          this.$emit('blur', this)
+        }
+        else if (!this.activeField) {
+          this.$emit('blur', this)
+        }
+      }, 50)
     },
 
     emitModel(trigger?: 'change') {
@@ -295,6 +415,58 @@ export default {
       return [this.popperClass, roleClass].filter(Boolean).join(' ') || undefined
     },
 
+    updateHighlight() {
+      const wrapper = this.$refs.wrapper as HTMLElement
+      if (!wrapper) {
+        return
+      }
+
+      if (!this.activeField) {
+        const previous = this.highlightStyle || {}
+        this.highlightStyle = {
+          ...previous,
+          opacity: 0,
+        }
+        return
+      }
+
+      const wrapperRect = wrapper.getBoundingClientRect()
+      const separator = this.$refs.separator as HTMLElement | undefined
+      const separatorRect = separator ? separator.getBoundingClientRect() : null
+
+      const gap = 12
+      const separatorLeft = separatorRect ? separatorRect.left - wrapperRect.left : wrapperRect.width / 2
+      const separatorRight = separatorRect ? separatorRect.right - wrapperRect.left : wrapperRect.width / 2
+
+      const startAreaStart = gap
+      const startAreaEnd = Math.max(separatorLeft - gap, startAreaStart)
+      const endAreaEnd = wrapperRect.width - gap
+      const endAreaStart = Math.min(separatorRight + gap, endAreaEnd)
+
+      const startAreaWidth = Math.max(startAreaEnd - startAreaStart, 0)
+      const endAreaWidth = Math.max(endAreaEnd - endAreaStart, 0)
+      const targetWidth = Math.max(Math.min(startAreaWidth, endAreaWidth), 0)
+
+      if (this.activeField === 'start') {
+        const offset = (startAreaWidth - targetWidth) / 2
+        const left = startAreaStart + offset
+        this.highlightStyle = {
+          opacity: 1,
+          left: `${left}px`,
+          width: `${targetWidth}px`,
+        }
+      }
+      else {
+        const offset = (endAreaWidth - targetWidth) / 2
+        const left = endAreaStart + offset
+        this.highlightStyle = {
+          opacity: 1,
+          left: `${left}px`,
+          width: `${targetWidth}px`,
+        }
+      }
+    },
+
     compareValues(left: any, right: any): number {
       const leftDate = this.coerceValueToDate(left)
       const rightDate = this.coerceValueToDate(right)
@@ -338,30 +510,46 @@ export default {
 <template>
   <div
     v-bind="$attrs"
-    class="el-date-range-editor-v2 el-date-range-editor-v2--split"
-    :class="[
-      pickerSize ? `el-date-range-editor-v2--${pickerSize}` : '',
-      pickerDisabled ? 'is-disabled' : '',
-    ]"
+    ref="wrapper"
+    class="el-date-editor-v2 el-range-editor-v2 el-date-range-editor-v2 el-date-range-editor-v2--split el-input__inner"
+    :class="containerClasses"
   >
-    <BaseDatePicker
-      ref="startPicker"
-      v-bind="startPickerProps"
-      @input="handleStartInput"
-      @change="handleStartChange"
-      @focus="handleFieldFocus"
-      @blur="handleFieldBlur"
+    <div
+      class="el-date-range-editor-v2__highlight"
+      :style="highlightStyle"
+      aria-hidden="true"
     />
+    <div
+      class="el-date-range-editor-v2__cell"
+      :class="{ 'is-active': activeField === 'start' }"
+    >
+      <BaseDatePicker
+        ref="startPicker"
+        v-bind="startPickerProps"
+        @input="handleStartInput"
+        @change="handleStartChange"
+        @focus="handleStartFocus"
+        @blur="handleStartBlur"
+      />
+    </div>
     <slot name="range-separator">
-      <span class="el-range-separator-v2">{{ rangeSeparator }}</span>
+      <span
+        ref="separator"
+        class="el-range-separator-v2 el-date-range-editor-v2__separator"
+      >{{ rangeSeparator }}</span>
     </slot>
-    <BaseDatePicker
-      ref="endPicker"
-      v-bind="endPickerProps"
-      @input="handleEndInput"
-      @change="handleEndChange"
-      @focus="handleFieldFocus"
-      @blur="handleFieldBlur"
-    />
+    <div
+      class="el-date-range-editor-v2__cell"
+      :class="{ 'is-active': activeField === 'end' }"
+    >
+      <BaseDatePicker
+        ref="endPicker"
+        v-bind="endPickerProps"
+        @input="handleEndInput"
+        @change="handleEndChange"
+        @focus="handleEndFocus"
+        @blur="handleEndBlur"
+      />
+    </div>
   </div>
 </template>

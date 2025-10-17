@@ -158,7 +158,7 @@ Se soporta la selección de un rango de fechas.
     <el-date-picker-v2
       v-model="value1"
       type="daterange"
-      range-separator="To"
+      
       start-placeholder="Start date"
       end-placeholder="End date"
     >
@@ -171,7 +171,7 @@ Se soporta la selección de un rango de fechas.
       type="daterange"
       align="right"
       unlink-panels
-      range-separator="To"
+      
       start-placeholder="Start date"
       end-placeholder="End date"
       :picker-options="pickerOptions"
@@ -238,7 +238,7 @@ Se admite la selección de un intervalo de un mes.
     <el-date-picker-v2
       v-model="value1"
       type="monthrange"
-      range-separator="To"
+      
       start-placeholder="Start month"
       end-placeholder="End month"
     >
@@ -251,7 +251,7 @@ Se admite la selección de un intervalo de un mes.
       type="monthrange"
       align="right"
       unlink-panels
-      range-separator="To"
+      
       start-placeholder="Start month"
       end-placeholder="End month"
       :picker-options="pickerOptions"

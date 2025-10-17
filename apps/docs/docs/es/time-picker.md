@@ -130,7 +130,7 @@ Es posible escoger un rango de tiempo arbitrario.
   <el-time-picker
     is-range
     v-model="value1"
-    range-separator="To"
+    
     start-placeholder="Start time"
     end-placeholder="End time"
   >
@@ -139,7 +139,7 @@ Es posible escoger un rango de tiempo arbitrario.
     is-range
     arrow-control
     v-model="value2"
-    range-separator="To"
+    
     start-placeholder="Start time"
     end-placeholder="End time"
   >

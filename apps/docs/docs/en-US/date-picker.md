@@ -133,7 +133,7 @@ Picking a date range is supported.
     <el-date-picker
       v-model="value1"
       type="daterange"
-      range-separator="To"
+      
       start-placeholder="Start date"
       end-placeholder="End date"
     >
@@ -146,7 +146,7 @@ Picking a date range is supported.
       type="daterange"
       align="right"
       unlink-panels
-      range-separator="To"
+      
       start-placeholder="Start date"
       end-placeholder="End date"
       :picker-options="pickerOptions"
@@ -213,7 +213,7 @@ Picking a month range is supported.
     <el-date-picker
       v-model="value1"
       type="monthrange"
-      range-separator="To"
+      
       start-placeholder="Start month"
       end-placeholder="End month"
     >
@@ -226,7 +226,7 @@ Picking a month range is supported.
       type="monthrange"
       align="right"
       unlink-panels
-      range-separator="To"
+      
       start-placeholder="Start month"
       end-placeholder="End month"
       :picker-options="pickerOptions"

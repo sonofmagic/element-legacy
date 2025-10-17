@@ -101,6 +101,102 @@
   }
 }
 
+@include mixins.b(date-range-editor-v2) {
+  @include mixins.m(split) {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: stretch;
+    width: 304px;
+    min-width: 304px;
+    padding: 0;
+    overflow: hidden;
+    background-color: var.$color-white;
+    border: 1px solid var.$input-border-color;
+    border-radius: var.$input-border-radius;
+    transition: var.$border-transition-base;
+
+    &.is-active,
+    &:hover,
+    &:focus {
+      border-color: var.$input-hover-border;
+    }
+
+    &.is-active {
+      border-color: var.$color-primary;
+    }
+
+    &.is-disabled {
+      color: var.$input-disabled-color;
+      cursor: not-allowed;
+      background-color: var.$input-disabled-fill;
+      border-color: var.$input-disabled-border;
+    }
+
+    .el-date-range-editor-v2__highlight {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      z-index: 0;
+      pointer-events: none;
+      background-color: #f2f2f2;
+      border-radius: 3px;
+      opacity: 0;
+      transition:
+        opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+        left 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+        width 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .el-date-range-editor-v2__cell {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 4px;
+    }
+
+    .el-date-editor-v2 {
+      flex: 1 1 auto;
+      margin: 0;
+      background-color: transparent;
+    }
+
+    .el-date-editor-v2 .el-input__inner {
+      padding: 0 12px;
+      text-align: center;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+
+      &::placeholder {
+        text-align: center;
+      }
+    }
+
+    .el-date-editor-v2 .el-input__inner:focus {
+      box-shadow: none;
+    }
+
+    .el-range-separator-v2 {
+      z-index: 1;
+      width: auto;
+      padding: 0 8px;
+      line-height: inherit;
+    }
+
+    .el-date-range-editor-v2__separator {
+      display: flex;
+      align-items: center;
+    }
+
+    &.is-disabled .el-range-separator-v2 {
+      color: var.$input-disabled-color;
+    }
+  }
+}
+
 @include mixins.b(range-editor-v2) {
   &.el-input__inner {
     display: inline-flex;
@@ -176,27 +272,10 @@
       line-height: var.$input-mini-height;
     }
 
-  .el-range-v2__close-icon {
-    line-height: var.$input-mini-height;
-  }
-}
-
-@include mixins.b(date-range-editor-v2) {
-  @include mixins.m(split) {
-    display: inline-flex;
-    align-items: stretch;
-
-    .el-date-editor-v2 {
-      margin: 0;
-    }
-
-    .el-range-separator-v2 {
-      width: auto;
-      padding: 0 8px;
-      line-height: inherit;
+    .el-range-v2__close-icon {
+      line-height: var.$input-mini-height;
     }
   }
-}
 
   @include mixins.when(disabled) {
     color: var.$input-disabled-color;

@@ -80,7 +80,7 @@ DateTimePicker is derived from DatePicker and TimePicker. For a more detailed ex
     <el-date-picker
       v-model="value1"
       type="datetimerange"
-      range-separator="To"
+      
       start-placeholder="Start date"
       end-placeholder="End date"
     >
@@ -92,7 +92,7 @@ DateTimePicker is derived from DatePicker and TimePicker. For a more detailed ex
       v-model="value2"
       type="datetimerange"
       :picker-options="pickerOptions"
-      range-separator="To"
+      
       start-placeholder="Start date"
       end-placeholder="End date"
       align="right"

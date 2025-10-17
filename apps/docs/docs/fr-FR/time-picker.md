@@ -130,7 +130,7 @@ Vous pouvez également définir un intervalle libre.
   <el-time-picker
     is-range
     v-model="value1"
-    range-separator="To"
+    
     start-placeholder="Horaire de début"
     end-placeholder="Horaire de fin"
   >
@@ -139,7 +139,7 @@ Vous pouvez également définir un intervalle libre.
     is-range
     arrow-control
     v-model="value2"
-    range-separator="To"
+    
     start-placeholder="Horaire de début"
     end-placeholder="Horaire de fin"
   >
