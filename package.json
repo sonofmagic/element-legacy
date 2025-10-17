@@ -35,6 +35,7 @@
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
     "@commitlint/cli": "^20.1.0",
+    "@element-legacy/build-scripts": "workspace:*",
     "@icebreakers/commitlint-config": "^1.2.1",
     "@icebreakers/eslint-config": "^1.5.2",
     "@icebreakers/monorepo": "^2.0.10",

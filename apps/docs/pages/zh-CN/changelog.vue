@@ -148,7 +148,7 @@
   </div>
 </template>
 <script>
-  import ChangeLog from '../../../CHANGELOG.zh-CN.md';
+  import ChangeLog from 'element-ui/CHANGELOG.zh-CN.md';
 
   export default {
     components: {

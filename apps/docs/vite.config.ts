@@ -10,6 +10,7 @@ export default defineConfig({
     alias: {
       'element-ui': path.resolve(import.meta.dirname, '../../packages/ui'),
       'main': path.resolve(import.meta.dirname, '../../packages/ui/src'),
+      'throttle-debounce': path.resolve(import.meta.dirname, './utils/throttle-debounce.ts'),
       // 'vue/compiler-sfc': 'vue-template-compiler',
     },
   },

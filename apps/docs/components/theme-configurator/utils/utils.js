@@ -1,5 +1,18 @@
-import deepmerge from 'deepmerge'
 import constant from '../../../i18n/theme-editor.json'
+
+function deepClone(value) {
+  if (Array.isArray(value)) {
+    return value.map(deepClone)
+  }
+  if (value && typeof value === 'object') {
+    const cloned = {}
+    Object.keys(value).forEach((key) => {
+      cloned[key] = deepClone(value[key])
+    })
+    return cloned
+  }
+  return value
+}
 
 export function filterConfigType(name) {
   switch (name) {
@@ -20,7 +33,7 @@ export function filterGlobalValue(defaultConfig, userConfig) {
     defaultConfig
       .find(config => (config.name === global))
       .config
-      .forEach(c => (configObj[c.key] = deepmerge({}, c)))
+      .forEach(c => (configObj[c.key] = deepClone(c)))
     valueObject[global] = configObj
     Object.keys(configObj).forEach((c) => {
       if (userConfig.global[c]) {

@@ -29,6 +29,9 @@ importers:
       '@commitlint/cli':
         specifier: ^20.1.0
         version: 20.1.0(@types/node@24.7.2)(typescript@5.9.3)
+      '@element-legacy/build-scripts':
+        specifier: workspace:*
+        version: link:packages-private/build
       '@icebreakers/commitlint-config':
         specifier: ^1.2.1
         version: 1.2.1

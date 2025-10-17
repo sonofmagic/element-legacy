@@ -18,10 +18,10 @@ play:
 	npm run dev:play
 
 new:
-	pnpm exec tsx ../../packages-private/build/src/new.ts $(filter-out $@,$(MAKECMDGOALS))
+	pnpm exec element-legacy-build new $(filter-out $@,$(MAKECMDGOALS))
 
 new-lang:
-	pnpm exec tsx ../../packages-private/build/src/new-lang.ts $(filter-out $@,$(MAKECMDGOALS))
+	pnpm exec element-legacy-build new-lang $(filter-out $@,$(MAKECMDGOALS))
 
 dist: install
 	npm run dist

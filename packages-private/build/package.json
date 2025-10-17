@@ -3,7 +3,11 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
+  "bin": {
+    "element-legacy-build": "./bin/element-legacy-build.mjs"
+  },
   "files": [
+    "bin",
     "src"
   ],
   "dependencies": {
