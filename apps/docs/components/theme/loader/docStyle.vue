@@ -1,6 +1,6 @@
 <script>
-import { updateDomHeadStyle } from '../utils.js'
-import { get as ajaxGet } from './ajax.js'
+import { updateDomHeadStyle } from '../utils'
+import { get as ajaxGet } from './ajax'
 
 const ORIGINAL_THEME = '#409EFF'
 

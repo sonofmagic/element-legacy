@@ -1,5 +1,5 @@
 <script>
-import { getStyleDisplayName, getStyleDisplayValue } from '../utils/utils.js'
+import { getStyleDisplayName, getStyleDisplayValue } from '../utils/utils'
 import ColorPicker from './color-picker'
 import Mixin from './mixin.vue'
 

@@ -3,7 +3,7 @@ import bus from '../../../bus.ts'
 import ThemeConfigurator from '../../../components/theme-configurator/index.vue'
 import {
   ACTION_APPLY_THEME,
-} from '../../../components/theme/constant.js'
+} from '../../../components/theme/constant'
 import themeLoader from '../../../components/theme/loader/index.vue'
 import gallery from './gallery.vue'
 import { loadUserThemeFromLocal, saveUserThemeToLocal } from './utils'

@@ -1,4 +1,10 @@
-export const themeList = [
+export interface ThemePreset {
+  name: string
+  author: string
+  theme: string
+}
+
+export const themeList: ThemePreset[] = [
   {
     name: 'Element',
     author: 'Element',
@@ -6,7 +12,7 @@ export const themeList = [
   },
 ]
 
-export const eleThemeList = [
+export const eleThemeList: ThemePreset[] = [
   {
     name: 'Kiwi',
     author: 'Element',

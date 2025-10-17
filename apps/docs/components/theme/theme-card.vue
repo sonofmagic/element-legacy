@@ -10,7 +10,7 @@ import { getActionDisplayName } from '../theme-configurator/utils/utils'
 import {
   ACTION_DOWNLOAD_THEME,
   DEFAULT_THEME_CONFIG,
-} from './constant.js'
+} from './constant'
 import { savePreviewToLocal } from './localstorage'
 
 export default {

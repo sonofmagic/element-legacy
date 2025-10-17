@@ -1,9 +1,9 @@
 <script>
-import Element from 'main/index.js'
+import Element from 'main/index'
 import bus from '../bus'
 // import AlgoliaSearch from './search.vue';
 import compoLang from '../i18n/component.json'
-import { ACTION_USER_CONFIG_UPDATE } from './theme/constant.js'
+import { ACTION_USER_CONFIG_UPDATE } from './theme/constant'
 import themeLoader from './theme/loader/index.vue'
 
 const { version } = Element

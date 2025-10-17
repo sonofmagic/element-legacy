@@ -1,5 +1,5 @@
 <script>
-import { getStyleDisplayName } from '../utils/utils.js'
+import { getStyleDisplayName } from '../utils/utils'
 import Mixin from './mixin.vue'
 
 const defaultFontSize = [

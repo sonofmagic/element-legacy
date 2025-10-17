@@ -1,5 +1,5 @@
 <script>
-import Element from 'main/index.js'
+import Element from 'main/index'
 
 const { version } = Element
 

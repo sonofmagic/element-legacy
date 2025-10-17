@@ -6,7 +6,7 @@ import fontLineHeightEditor from './editor/fontLineHeight.vue'
 import fontSizeEditor from './editor/fontSize.vue'
 import fontWeightEditor from './editor/fontWeight.vue'
 import simpleTextEditor from './editor/simpleText.vue'
-import { filterConfigType } from './utils/utils.js'
+import { filterConfigType } from './utils/utils'
 
 export default {
   components: {

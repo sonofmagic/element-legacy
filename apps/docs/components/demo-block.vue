@@ -1,5 +1,5 @@
 <script type="text/babel">
-import Element from 'main/index.js'
+import Element from 'main/index'
 import compoLang from '../i18n/component.json'
 import { stripScript, stripStyle, stripTemplate } from '../util'
 

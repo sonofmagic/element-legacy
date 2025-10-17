@@ -68,7 +68,7 @@ import {
 } from '../../components/theme/utils';
 import {
   ACTION_APPLY_THEME
-} from '../../components/theme/constant.js';
+} from '../../components/theme/constant';
 import { throttle } from 'throttle-debounce';
 import { getActionDisplayName } from '../../components/theme-configurator/utils/utils';
 

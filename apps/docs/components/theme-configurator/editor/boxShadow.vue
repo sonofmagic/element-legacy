@@ -1,5 +1,5 @@
 <script>
-import { parse as parseShaodw, stringify as stringifyShaodw } from '../utils/boxShadow.js'
+import { parse as parseShaodw, stringify as stringifyShaodw } from '../utils/boxShadow'
 import ColorPicker from './color-picker'
 import Input from './input.vue'
 import Mixin from './mixin.vue'

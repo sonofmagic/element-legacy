@@ -4,8 +4,8 @@ import {
   ACTION_APPLY_THEME,
   ACTION_COMPONECT_SELECT,
   ACTION_DOWNLOAD_THEME,
-} from '../theme/constant.js'
-import { getVars } from '../theme/loader/api.js'
+} from '../theme/constant'
+import { getVars } from '../theme/loader/api'
 import actionPanel from './action.vue'
 import mainPanel from './main.vue'
 import Shortcut from './shortcut.vue'
@@ -13,7 +13,7 @@ import {
   filterConfigType,
   filterGlobalValue,
   getActionDisplayName,
-} from './utils/utils.js'
+} from './utils/utils'
 
 export default {
   components: {

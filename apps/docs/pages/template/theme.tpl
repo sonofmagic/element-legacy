@@ -81,7 +81,7 @@
 </template>
 <script>
 import ThemeCard from '../../components/theme/theme-card.vue';
-import { themeList, eleThemeList } from '../../components/theme/theme-list.js';
+import { themeList, eleThemeList } from '../../components/theme/theme-list';
 import { saveUserThemeToLocal, loadUserThemeFromLocal } from '../../components/theme/localstorage';
 import { getActionDisplayName } from '../../components/theme-configurator/utils/utils';
 

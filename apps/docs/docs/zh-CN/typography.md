@@ -1,6 +1,6 @@
 <script>
   import bus from '../../bus.ts';
-  import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant.js';
+  import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant';
   const varMap = [
     '$--font-size-extra-large',
     '$--font-size-large',

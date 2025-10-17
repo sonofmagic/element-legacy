@@ -1,4 +1,9 @@
-export const DEFAULT_THEME_CONFIG = {
+export interface ThemeConfig {
+  global: Record<string, unknown>
+  local: Record<string, unknown>
+}
+
+export const DEFAULT_THEME_CONFIG: ThemeConfig = {
   global: {},
   local: {},
 }

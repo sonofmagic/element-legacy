@@ -1,6 +1,6 @@
 <script>
 import bus from '../../../../bus.ts'
-import './progress.js'
+import './progress'
 
 export default {
   data() {

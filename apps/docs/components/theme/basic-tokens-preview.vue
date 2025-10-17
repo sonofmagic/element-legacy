@@ -4,7 +4,7 @@ import { tintColor } from '../../color.ts'
 import {
   ACTION_COMPONECT_SELECT,
   ACTION_USER_CONFIG_UPDATE,
-} from './constant.js'
+} from './constant'
 
 const original = {
   color_primary: '#409EFF',

@@ -5,13 +5,13 @@ import {
   ACTION_APPLY_THEME,
   ACTION_DOWNLOAD_THEME,
   ACTION_USER_CONFIG_UPDATE,
-} from '../constant.js'
+} from '../constant'
 import {
   loadPreviewFromLocal,
   loadUserThemeFromLocal,
-} from '../localstorage.js'
-import { updateDomHeadStyle } from '../utils.js'
-import { updateVars } from './api.js'
+} from '../localstorage'
+import { updateDomHeadStyle } from '../utils'
+import { updateVars } from './api'
 import DocStyle from './docStyle.vue'
 import Loading from './loading/index.vue'
 
