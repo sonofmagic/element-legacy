@@ -176,10 +176,27 @@
       line-height: var.$input-mini-height;
     }
 
-    .el-range-v2__close-icon {
-      line-height: var.$input-mini-height;
+  .el-range-v2__close-icon {
+    line-height: var.$input-mini-height;
+  }
+}
+
+@include mixins.b(date-range-editor-v2) {
+  @include mixins.m(split) {
+    display: inline-flex;
+    align-items: stretch;
+
+    .el-date-editor-v2 {
+      margin: 0;
+    }
+
+    .el-range-separator-v2 {
+      width: auto;
+      padding: 0 8px;
+      line-height: inherit;
     }
   }
+}
 
   @include mixins.when(disabled) {
     color: var.$input-disabled-color;

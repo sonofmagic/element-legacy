@@ -1,47 +1,49 @@
-import type { Component } from 'vue'
-import { defineComponent } from 'vue'
-import DateRangePanel from '../panel/date-range.vue'
-import DatePanel from '../panel/date.vue'
-import MonthRangePanel from '../panel/month-range.vue'
-import Picker from '../picker.vue'
-
-function getPanel(type: string): Component {
-  if (type === 'daterange' || type === 'datetimerange') {
-    return DateRangePanel
-  }
-  else if (type === 'monthrange') {
-    return MonthRangePanel
-  }
-  return DatePanel
-}
+import type { VNode } from 'vue'
+import { defineComponent, h } from 'vue'
+import BaseDatePicker, { datePickerBaseProps } from './base-date-picker'
+import DateRangeSplit from './date-range-split.vue'
 
 export default defineComponent({
   name: 'ElDatePickerV2',
 
-  mixins: [Picker],
+  props: datePickerBaseProps,
 
-  props: {
-    type: {
-      type: String,
-      default: 'date',
-    },
-    timeArrowControl: Boolean,
+  components: {
+    BaseDatePicker,
+    DateRangeSplit,
   },
 
-  watch: {
-    type(type) {
-      if (this.picker) {
-        this.unmountPicker()
-        this.panel = getPanel(type)
-        this.mountPicker()
-      }
-      else {
-        this.panel = getPanel(type)
-      }
+  computed: {
+    isSplitRange(): boolean {
+      return this.type === 'daterange'
     },
   },
 
-  created() {
-    this.panel = getPanel(this.type)
+  methods: {
+    focus() {
+      const inner: any = this.$refs.inner
+      if (inner && typeof inner.focus === 'function') {
+        inner.focus()
+      }
+    },
+
+    blur() {
+      const inner: any = this.$refs.inner
+      if (inner && typeof inner.blur === 'function') {
+        inner.blur()
+      }
+    },
+  },
+
+  render(): VNode {
+    const component = this.isSplitRange ? DateRangeSplit : BaseDatePicker
+
+    return h(component, {
+      ref: 'inner',
+      props: this.$props,
+      attrs: this.$attrs,
+      on: this.$listeners,
+      scopedSlots: this.$scopedSlots,
+    }, this.$slots.default)
   },
 })

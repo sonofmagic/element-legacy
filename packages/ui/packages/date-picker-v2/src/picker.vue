@@ -3,10 +3,18 @@
 import ElInput from 'element-ui/packages/input'
 import Emitter from 'element-ui/src/mixins/emitter'
 import Clickoutside from 'element-ui/src/utils/clickoutside'
-import { formatDate, getWeekNumber, isDateObject, parseDate } from 'element-ui/src/utils/date-util'
+import { isDateObject } from 'element-ui/src/utils/date-util'
 import merge from 'element-ui/src/utils/merge'
 import Popper from 'element-ui/src/utils/vue-popper'
 import Vue from 'vue'
+import {
+  DEFAULT_FORMATS,
+  formatAsFormatAndType,
+  listablePropValidator,
+  parseAsFormatAndType,
+  TYPE_VALUE_RESOLVER_MAP,
+  valueEquals,
+} from './utils/shared'
 
 const NewPopper = {
   props: {
@@ -23,20 +31,6 @@ const NewPopper = {
   beforeDestroy: Popper.beforeDestroy,
 }
 
-const DEFAULT_FORMATS = {
-  date: 'yyyy-MM-dd',
-  month: 'yyyy-MM',
-  months: 'yyyy-MM',
-  datetime: 'yyyy-MM-dd HH:mm:ss',
-  time: 'HH:mm:ss',
-  week: 'yyyywWW',
-  timerange: 'HH:mm:ss',
-  daterange: 'yyyy-MM-dd',
-  monthrange: 'yyyy-MM',
-  datetimerange: 'yyyy-MM-dd HH:mm:ss',
-  year: 'yyyy',
-  years: 'yyyy',
-}
 const HAVE_TRIGGER_TYPES = [
   'date',
   'datetime',
@@ -53,235 +47,10 @@ const HAVE_TRIGGER_TYPES = [
   'months',
   'years',
 ]
-function DATE_FORMATTER(value, format) {
-  if (format === 'timestamp') {
-    return value.getTime()
-  }
-  return formatDate(value, format)
-}
-function DATE_PARSER(text, format) {
-  if (format === 'timestamp') {
-    return new Date(Number(text))
-  }
-  return parseDate(text, format)
-}
-function RANGE_FORMATTER(value, format) {
-  if (Array.isArray(value) && value.length === 2) {
-    const start = value[0]
-    const end = value[1]
-
-    if (start && end) {
-      return [DATE_FORMATTER(start, format), DATE_FORMATTER(end, format)]
-    }
-  }
-  return ''
-}
-function RANGE_PARSER(array, format, separator) {
-  if (!Array.isArray(array)) {
-    array = array.split(separator)
-  }
-  if (array.length === 2) {
-    const range1 = array[0]
-    const range2 = array[1]
-
-    return [DATE_PARSER(range1, format), DATE_PARSER(range2, format)]
-  }
-  return []
-}
-const TYPE_VALUE_RESOLVER_MAP = {
-  default: {
-    formatter(value) {
-      if (!value) {
-        return ''
-      }
-      return `${value}`
-    },
-    parser(text) {
-      if (text === undefined || text === '') {
-        return null
-      }
-      return text
-    },
-  },
-  week: {
-    formatter(value, format) {
-      const week = getWeekNumber(value)
-      const month = value.getMonth()
-      const trueDate = new Date(value)
-      if (week === 1 && month === 11) {
-        trueDate.setHours(0, 0, 0, 0)
-        trueDate.setDate(trueDate.getDate() + 3 - (trueDate.getDay() + 6) % 7)
-      }
-      let date = formatDate(trueDate, format)
-
-      date = /WW/.test(date)
-        ? date.replace(/WW/, week < 10 ? `0${week}` : week)
-        : date.replace(/W/, week)
-      return date
-    },
-    parser(text, format) {
-      // parse as if a normal date
-      return TYPE_VALUE_RESOLVER_MAP.date.parser(text, format)
-    },
-  },
-  date: {
-    formatter: DATE_FORMATTER,
-    parser: DATE_PARSER,
-  },
-  datetime: {
-    formatter: DATE_FORMATTER,
-    parser: DATE_PARSER,
-  },
-  daterange: {
-    formatter: RANGE_FORMATTER,
-    parser: RANGE_PARSER,
-  },
-  monthrange: {
-    formatter: RANGE_FORMATTER,
-    parser: RANGE_PARSER,
-  },
-  datetimerange: {
-    formatter: RANGE_FORMATTER,
-    parser: RANGE_PARSER,
-  },
-  timerange: {
-    formatter: RANGE_FORMATTER,
-    parser: RANGE_PARSER,
-  },
-  time: {
-    formatter: DATE_FORMATTER,
-    parser: DATE_PARSER,
-  },
-  month: {
-    formatter: DATE_FORMATTER,
-    parser: DATE_PARSER,
-  },
-  year: {
-    formatter: DATE_FORMATTER,
-    parser: DATE_PARSER,
-  },
-  number: {
-    formatter(value) {
-      if (!value) {
-        return ''
-      }
-      return `${value}`
-    },
-    parser(text) {
-      const result = Number(text)
-
-      if (!Number.isNaN(result)) {
-        return result
-      }
-      else {
-        return null
-      }
-    },
-  },
-  dates: {
-    formatter(value, format) {
-      return value.map(date => DATE_FORMATTER(date, format))
-    },
-    parser(value, format) {
-      return (typeof value === 'string' ? value.split(', ') : value)
-        .map(date => isDateObject(date) ? date : DATE_PARSER(date, format))
-    },
-  },
-  months: {
-    formatter(value, format) {
-      return value.map(date => DATE_FORMATTER(date, format))
-    },
-    parser(value, format) {
-      return (typeof value === 'string' ? value.split(', ') : value)
-        .map(date => isDateObject(date) ? date : DATE_PARSER(date, format))
-    },
-  },
-  years: {
-    formatter(value, format) {
-      return value.map(date => DATE_FORMATTER(date, format))
-    },
-    parser(value, format) {
-      return (typeof value === 'string' ? value.split(', ') : value)
-        .map(date => isDateObject(date) ? date : DATE_PARSER(date, format))
-    },
-  },
-}
 const PLACEMENT_MAP = {
   left: 'bottom-start',
   center: 'bottom',
   right: 'bottom-end',
-}
-
-function parseAsFormatAndType(value, customFormat, type, rangeSeparator = '-') {
-  if (!value) {
-    return null
-  }
-  const parser = (
-    TYPE_VALUE_RESOLVER_MAP[type]
-    || TYPE_VALUE_RESOLVER_MAP.default
-  ).parser
-  const format = customFormat || DEFAULT_FORMATS[type]
-  return parser(value, format, rangeSeparator)
-}
-
-function formatAsFormatAndType(value, customFormat, type) {
-  if (!value) {
-    return null
-  }
-  const formatter = (
-    TYPE_VALUE_RESOLVER_MAP[type]
-    || TYPE_VALUE_RESOLVER_MAP.default
-  ).formatter
-  const format = customFormat || DEFAULT_FORMATS[type]
-  return formatter(value, format)
-}
-
-/*
- * Considers:
- *   1. Date object
- *   2. date string
- *   3. array of 1 or 2
- */
-function valueEquals(a, b) {
-  // considers Date object and string
-  const dateEquals = function (a, b) {
-    const aIsDate = isDateObject(a)
-    const bIsDate = isDateObject(b)
-    if (aIsDate && bIsDate) {
-      return a.getTime() === b.getTime()
-    }
-    if (!aIsDate && !bIsDate) {
-      return a === b
-    }
-    return false
-  }
-
-  const aIsArray = Array.isArray(a)
-  const bIsArray = Array.isArray(b)
-  if (aIsArray && bIsArray) {
-    if (a.length !== b.length) {
-      return false
-    }
-    return a.every((item, index) => dateEquals(item, b[index]))
-  }
-  if (!aIsArray && !bIsArray) {
-    return dateEquals(a, b)
-  }
-  return false
-}
-
-function isString(val) {
-  return typeof val === 'string' || Object.prototype.toString.call(val) === '[object String]'
-}
-
-function validator(val) {
-  // either: String, Array of String, null / undefined
-  return (
-    val === null
-    || val === undefined
-    || isString(val)
-    || (Array.isArray(val) && val.length === 2 && val.every(isString))
-  )
 }
 
 export default {
@@ -315,7 +84,7 @@ export default {
     },
     name: {
       default: '',
-      validator,
+      validator: listablePropValidator,
     },
     disabled: Boolean,
     clearable: {
@@ -324,7 +93,7 @@ export default {
     },
     id: {
       default: '',
-      validator,
+      validator: listablePropValidator,
     },
     popperClass: String,
     editable: {
