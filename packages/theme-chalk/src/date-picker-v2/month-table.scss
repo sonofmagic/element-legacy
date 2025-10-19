@@ -13,8 +13,8 @@
 
     & div {
       box-sizing: border-box;
-      height: 48px;
-      padding: 6px 0;
+      height: 28px;
+      padding: 0;
     }
 
     &.today {
@@ -41,15 +41,18 @@
 
     .cell {
       display: block;
-      width: 60px;
-      height: 36px;
+      width: 40px;
+      height: 28px;
       margin: 0 auto;
-      line-height: 36px;
+      line-height: 28px;
       color: var.$datepicker-font-color;
-      border-radius: 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      transition: var.$border-transition-base;
 
       &:hover {
         color: var.$datepicker-hover-font-color;
+        border-color: var.$color-primary;
       }
     }
 
@@ -70,20 +73,23 @@
     &.end-date .cell {
       color: var.$color-white;
       background-color: var.$datepicker-active-color;
+      border-color: var.$datepicker-active-color;
     }
 
     &.start-date div {
-      border-top-left-radius: 24px;
-      border-bottom-left-radius: 24px;
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
     }
 
     &.end-date div {
-      border-top-right-radius: 24px;
-      border-bottom-right-radius: 24px;
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
     }
 
     &.current:not(.disabled) .cell {
-      color: var.$datepicker-active-color;
+      color: var.$color-white;
+      background-color: var.$color-primary;
+      border-color: var.$color-primary;
     }
   }
 }

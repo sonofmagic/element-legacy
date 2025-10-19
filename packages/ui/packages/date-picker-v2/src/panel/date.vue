@@ -109,6 +109,10 @@ export default {
       return ['day', 'dates'].includes(this.selectionMode) && this.currentView === 'date'
     },
 
+    isSingleMonthView() {
+      return this.selectionMode === 'month' && this.currentView === 'month'
+    },
+
     monthOptions() {
       return Array.from({ length: 12 }, (_, index) => {
         const full = this.t(`el.datepicker.month${index + 1}`)
@@ -606,8 +610,8 @@ export default {
               v-show="currentView !== 'time'"
               class="el-date-picker-v2__header"
               :class="{
-                'el-date-picker-v2__header--bordered': currentView === 'year' || currentView === 'month',
-                'el-date-picker-v2__header--simple': isSingleDateView,
+                'el-date-picker-v2__header--bordered': (currentView === 'year' || currentView === 'month') && !isSingleMonthView,
+                'el-date-picker-v2__header--simple': isSingleDateView || isSingleMonthView,
               }"
             >
               <template v-if="isSingleDateView">
@@ -655,6 +659,27 @@ export default {
                 >
                   {{ todayLabel }}
                 </button>
+              </template>
+              <template v-else-if="isSingleMonthView">
+                <div class="el-date-picker-v2__header-controls">
+                  <ElSelect
+                    ref="yearSelect"
+                    class="el-date-picker-v2__year-select"
+                    :value="year"
+                    size="small"
+                    :popper-append-to-body="false"
+                    popper-class="el-date-picker-v2__select-dropdown"
+                    @change="handleYearChange"
+                    @visible-change="handleYearDropdownVisible"
+                  >
+                    <ElOption
+                      v-for="item in yearOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    />
+                  </ElSelect>
+                </div>
               </template>
               <template v-else>
                 <button
