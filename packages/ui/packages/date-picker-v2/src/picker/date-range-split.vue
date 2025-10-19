@@ -1,8 +1,10 @@
 <script lang="ts">
 // @ts-nocheck
 import Locale from 'element-ui/src/mixins/locale'
+import { modifyWithTimeString } from 'element-ui/src/utils/date-util'
 import Picker from '../picker.vue'
 import {
+  formatAsFormatAndType,
   parseAsFormatAndType,
   valueEquals,
 } from '../utils/shared'
@@ -397,6 +399,7 @@ export default {
 
       return {
         ...rest,
+        shortcuts: this.buildShortcuts(_shortcuts, role),
         disabledDate: (date: Date) => {
           if (optionDisabled && optionDisabled(date)) {
             return true
@@ -407,6 +410,196 @@ export default {
           return false
         },
       }
+    },
+
+    buildShortcuts(shortcuts, role: 'start' | 'end') {
+      if (!Array.isArray(shortcuts) || shortcuts.length === 0) {
+        return shortcuts
+      }
+
+      return shortcuts.map(shortcut => {
+        if (!shortcut || typeof shortcut !== 'object') {
+          return shortcut
+        }
+
+        const { onClick } = shortcut
+
+        if (typeof onClick !== 'function') {
+          return shortcut
+        }
+
+        return {
+          ...shortcut,
+          onClick: (panel) => {
+            let picked = false
+            const originalEmit = panel.$emit
+
+            panel.$emit = (event, payload, ...args) => {
+              if (event === 'pick') {
+                picked = true
+                this.handleShortcutPick(payload, args, role)
+                return
+              }
+              originalEmit.call(panel, event, payload, ...args)
+            }
+
+            try {
+              const result = onClick(panel)
+              if (!picked && result) {
+                this.handleShortcutPick(result, [], role)
+              }
+            }
+            finally {
+              panel.$emit = originalEmit
+            }
+          },
+        }
+      })
+    },
+
+    handleShortcutPick(rangeValue, args, role: 'start' | 'end') {
+      const range = this.normalizeShortcutRange(rangeValue)
+
+      if (!range) {
+        return
+      }
+
+      const [startDateRaw, endDateRaw] = range
+      const startDate = this.applyShortcutTime(startDateRaw, this.startDefaultTime)
+      const endDate = this.applyShortcutTime(endDateRaw, this.endDefaultTime)
+
+      if (!startDate || !endDate) {
+        return
+      }
+
+      const formattedStart = this.formatShortcutValue(startDate)
+      const formattedEnd = this.formatShortcutValue(endDate)
+
+      const startChanged = !valueEquals(formattedStart, this.startValue)
+      const endChanged = !valueEquals(formattedEnd, this.endValue)
+
+      if (startChanged) {
+        this.startValue = formattedStart
+      }
+      if (endChanged) {
+        this.endValue = formattedEnd
+      }
+
+      if (startChanged || endChanged) {
+        this.emitModel('change')
+      }
+
+      const keepVisible = Array.isArray(args) && args.some(item => typeof item === 'boolean' && item === true)
+
+      if (!keepVisible) {
+        this.closePanel(role)
+      }
+    },
+
+    normalizeShortcutRange(value) {
+      if (Array.isArray(value)) {
+        const [start, end] = value
+        const startDate = this.coerceShortcutDate(start)
+        const endDate = this.coerceShortcutDate(end)
+
+        if (startDate && endDate) {
+          return [startDate, endDate]
+        }
+        return null
+      }
+
+      if (value && typeof value === 'object') {
+        const maybeStart = 'minDate' in value ? value.minDate : value.start
+        const maybeEnd = 'maxDate' in value ? value.maxDate : value.end
+
+        const startDate = this.coerceShortcutDate(maybeStart)
+        const endDate = this.coerceShortcutDate(maybeEnd)
+
+        if (startDate && endDate) {
+          return [startDate, endDate]
+        }
+      }
+
+      return null
+    },
+
+    coerceShortcutDate(value) {
+      if (!value) {
+        return null
+      }
+
+      if (value instanceof Date) {
+        return new Date(value.getTime())
+      }
+
+      if (this.valueFormat && typeof value === 'string') {
+        const parsed = parseAsFormatAndType(value, this.valueFormat, SINGLE_PANEL_TYPE)
+        if (parsed instanceof Date) {
+          return parsed
+        }
+      }
+
+      if (typeof value === 'number' || typeof value === 'string') {
+        const date = new Date(value)
+        if (!Number.isNaN(date.getTime())) {
+          return date
+        }
+      }
+
+      return null
+    },
+
+    applyShortcutTime(date, timeConfig) {
+      if (!date) {
+        return null
+      }
+
+      const cloned = new Date(date.getTime())
+
+      if (!timeConfig) {
+        return cloned
+      }
+
+      if (typeof timeConfig === 'string') {
+        return modifyWithTimeString(cloned, timeConfig)
+      }
+
+      if (timeConfig instanceof Date) {
+        const pad = value => `${value}`.padStart(2, '0')
+        return modifyWithTimeString(
+          cloned,
+          `${pad(timeConfig.getHours())}:${pad(timeConfig.getMinutes())}:${pad(timeConfig.getSeconds())}`,
+        )
+      }
+
+      return cloned
+    },
+
+    formatShortcutValue(date) {
+      if (!date) {
+        return null
+      }
+
+      if (this.valueFormat) {
+        return formatAsFormatAndType(date, this.valueFormat, SINGLE_PANEL_TYPE)
+      }
+
+      return date
+    },
+
+    closePanel(role: 'start' | 'end') {
+      const refName = role === 'start' ? 'startPicker' : 'endPicker'
+      const picker: any = this.$refs[refName]
+
+      if (picker && typeof picker.handleClose === 'function') {
+        picker.handleClose()
+      }
+      else if (picker) {
+        picker.pickerVisible = false
+      }
+
+      this.activeField = null
+      this.updateHighlight()
     },
 
     composePopperClass(role: 'start' | 'end') {
