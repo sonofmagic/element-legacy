@@ -1,48 +1,28 @@
 ## DatePicker v2 日期选择器
 
-### 选择日期和时间
-
-:::demo 使用 DatePicker v2 同时选择日期和时间。
-```html
-<template>
-  <el-date-picker-v2
-    v-model="datetimeValue"
-    type="datetime"
-    placeholder="选择日期和时间"
-  />
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        datetimeValue: '',
-      }
-    },
-  }
-</script>
-```
-:::
-
-
 用于选择或输入日期
 
-### 选择日
+### 选择日期
 
 以「日」为基本单位，基础的日期选择控件
 
-:::demo 基本单位由`type`属性指定。快捷选项需配置`picker-options`对象中的`shortcuts`，禁用日期通过 `disabledDate` 设置，传入函数
+:::demo 基本单位由 `type` 属性指定。快捷选项需配置 `picker-options` 对象中的 `shortcuts`，禁用日期通过 `disabledDate` 设置，传入函数。
 
 ```html
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <el-date-picker-v2 v-model="value1" type="date" placeholder="选择日期"> </el-date-picker-v2>
+    <el-date-picker-v2 v-model="basicDate" type="date" placeholder="选择日期" />
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <el-date-picker-v2 v-model="value2" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions">
-    </el-date-picker-v2>
+    <el-date-picker-v2
+      v-model="quickDate"
+      align="right"
+      type="date"
+      placeholder="选择日期"
+      :picker-options="pickerOptions"
+    />
   </div>
 </template>
 
@@ -50,6 +30,8 @@
   export default {
     data() {
       return {
+        basicDate: '',
+        quickDate: '',
         pickerOptions: {
           disabledDate(time) {
             return time.getTime() > Date.now()
@@ -79,8 +61,6 @@
             },
           ],
         },
-        value1: '',
-        value2: '',
       }
     },
   }
@@ -89,85 +69,52 @@
 
 :::
 
-### 其他日期单位
+### 选择日期和时间
 
-通过扩展基础的日期选择，可以选择周、月、年或多个日期
-
-:::demo
-
+:::demo 使用 DatePicker v2 同时选择日期和时间。
 ```html
-<div class="container">
-  <div class="block">
-    <span class="demonstration">周</span>
-    <el-date-picker-v2 v-model="value1" type="week" format="yyyy 第 WW 周" placeholder="选择周"> </el-date-picker-v2>
-  </div>
-  <div class="block">
-    <span class="demonstration">月</span>
-    <el-date-picker-v2 v-model="value2" type="month" placeholder="选择月"> </el-date-picker-v2>
-  </div>
-</div>
-<div class="container">
-  <div class="block">
-    <span class="demonstration">年</span>
-    <el-date-picker-v2 v-model="value3" type="year" placeholder="选择年"> </el-date-picker-v2>
-  </div>
-  <div class="block">
-    <span class="demonstration">多个日期</span>
-    <el-date-picker-v2 type="dates" v-model="value4" placeholder="选择一个或多个日期"> </el-date-picker-v2>
-  </div>
-</div>
-<div class="container">
-  <div class="block">
-    <span class="demonstration">多个月</span>
-    <el-date-picker-v2 type="months" v-model="value5" placeholder="选择一个或多个月"> </el-date-picker-v2>
-  </div>
-  <div class="block">
-    <span class="demonstration">多个年</span>
-    <el-date-picker-v2 type="years" v-model="value6" placeholder="选择一个或多个年"> </el-date-picker-v2>
-  </div>
-</div>
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="选择日期和时间"
+  />
+</template>
 
 <script>
   export default {
     data() {
       return {
-        value1: '',
-        value2: '',
-        value3: '',
-        value4: '',
-        value5: '',
-        value6: '',
+        datetimeValue: '',
       }
     },
   }
 </script>
 ```
-
 :::
 
 ### 选择日期范围
 
-可在一个选择器中便捷地选择一个时间范围
+可在一个选择器中便捷地选择一段日期。
 
-:::demo 在选择日期范围时，默认情况下左右面板会联动。如果希望两个面板各自独立切换当前月份，可以使用`unlink-panels`属性解除联动。
+:::demo 在选择日期范围时，默认情况下左右面板会联动。如果希望两个面板各自独立切换当前月份，可以使用 `unlink-panels` 属性解除联动。
 
 ```html
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
     <el-date-picker-v2
-      v-model="value1"
+      v-model="rangeValue"
       type="daterange"
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
-    >
-    </el-date-picker-v2>
+    />
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
     <el-date-picker-v2
-      v-model="value2"
+      v-model="rangeQuickValue"
       type="daterange"
       align="right"
       unlink-panels
@@ -175,8 +122,7 @@
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       :picker-options="pickerOptions"
-    >
-    </el-date-picker-v2>
+    />
   </div>
 </template>
 
@@ -184,6 +130,8 @@
   export default {
     data() {
       return {
+        rangeValue: '',
+        rangeQuickValue: '',
         pickerOptions: {
           shortcuts: [
             {
@@ -215,8 +163,121 @@
             },
           ],
         },
-        value1: '',
-        value2: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### 选择日期时间范围
+
+:::demo 使用 `datetimerange` 同时选择日期与时间区间，可通过 `default-time` 指定开始和结束默认时间。
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeRange"
+    type="datetimerange"
+    align="right"
+    unlink-panels
+    range-separator="至"
+    start-placeholder="开始时间"
+    end-placeholder="结束时间"
+    :default-time="['00:00:00', '23:59:59']"
+    :picker-options="pickerOptions"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeRange: [],
+        pickerOptions: {
+          shortcuts: [
+            {
+              text: '最近一小时',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: '今天到现在',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setHours(0, 0, 0, 0)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: '最近三天',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 3)
+                picker.$emit('pick', [start, end])
+              },
+            },
+          ],
+        },
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### 选择多个日期
+
+:::demo 设置 `type="dates"` 可以一次选择多个日期。
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="multipleDates"
+    type="dates"
+    placeholder="选择一个或多个日期"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        multipleDates: [],
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### 选择月份
+
+:::demo 选择单个月份。
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="monthValue"
+    type="month"
+    placeholder="选择月份"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        monthValue: '',
       }
     },
   }
@@ -293,6 +354,58 @@
         },
         value1: '',
         value2: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### 选择年份
+
+:::demo 选择单个年份。
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="yearValue"
+    type="year"
+    placeholder="选择年份"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        yearValue: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### 选择年份范围
+
+:::demo 使用 `type="years"` 可以一次挑选多个年份。
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="yearsValue"
+    type="years"
+    placeholder="选择一个或多个年份"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        yearsValue: [],
       }
     },
   }
@@ -476,27 +589,3 @@
 | 方法名 | 说明              | 参数 |
 | ------ | ----------------- | ---- |
 | focus  | 使 input 获取焦点 | —    |
-
-### 选择日期和时间
-
-:::demo 使用 DatePicker v2 同时选择日期和时间。
-```html
-<template>
-  <el-date-picker-v2
-    v-model="datetimeValue"
-    type="datetime"
-    placeholder="选择日期和时间"
-  />
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        datetimeValue: '',
-      }
-    },
-  }
-</script>
-```
-:::

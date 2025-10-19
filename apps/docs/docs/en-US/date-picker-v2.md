@@ -1,48 +1,28 @@
 ## DatePicker v2
 
-### Date & Time
-
-:::demo Select both date and time with DatePicker v2.
-```html
-<template>
-  <el-date-picker-v2
-    v-model="datetimeValue"
-    type="datetime"
-    placeholder="Select date and time"
-  />
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        datetimeValue: '',
-      }
-    },
-  }
-</script>
-```
-:::
-
-
 Use Date Picker for date input.
 
-### Enter Date
+### Pick a Date
 
-Basic date picker measured by 'day'.
+The basic day picker.
 
-:::demo The measurement is determined by the `type` attribute. You can enable quick options by creating a `picker-options` object with `shortcuts` property. The disabled date is set by `disabledDate`, which is a function.
+:::demo The measurement is determined by the `type` attribute. You can enable quick options via `picker-options.shortcuts`, and disable specific dates with `disabledDate`.
 
 ```html
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <el-date-picker-v2 v-model="value1" type="date" placeholder="Pick a day"> </el-date-picker-v2>
+    <el-date-picker-v2 v-model="basicDate" type="date" placeholder="Pick a day" />
   </div>
   <div class="block">
-    <span class="demonstration">Picker with quick options</span>
-    <el-date-picker-v2 v-model="value2" type="date" placeholder="Pick a day" :picker-options="pickerOptions">
-    </el-date-picker-v2>
+    <span class="demonstration">With shortcuts</span>
+    <el-date-picker-v2
+      v-model="quickDate"
+      align="right"
+      type="date"
+      placeholder="Pick a day"
+      :picker-options="pickerOptions"
+    />
   </div>
 </template>
 
@@ -50,6 +30,8 @@ Basic date picker measured by 'day'.
   export default {
     data() {
       return {
+        basicDate: '',
+        quickDate: '',
         pickerOptions: {
           disabledDate(time) {
             return time.getTime() > Date.now()
@@ -79,8 +61,6 @@ Basic date picker measured by 'day'.
             },
           ],
         },
-        value1: '',
-        value2: '',
       }
     },
   }
@@ -89,94 +69,58 @@ Basic date picker measured by 'day'.
 
 :::
 
-### Other measurements
+### Pick Date & Time
 
-You can choose week, month, year or multiple dates by extending the standard date picker component.
-
-:::demo
-
+:::demo Select both date and time with DatePicker v2.
 ```html
-<div class="container">
-  <div class="block">
-    <span class="demonstration">Week</span>
-    <el-date-picker-v2 v-model="value1" type="week" format="Week WW" placeholder="Pick a week"> </el-date-picker-v2>
-  </div>
-  <div class="block">
-    <span class="demonstration">Month</span>
-    <el-date-picker-v2 v-model="value2" type="month" placeholder="Pick a month"> </el-date-picker-v2>
-  </div>
-</div>
-<div class="container">
-  <div class="block">
-    <span class="demonstration">Year</span>
-    <el-date-picker-v2 v-model="value3" type="year" placeholder="Pick a year"> </el-date-picker-v2>
-  </div>
-  <div class="block">
-    <span class="demonstration">Dates</span>
-    <el-date-picker-v2 type="dates" v-model="value4" placeholder="Pick one or more dates"> </el-date-picker-v2>
-  </div>
-</div>
-<div class="container">
-  <div class="block">
-    <span class="demonstration">months</span>
-    <el-date-picker-v2 type="months" v-model="value5" placeholder="Pick one or more months"> </el-date-picker-v2>
-  </div>
-  <div class="block">
-    <span class="demonstration">years</span>
-    <el-date-picker-v2 type="years" v-model="value6" placeholder="Pick one or more years"> </el-date-picker-v2>
-  </div>
-</div>
+<template>
+  <el-date-picker-v2
+    v-model="datetimeValue"
+    type="datetime"
+    placeholder="Select date and time"
+  />
+</template>
 
 <script>
   export default {
     data() {
       return {
-        value1: '',
-        value2: '',
-        value3: '',
-        value4: '',
-        value5: '',
-        value6: '',
+        datetimeValue: '',
       }
     },
   }
 </script>
 ```
-
 :::
 
 ### Date Range
 
-Picking a date range is supported.
-
-:::demo When in range mode, the left and right panels are linked by default. If you want the two panels to switch current months independently, you can use the `unlink-panels` attribute.
+:::demo When in range mode, the left and right panels are linked by default. Use `unlink-panels` if you want them to flip months independently.
 
 ```html
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
     <el-date-picker-v2
-      v-model="value1"
+      v-model="rangeValue"
       type="daterange"
-      
+      range-separator="to"
       start-placeholder="Start date"
       end-placeholder="End date"
-    >
-    </el-date-picker-v2>
+    />
   </div>
   <div class="block">
-    <span class="demonstration">With quick options</span>
+    <span class="demonstration">With shortcuts</span>
     <el-date-picker-v2
-      v-model="value2"
+      v-model="rangeQuickValue"
       type="daterange"
       align="right"
       unlink-panels
-      
+      range-separator="to"
       start-placeholder="Start date"
       end-placeholder="End date"
       :picker-options="pickerOptions"
-    >
-    </el-date-picker-v2>
+    />
   </div>
 </template>
 
@@ -184,6 +128,8 @@ Picking a date range is supported.
   export default {
     data() {
       return {
+        rangeValue: '',
+        rangeQuickValue: '',
         pickerOptions: {
           shortcuts: [
             {
@@ -215,8 +161,121 @@ Picking a date range is supported.
             },
           ],
         },
-        value1: '',
-        value2: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### Date & Time Range
+
+:::demo Use `datetimerange` to pick both dates and time ranges, and configure default times with `default-time`.
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="datetimeRange"
+    type="datetimerange"
+    align="right"
+    unlink-panels
+    range-separator="to"
+    start-placeholder="Start time"
+    end-placeholder="End time"
+    :default-time="['00:00:00', '23:59:59']"
+    :picker-options="pickerOptions"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeRange: [],
+        pickerOptions: {
+          shortcuts: [
+            {
+              text: 'Last hour',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: 'Today so far',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setHours(0, 0, 0, 0)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: 'Last 3 days',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 3)
+                picker.$emit('pick', [start, end])
+              },
+            },
+          ],
+        },
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### Multiple Dates
+
+:::demo Set `type="dates"` to allow users to pick multiple dates at once.
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="multipleDates"
+    type="dates"
+    placeholder="Pick one or more dates"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        multipleDates: [],
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### Pick a Month
+
+:::demo Pick a single month.
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="monthValue"
+    type="month"
+    placeholder="Pick a month"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        monthValue: '',
       }
     },
   }
@@ -227,36 +286,34 @@ Picking a date range is supported.
 
 ### Month Range
 
-Picking a month range is supported.
+Pick a month range in one go.
 
-:::demo When in range mode, the left and right panels are linked by default. If you want the two panels to switch current years independently, you can use the `unlink-panels` attribute.
+:::demo When in range mode, the left and right panels are linked by default. Use `unlink-panels` if you want them to switch years independently.
 
 ```html
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
     <el-date-picker-v2
-      v-model="value1"
+      v-model="monthRange"
       type="monthrange"
-      
+      range-separator="to"
       start-placeholder="Start month"
       end-placeholder="End month"
-    >
-    </el-date-picker-v2>
+    />
   </div>
   <div class="block">
-    <span class="demonstration">With quick options</span>
+    <span class="demonstration">With shortcuts</span>
     <el-date-picker-v2
-      v-model="value2"
+      v-model="monthRangeQuick"
       type="monthrange"
       align="right"
       unlink-panels
-      
+      range-separator="to"
       start-placeholder="Start month"
       end-placeholder="End month"
       :picker-options="pickerOptions"
-    >
-    </el-date-picker-v2>
+    />
   </div>
 </template>
 
@@ -264,6 +321,8 @@ Picking a month range is supported.
   export default {
     data() {
       return {
+        monthRange: '',
+        monthRangeQuick: '',
         pickerOptions: {
           shortcuts: [
             {
@@ -273,7 +332,7 @@ Picking a month range is supported.
               },
             },
             {
-              text: 'This year',
+              text: 'Year to date',
               onClick(picker) {
                 const end = new Date()
                 const start = new Date(new Date().getFullYear(), 0)
@@ -291,8 +350,6 @@ Picking a month range is supported.
             },
           ],
         },
-        value1: '',
-        value2: '',
       }
     },
   }
@@ -301,40 +358,50 @@ Picking a month range is supported.
 
 :::
 
-### Default Value
+### Pick a Year
 
-If user hasn't picked a date, shows today's calendar by default. You can use `default-value` to set another date. Its value should be parsable by `new Date()`.
-
-If type is `daterange`, `default-value` sets the left side calendar.
-
-:::demo
+:::demo Pick a single year.
 
 ```html
 <template>
-  <div class="block">
-    <span class="demonstration">date</span>
-    <el-date-picker-v2 v-model="value1" type="date" placeholder="Pick a date" default-value="2010-10-01"> </el-date-picker-v2>
-  </div>
-  <div class="block">
-    <span class="demonstration">daterange</span>
-    <el-date-picker-v2
-      v-model="value2"
-      type="daterange"
-      align="right"
-      start-placeholder="Start Date"
-      end-placeholder="End Date"
-      default-value="2010-10-01"
-    >
-    </el-date-picker-v2>
-  </div>
+  <el-date-picker-v2
+    v-model="yearValue"
+    type="year"
+    placeholder="Pick a year"
+  />
 </template>
 
 <script>
   export default {
     data() {
       return {
-        value1: '',
-        value2: '',
+        yearValue: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### Year Range
+
+:::demo Set `type="years"` to select multiple years.
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="yearsValue"
+    type="years"
+    placeholder="Pick one or more years"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        yearsValue: [],
       }
     },
   }
@@ -457,32 +524,32 @@ When picking a date range, you can assign the time part for start date and end d
 
 ### Attributes
 
-| Attribute         | Description                                                                                  | Type                                      | Accepted Values                                                                                                                     | Default              |
-| ----------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| value / v-model   | binding value                                                                                | date(DatePicker) / array(DateRangePicker) | —                                                                                                                                   | —                    |
-| readonly          | whether DatePicker is read only                                                              | boolean                                   | —                                                                                                                                   | false                |
-| disabled          | whether DatePicker is disabled                                                               | boolean                                   | —                                                                                                                                   | false                |
-| size              | size of Input                                                                                | string                                    | large/small/mini                                                                                                                    | —                    |
-| editable          | whether the input is editable                                                                | boolean                                   | —                                                                                                                                   | true                 |
-| clearable         | whether to show clear button                                                                 | boolean                                   | —                                                                                                                                   | true                 |
-| placeholder       | placeholder in non-range mode                                                                | string                                    | —                                                                                                                                   | —                    |
-| start-placeholder | placeholder for the start date in range mode                                                 | string                                    | —                                                                                                                                   | —                    |
-| end-placeholder   | placeholder for the end date in range mode                                                   | string                                    | —                                                                                                                                   | —                    |
-| type              | type of the picker                                                                           | string                                    | year/month/date/dates/months/years/datetime/ week/datetimerange/daterange/ monthrange                                               | date                 |
-| format            | format of the displayed value in the input box                                               | string                                    | see [date formats](#/en-US/component/date-picker-v2#date-formats)                                                                      | yyyy-MM-dd           |
-| align             | alignment                                                                                    | left/center/right                         | left                                                                                                                                |
-| popper-class      | custom class name for DatePicker's dropdown                                                  | string                                    | —                                                                                                                                   | —                    |
-| picker-options    | additional options, check the table below                                                    | object                                    | —                                                                                                                                   | {}                   |
-| range-separator   | range separator                                                                              | string                                    | —                                                                                                                                   | '-'                  |
-| default-value     | optional, default date of the calendar                                                       | Date                                      | anything accepted by `new Date()`                                                                                                   | —                    |
-| default-time      | optional, the time value to use when selecting date range                                    | string[]                                  | Array with length 2, each item is a string like `12:00:00`. The first item for the start date and then second item for the end date | —                    |
-| value-format      | optional, format of binding value. If not specified, the binding value will be a Date object | string                                    | see [date formats](#/en-US/component/date-picker-v2#date-formats)                                                                      | —                    |
-| name              | same as `name` in native input                                                               | string                                    | —                                                                                                                                   | —                    |
-| unlink-panels     | unlink two date-panels in range-picker                                                       | boolean                                   | —                                                                                                                                   | false                |
-| prefix-icon       | Custom prefix icon class                                                                     | string                                    | —                                                                                                                                   | el-icon-date         |
-| clear-icon        | Custom clear icon class                                                                      | string                                    | —                                                                                                                                   | el-icon-circle-close |
-| validate-event    | whether to trigger form validation                                                           | boolean                                   | -                                                                                                                                   | true                 |
-| append-to-body    | whether to append DatePicker itself to body                                                  | boolean                                   | —                                                                                                                                   | true                 |
+| Attribute         | Description                                                                                  | Type                                      | Accepted Values                                                                                                                      | Default              |
+| ----------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------- |
+| value / v-model   | binding value                                                                                | date(DatePicker) / array(DateRangePicker) | —                                                                                                                                     | —                    |
+| readonly          | whether the DatePicker is read only                                                          | boolean                                   | —                                                                                                                                     | false                |
+| disabled          | whether the DatePicker is disabled                                                           | boolean                                   | —                                                                                                                                     | false                |
+| editable          | whether the input is editable                                                                | boolean                                   | —                                                                                                                                     | true                 |
+| clearable         | whether to show clear button                                                                 | boolean                                   | —                                                                                                                                     | true                 |
+| size              | size of Input                                                                                | string                                    | large/small/mini                                                                                                                      | —                    |
+| placeholder       | placeholder in non-range mode                                                               | string                                    | —                                                                                                                                     | —                    |
+| start-placeholder | placeholder for the start date in range mode                                                | string                                    | —                                                                                                                                     | —                    |
+| end-placeholder   | placeholder for the end date in range mode                                                  | string                                    | —                                                                                                                                     | —                    |
+| type              | type of the picker                                                                          | string                                    | year/month/date/dates/months/years week/datetime/datetimerange/daterange/monthrange                                                  | date                 |
+| format            | format of displayed value in the input box                                                  | string                                    | refer to [Date Formats](#/en-US/component/date-picker-v2#date-formats)                                                               | yyyy-MM-dd           |
+| align             | alignment                                                                                   | string                                    | left, center, right                                                                                                                   | left                 |
+| popper-class      | Custom class name for the DatePicker's dropdown                                              | string                                    | —                                                                                                                                     | —                    |
+| picker-options    | additional options, check the table below                                                    | object                                    | —                                                                                                                                     | {}                   |
+| range-separator   | range separator                                                                              | string                                    | —                                                                                                                                     | '-'                  |
+| default-value     | optional, default date of the calendar                                                       | Date                                      | anything accepted by `new Date()`                                                                                                     | —                    |
+| default-time      | when picking a date range, sets the time value for start and end date                        | string[]                                  | array of up to two strings, each like `12:00:00`. The first controls start time, the second controls end time. Defaults to `00:00:00` | —                    |
+| value-format      | optional, format of binding value. If not specified, the binding value will be a Date object | string                                    | refer to [Date Formats](#/en-US/component/date-picker-v2#date-formats)                                                               | —                    |
+| name              | same as `name` in native input                                                               | string                                    | —                                                                                                                                     | —                    |
+| unlink-panels     | unlink two date-panels in range-picker                                                       | boolean                                   | —                                                                                                                                     | false                |
+| prefix-icon       | Custom prefix icon class                                                                     | string                                    | —                                                                                                                                     | el-icon-date         |
+| clear-icon        | Custom clear icon class                                                                      | string                                    | —                                                                                                                                     | el-icon-circle-close |
+| validate-event    | whether to trigger form validation                                                           | boolean                                   | -                                                                                                                                     | true                 |
+| append-to-body    | whether to append DatePicker itself to body                                                  | boolean                                   | —                                                                                                                                     | true                 |
 
 ### Picker Options
 
@@ -520,27 +587,3 @@ When picking a date range, you can assign the time part for start date and end d
 | Name            | Description                    |
 | --------------- | ------------------------------ |
 | range-separator | custom range separator content |
-
-### Date & Time
-
-:::demo Select both date and time with DatePicker v2.
-```html
-<template>
-  <el-date-picker-v2
-    v-model="datetimeValue"
-    type="datetime"
-    placeholder="Select date and time"
-  />
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        datetimeValue: '',
-      }
-    },
-  }
-</script>
-```
-:::

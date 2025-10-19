@@ -10,8 +10,6 @@ import {
 } from '../utils/shared'
 import BaseDatePicker from './base-date-picker'
 
-const SINGLE_PANEL_TYPE = 'date'
-
 function arrayItem<T>(value: T | T[] | undefined, index: number): T | undefined {
   if (Array.isArray(value)) {
     return value[index]
@@ -70,6 +68,10 @@ export default {
         classes.push(`el-date-range-editor-v2--${this.pickerSize}`)
       }
 
+      if (this.type) {
+        classes.push(`el-date-range-editor-v2--${this.type}`)
+      }
+
       if (this.pickerDisabled) {
         classes.push('is-disabled')
       }
@@ -88,6 +90,10 @@ export default {
     pickerSize(): string | undefined {
       const formItemSize = (this.elFormItem || {}).elFormItemSize
       return this.size || formItemSize || (this.$ELEMENT || {}).size
+    },
+
+    singlePanelType(): 'date' | 'datetime' {
+      return this.type === 'datetimerange' ? 'datetime' : 'date'
     },
 
     startPlaceholderText(): string {
@@ -354,7 +360,7 @@ export default {
       const isStart = role === 'start'
 
       return {
-        type: SINGLE_PANEL_TYPE,
+        type: this.singlePanelType,
         value: isStart ? this.startValue : this.endValue,
         size: this.size,
         format: this.format,
@@ -533,7 +539,7 @@ export default {
       }
 
       if (this.valueFormat && typeof value === 'string') {
-        const parsed = parseAsFormatAndType(value, this.valueFormat, SINGLE_PANEL_TYPE)
+        const parsed = parseAsFormatAndType(value, this.valueFormat, this.singlePanelType)
         if (parsed instanceof Date) {
           return parsed
         }
@@ -581,7 +587,7 @@ export default {
       }
 
       if (this.valueFormat) {
-        return formatAsFormatAndType(date, this.valueFormat, SINGLE_PANEL_TYPE)
+        return formatAsFormatAndType(date, this.valueFormat, this.singlePanelType)
       }
 
       return date
@@ -686,7 +692,7 @@ export default {
       }
 
       if (this.valueFormat) {
-        return parseAsFormatAndType(value, this.valueFormat, SINGLE_PANEL_TYPE) as Date
+        return parseAsFormatAndType(value, this.valueFormat, this.singlePanelType) as Date
       }
 
       if (typeof value === 'number' || typeof value === 'string') {

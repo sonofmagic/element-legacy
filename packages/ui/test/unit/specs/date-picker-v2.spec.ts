@@ -13,6 +13,7 @@ describe('DatePickerV2 range shortcuts', () => {
       },
     })
 
+    vm.$mount()
     sinon.stub(vm, 'closePanel')
 
     return vm
@@ -101,6 +102,57 @@ describe('DatePickerV2 range shortcuts', () => {
 
     expect(inputSpy.calledOnce).to.be.true
     expect(inputSpy.firstCall.args[0]).to.deep.equal(['2021-06-01', '2021-06-15'])
+
+    vm.$destroy()
+  })
+
+  it('supports datetimerange shortcuts with default time', () => {
+    const rangeStart = new Date(2022, 8, 10)
+    const rangeEnd = new Date(2022, 8, 12)
+    const pickerOptions = {
+      shortcuts: [
+        {
+          text: 'shortcut',
+          onClick(picker) {
+            picker.$emit('pick', [new Date(rangeStart), new Date(rangeEnd)])
+          },
+        },
+      ],
+    }
+
+    const vm = createInstance({
+      type: 'datetimerange',
+      defaultTime: ['08:00:00', '20:30:00'],
+      pickerOptions,
+    })
+
+    const inputSpy = sinon.spy()
+    vm.$on('input', inputSpy)
+
+    const options = vm.buildPickerOptions('start')
+    const endOptions = vm.buildPickerOptions('end')
+
+    expect(vm.buildPickerProps('start').type).to.equal('datetime')
+    expect(vm.buildPickerProps('end').type).to.equal('datetime')
+    expect(options.shortcuts).to.have.length(1)
+    expect(endOptions.shortcuts).to.have.length(1)
+
+    options.shortcuts[0].onClick({ $emit: sinon.spy() })
+
+    expect(vm.startValue).to.be.instanceof(Date)
+    expect(vm.endValue).to.be.instanceof(Date)
+    expect(vm.startValue.getHours()).to.equal(8)
+    expect(vm.startValue.getMinutes()).to.equal(0)
+    expect(vm.endValue.getHours()).to.equal(20)
+    expect(vm.endValue.getMinutes()).to.equal(30)
+
+    expect(inputSpy.calledOnce).to.be.true
+    const payload = inputSpy.firstCall.args[0]
+    expect(payload[0].getHours()).to.equal(8)
+    expect(payload[1].getHours()).to.equal(20)
+
+    expect(vm.closePanel.calledOnce).to.be.true
+    expect(vm.closePanel.firstCall.args[0]).to.equal('start')
 
     vm.$destroy()
   })

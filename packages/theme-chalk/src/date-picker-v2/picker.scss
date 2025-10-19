@@ -194,6 +194,11 @@
     &.is-disabled .el-range-separator-v2 {
       color: var.$input-disabled-color;
     }
+
+    &.el-date-range-editor-v2--datetimerange {
+      width: 448px;
+      min-width: 448px;
+    }
   }
 }
 

@@ -15,7 +15,7 @@ export default defineComponent({
 
   computed: {
     isSplitRange(): boolean {
-      return this.type === 'daterange'
+      return this.type === 'daterange' || this.type === 'datetimerange'
     },
   },
 
