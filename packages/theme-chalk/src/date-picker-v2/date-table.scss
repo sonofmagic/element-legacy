@@ -134,21 +134,25 @@
       opacity: 1;
     }
 
-    &.selected div {
-      margin-right: 5px;
-      margin-left: 5px;
-      background-color: var.$datepicker-inrange-background-color;
-      border-radius: 15px;
-
-      &:hover {
-        background-color: var.$datepicker-inrange-hover-background-color;
+    &.selected {
+      div {
+        margin-right: 5px;
+        margin-left: 5px;
+        background-color: var.$datepicker-inrange-background-color;
+        border-radius: 15px;
       }
-    }
 
-    &.selected span {
-      color: var.$color-white;
-      background-color: var.$datepicker-active-color;
-      border-radius: 15px;
+      span {
+        color: var.$color-white;
+        background-color: var.$datepicker-active-color;
+        border-radius: 12px;
+      }
+
+      &:hover,
+      &:hover span {
+        color: var.$datepicker-font-color;
+        background-color: transparent;
+      }
     }
 
     &.week {
