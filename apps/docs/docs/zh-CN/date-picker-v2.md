@@ -12,10 +12,12 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
+    <div class="demonstration">值：{{ basicDate }}</div>
     <el-date-picker-v2 v-model="basicDate" type="date" placeholder="选择日期" />
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
+    <div class="demonstration">值：{{ quickDate }}</div>
     <el-date-picker-v2
       v-model="quickDate"
       align="right"
@@ -74,6 +76,7 @@
 :::demo 使用 DatePicker v2 同时选择日期和时间。
 ```html
 <template>
+  <p class="demonstration">值：{{ datetimeValue }}</p>
   <el-date-picker-v2
     v-model="datetimeValue"
     type="datetime"
@@ -103,6 +106,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
+    <div class="demonstration">值：{{ rangeValue }}</div>
     <el-date-picker-v2
       v-model="rangeValue"
       type="daterange"
@@ -113,6 +117,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
+    <div class="demonstration">值：{{ rangeQuickValue }}</div>
     <el-date-picker-v2
       v-model="rangeQuickValue"
       type="daterange"
@@ -177,6 +182,7 @@
 
 ```html
 <template>
+  <p class="demonstration">值：{{ datetimeRange }}</p>
   <el-date-picker-v2
     v-model="datetimeRange"
     type="datetimerange"
@@ -240,6 +246,7 @@
 
 ```html
 <template>
+  <p class="demonstration">值：{{ multipleDates }}</p>
   <el-date-picker-v2
     v-model="multipleDates"
     type="dates"
@@ -266,6 +273,7 @@
 
 ```html
 <template>
+  <p class="demonstration">值：{{ monthValue }}</p>
   <el-date-picker-v2
     v-model="monthValue"
     type="month"
@@ -296,6 +304,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
+    <div class="demonstration">值：{{ value1 }}</div>
     <el-date-picker-v2
       v-model="value1"
       type="monthrange"
@@ -307,6 +316,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
+    <div class="demonstration">值：{{ value2 }}</div>
     <el-date-picker-v2
       v-model="value2"
       type="monthrange"
@@ -368,6 +378,7 @@
 
 ```html
 <template>
+  <p class="demonstration">值：{{ yearValue }}</p>
   <el-date-picker-v2
     v-model="yearValue"
     type="year"
@@ -396,6 +407,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
+    <div class="demonstration">值：{{ yearRange }}</div>
     <el-date-picker-v2
       v-model="yearRange"
       type="yearrange"
@@ -406,6 +418,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
+    <div class="demonstration">值：{{ yearRangeQuick }}</div>
     <el-date-picker-v2
       v-model="yearRangeQuick"
       type="yearrange"
@@ -469,6 +482,7 @@
 
 ```html
 <template>
+  <p class="demonstration">值：{{ multipleMonths }}</p>
   <el-date-picker-v2
     v-model="multipleMonths"
     type="months"
@@ -495,6 +509,7 @@
 
 ```html
 <template>
+  <p class="demonstration">值：{{ multipleYears }}</p>
   <el-date-picker-v2
     v-model="multipleYears"
     type="years"

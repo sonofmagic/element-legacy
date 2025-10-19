@@ -12,10 +12,12 @@ The basic day picker.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
+    <div class="demonstration">Value: {{ basicDate }}</div>
     <el-date-picker-v2 v-model="basicDate" type="date" placeholder="Pick a day" />
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
+    <div class="demonstration">Value: {{ quickDate }}</div>
     <el-date-picker-v2
       v-model="quickDate"
       align="right"
@@ -74,6 +76,7 @@ The basic day picker.
 :::demo Select both date and time with DatePicker v2.
 ```html
 <template>
+  <p class="demonstration">Value: {{ datetimeValue }}</p>
   <el-date-picker-v2
     v-model="datetimeValue"
     type="datetime"
@@ -101,6 +104,7 @@ The basic day picker.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
+    <div class="demonstration">Value: {{ rangeValue }}</div>
     <el-date-picker-v2
       v-model="rangeValue"
       type="daterange"
@@ -111,6 +115,7 @@ The basic day picker.
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
+    <div class="demonstration">Value: {{ rangeQuickValue }}</div>
     <el-date-picker-v2
       v-model="rangeQuickValue"
       type="daterange"
@@ -175,6 +180,7 @@ The basic day picker.
 
 ```html
 <template>
+  <p class="demonstration">Value: {{ datetimeRange }}</p>
   <el-date-picker-v2
     v-model="datetimeRange"
     type="datetimerange"
@@ -238,6 +244,7 @@ The basic day picker.
 
 ```html
 <template>
+  <p class="demonstration">Value: {{ multipleDates }}</p>
   <el-date-picker-v2
     v-model="multipleDates"
     type="dates"
@@ -264,6 +271,7 @@ The basic day picker.
 
 ```html
 <template>
+  <p class="demonstration">Value: {{ monthValue }}</p>
   <el-date-picker-v2
     v-model="monthValue"
     type="month"
@@ -294,6 +302,7 @@ Pick a month range in one go.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
+    <div class="demonstration">Value: {{ monthRange }}</div>
     <el-date-picker-v2
       v-model="monthRange"
       type="monthrange"
@@ -304,6 +313,7 @@ Pick a month range in one go.
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
+    <div class="demonstration">Value: {{ monthRangeQuick }}</div>
     <el-date-picker-v2
       v-model="monthRangeQuick"
       type="monthrange"
@@ -364,6 +374,7 @@ Pick a month range in one go.
 
 ```html
 <template>
+  <p class="demonstration">Value: {{ yearValue }}</p>
   <el-date-picker-v2
     v-model="yearValue"
     type="year"
@@ -392,6 +403,7 @@ Pick a month range in one go.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
+    <div class="demonstration">Value: {{ yearRange }}</div>
     <el-date-picker-v2
       v-model="yearRange"
       type="yearrange"
@@ -402,6 +414,7 @@ Pick a month range in one go.
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
+    <div class="demonstration">Value: {{ yearRangeQuick }}</div>
     <el-date-picker-v2
       v-model="yearRangeQuick"
       type="yearrange"
@@ -465,6 +478,7 @@ Pick a month range in one go.
 
 ```html
 <template>
+  <p class="demonstration">Value: {{ multipleMonths }}</p>
   <el-date-picker-v2
     v-model="multipleMonths"
     type="months"
@@ -491,6 +505,7 @@ Pick a month range in one go.
 
 ```html
 <template>
+  <p class="demonstration">Value: {{ multipleYears }}</p>
   <el-date-picker-v2
     v-model="multipleYears"
     type="years"
