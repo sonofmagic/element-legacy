@@ -202,6 +202,17 @@
   }
 }
 
+.el-date-picker-v2__footer-actions {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+
+  .el-date-picker-v2__footer-confirm {
+    margin-left: auto;
+  }
+}
+
 @include mixins.b(range-editor-v2) {
   &.el-input__inner {
     display: inline-flex;

@@ -106,7 +106,7 @@ export default {
     },
 
     isSingleDateView() {
-      return this.selectionMode === 'day' && this.currentView === 'date'
+      return ['day', 'dates'].includes(this.selectionMode) && this.currentView === 'date'
     },
 
     monthOptions() {
