@@ -92,8 +92,14 @@ export default {
       return this.size || formItemSize || (this.$ELEMENT || {}).size
     },
 
-    singlePanelType(): 'date' | 'datetime' {
-      return this.type === 'datetimerange' ? 'datetime' : 'date'
+    singlePanelType(): 'date' | 'datetime' | 'month' {
+      if (this.type === 'datetimerange') {
+        return 'datetime'
+      }
+      if (this.type === 'monthrange') {
+        return 'month'
+      }
+      return 'date'
     },
 
     startPlaceholderText(): string {
@@ -562,7 +568,7 @@ export default {
 
       const cloned = new Date(date.getTime())
 
-      if (!timeConfig) {
+      if (!timeConfig || this.singlePanelType === 'month') {
         return cloned
       }
 

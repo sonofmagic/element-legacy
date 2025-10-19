@@ -156,4 +156,52 @@ describe('DatePickerV2 range shortcuts', () => {
 
     vm.$destroy()
   })
+
+  it('supports monthrange shortcuts', () => {
+    const startMonth = new Date(2023, 4, 1)
+    const endMonth = new Date(2023, 9, 1)
+    const pickerOptions = {
+      shortcuts: [
+        {
+          text: 'shortcut',
+          onClick(picker) {
+            picker.$emit('pick', [new Date(startMonth), new Date(endMonth)])
+          },
+        },
+      ],
+    }
+
+    const vm = createInstance({
+      type: 'monthrange',
+      pickerOptions,
+    })
+
+    const inputSpy = sinon.spy()
+    vm.$on('input', inputSpy)
+
+    const options = vm.buildPickerOptions('start')
+    const endOptions = vm.buildPickerOptions('end')
+
+    expect(vm.buildPickerProps('start').type).to.equal('month')
+    expect(vm.buildPickerProps('end').type).to.equal('month')
+    expect(options.shortcuts).to.have.length(1)
+    expect(endOptions.shortcuts).to.have.length(1)
+
+    options.shortcuts[0].onClick({ $emit: sinon.spy() })
+
+    expect(vm.startValue).to.be.instanceof(Date)
+    expect(vm.startValue.getFullYear()).to.equal(2023)
+    expect(vm.startValue.getMonth()).to.equal(4)
+    expect(vm.endValue.getMonth()).to.equal(9)
+
+    expect(inputSpy.calledOnce).to.be.true
+    const payload = inputSpy.firstCall.args[0]
+    expect(payload[0].getMonth()).to.equal(4)
+    expect(payload[1].getMonth()).to.equal(9)
+
+    expect(vm.closePanel.calledOnce).to.be.true
+    expect(vm.closePanel.firstCall.args[0]).to.equal('start')
+
+    vm.$destroy()
+  })
 })
