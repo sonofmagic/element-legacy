@@ -113,6 +113,18 @@ export default {
       return this.selectionMode === 'month' && this.currentView === 'month'
     },
 
+    isSingleYearView() {
+      return this.selectionMode === 'year' && this.currentView === 'year'
+    },
+
+    isMultiMonthView() {
+      return this.selectionMode === 'months' && this.currentView === 'month'
+    },
+
+    isMultiYearView() {
+      return this.selectionMode === 'years' && this.currentView === 'year'
+    },
+
     monthOptions() {
       return Array.from({ length: 12 }, (_, index) => {
         const full = this.t(`el.datepicker.month${index + 1}`)
@@ -134,6 +146,20 @@ export default {
         options.push({
           value: year,
           label: `${year}`,
+        })
+      }
+      return options
+    },
+
+    decadeOptions() {
+      const currentDecade = Math.floor(this.year / 10) * 10
+      const startDecade = currentDecade - 100
+      const endDecade = currentDecade + 100
+      const options = []
+      for (let decade = startDecade; decade <= endDecade; decade += 10) {
+        options.push({
+          value: decade,
+          label: `${decade} - ${decade + 9}`,
         })
       }
       return options
@@ -328,6 +354,26 @@ export default {
       })
     },
 
+    handleDecadeDropdownVisible(visible) {
+      if (!visible) {
+        return
+      }
+      this.$nextTick(() => {
+        const decade = Math.floor(this.year / 10) * 10
+        this.centerSelectOption('decadeSelect', decade)
+      })
+    },
+
+    handleYearRangeDropdownVisible(visible) {
+      if (!visible) {
+        return
+      }
+      this.$nextTick(() => {
+        const decade = Math.floor(this.year / 10) * 10
+        this.centerSelectOption('yearRangeSelect', decade)
+      })
+    },
+
     centerSelectOption(refName, value) {
       const select = this.$refs[refName]
       if (!select || !select.$refs || !select.$refs.popper) {
@@ -412,6 +458,18 @@ export default {
         return
       }
       this.date = changeYearMonthAndClampDate(this.date, targetYear, this.month)
+    },
+
+    handleDecadeChange(decade) {
+      const targetDecade = typeof decade === 'number' ? decade : Number(decade)
+      if (Number.isNaN(targetDecade)) {
+        return
+      }
+      this.date = changeYearMonthAndClampDate(this.date, targetDecade, this.month)
+    },
+
+    handleYearRangeChange(decade) {
+      this.handleDecadeChange(decade)
     },
 
     selectToday() {
@@ -610,8 +668,8 @@ export default {
               v-show="currentView !== 'time'"
               class="el-date-picker-v2__header"
               :class="{
-                'el-date-picker-v2__header--bordered': (currentView === 'year' || currentView === 'month') && !isSingleMonthView,
-                'el-date-picker-v2__header--simple': isSingleDateView || isSingleMonthView,
+                'el-date-picker-v2__header--bordered': (currentView === 'year' || currentView === 'month') && !isSingleMonthView && !isSingleYearView && !isMultiMonthView && !isMultiYearView,
+                'el-date-picker-v2__header--simple': isSingleDateView || isSingleMonthView || isSingleYearView || isMultiMonthView || isMultiYearView,
               }"
             >
               <template v-if="isSingleDateView">
@@ -674,6 +732,69 @@ export default {
                   >
                     <ElOption
                       v-for="item in yearOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    />
+                  </ElSelect>
+                </div>
+              </template>
+              <template v-else-if="isMultiMonthView">
+                <div class="el-date-picker-v2__header-controls">
+                  <ElSelect
+                    ref="yearSelect"
+                    class="el-date-picker-v2__year-select"
+                    :value="year"
+                    size="small"
+                    :popper-append-to-body="false"
+                    popper-class="el-date-picker-v2__select-dropdown"
+                    @change="handleYearChange"
+                    @visible-change="handleYearDropdownVisible"
+                  >
+                    <ElOption
+                      v-for="item in yearOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    />
+                  </ElSelect>
+                </div>
+              </template>
+              <template v-else-if="isSingleYearView">
+                <div class="el-date-picker-v2__header-controls">
+                  <ElSelect
+                    ref="decadeSelect"
+                    class="el-date-picker-v2__decade-select"
+                    :value="Math.floor(year / 10) * 10"
+                    size="small"
+                    :popper-append-to-body="false"
+                    popper-class="el-date-picker-v2__select-dropdown"
+                    @change="handleDecadeChange"
+                    @visible-change="handleDecadeDropdownVisible"
+                  >
+                    <ElOption
+                      v-for="item in decadeOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    />
+                  </ElSelect>
+                </div>
+              </template>
+              <template v-else-if="isMultiYearView">
+                <div class="el-date-picker-v2__header-controls">
+                  <ElSelect
+                    ref="decadeSelect"
+                    class="el-date-picker-v2__decade-select"
+                    :value="Math.floor(year / 10) * 10"
+                    size="small"
+                    :popper-append-to-body="false"
+                    popper-class="el-date-picker-v2__select-dropdown"
+                    @change="handleDecadeChange"
+                    @visible-change="handleDecadeDropdownVisible"
+                  >
+                    <ElOption
+                      v-for="item in decadeOptions"
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"

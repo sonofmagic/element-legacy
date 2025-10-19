@@ -92,12 +92,15 @@ export default {
       return this.size || formItemSize || (this.$ELEMENT || {}).size
     },
 
-    singlePanelType(): 'date' | 'datetime' | 'month' {
+    singlePanelType(): 'date' | 'datetime' | 'month' | 'year' {
       if (this.type === 'datetimerange') {
         return 'datetime'
       }
       if (this.type === 'monthrange') {
         return 'month'
+      }
+      if (this.type === 'yearrange') {
+        return 'year'
       }
       return 'date'
     },
@@ -568,7 +571,7 @@ export default {
 
       const cloned = new Date(date.getTime())
 
-      if (!timeConfig || this.singlePanelType === 'month') {
+      if (!timeConfig || this.singlePanelType === 'month' || this.singlePanelType === 'year') {
         return cloned
       }
 

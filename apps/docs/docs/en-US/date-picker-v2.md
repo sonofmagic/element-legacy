@@ -386,12 +386,113 @@ Pick a month range in one go.
 
 ### Year Range
 
-:::demo Set `type="years"` to select multiple years.
+:::demo Use `type="yearrange"` to pick a range of years.
+
+```html
+<template>
+  <div class="block">
+    <span class="demonstration">Default</span>
+    <el-date-picker-v2
+      v-model="yearRange"
+      type="yearrange"
+      range-separator="to"
+      start-placeholder="Start year"
+      end-placeholder="End year"
+    />
+  </div>
+  <div class="block">
+    <span class="demonstration">With shortcuts</span>
+    <el-date-picker-v2
+      v-model="yearRangeQuick"
+      type="yearrange"
+      align="right"
+      unlink-panels
+      range-separator="to"
+      start-placeholder="Start year"
+      end-placeholder="End year"
+      :picker-options="pickerOptions"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        yearRange: [],
+        yearRangeQuick: [],
+        pickerOptions: {
+          shortcuts: [
+            {
+              text: 'Last 5 years',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setFullYear(start.getFullYear() - 4)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: 'Last 10 years',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setFullYear(start.getFullYear() - 9)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: 'Since 2000',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date(2000, 0, 1)
+                picker.$emit('pick', [start, end])
+              },
+            },
+          ],
+        },
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### Multiple Months
+
+:::demo Set `type="months"` to allow selecting more than one month.
 
 ```html
 <template>
   <el-date-picker-v2
-    v-model="yearsValue"
+    v-model="multipleMonths"
+    type="months"
+    placeholder="Pick one or more months"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        multipleMonths: [],
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### Multiple Years
+
+:::demo Set `type="years"` to choose multiple years.
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="multipleYears"
     type="years"
     placeholder="Pick one or more years"
   />
@@ -401,7 +502,7 @@ Pick a month range in one go.
   export default {
     data() {
       return {
-        yearsValue: [],
+        multipleYears: [],
       }
     },
   }

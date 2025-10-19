@@ -11,7 +11,7 @@
   }
 
   td {
-    padding: 20px 3px;
+    padding: 8px 0;
     text-align: center;
     cursor: pointer;
 
@@ -39,14 +39,19 @@
       margin: 0 auto;
       line-height: 32px;
       color: var.$datepicker-font-color;
+      border-radius: 16px;
+      border: 1px solid transparent;
 
       &:hover {
         color: var.$datepicker-hover-font-color;
+        border-color: var.$color-primary;
       }
     }
 
     &.current:not(.disabled) .cell {
-      color: var.$datepicker-active-color;
+      color: var.$color-white;
+      background-color: var.$color-primary;
+      border-color: var.$color-primary;
     }
   }
 }

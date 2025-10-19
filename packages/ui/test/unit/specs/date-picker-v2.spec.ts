@@ -204,4 +204,51 @@ describe('DatePickerV2 range shortcuts', () => {
 
     vm.$destroy()
   })
+
+  it('supports yearrange shortcuts', () => {
+    const startYear = new Date(2018, 0, 1)
+    const endYear = new Date(2024, 0, 1)
+    const pickerOptions = {
+      shortcuts: [
+        {
+          text: 'shortcut',
+          onClick(picker) {
+            picker.$emit('pick', [new Date(startYear), new Date(endYear)])
+          },
+        },
+      ],
+    }
+
+    const vm = createInstance({
+      type: 'yearrange',
+      pickerOptions,
+    })
+
+    const inputSpy = sinon.spy()
+    vm.$on('input', inputSpy)
+
+    const options = vm.buildPickerOptions('start')
+    const endOptions = vm.buildPickerOptions('end')
+
+    expect(vm.buildPickerProps('start').type).to.equal('year')
+    expect(vm.buildPickerProps('end').type).to.equal('year')
+    expect(options.shortcuts).to.have.length(1)
+    expect(endOptions.shortcuts).to.have.length(1)
+
+    options.shortcuts[0].onClick({ $emit: sinon.spy() })
+
+    expect(vm.startValue).to.be.instanceof(Date)
+    expect(vm.startValue.getFullYear()).to.equal(2018)
+    expect(vm.endValue.getFullYear()).to.equal(2024)
+
+    expect(inputSpy.calledOnce).to.be.true
+    const payload = inputSpy.firstCall.args[0]
+    expect(payload[0].getFullYear()).to.equal(2018)
+    expect(payload[1].getFullYear()).to.equal(2024)
+
+    expect(vm.closePanel.calledOnce).to.be.true
+    expect(vm.closePanel.firstCall.args[0]).to.equal('start')
+
+    vm.$destroy()
+  })
 })

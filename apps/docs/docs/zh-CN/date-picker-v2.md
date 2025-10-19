@@ -390,12 +390,113 @@
 
 ### 选择年份范围
 
-:::demo 使用 `type="years"` 可以一次挑选多个年份。
+:::demo 使用 `type="yearrange"` 选择年份区间。
+
+```html
+<template>
+  <div class="block">
+    <span class="demonstration">默认</span>
+    <el-date-picker-v2
+      v-model="yearRange"
+      type="yearrange"
+      range-separator="至"
+      start-placeholder="开始年份"
+      end-placeholder="结束年份"
+    />
+  </div>
+  <div class="block">
+    <span class="demonstration">带快捷选项</span>
+    <el-date-picker-v2
+      v-model="yearRangeQuick"
+      type="yearrange"
+      align="right"
+      unlink-panels
+      range-separator="至"
+      start-placeholder="开始年份"
+      end-placeholder="结束年份"
+      :picker-options="pickerOptions"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        yearRange: [],
+        yearRangeQuick: [],
+        pickerOptions: {
+          shortcuts: [
+            {
+              text: '最近 5 年',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setFullYear(start.getFullYear() - 4)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: '最近 10 年',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setFullYear(start.getFullYear() - 9)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: '本世纪以来',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date(2000, 0, 1)
+                picker.$emit('pick', [start, end])
+              },
+            },
+          ],
+        },
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### 选择多个月份
+
+:::demo 设置 `type="months"` 可以一次选择多个月份。
 
 ```html
 <template>
   <el-date-picker-v2
-    v-model="yearsValue"
+    v-model="multipleMonths"
+    type="months"
+    placeholder="选择一个或多个月份"
+  />
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        multipleMonths: [],
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### 选择多个年份
+
+:::demo 设置 `type="years"` 可以一次选择多个年份。
+
+```html
+<template>
+  <el-date-picker-v2
+    v-model="multipleYears"
     type="years"
     placeholder="选择一个或多个年份"
   />
@@ -405,7 +506,7 @@
   export default {
     data() {
       return {
-        yearsValue: [],
+        multipleYears: [],
       }
     },
   }

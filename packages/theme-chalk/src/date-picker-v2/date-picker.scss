@@ -82,6 +82,11 @@
     max-width: 88px;
   }
 
+  @include mixins.e(decade-select) {
+    min-width: 140px;
+    max-width: 140px;
+  }
+
   @include mixins.e(today-btn) {
     padding: 0;
     font-size: var.$font-size-base;
