@@ -32,6 +32,7 @@
 
     &.el-scrollbar .el-scrollbar__wrap {
       max-height: var(--el-time-spinner-v2-scroll-height);
+      overflow-x: hidden;
       overflow-y: auto;
       scroll-behavior: smooth;
     }
