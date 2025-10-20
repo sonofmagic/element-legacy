@@ -1,10 +1,38 @@
+import { existsSync } from 'node:fs'
 import path from 'node:path'
 import Vue from '@vitejs/plugin-vue2'
 import VueJsx from '@vitejs/plugin-vue2-jsx'
+import { config as loadDotenv } from 'dotenv'
 import { bundledLanguages, bundledThemes, createHighlighter } from 'shiki'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { defineConfig } from 'vite'
 import { setupMarkdownContainers } from './markdown/setup'
+
+loadDotenv()
+
+const docsEnvPath = path.resolve(import.meta.dirname, '.env')
+if (existsSync(docsEnvPath)) {
+  loadDotenv({ path: docsEnvPath, override: true })
+}
+
+const docsEnvLocalPath = path.resolve(import.meta.dirname, '.env.local')
+if (existsSync(docsEnvLocalPath)) {
+  loadDotenv({ path: docsEnvLocalPath, override: true })
+}
+
+function normalizeBasePath(input?: string | null): string {
+  if (!input || !input.trim()) {
+    return '/'
+  }
+  let base = input.trim()
+  if (!base.startsWith('/')) {
+    base = `/${base}`
+  }
+  if (!base.endsWith('/')) {
+    base = `${base}/`
+  }
+  return base === '//' ? '/' : base
+}
 
 const defaultTheme = 'github-light'
 const preferredLanguages = [
@@ -22,6 +50,7 @@ const preferredLanguages = [
 ] as const
 
 export default defineConfig(async () => {
+  const docsBasePath = normalizeBasePath(process.env.VITE_DOCS_BASE)
   const themeRegistration = bundledThemes[defaultTheme]
   if (!themeRegistration) {
     throw new Error(`Shiki theme "${defaultTheme}" is not available in bundled themes.`)
@@ -39,6 +68,7 @@ export default defineConfig(async () => {
   const loadedLanguages = new Set(highlighter.getLoadedLanguages())
 
   return {
+    base: docsBasePath,
     resolve: {
       alias: {
         'element-ui': path.resolve(import.meta.dirname, '../../packages/ui'),

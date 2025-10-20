@@ -15,6 +15,7 @@ import title from './i18n/title.json'
 import icon from './icon.json'
 
 import routes from './route.config'
+import runtimeConfig from './runtime-config'
 import '../../packages/theme-chalk/src/index.scss'
 import './demo-styles/index.scss'
 import './assets/styles/common.css'
@@ -56,7 +57,7 @@ Vue.prototype.$icon = icon // Icon 列表页用
 
 const router = new VueRouter({
   mode: 'history',
-  // base: __dirname,
+  base: runtimeConfig.base,
   routes,
 })
 

@@ -55,6 +55,7 @@
     "cp-cli": "^2.0.0",
     "cross-env": "^10.1.0",
     "defu": "^6.1.4",
+    "dotenv": "^17.2.3",
     "es-toolkit": "^1.40.0",
     "es6-promise": "^4.0.5",
     "eslint": "^9.38.0",

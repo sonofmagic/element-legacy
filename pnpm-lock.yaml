@@ -89,6 +89,9 @@ importers:
       defu:
         specifier: ^6.1.4
         version: 6.1.4
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
       es-toolkit:
         specifier: ^1.40.0
         version: 1.40.0

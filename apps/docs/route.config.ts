@@ -4,6 +4,7 @@ import type { RouteConfig } from 'vue-router'
 import langs from './i18n/route.json'
 import navConfigJson from './nav.config.json'
 import Play from './play/index.vue'
+import runtimeConfig from './runtime-config'
 
 type Language = keyof typeof navConfigJson
 type AsyncComponentLoader = () => Promise<unknown>
@@ -186,20 +187,53 @@ route.push({
   component: Play,
 })
 
-const userLanguage = localStorage.getItem('ELEMENT_LANGUAGE') || window.navigator.language || 'zh-CN'
-let defaultPath = '/zh-CN'
-if (userLanguage.includes('en')) {
-  defaultPath = '/en-US'
+const supportedLanguages = new Set(Object.keys(navConfig)) as Set<Language>
+
+function resolveLanguage(input?: string | null): Language | undefined {
+  if (!input) {
+    return undefined
+  }
+  const trimmed = input.trim()
+  if (!trimmed) {
+    return undefined
+  }
+
+  if (supportedLanguages.has(trimmed as Language)) {
+    return trimmed as Language
+  }
+
+  const normalized = trimmed.toLowerCase()
+  if (normalized.includes('en')) {
+    return 'en-US'
+  }
+  if (normalized.includes('es')) {
+    return 'es'
+  }
+  if (normalized.includes('fr')) {
+    return 'fr-FR'
+  }
+  if (normalized.includes('zh')) {
+    return 'zh-CN'
+  }
+  return undefined
 }
-else if (userLanguage.includes('es')) {
-  defaultPath = '/es'
+
+const languageCandidates: Array<string | null | undefined> = [
+  localStorage.getItem('ELEMENT_LANGUAGE'),
+  runtimeConfig.defaultLanguage,
+  window.navigator.language,
+]
+
+let defaultLanguage: Language = 'zh-CN'
+for (const candidate of languageCandidates) {
+  const resolved = resolveLanguage(candidate)
+  if (resolved) {
+    defaultLanguage = resolved
+    break
+  }
 }
-else if (userLanguage.includes('fr')) {
-  defaultPath = '/fr-FR'
-}
-else if (userLanguage.includes('zh-')) {
-  defaultPath = '/zh-CN'
-}
+
+const defaultPath = `/${defaultLanguage}`
 
 route = route.concat([
   {

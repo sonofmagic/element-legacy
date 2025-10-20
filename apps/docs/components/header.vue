@@ -5,6 +5,7 @@ import bus from '../bus'
 import compoLang from '../i18n/component.json'
 import { ACTION_USER_CONFIG_UPDATE } from './theme/constant'
 import themeLoader from './theme/loader/index.vue'
+import runtimeConfig from '../runtime-config'
 
 const { version } = Element
 
@@ -29,10 +30,19 @@ export default {
 
   computed: {
     lang() {
-      return this.$route.path.split('/')[1] || 'zh-CN'
+      return this.$route.path.split('/')[1] || runtimeConfig.defaultLanguage || 'zh-CN'
     },
     displayedLang() {
       return this.langs[this.lang] || '中文'
+    },
+    logo() {
+      return runtimeConfig.logo
+    },
+    basePath() {
+      if (runtimeConfig.base === '/') {
+        return ''
+      }
+      return runtimeConfig.base.replace(/\/$/, '')
     },
     langConfig() {
       return compoLang.filter(config => config.lang === this.lang)[0].header
@@ -66,7 +76,7 @@ export default {
         }, {})
       }
     }
-    xhr.open('GET', '/versions.json')
+    xhr.open('GET', `${this.basePath}/versions.json`)
     xhr.send()
     let primaryLast = '#409EFF'
     bus.$on(ACTION_USER_CONFIG_UPDATE, (val) => {
@@ -87,7 +97,9 @@ export default {
       if (version === this.version) {
         return
       }
-      location.href = `${location.origin}/${this.versions[version]}/${location.hash} `
+      const trimmedBase = this.basePath
+      const prefix = trimmedBase ? `${location.origin}${trimmedBase}` : location.origin
+      location.href = `${prefix}/${this.versions[version]}/${location.hash} `
     },
 
     switchLang(targetLang) {
@@ -118,8 +130,8 @@ export default {
             <router-link :to="`/${lang}`">
               <!-- logo -->
               <slot>
-                <img src="../assets/images/element-logo.svg" alt="element-logo" class="nav-logo">
-                <img src="../assets/images/element-logo-small.svg" alt="element-logo" class="nav-logo-small">
+                <img :src="logo.normal" alt="element-logo" class="nav-logo">
+                <img :src="logo.small" alt="element-logo" class="nav-logo-small">
               </slot>
             </router-link>
           </h1>
