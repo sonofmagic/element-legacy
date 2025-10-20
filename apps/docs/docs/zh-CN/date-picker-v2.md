@@ -240,6 +240,69 @@
 
 :::
 
+### 文本溢出提示
+
+当日期展示内容超出输入框宽度时，悬停即可看到完整内容。
+
+:::demo 通过设置较长的显示格式并限制输入框宽度，演示当文本溢出时自动出现的 Tooltip。
+
+```html
+<template>
+  <div class="demo-date-picker-tooltip">
+    <p class="demonstration">单个日期：{{ tooltipSingle }}</p>
+    <el-date-picker-v2
+      v-model="tooltipSingle"
+      type="datetime"
+      format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      placeholder="选择日期和时间"
+    />
+    <p class="demonstration">日期范围：{{ tooltipRangeDisplay }}</p>
+    <el-date-picker-v2
+      v-model="tooltipRange"
+      type="datetimerange"
+      format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        tooltipSingle: '2023-09-01 08:30:00',
+        tooltipRange: ['2023-09-01 08:30:00', '2023-09-12 21:45:00'],
+      }
+    },
+    computed: {
+      tooltipRangeDisplay() {
+        if (!Array.isArray(this.tooltipRange)) {
+          return ''
+        }
+        const [start, end] = this.tooltipRange
+        return `${start || ''} 至 ${end || ''}`
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-tooltip .el-date-editor-v2 {
+    width: 160px;
+  }
+
+  .demo-date-picker-tooltip .el-range-editor-v2 {
+    width: 320px;
+  }
+</style>
+```
+
+:::
+
 ### 选择多个日期
 
 :::demo 设置 `type="dates"` 可以一次选择多个日期。

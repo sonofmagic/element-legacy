@@ -1,10 +1,12 @@
 <script lang="ts">
 // @ts-nocheck
 import ElInput from 'element-ui/packages/input'
+import ElTooltip from 'element-ui/packages/tooltip'
 import Emitter from 'element-ui/src/mixins/emitter'
 import Clickoutside from 'element-ui/src/utils/clickoutside'
 import { isDateObject } from 'element-ui/src/utils/date-util'
 import merge from 'element-ui/src/utils/merge'
+import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event'
 import Popper from 'element-ui/src/utils/vue-popper'
 import Vue from 'vue'
 import {
@@ -55,7 +57,7 @@ const PLACEMENT_MAP = {
 
 export default {
 
-  components: { ElInput },
+  components: { ElInput, ElTooltip },
 
   directives: { Clickoutside },
   mixins: [Emitter, NewPopper],
@@ -126,6 +128,9 @@ export default {
       valueOnOpen: null, // value when picker opens, used to determine whether to emit change
       unwatchPickerOptions: null,
       hoverPlaceholder: '',
+      singleInputOverflow: false,
+      rangeInputOverflow: [false, false],
+      referenceEl: null,
     }
   },
 
@@ -226,6 +231,13 @@ export default {
       else {
         return ''
       }
+    },
+
+    rangeDisplayValues() {
+      if (Array.isArray(this.displayValue)) {
+        return this.displayValue
+      }
+      return [this.displayValue, this.displayValue]
     },
 
     parsedValue() {
@@ -329,6 +341,15 @@ export default {
         this.dispatch('ElFormItem', 'el.form.change', val)
       }
     },
+    displayValue() {
+      this.updateOverflowStatus()
+    },
+    ranged() {
+      this.$nextTick(() => {
+        this.attachReferenceResize()
+        this.updateOverflowStatus()
+      })
+    },
   },
 
   created() {
@@ -342,7 +363,69 @@ export default {
     this.$on('fieldReset', this.handleFieldReset)
   },
 
+  mounted() {
+    this.attachReferenceResize()
+    this.updateOverflowStatus()
+  },
+
+  beforeDestroy() {
+    this.detachReferenceResize()
+  },
+
   methods: {
+    attachReferenceResize() {
+      if (this.$isServer) {
+        return
+      }
+      this.$nextTick(() => {
+        const reference = this.reference
+        if (!reference) {
+          return
+        }
+        if (this.referenceEl === reference) {
+          return
+        }
+        this.detachReferenceResize()
+        this.referenceEl = reference
+        addResizeListener(this.referenceEl, this.updateOverflowStatus)
+      })
+    },
+
+    detachReferenceResize() {
+      if (this.referenceEl) {
+        removeResizeListener(this.referenceEl, this.updateOverflowStatus)
+        this.referenceEl = null
+      }
+    },
+
+    updateOverflowStatus() {
+      if (this.$isServer) {
+        return
+      }
+      this.$nextTick(() => {
+        const inputs = this.refInput
+        if (this.ranged) {
+          const first = inputs[0] || null
+          const second = inputs[1] || null
+          this.rangeInputOverflow = [
+            this.isInputOverflow(first),
+            this.isInputOverflow(second),
+          ]
+        }
+        else {
+          const input = inputs[0] || null
+          this.singleInputOverflow = this.isInputOverflow(input)
+        }
+      })
+    },
+
+    isInputOverflow(input) {
+      if (!input) {
+        return false
+      }
+      return input.scrollWidth > input.clientWidth
+    },
+
     focus() {
       if (!this.ranged) {
         this.$refs.reference.focus()
@@ -389,6 +472,7 @@ export default {
     },
 
     handleMouseEnter() {
+      this.updateOverflowStatus()
       if (this.readonly || this.pickerDisabled) {
         return
       }
@@ -749,35 +833,42 @@ export default {
 </script>
 
 <template>
-  <ElInput
+  <ElTooltip
     v-if="!ranged"
-    v-bind="firstInputId"
-    ref="reference"
-    v-clickoutside="handleClose"
-    class="el-date-editor-v2"
-    :class="`el-date-editor-v2--${type}`"
-    :readonly="!editable || readonly || type === 'dates' || type === 'week' || type === 'years' || type === 'months'"
-    :disabled="pickerDisabled"
-    :size="pickerSize"
-    :name="name"
-    :placeholder="displayedPlaceholder"
-    :value="displayValue"
-    :validateEvent="false"
-    @focus="handleFocus"
-    @keydown.native="handleKeydown"
-    @input="value => userInput = value"
-    @change="handleChange"
-    @mouseenter.native="handleMouseEnter"
-    @mouseleave.native="showClose = false"
+    effect="dark"
+    placement="top"
+    :disabled="!singleInputOverflow || !displayValue"
+    :content="displayValue"
   >
-    <i
-      v-if="haveTrigger"
-      slot="suffix"
-      class="el-input__icon"
-      :class="[showClose ? `${clearIcon}` : '']"
-      @click="handleClickIcon"
-    />
-  </ElInput>
+    <ElInput
+      v-bind="firstInputId"
+      ref="reference"
+      v-clickoutside="handleClose"
+      class="el-date-editor-v2"
+      :class="`el-date-editor-v2--${type}`"
+      :readonly="!editable || readonly || type === 'dates' || type === 'week' || type === 'years' || type === 'months'"
+      :disabled="pickerDisabled"
+      :size="pickerSize"
+      :name="name"
+      :placeholder="displayedPlaceholder"
+      :value="displayValue"
+      :validateEvent="false"
+      @focus="handleFocus"
+      @keydown.native="handleKeydown"
+      @input="value => userInput = value"
+      @change="handleChange"
+      @mouseenter.native="handleMouseEnter"
+      @mouseleave.native="showClose = false"
+    >
+      <i
+        v-if="haveTrigger"
+        slot="suffix"
+        class="el-input__icon"
+        :class="[showClose ? `${clearIcon}` : '']"
+        @click="handleClickIcon"
+      />
+    </ElInput>
+  </ElTooltip>
   <div
     v-else
     ref="reference"
@@ -794,35 +885,49 @@ export default {
     @mouseleave="showClose = false"
     @keydown="handleKeydown"
   >
-    <input
-      autocomplete="off"
-      :placeholder="startPlaceholder"
-      :value="displayValue && displayValue[0]"
-      :disabled="pickerDisabled"
-      v-bind="firstInputId"
-      :readonly="!editable || readonly"
-      :name="name && name[0]"
-      class="el-range-input-v2"
-      @input="handleStartInput"
-      @change="handleStartChange"
-      @focus="handleFocus"
+    <ElTooltip
+      effect="dark"
+      placement="top"
+      :disabled="!rangeInputOverflow[0] || !rangeDisplayValues[0]"
+      :content="rangeDisplayValues[0]"
     >
+      <input
+        autocomplete="off"
+        :placeholder="startPlaceholder"
+        :value="rangeDisplayValues[0]"
+        :disabled="pickerDisabled"
+        v-bind="firstInputId"
+        :readonly="!editable || readonly"
+        :name="name && name[0]"
+        class="el-range-input-v2"
+        @input="handleStartInput"
+        @change="handleStartChange"
+        @focus="handleFocus"
+      >
+    </ElTooltip>
     <slot name="range-separator">
       <span class="el-range-separator-v2">{{ rangeSeparator }}</span>
     </slot>
-    <input
-      autocomplete="off"
-      :placeholder="endPlaceholder"
-      :value="displayValue && displayValue[1]"
-      :disabled="pickerDisabled"
-      v-bind="secondInputId"
-      :readonly="!editable || readonly"
-      :name="name && name[1]"
-      class="el-range-input-v2"
-      @input="handleEndInput"
-      @change="handleEndChange"
-      @focus="handleFocus"
+    <ElTooltip
+      effect="dark"
+      placement="top"
+      :disabled="!rangeInputOverflow[1] || !rangeDisplayValues[1]"
+      :content="rangeDisplayValues[1]"
     >
+      <input
+        autocomplete="off"
+        :placeholder="endPlaceholder"
+        :value="rangeDisplayValues[1]"
+        :disabled="pickerDisabled"
+        v-bind="secondInputId"
+        :readonly="!editable || readonly"
+        :name="name && name[1]"
+        class="el-range-input-v2"
+        @input="handleEndInput"
+        @change="handleEndChange"
+        @focus="handleFocus"
+      >
+    </ElTooltip>
     <i
       v-if="haveTrigger"
       :class="[showClose ? `${clearIcon}` : '']"

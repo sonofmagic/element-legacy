@@ -238,6 +238,69 @@ The basic day picker.
 
 :::
 
+### Overflow Tooltip
+
+Hover to reveal the full value whenever it exceeds the visible width.
+
+:::demo Restrict the input width and use a long display format to demonstrate the automatic tooltip on overflow.
+
+```html
+<template>
+  <div class="demo-date-picker-tooltip">
+    <p class="demonstration">Single: {{ tooltipSingle }}</p>
+    <el-date-picker-v2
+      v-model="tooltipSingle"
+      type="datetime"
+      format="yyyy-MM-dd HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      placeholder="Pick date & time"
+    />
+    <p class="demonstration">Range: {{ tooltipRangeDisplay }}</p>
+    <el-date-picker-v2
+      v-model="tooltipRange"
+      type="datetimerange"
+      format="yyyy-MM-dd HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      range-separator="to"
+      start-placeholder="Start time"
+      end-placeholder="End time"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        tooltipSingle: '2023-09-01 08:30:00',
+        tooltipRange: ['2023-09-01 08:30:00', '2023-09-12 21:45:00'],
+      }
+    },
+    computed: {
+      tooltipRangeDisplay() {
+        if (!Array.isArray(this.tooltipRange)) {
+          return ''
+        }
+        const [start, end] = this.tooltipRange
+        return `${start || ''} to ${end || ''}`
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-tooltip .el-date-editor-v2 {
+    width: 160px;
+  }
+
+  .demo-date-picker-tooltip .el-range-editor-v2 {
+    width: 320px;
+  }
+</style>
+```
+
+:::
+
 ### Multiple Dates
 
 :::demo Set `type="dates"` to allow users to pick multiple dates at once.
