@@ -46,9 +46,7 @@
     "i18n": "element-legacy-build i18n",
     "lint": "",
     "test": "vitest run",
-    "test:dev": "vitest",
-    "_release": "pnpm publish --no-git-checks",
-    "_release:alpha": "pnpm publish --tag alpha --no-git-checks"
+    "test:dev": "vitest"
   },
   "peerDependencies": {
     "vue": "^2.5.17"

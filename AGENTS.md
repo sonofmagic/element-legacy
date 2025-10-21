@@ -19,3 +19,7 @@ Vitest drives unit tests with a jsdom environment; specs live beside fixtures un
 ## Commit & Pull Request Guidelines
 
 Commitlint (`commitlint.config.ts`) enforces Conventional Commits (`type(scope): subject`). Scope should match the affected package (e.g., `feat(button): add loading size`). Use present-tense subjects and limit to 72 characters. Pull requests need a clear summary, reproduction steps when fixing bugs, and links to issues or discussions. Include screenshots or GIFs for visual changes and note any documentation updates under `apps/docs/docs`. Ensure CI passes before requesting review.
+
+## Release Workflow
+
+All versioning and publishing now flow through Changesets. Use `pnpm release` to author a changeset and describe the impact for each affected package, then commit the generated file alongside your changes. Inspect pending releases at any time with `pnpm release:plan`. Once the release PR merges, the `pnpm publish-packages` script (run locally or by CI) builds the workspace, applies version bumps via `pnpm run version-packages`, and publishes to npm using `changeset publish`. Avoid invoking `pnpm publish` from individual packages—`changesets` keeps `element-legacy` and `@element-legacy/theme-chalk` in sync automatically.
