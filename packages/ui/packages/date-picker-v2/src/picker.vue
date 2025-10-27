@@ -125,6 +125,7 @@ export default {
       pickerVisible: false,
       showClose: false,
       userInput: null,
+      invalidUserInput: false,
       valueOnOpen: null, // value when picker opens, used to determine whether to emit change
       unwatchPickerOptions: null,
       hoverPlaceholder: '',
@@ -373,6 +374,117 @@ export default {
   },
 
   methods: {
+    normalizeUserInput(value) {
+      if (value === undefined || value === null) {
+        return { value, valid: true }
+      }
+
+      if (Array.isArray(value)) {
+        const baseType = this.mapInputType(this.type)
+        const normalized = []
+        let valid = true
+        value.forEach((item) => {
+          const result = this.normalizeSingleInput(item, baseType)
+          normalized.push(result.value)
+          if (!result.valid) {
+            valid = false
+          }
+        })
+        return { value: normalized, valid }
+      }
+
+      const type = this.mapInputType(this.type.replace('range', ''))
+      return this.normalizeSingleInput(value, type)
+    },
+
+    normalizeSingleInput(value, type = '') {
+      if (value === undefined || value === null) {
+        return { value, valid: true }
+      }
+
+      if (isDateObject(value)) {
+        return { value, valid: true }
+      }
+
+      if (typeof value !== 'string') {
+        return { value, valid: true }
+      }
+
+      const trimmed = value.trim()
+      if (trimmed === '') {
+        return { value: trimmed, valid: true }
+      }
+
+      const lowerType = type ? type.toLowerCase() : ''
+      const expectsTime = lowerType.includes('time')
+      const expectsDate = ['date', 'datetime', 'month', 'months', 'year', 'years', 'week'].includes(lowerType)
+
+      const invalidCharPattern = expectsDate
+        ? expectsTime ? /[^0-9Tt\s:./-]/ : /[^0-9\s./-]/
+        : expectsTime ? /[^0-9\s:]/ : /[^0-9\s]/
+
+      if (invalidCharPattern.test(trimmed)) {
+        return { value: trimmed, valid: false }
+      }
+
+      if (expectsTime) {
+        const timePart = this.extractTimeSegment(trimmed, expectsDate)
+        if (timePart && /[^0-9:]/.test(timePart)) {
+          return { value: trimmed, valid: false }
+        }
+      }
+
+      let normalized = trimmed
+
+      if (expectsDate) {
+        normalized = normalized.replace(/[/.]/g, '-')
+      }
+
+      return { value: normalized, valid: true }
+    },
+
+    extractTimeSegment(value, hasDate) {
+      if (!value) {
+        return ''
+      }
+      if (!hasDate) {
+        return value
+      }
+      const match = value.match(/[Tt\s]+(.+)$/)
+      return match ? match[1] : ''
+    },
+
+    mapInputType(type = '') {
+      if (!type) {
+        return ''
+      }
+      if (type.endsWith('range')) {
+        return type.replace('range', '')
+      }
+      if (type === 'dates' || type === 'months' || type === 'years') {
+        return type.slice(0, -1)
+      }
+      return type
+    },
+
+    handleInvalidUserInput() {
+      this.revertUserInputToValue()
+      this.invalidUserInput = false
+    },
+
+    revertUserInputToValue() {
+      const formatted = this.formatToString(this.parsedValue)
+      if (Array.isArray(formatted)) {
+        this.userInput = formatted.slice()
+      }
+      else if (formatted !== null && formatted !== undefined) {
+        this.userInput = formatted
+      }
+      else {
+        this.userInput = null
+      }
+    },
+
     attachReferenceResize() {
       if (this.$isServer) {
         return
@@ -462,8 +574,15 @@ export default {
 
     // {parse, formatTo} String deals with user input
     parseString(value) {
+      this.invalidUserInput = false
+      const normalizeResult = this.normalizeUserInput(value)
+      if (!normalizeResult.valid) {
+        this.invalidUserInput = true
+        return null
+      }
+      const normalizedValue = normalizeResult.value
       const type = Array.isArray(value) ? this.type : this.type.replace('range', '')
-      return parseAsFormatAndType(value, this.format, type)
+      return parseAsFormatAndType(normalizedValue, this.format, type, this.rangeSeparator)
     },
 
     formatToString(value) {
@@ -490,6 +609,9 @@ export default {
             this.emitInput(value)
             this.userInput = null
           }
+        }
+        else if (this.invalidUserInput) {
+          this.handleInvalidUserInput()
         }
       }
       if (this.userInput === '') {
@@ -528,6 +650,9 @@ export default {
           this.userInput = null
         }
       }
+      else if (this.invalidUserInput) {
+        this.handleInvalidUserInput()
+      }
     },
 
     handleEndChange() {
@@ -540,6 +665,9 @@ export default {
           this.emitInput(newValue)
           this.userInput = null
         }
+      }
+      else if (this.invalidUserInput) {
+        this.handleInvalidUserInput()
       }
     },
 

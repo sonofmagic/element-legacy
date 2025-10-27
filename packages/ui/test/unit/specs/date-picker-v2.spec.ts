@@ -2,6 +2,7 @@
 import Vue from 'vue/dist/vue.js'
 import sinon from 'sinon'
 import DateRangeSplit from 'packages/date-picker-v2/src/picker/date-range-split.vue'
+import BaseDatePicker from 'packages/date-picker-v2/src/picker/base-date-picker'
 
 describe('DatePickerV2 range shortcuts', () => {
   function createInstance(propsData) {
@@ -265,6 +266,86 @@ describe('DatePickerV2 range shortcuts', () => {
     vm.startValue = null
     vm.handleStartChange()
     expect(focusStub.called).to.be.false
+
+    vm.$destroy()
+  })
+})
+
+describe('DatePickerV2 manual input normalization', () => {
+  function createBasePicker(propsData) {
+    const Constructor = Vue.extend(BaseDatePicker)
+    const vm = new Constructor({
+      propsData: {
+        format: 'yyyy-MM-dd',
+        ...propsData,
+      },
+    })
+    vm.$mount()
+    return vm
+  }
+
+  it('normalizes supported date separators into dashes', () => {
+    const vm = createBasePicker({ type: 'date' })
+
+    const parsedSlash = vm.parseString('2024/01/02')
+    expect(vm.invalidUserInput).to.be.false
+    expect(parsedSlash).to.be.instanceof(Date)
+    expect(vm.formatToString(parsedSlash)).to.equal('2024-01-02')
+
+    const parsedDot = vm.parseString('2024.03.04')
+    expect(vm.invalidUserInput).to.be.false
+    expect(parsedDot).to.be.instanceof(Date)
+    expect(vm.formatToString(parsedDot)).to.equal('2024-03-04')
+
+    vm.$destroy()
+  })
+
+  it('reverts to previous value when date separator is unsupported', async () => {
+    const vm = createBasePicker({ type: 'date' })
+    const current = new Date(2024, 0, 15)
+    vm.value = current
+    await vm.$nextTick()
+
+    const emitSpy = sinon.spy()
+    vm.$on('input', emitSpy)
+
+    vm.userInput = '2024|02|01'
+    vm.handleChange()
+
+    expect(emitSpy.called).to.be.false
+    expect(vm.invalidUserInput).to.be.false
+    expect(vm.userInput).to.equal(vm.formatToString(current))
+
+    vm.$destroy()
+  })
+
+  it('clears the field when unsupported date separator and no selection', () => {
+    const vm = createBasePicker({ type: 'date' })
+
+    vm.userInput = '2024|02|01'
+    vm.handleChange()
+
+    expect(vm.userInput).to.equal(null)
+    expect(vm.invalidUserInput).to.be.false
+
+    vm.$destroy()
+  })
+
+  it('reverts unsupported time separators back to the last value', async () => {
+    const vm = createBasePicker({ type: 'time', format: 'HH:mm:ss' })
+    const current = new Date(2024, 0, 1, 12, 30, 0)
+    vm.value = current
+    await vm.$nextTick()
+
+    const emitSpy = sinon.spy()
+    vm.$on('input', emitSpy)
+
+    vm.userInput = '12-30-00'
+    vm.handleChange()
+
+    expect(emitSpy.called).to.be.false
+    expect(vm.invalidUserInput).to.be.false
+    expect(vm.userInput).to.equal(vm.formatToString(current))
 
     vm.$destroy()
   })
