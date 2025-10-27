@@ -21,6 +21,7 @@
   &.el-input__inner {
     height: 36px;
     line-height: 36px;
+    color: var.$color-text-primary;
   }
 
   &.el-input,
@@ -56,6 +57,10 @@
     }
   }
 
+  .el-input__inner {
+    color: var.$color-text-primary;
+  }
+
   .el-icon-circle-close {
     cursor: pointer;
   }
@@ -68,7 +73,7 @@
     margin: 0;
     font-size: var.$font-size-base;
     line-height: 36px;
-    color: var.$color-text-regular;
+    color: var.$color-text-primary;
     text-align: center;
     appearance: none;
     outline: none;

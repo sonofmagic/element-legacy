@@ -8,6 +8,8 @@
   .el-picker-panel__content {
     width: 274px;
     margin: 0;
+    font-size: var.$font-size-base;
+    color: var.$color-text-primary;
   }
 
   table {
@@ -70,6 +72,14 @@
     > * + * {
       margin-left: 8px;
     }
+
+    .el-input .el-input__inner {
+      border-radius: var.$input-border-radius;
+    }
+
+    .el-input--small .el-input__inner {
+      font-size: var.$font-size-base;
+    }
   }
 
   @include mixins.e(month-select) {
@@ -90,7 +100,7 @@
   @include mixins.e(today-btn) {
     padding: 0;
     font-size: var.$font-size-base;
-    color: var.$color-text-secondary;
+    color: var.$color-text-regular;
     cursor: pointer;
     outline: none;
     background: transparent;
@@ -206,6 +216,11 @@
     width: 558px;
     min-width: 558px;
   }
+}
+
+.el-date-picker-v2__select-dropdown {
+  font-size: var.$font-size-base;
+  border-radius: var.$border-radius-base;
 }
 
 .el-date-picker-v2__select-dropdown .el-select-dropdown__wrap {

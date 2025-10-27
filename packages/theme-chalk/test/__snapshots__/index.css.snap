@@ -6056,7 +6056,7 @@
 }
 .el-month-table-v2 {
   margin: -1px;
-  font-size: 12px;
+  font-size: 14px;
   border-collapse: collapse;
 }
 .el-month-table-v2 td {
@@ -6124,7 +6124,7 @@
 }
 .el-year-table-v2 {
   margin: -1px;
-  font-size: 12px;
+  font-size: 14px;
   border-collapse: collapse;
 }
 .el-year-table-v2 .el-icon {
@@ -6345,6 +6345,7 @@
 .el-date-editor-v2.el-input__inner {
   height: 36px;
   line-height: 36px;
+  color: #303133;
 }
 .el-date-editor-v2.el-input,
 .el-date-editor-v2.el-input__inner {
@@ -6368,6 +6369,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.el-date-editor-v2 .el-input__inner {
+  color: #303133;
+}
 .el-date-editor-v2 .el-icon-circle-close {
   cursor: pointer;
 }
@@ -6379,7 +6383,7 @@
   margin: 0;
   font-size: 14px;
   line-height: 36px;
-  color: #606266;
+  color: #303133;
   text-align: center;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -6611,6 +6615,8 @@
 .el-date-picker-v2 .el-picker-panel__content {
   width: 274px;
   margin: 0;
+  font-size: 14px;
+  color: #303133;
 }
 .el-date-picker-v2 table {
   width: 100%;
@@ -6670,6 +6676,12 @@
 .el-date-picker-v2__header-controls > * + * {
   margin-left: 8px;
 }
+.el-date-picker-v2__header-controls .el-input .el-input__inner {
+  border-radius: 4px;
+}
+.el-date-picker-v2__header-controls .el-input--small .el-input__inner {
+  font-size: 14px;
+}
 .el-date-picker-v2__month-select,
 .el-date-picker-v2__year-select {
   min-width: 88px;
@@ -6678,7 +6690,7 @@
 .el-date-picker-v2__today-btn {
   padding: 0;
   font-size: 14px;
-  color: #909399;
+  color: #606266;
   cursor: pointer;
   outline: none;
   background: transparent;
@@ -6818,6 +6830,10 @@
 .el-date-picker-v2.has-sidebar.has-time {
   width: 558px;
   min-width: 558px;
+}
+.el-date-picker-v2__select-dropdown {
+  font-size: 14px;
+  border-radius: 4px;
 }
 .el-date-picker-v2__select-dropdown .el-select-dropdown__wrap {
   max-height: 180px;

@@ -3,7 +3,7 @@
 
 @include mixins.b(year-table-v2) {
   margin: -1px;
-  font-size: 12px;
+  font-size: var.$font-size-base;
   border-collapse: collapse;
 
   .el-icon {
