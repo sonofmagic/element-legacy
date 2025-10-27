@@ -207,6 +207,23 @@ describe('DatePickerV2 range shortcuts', () => {
     vm.$destroy()
   })
 
+  it('falls back to end value month when start is empty', async () => {
+    const vm = createInstance({
+      type: 'datetimerange',
+      valueFormat: 'yyyy-MM-dd HH:mm:ss',
+      value: [null, '2023-09-01 00:45:00'],
+    })
+
+    await vm.$nextTick()
+
+    const startProps = vm.buildPickerProps('start')
+    expect(startProps.defaultValue).to.be.instanceof(Date)
+    expect(startProps.defaultValue.getFullYear()).to.equal(2023)
+    expect(startProps.defaultValue.getMonth()).to.equal(8)
+
+    vm.$destroy()
+  })
+
   it('supports yearrange shortcuts', () => {
     const startYear = new Date(2018, 0, 1)
     const endYear = new Date(2024, 0, 1)
@@ -377,6 +394,52 @@ describe('DatePickerV2 date range panel helpers', () => {
     await vm.$nextTick()
 
     expect(vm.isEndTimeReadonly).to.be.false
+
+    vm.$destroy()
+  })
+
+  it('keeps end-side context when only end value exists', async () => {
+    const Constructor = Vue.extend(DateRangePanel)
+    const vm = new Constructor()
+    vm.$mount()
+
+    const end = new Date(2023, 8, 1, 0, 45, 0)
+    vm.value = [null, end]
+
+    await vm.$nextTick()
+
+    expect(vm.maxDate).to.be.instanceof(Date)
+    expect(vm.maxDate.getTime()).to.equal(end.getTime())
+
+    expect(vm.leftDate.getFullYear()).to.equal(2023)
+    expect(vm.leftDate.getMonth()).to.equal(8)
+
+    expect(vm.rightDate.getFullYear()).to.equal(2023)
+    expect(vm.rightDate.getMonth()).to.equal(9)
+
+    vm.resetView()
+    expect(vm.maxDate).to.be.instanceof(Date)
+    expect(vm.maxDate.getTime()).to.equal(end.getTime())
+
+    vm.$destroy()
+  })
+
+  it('parses value-format strings for partial ranges', async () => {
+    const Constructor = Vue.extend(DateRangePanel)
+    const vm = new Constructor()
+    vm.$mount()
+
+    vm.format = 'yyyy-MM-dd HH:mm:ss'
+
+    vm.value = [null, '2023-09-01 00:45:00']
+
+    await vm.$nextTick()
+
+    expect(vm.maxDate).to.be.instanceof(Date)
+    expect(vm.leftDate.getFullYear()).to.equal(2023)
+    expect(vm.leftDate.getMonth()).to.equal(8)
+    expect(vm.rightDate.getFullYear()).to.equal(2023)
+    expect(vm.rightDate.getMonth()).to.equal(9)
 
     vm.$destroy()
   })

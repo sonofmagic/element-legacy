@@ -256,26 +256,8 @@ export default {
       else if (Array.isArray(newVal)) {
         this.minDate = isDate(newVal[0]) ? new Date(newVal[0]) : null
         this.maxDate = isDate(newVal[1]) ? new Date(newVal[1]) : null
-        if (this.minDate) {
-          this.leftDate = this.minDate
-          if (this.unlinkPanels && this.maxDate) {
-            const minDateYear = this.minDate.getFullYear()
-            const minDateMonth = this.minDate.getMonth()
-            const maxDateYear = this.maxDate.getFullYear()
-            const maxDateMonth = this.maxDate.getMonth()
-            this.rightDate = minDateYear === maxDateYear && minDateMonth === maxDateMonth
-              ? nextMonth(this.maxDate)
-              : this.maxDate
-          }
-          else {
-            this.rightDate = nextMonth(this.leftDate)
-          }
-        }
-        else {
-          this.leftDate = calcDefaultValue(this.defaultValue)[0]
-          this.rightDate = nextMonth(this.leftDate)
-        }
       }
+      this.syncVisiblePanels()
       this.$nextTick(() => {
         this.updateTimePickerSelectableRange()
       })
@@ -473,6 +455,38 @@ export default {
       this.maxTimePickerVisible = false
     },
 
+    syncVisiblePanels() {
+      if (this.minDate) {
+        this.leftDate = this.minDate
+        if (this.unlinkPanels && this.maxDate) {
+          const minDateYear = this.minDate.getFullYear()
+          const minDateMonth = this.minDate.getMonth()
+          const maxDateYear = this.maxDate.getFullYear()
+          const maxDateMonth = this.maxDate.getMonth()
+          this.rightDate = minDateYear === maxDateYear && minDateMonth === maxDateMonth
+            ? nextMonth(this.maxDate)
+            : this.maxDate
+        }
+        else {
+          this.rightDate = nextMonth(this.leftDate)
+        }
+      }
+      else if (this.maxDate) {
+        if (this.unlinkPanels) {
+          this.rightDate = this.maxDate
+          this.leftDate = prevMonth(this.rightDate)
+        }
+        else {
+          this.leftDate = new Date(this.maxDate)
+          this.rightDate = nextMonth(this.leftDate)
+        }
+      }
+      else {
+        this.leftDate = calcDefaultValue(this.defaultValue)[0]
+        this.rightDate = nextMonth(this.leftDate)
+      }
+    },
+
     // leftPrev*, rightNext* need to take care of `unlinkPanels`
     leftPrevYear() {
       this.leftDate = prevYear(this.leftDate)
@@ -599,7 +613,11 @@ export default {
         this.rangeState.selecting = false
       }
       this.minDate = this.value && isDate(this.value[0]) ? new Date(this.value[0]) : null
-      this.maxDate = this.value && isDate(this.value[0]) ? new Date(this.value[1]) : null
+      this.maxDate = this.value && isDate(this.value[1]) ? new Date(this.value[1]) : null
+      this.syncVisiblePanels()
+      this.$nextTick(() => {
+        this.updateTimePickerSelectableRange()
+      })
     },
   },
 }

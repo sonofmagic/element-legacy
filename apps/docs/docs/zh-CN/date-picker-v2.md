@@ -303,6 +303,73 @@
 
 :::
 
+### 仅填结束时间
+
+:::demo 当只设置了结束时间时，开始面板会自动定位到同一月份，便于确认或调整范围。
+
+```html
+<template>
+  <div class="demo-date-picker-partial">
+    <p class="demonstration">范围值：{{ partialRangeDisplay }}</p>
+    <el-date-picker-v2
+      v-model="partialRange"
+      type="datetimerange"
+      format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+    />
+    <div class="demo-date-picker-partial__actions">
+      <el-button size="mini" @click="clearStart">清空开始</el-button>
+      <el-button size="mini" @click="fillBoth">补全范围</el-button>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        partialRange: [null, '2023-09-01 00:45:00'],
+      }
+    },
+    computed: {
+      partialRangeDisplay() {
+        if (!Array.isArray(this.partialRange)) {
+          return ''
+        }
+        const [start, end] = this.partialRange
+        return `${start || '--'} 至 ${end || '--'}`
+      },
+    },
+    methods: {
+      clearStart() {
+        const [, end] = Array.isArray(this.partialRange) ? this.partialRange : []
+        this.partialRange = [null, end || '2023-09-01 00:45:00']
+      },
+      fillBoth() {
+        this.partialRange = ['2023-08-31 18:00:00', '2023-09-01 00:45:00']
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-partial .el-range-editor-v2 {
+    width: 320px;
+  }
+
+  .demo-date-picker-partial__actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+  }
+</style>
+```
+
+:::
+
 ### 选择多个日期
 
 :::demo 设置 `type="dates"` 可以一次选择多个日期。

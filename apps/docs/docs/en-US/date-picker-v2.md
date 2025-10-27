@@ -301,6 +301,73 @@ Hover to reveal the full value whenever it exceeds the visible width.
 
 :::
 
+### Partial Range Defaults
+
+:::demo When only the end value is filled, the start panel now opens around that same month so you can quickly confirm or adjust the range.
+
+```html
+<template>
+  <div class="demo-date-picker-partial">
+    <p class="demonstration">Value: {{ partialRangeDisplay }}</p>
+    <el-date-picker-v2
+      v-model="partialRange"
+      type="datetimerange"
+      format="yyyy-MM-dd HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      range-separator="to"
+      start-placeholder="Start time"
+      end-placeholder="End time"
+    />
+    <div class="demo-date-picker-partial__actions">
+      <el-button size="mini" @click="clearStart">Clear start</el-button>
+      <el-button size="mini" @click="fillBoth">Fill both</el-button>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        partialRange: [null, '2023-09-01 00:45:00'],
+      }
+    },
+    computed: {
+      partialRangeDisplay() {
+        if (!Array.isArray(this.partialRange)) {
+          return ''
+        }
+        const [start, end] = this.partialRange
+        return `${start || '--'} to ${end || '--'}`
+      },
+    },
+    methods: {
+      clearStart() {
+        const [, end] = Array.isArray(this.partialRange) ? this.partialRange : []
+        this.partialRange = [null, end || '2023-09-01 00:45:00']
+      },
+      fillBoth() {
+        this.partialRange = ['2023-08-31 18:00:00', '2023-09-01 00:45:00']
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-partial .el-range-editor-v2 {
+    width: 320px;
+  }
+
+  .demo-date-picker-partial__actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+  }
+</style>
+```
+
+:::
+
 ### Multiple Dates
 
 :::demo Set `type="dates"` to allow users to pick multiple dates at once.

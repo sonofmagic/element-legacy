@@ -369,6 +369,14 @@ export default {
 
     buildPickerProps(role: 'start' | 'end') {
       const isStart = role === 'start'
+      const comparisonDate = isStart
+        ? this.coerceValueToDate(this.endValue)
+        : this.coerceValueToDate(this.startValue)
+      let defaultValue = isStart ? this.startDefaultValue : this.endDefaultValue
+
+      if (!defaultValue && comparisonDate) {
+        defaultValue = comparisonDate
+      }
 
       return {
         type: this.singlePanelType,
@@ -387,7 +395,7 @@ export default {
         name: isStart ? this.startName : this.endName,
         id: isStart ? this.startId : this.endId,
         placeholder: isStart ? this.startPlaceholderText : this.endPlaceholderText,
-        defaultValue: isStart ? this.startDefaultValue : this.endDefaultValue,
+        defaultValue,
         defaultTime: isStart ? this.startDefaultTime : this.endDefaultTime,
         pickerOptions: isStart ? this.startPickerOptions : this.endPickerOptions,
         validateEvent: this.validateEvent,
