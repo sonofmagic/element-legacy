@@ -3,6 +3,7 @@ import Vue from 'vue/dist/vue.js'
 import sinon from 'sinon'
 import DateRangeSplit from 'packages/date-picker-v2/src/picker/date-range-split.vue'
 import BaseDatePicker from 'packages/date-picker-v2/src/picker/base-date-picker'
+import DateRangePanel from 'packages/date-picker-v2/src/panel/date-range.vue'
 
 describe('DatePickerV2 range shortcuts', () => {
   function createInstance(propsData) {
@@ -346,6 +347,36 @@ describe('DatePickerV2 manual input normalization', () => {
     expect(emitSpy.called).to.be.false
     expect(vm.invalidUserInput).to.be.false
     expect(vm.userInput).to.equal(vm.formatToString(current))
+
+    vm.$destroy()
+  })
+})
+
+describe('DatePickerV2 date range panel helpers', () => {
+  it('disables end time input when range is invalid', async () => {
+    const Constructor = Vue.extend(DateRangePanel)
+    const vm = new Constructor()
+    vm.$mount()
+
+    expect(vm.isEndTimeReadonly).to.be.true
+
+    vm.showTime = true
+    const min = new Date(2025, 9, 27, 1, 1, 1)
+    vm.minDate = new Date(min)
+    vm.maxDate = new Date(min)
+    await vm.$nextTick()
+
+    expect(vm.isEndTimeReadonly).to.be.false
+
+    vm.maxDate = new Date(2025, 9, 26, 23, 59, 59)
+    await vm.$nextTick()
+
+    expect(vm.isEndTimeReadonly).to.be.true
+
+    vm.maxDate = new Date(2025, 9, 27, 4, 0, 0)
+    await vm.$nextTick()
+
+    expect(vm.isEndTimeReadonly).to.be.false
 
     vm.$destroy()
   })

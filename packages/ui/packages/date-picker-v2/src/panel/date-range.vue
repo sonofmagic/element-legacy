@@ -183,6 +183,23 @@ export default {
     enableYearArrow() {
       return this.unlinkPanels && this.rightYear * 12 + this.rightMonth - (this.leftYear * 12 + this.leftMonth + 1) >= 12
     },
+    isEndTimeReadonly() {
+      if (!isDate(this.minDate)) {
+        return true
+      }
+      if (!isDate(this.maxDate)) {
+        return false
+      }
+      const min = this.minDate
+      const max = this.maxDate
+      const sameDay = min.getFullYear() === max.getFullYear()
+        && min.getMonth() === max.getMonth()
+        && min.getDate() === max.getDate()
+      if (sameDay) {
+        return false
+      }
+      return max.getTime() < min.getTime()
+    },
   },
 
   watch: {
@@ -272,6 +289,12 @@ export default {
         this.rightDate = val && val[1] && this.unlinkPanels
           ? right
           : nextMonth(this.leftDate)
+      }
+    },
+
+    isEndTimeReadonly(val) {
+      if (val) {
+        this.maxTimePickerVisible = false
       }
     },
   },
@@ -588,7 +611,10 @@ export default {
             </span>
             <span class="el-icon-arrow-right" />
             <span class="el-date-range-picker-v2__editors-wrap is-right">
-              <span class="el-date-range-picker-v2__time-picker-wrap">
+              <span
+                class="el-date-range-picker-v2__time-picker-wrap"
+                :class="{ 'is-disabled': isEndTimeReadonly }"
+              >
                 <ElInput
                   size="small"
                   class="el-date-range-picker-v2__editor"
@@ -604,11 +630,11 @@ export default {
                 <ElInput
                   size="small"
                   class="el-date-range-picker-v2__editor"
-                  :disabled="rangeState.selecting"
+                  :disabled="rangeState.selecting || isEndTimeReadonly"
                   :placeholder="t('el.datepicker.endTime')"
                   :value="maxVisibleTime"
                   :readonly="!minDate"
-                  @focus="minDate && (maxTimePickerVisible = true)"
+                  @focus="!isEndTimeReadonly && (maxTimePickerVisible = true)"
                   @input="val => handleTimeInput(val, 'max')"
                   @change="val => handleTimeChange(val, 'max')"
                 />

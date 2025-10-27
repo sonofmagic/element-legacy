@@ -98,5 +98,14 @@
       z-index: 1;
       background: var.$color-white;
     }
+
+    @include mixins.when(disabled) {
+      cursor: not-allowed;
+      opacity: 0.55;
+
+      .el-date-range-picker-v2__editor {
+        pointer-events: none;
+      }
+    }
   }
 }
