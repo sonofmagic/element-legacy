@@ -280,7 +280,9 @@ export default {
 
     handleStartChange() {
       this.emitModel('change')
-      this.focusEndInput()
+      if (this.coerceValueToDate(this.startValue)) {
+        this.focusEndInput()
+      }
     },
 
     handleEndChange() {

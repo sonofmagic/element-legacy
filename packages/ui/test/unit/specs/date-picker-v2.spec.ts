@@ -251,4 +251,21 @@ describe('DatePickerV2 range shortcuts', () => {
 
     vm.$destroy()
   })
+
+  it('only focuses the end field when start value is present', () => {
+    const vm = createInstance()
+    const focusStub = sinon.stub(vm, 'focusEndInput')
+
+    vm.startValue = new Date(2024, 0, 1)
+    vm.handleStartChange()
+    expect(focusStub.calledOnce).to.be.true
+
+    focusStub.resetHistory()
+
+    vm.startValue = null
+    vm.handleStartChange()
+    expect(focusStub.called).to.be.false
+
+    vm.$destroy()
+  })
 })
