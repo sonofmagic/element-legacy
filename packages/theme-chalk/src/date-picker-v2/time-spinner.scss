@@ -151,6 +151,8 @@
     &.disabled {
       color: var.$color-text-placeholder;
       cursor: not-allowed;
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     & + .el-time-spinner-v2__item {

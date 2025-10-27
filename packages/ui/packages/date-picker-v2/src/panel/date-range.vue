@@ -209,9 +209,10 @@ export default {
       this.$nextTick(() => {
         this.updateTimePickerSelectableRange()
       })
-      if (val && this.$refs.minTimePicker) {
-        this.$refs.minTimePicker.date = val
-        this.$refs.minTimePicker.value = val
+      const target = val || this.maxDate
+      if (target && this.$refs.minTimePicker) {
+        this.$refs.minTimePicker.date = target
+        this.$refs.minTimePicker.value = target
       }
     },
 
@@ -547,6 +548,11 @@ export default {
 
       if (minPicker) {
         minPicker.selectableRange = [[startOfDay, maxTime]]
+        this.$nextTick(() => {
+          if (minPicker.$refs && minPicker.$refs.spinner) {
+            minPicker.$refs.spinner.selectableRange = minPicker.selectableRange
+          }
+        })
       }
 
       if (maxPicker) {
@@ -560,6 +566,11 @@ export default {
           }
         }
         maxPicker.selectableRange = [[rangeStart, endOfDay]]
+        this.$nextTick(() => {
+          if (maxPicker.$refs && maxPicker.$refs.spinner) {
+            maxPicker.$refs.spinner.selectableRange = maxPicker.selectableRange
+          }
+        })
       }
     },
 
