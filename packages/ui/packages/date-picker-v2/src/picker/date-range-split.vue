@@ -408,9 +408,21 @@ export default {
         ? this.coerceValueToDate(this.endValue)
         : this.coerceValueToDate(this.startValue)
 
+      const compareUnit = (dateA: Date, dateB: Date) => {
+        if (!(dateA instanceof Date) || !(dateB instanceof Date)) {
+          return 0
+        }
+        if (this.singlePanelType === 'datetime') {
+          const normalizedA = new Date(dateA.getFullYear(), dateA.getMonth(), dateA.getDate())
+          const normalizedB = new Date(dateB.getFullYear(), dateB.getMonth(), dateB.getDate())
+          return normalizedA.getTime() - normalizedB.getTime()
+        }
+        return dateA.getTime() - dateB.getTime()
+      }
+
       const comparator = role === 'start'
-        ? (date: Date) => comparisonDate && date.getTime() > comparisonDate.getTime()
-        : (date: Date) => comparisonDate && date.getTime() < comparisonDate.getTime()
+        ? (date: Date) => comparisonDate && compareUnit(date, comparisonDate) > 0
+        : (date: Date) => comparisonDate && compareUnit(date, comparisonDate) < 0
 
       const optionDisabled = typeof disabledDate === 'function' ? disabledDate : null
 
