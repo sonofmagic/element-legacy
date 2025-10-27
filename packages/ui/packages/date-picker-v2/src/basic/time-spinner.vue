@@ -2,7 +2,7 @@
 // @ts-nocheck
 import ElScrollbar from 'element-ui/packages/scrollbar'
 import RepeatClick from 'element-ui/src/directives/repeat-click'
-import { getRangeHours, getRangeMinutes, modifyTime } from 'element-ui/src/utils/date-util'
+import { getRangeHours, getRangeMinutes, modifyTime, timeWithinRange } from 'element-ui/src/utils/date-util'
 
 const HOURS = Array.from({ length: 24 }, (_, index) => index)
 const MINUTES = Array.from({ length: 60 }, (_, index) => index)
@@ -234,6 +234,10 @@ export default {
     isMinuteDisabled(minute) {
       return !this.minutesList[minute]
     },
+    isSecondDisabled(second) {
+      const candidate = modifyTime(this.date, this.hours, this.minutes, second)
+      return !timeWithinRange(candidate, this.selectableRange, 'HH:mm:ss')
+    },
 
     formatHour(hour) {
       return (`0${this.amPmMode ? (hour % 12 || 12) : hour}`).slice(-2)
@@ -369,17 +373,17 @@ export default {
         @mouseenter.native="emitSelectRange('seconds')"
         @mouseleave.native="emitHover(null)"
       >
-        <li
-          v-for="second in secondOptions"
-          :key="second"
-          class="el-time-spinner-v2__item"
-          :data-value="second"
-          :class="{ active: second === seconds }"
-          @click="handleClick('seconds', second)"
-          @mouseenter="handleHover('seconds', second, false)"
-        >
-          {{ formatUnit(second) }}
-        </li>
+       <li
+        v-for="second in secondOptions"
+        :key="second"
+        class="el-time-spinner-v2__item"
+        :data-value="second"
+        :class="{ active: second === seconds, disabled: isSecondDisabled(second) }"
+        @click="handleClick('seconds', second, isSecondDisabled(second))"
+        @mouseenter="handleHover('seconds', second, isSecondDisabled(second))"
+      >
+        {{ formatUnit(second) }}
+      </li>
       </ElScrollbar>
     </template>
     <template v-if="arrowControl">

@@ -207,15 +207,7 @@ export default {
       this.dateUserInput.min = null
       this.timeUserInput.min = null
       this.$nextTick(() => {
-        if (this.$refs.maxTimePicker && this.maxDate && this.maxDate < this.minDate) {
-          const format = 'HH:mm:ss'
-          this.$refs.maxTimePicker.selectableRange = [
-            [
-              parseDate(formatDate(this.minDate, format), format),
-              parseDate('23:59:59', format),
-            ],
-          ]
-        }
+        this.updateTimePickerSelectableRange()
       })
       if (val && this.$refs.minTimePicker) {
         this.$refs.minTimePicker.date = val
@@ -230,6 +222,9 @@ export default {
         this.$refs.maxTimePicker.date = val
         this.$refs.maxTimePicker.value = val
       }
+      this.$nextTick(() => {
+        this.updateTimePickerSelectableRange()
+      })
     },
 
     minTimePickerVisible(val) {
@@ -280,6 +275,9 @@ export default {
           this.rightDate = nextMonth(this.leftDate)
         }
       }
+      this.$nextTick(() => {
+        this.updateTimePickerSelectableRange()
+      })
     },
 
     defaultValue(val) {
@@ -378,6 +376,7 @@ export default {
           this.$nextTick(_ => this.$refs.maxTimePicker.adjustSpinners(true))
         }
       }
+      this.updateTimePickerSelectableRange()
     },
 
     handleTimeChange(value, type) {
@@ -400,6 +399,7 @@ export default {
           this.maxTimePickerVisible = false
         }
       }
+      this.updateTimePickerSelectableRange()
     },
 
     handleRangePick(val, close = true) {
@@ -419,6 +419,7 @@ export default {
         this.maxDate = maxDate
         this.minDate = minDate
       }, 10)
+      this.updateTimePickerSelectableRange()
       if (!close || this.showTime) {
         return
       }
@@ -445,6 +446,7 @@ export default {
       if (!this.maxDate || maxDateLessThanMin) {
         this.maxDate = new Date(this.minDate)
       }
+      this.updateTimePickerSelectableRange()
     },
 
     handleMinTimeClose() {
@@ -463,6 +465,7 @@ export default {
       if (this.maxDate && this.minDate && this.minDate.getTime() > this.maxDate.getTime()) {
         this.minDate = new Date(this.maxDate)
       }
+      this.updateTimePickerSelectableRange()
     },
 
     handleMaxTimeClose() {
@@ -519,6 +522,45 @@ export default {
 
     rightPrevMonth() {
       this.rightDate = prevMonth(this.rightDate)
+    },
+
+    isSameDay(left, right) {
+      if (!isDate(left) || !isDate(right)) {
+        return false
+      }
+      return left.getFullYear() === right.getFullYear()
+        && left.getMonth() === right.getMonth()
+        && left.getDate() === right.getDate()
+    },
+
+    updateTimePickerSelectableRange() {
+      const minPicker = this.$refs.minTimePicker
+      const maxPicker = this.$refs.maxTimePicker
+      if (!minPicker && !maxPicker) {
+        return
+      }
+      const format = 'HH:mm:ss'
+      const startOfDay = parseDate('00:00:00', format)
+      const endOfDay = parseDate('23:59:59', format)
+      const minTime = this.minDate ? parseDate(formatDate(this.minDate, format), format) : startOfDay
+      const maxTime = this.maxDate ? parseDate(formatDate(this.maxDate, format), format) : endOfDay
+
+      if (minPicker) {
+        minPicker.selectableRange = [[startOfDay, maxTime]]
+      }
+
+      if (maxPicker) {
+        let rangeStart = startOfDay
+        if (this.minDate) {
+          const shouldClampToMin = !this.maxDate
+            || this.maxDate < this.minDate
+            || this.isSameDay(this.minDate, this.maxDate)
+          if (shouldClampToMin) {
+            rangeStart = minTime
+          }
+        }
+        maxPicker.selectableRange = [[rangeStart, endOfDay]]
+      }
     },
 
     handleConfirm(visible = false) {
