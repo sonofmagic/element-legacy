@@ -443,4 +443,34 @@ describe('DatePickerV2 date range panel helpers', () => {
 
     vm.$destroy()
   })
+
+  it('clamps end time spinner to start time when end value is empty', async () => {
+    const Constructor = Vue.extend(DateRangePanel)
+    const vm = new Constructor()
+    vm.$mount()
+
+    const start = new Date(2023, 8, 1, 8, 30, 0)
+    vm.showTime = true
+    vm.minDate = new Date(start)
+    vm.maxDate = null
+
+    vm.syncVisiblePanels()
+    await vm.$nextTick()
+    await vm.$nextTick()
+
+    const maxTimePicker = vm.$refs.maxTimePicker
+    expect(maxTimePicker).to.exist
+    const [[rangeStart]] = maxTimePicker.selectableRange
+    expect(rangeStart.getHours()).to.equal(8)
+    expect(rangeStart.getMinutes()).to.equal(30)
+
+    expect(maxTimePicker.defaultValue).to.be.instanceof(Date)
+    expect(maxTimePicker.defaultValue.getHours()).to.equal(8)
+    expect(maxTimePicker.defaultValue.getMinutes()).to.equal(30)
+
+    expect(vm.rightDate.getFullYear()).to.equal(2023)
+    expect(vm.rightDate.getMonth()).to.equal(8)
+
+    vm.$destroy()
+  })
 })

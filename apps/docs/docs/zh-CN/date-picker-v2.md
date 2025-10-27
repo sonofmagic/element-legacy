@@ -370,6 +370,74 @@
 
 :::
 
+### 同日结束时间
+
+:::demo 保留开始时间，选择同一天的结束时间，可以看到结束面板的时间滚动条不再全部禁用。
+
+```html
+<template>
+  <div class="demo-date-picker-sameday">
+    <p class="demonstration">范围值：{{ sameDayRangeDisplay }}</p>
+    <el-date-picker-v2
+      v-model="sameDayRange"
+      type="datetimerange"
+      format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+      :default-time="['08:00:00', '18:00:00']"
+    />
+    <div class="demo-date-picker-sameday__actions">
+      <el-button size="mini" @click="clearEnd">清空结束</el-button>
+      <el-button size="mini" @click="restoreRange">恢复范围</el-button>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        sameDayRange: ['2023-09-01 08:30:00', null],
+      }
+    },
+    computed: {
+      sameDayRangeDisplay() {
+        if (!Array.isArray(this.sameDayRange)) {
+          return ''
+        }
+        const [start, end] = this.sameDayRange
+        return `${start || '--'} 至 ${end || '--'}`
+      },
+    },
+    methods: {
+      clearEnd() {
+        const [start] = Array.isArray(this.sameDayRange) ? this.sameDayRange : []
+        this.sameDayRange = [start || '2023-09-01 08:30:00', null]
+      },
+      restoreRange() {
+        this.sameDayRange = ['2023-09-01 08:30:00', '2023-09-01 12:15:00']
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-sameday .el-range-editor-v2 {
+    width: 320px;
+  }
+
+  .demo-date-picker-sameday__actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+  }
+</style>
+```
+
+:::
+
 ### 选择多个日期
 
 :::demo 设置 `type="dates"` 可以一次选择多个日期。

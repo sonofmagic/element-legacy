@@ -368,6 +368,74 @@ Hover to reveal the full value whenever it exceeds the visible width.
 
 :::
 
+### Same-Day End Time
+
+:::demo Keep the start value set and pick an end time on the same day — available times remain selectable instead of being fully disabled.
+
+```html
+<template>
+  <div class="demo-date-picker-sameday">
+    <p class="demonstration">Value: {{ sameDayRangeDisplay }}</p>
+    <el-date-picker-v2
+      v-model="sameDayRange"
+      type="datetimerange"
+      format="yyyy-MM-dd HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      range-separator="to"
+      start-placeholder="Start time"
+      end-placeholder="End time"
+      :default-time="['08:00:00', '18:00:00']"
+    />
+    <div class="demo-date-picker-sameday__actions">
+      <el-button size="mini" @click="clearEnd">Clear end</el-button>
+      <el-button size="mini" @click="restoreRange">Restore</el-button>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        sameDayRange: ['2023-09-01 08:30:00', null],
+      }
+    },
+    computed: {
+      sameDayRangeDisplay() {
+        if (!Array.isArray(this.sameDayRange)) {
+          return ''
+        }
+        const [start, end] = this.sameDayRange
+        return `${start || '--'} to ${end || '--'}`
+      },
+    },
+    methods: {
+      clearEnd() {
+        const [start] = Array.isArray(this.sameDayRange) ? this.sameDayRange : []
+        this.sameDayRange = [start || '2023-09-01 08:30:00', null]
+      },
+      restoreRange() {
+        this.sameDayRange = ['2023-09-01 08:30:00', '2023-09-01 12:15:00']
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-sameday .el-range-editor-v2 {
+    width: 320px;
+  }
+
+  .demo-date-picker-sameday__actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+  }
+</style>
+```
+
+:::
+
 ### Multiple Dates
 
 :::demo Set `type="dates"` to allow users to pick multiple dates at once.

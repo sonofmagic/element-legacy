@@ -241,8 +241,9 @@ export default {
     maxTimePickerVisible(val) {
       if (val) {
         this.$nextTick(() => {
-          this.$refs.maxTimePicker.date = this.maxDate
-          this.$refs.maxTimePicker.value = this.maxDate
+          const fallback = this.maxDate || (this.minDate ? new Date(this.minDate) : null)
+          this.$refs.maxTimePicker.date = fallback
+          this.$refs.maxTimePicker.value = fallback
           this.$refs.maxTimePicker.adjustSpinners(true)
         })
       }
@@ -468,7 +469,12 @@ export default {
             : this.maxDate
         }
         else {
-          this.rightDate = nextMonth(this.leftDate)
+          if (this.showTime && !this.maxDate) {
+            this.rightDate = new Date(this.leftDate)
+          }
+          else {
+            this.rightDate = nextMonth(this.leftDate)
+          }
         }
       }
       else if (this.maxDate) {
@@ -580,6 +586,16 @@ export default {
           }
         }
         maxPicker.selectableRange = [[rangeStart, endOfDay]]
+        const fallback = this.maxDate || (this.minDate ? new Date(this.minDate) : null)
+        if (!this.maxDate && fallback) {
+          maxPicker.defaultValue = fallback
+          if (maxPicker.value == null) {
+            maxPicker.value = fallback
+          }
+          if (maxPicker.date == null) {
+            maxPicker.date = fallback
+          }
+        }
         this.$nextTick(() => {
           if (maxPicker.$refs && maxPicker.$refs.spinner) {
             maxPicker.$refs.spinner.selectableRange = maxPicker.selectableRange
