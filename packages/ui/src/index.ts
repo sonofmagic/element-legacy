@@ -308,7 +308,7 @@ export {
 }
 
 export default {
-  version: '0.0.4',
+  version: '0.0.5',
   locale: locale.use,
   i18n: locale.i18n,
   install,

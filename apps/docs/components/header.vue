@@ -15,9 +15,7 @@ export default {
   data() {
     return {
       active: '',
-      versions: [],
       version,
-      verDropdownVisible: true,
       langDropdownVisible: true,
       langs: {
         'zh-CN': '中文',
@@ -66,18 +64,6 @@ export default {
   },
 
   created() {
-    const xhr = new XMLHttpRequest()
-    xhr.onreadystatechange = (_) => {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        const versions = JSON.parse(xhr.responseText)
-        this.versions = Object.keys(versions).reduce((prev, next) => {
-          prev[next] = versions[next]
-          return prev
-        }, {})
-      }
-    }
-    xhr.open('GET', `${this.basePath}/versions.json`)
-    xhr.send()
     let primaryLast = '#409EFF'
     bus.$on(ACTION_USER_CONFIG_UPDATE, (val) => {
       let primaryColor = val.global['$--color-primary']
@@ -93,25 +79,12 @@ export default {
     })
   },
   methods: {
-    switchVersion(version) {
-      if (version === this.version) {
-        return
-      }
-      const trimmedBase = this.basePath
-      const prefix = trimmedBase ? `${location.origin}${trimmedBase}` : location.origin
-      location.href = `${prefix}/${this.versions[version]}/${location.hash} `
-    },
-
     switchLang(targetLang) {
       if (this.lang === targetLang) {
         return
       }
       localStorage.setItem('ELEMENT_LANGUAGE', targetLang)
       this.$router.push(this.$route.path.replace(this.lang, targetLang))
-    },
-
-    handleVerDropdownToggle(visible) {
-      this.verDropdownVisible = visible
     },
 
     handleLangDropdownToggle(visible) {
@@ -137,17 +110,7 @@ export default {
           </h1>
           <div v-if="isComponentPage" class="header-version">
             <div class="header-divider" />
-            <el-dropdown trigger="click" class="nav-dropdown header-version__dropdown" :class="{ 'is-active': verDropdownVisible }">
-              <span>
-                {{ version }}
-                <i class="el-icon-arrow-down el-icon--right" />
-              </span>
-              <el-dropdown-menu slot="dropdown" class="nav-dropdown-list" @input="handleVerDropdownToggle">
-                <el-dropdown-item v-for="item in Object.keys(versions)" :key="item" @click.native="switchVersion(item)">
-                  {{ item }}
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+            <span class="header-version__label">{{ version }}</span>
           </div>
         </div>
 
@@ -417,10 +380,12 @@ export default {
   }
 }
 
-.header-version__dropdown {
-  span {
-    padding: 0 16px;
-  }
+.header-version__label {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  color: #303133;
 }
 
 .nav-dropdown-list {

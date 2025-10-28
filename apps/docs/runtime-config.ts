@@ -1,6 +1,5 @@
 const DEFAULT_LOGO_PATH = '/images/element-logo.svg'
 const DEFAULT_LOGO_SMALL_PATH = '/images/element-logo-small.svg'
-
 function normalizeBasePath(input?: string | null): string {
   if (!input || !input.trim()) {
     return '/'
