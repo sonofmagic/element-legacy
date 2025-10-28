@@ -1266,7 +1266,7 @@
   height: 0;
   cursor: pointer;
   background-color: #9093994d;
-  border-radiu0s: inherit;
+  border-radius: inherit;
   -webkit-transition: 0.3s background-color;
   transition: 0.3s background-color;
 }

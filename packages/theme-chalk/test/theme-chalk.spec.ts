@@ -1,11 +1,19 @@
-import { readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import prettier from 'prettier'
+import { build as viteBuild } from 'vite'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const libDir = path.resolve(currentDir, '../lib')
 const snapshotsDir = path.join('__snapshots__')
+
+if (!existsSync(libDir)) {
+  await viteBuild({
+    configFile: path.resolve(currentDir, '../vite.config.ts'),
+    logLevel: 'silent',
+  })
+}
 
 const cssFiles = readdirSync(libDir)
   .filter(name => name.endsWith('.css'))
