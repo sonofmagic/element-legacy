@@ -31,6 +31,7 @@
     "lib",
     "packages",
     "src",
+    "theme-chalk",
     "types",
     "web-types.json"
   ],
