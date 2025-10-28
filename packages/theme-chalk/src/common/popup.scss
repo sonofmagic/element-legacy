@@ -15,13 +15,13 @@
   }
 
   100% {
-    opacity: 1;
+    opacity: var.$popup-modal-opacity;
   }
 }
 
 @keyframes v-modal-out {
   0% {
-    opacity: 1;
+    opacity: var.$popup-modal-opacity;
   }
 
   100% {
