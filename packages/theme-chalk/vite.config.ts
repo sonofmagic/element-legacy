@@ -82,6 +82,7 @@ const cssEntryNames = Object.keys(cssEntries)
 
 export default defineConfig({
   root: rootDir,
+  base: './',
   build: {
     outDir,
     emptyOutDir: true,
