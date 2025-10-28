@@ -1,5 +1,11 @@
 # @element-legacy/theme-chalk
 
+## 0.0.5
+
+### Patch Changes
+
+- [`f9c1a2c`](https://github.com/sonofmagic/element-legacy/commit/f9c1a2ccbb3bffee654218ef71d5d9ddf3c575ba) Thanks [@sonofmagic](https://github.com/sonofmagic)! - chore: changeset release
+
 ## 0.0.1
 
 ### Patch Changes
