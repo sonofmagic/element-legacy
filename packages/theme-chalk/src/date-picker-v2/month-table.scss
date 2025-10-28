@@ -40,11 +40,13 @@
     }
 
     .cell {
-      display: block;
-      width: 40px;
+      display: inline-block;
+      min-width: 40px;
       height: 28px;
+      padding: 0 4px;
       margin: 0 auto;
       line-height: 28px;
+      white-space: nowrap;
       color: var.$datepicker-font-color;
       border-radius: 14px;
       border: 1px solid transparent;
