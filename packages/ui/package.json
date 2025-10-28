@@ -37,7 +37,7 @@
   "scripts": {
     "bootstrap": "pnpm i",
     "build:file": "element-legacy-build icon-init & element-legacy-build build-entry & element-legacy-build i18n & element-legacy-build version",
-    "build:theme": "element-legacy-build gen-cssfile && pnpm --filter @element-legacy/theme-chalk run build && cp-cli ../theme-chalk/lib lib/theme-chalk",
+    "build:theme": "element-legacy-build gen-cssfile && pnpm --filter @element-legacy/theme-chalk run build && element-legacy-build cp ../theme-chalk/lib lib/theme-chalk && element-legacy-build cp ../theme-chalk/lib theme-chalk/lib && element-legacy-build cp ../theme-chalk/src theme-chalk/src",
     "build:utils": "cross-env BABEL_ENV=utils babel src --extensions '.ts,.tsx,.js' --out-dir lib --ignore 'src/index.ts,**/*.d.ts'",
     "build:umd": "element-legacy-build build-locale",
     "build:lib": "vite build",
