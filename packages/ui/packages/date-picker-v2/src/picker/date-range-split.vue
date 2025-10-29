@@ -173,18 +173,31 @@ export default {
   watch: {
     value: {
       deep: true,
-      handler(newVal) {
+      handler(newVal, oldVal) {
         const [start, end] = this.normalizeRange(newVal)
-        if (!valueEquals(start, this.startValue)) {
+        const [oldStart, oldEnd] = this.normalizeRange(oldVal)
+
+        const startChanged = !valueEquals(start, this.startValue)
+        const endChanged = !valueEquals(end, this.endValue)
+
+        if (startChanged) {
           this.startValue = start
         }
-        if (!valueEquals(end, this.endValue)) {
+        if (endChanged) {
           this.endValue = end
         }
+
         if (this.activeField) {
           this.$nextTick(() => {
             this.updateHighlight()
           })
+        }
+
+        if (this.activeField === 'start' && this.valueWasCleared(oldStart, start)) {
+          this.handleFieldClear('start')
+        }
+        if (this.activeField === 'end' && this.valueWasCleared(oldEnd, end)) {
+          this.handleFieldClear('end')
         }
       },
     },
@@ -259,21 +272,29 @@ export default {
     },
 
     handleStartInput(val: unknown) {
+      const previous = this.startValue
       if (!valueEquals(val, this.startValue)) {
         this.startValue = val
       }
       if (this.endValue && this.compareValues(val, this.endValue) > 0) {
         this.endValue = null
       }
+      if (this.valueWasCleared(previous, val)) {
+        this.handleFieldClear('start')
+      }
       this.emitModel()
     },
 
     handleEndInput(val: unknown) {
+      const previous = this.endValue
       if (!valueEquals(val, this.endValue)) {
         this.endValue = val
       }
       if (this.startValue && this.compareValues(this.startValue, val) > 0) {
         this.startValue = null
+      }
+      if (this.valueWasCleared(previous, val)) {
+        this.handleFieldClear('end')
       }
       this.emitModel()
     },
@@ -303,6 +324,23 @@ export default {
 
     handleEndBlur() {
       this.handleFieldBlur('end')
+    },
+
+    handleFieldClear(role: 'start' | 'end') {
+      if (this.activeField === role) {
+        this.activeField = null
+        const refName = role === 'start' ? 'startPicker' : 'endPicker'
+        const picker: any = this.$refs[refName]
+        if (picker && typeof picker.blur === 'function') {
+          picker.blur()
+        }
+        else if (picker && picker.$el) {
+          const input = picker.$el.querySelector('input')
+          if (input && typeof input.blur === 'function') {
+            input.blur()
+          }
+        }
+      }
     },
 
     focusEndInput() {
@@ -342,6 +380,17 @@ export default {
           this.$emit('blur', this)
         }
       }, 50)
+    },
+
+    valueWasCleared(previous: any, next: any): boolean {
+      return this.hasFieldValue(previous) && !this.hasFieldValue(next)
+    },
+
+    hasFieldValue(value: any): boolean {
+      if (value === null || value === undefined || value === '') {
+        return false
+      }
+      return this.coerceValueToDate(value) instanceof Date
     },
 
     emitModel(trigger?: 'change') {

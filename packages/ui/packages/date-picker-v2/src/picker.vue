@@ -684,6 +684,7 @@ export default {
         if (this.picker && typeof this.picker.handleClear === 'function') {
           this.picker.handleClear()
         }
+        this.blur()
       }
       else {
         this.pickerVisible = !this.pickerVisible
@@ -992,7 +993,11 @@ export default {
         v-if="haveTrigger"
         slot="suffix"
         class="el-input__icon"
-        :class="[showClose ? `${clearIcon}` : '']"
+        :class="[
+          showClose ? `${clearIcon}` : '',
+          { 'is-clear-visible': showClose },
+        ]"
+        @mousedown.prevent
         @click="handleClickIcon"
       />
     </ElInput>
@@ -1058,8 +1063,12 @@ export default {
     </ElTooltip>
     <i
       v-if="haveTrigger"
-      :class="[showClose ? `${clearIcon}` : '']"
+      :class="[
+        showClose ? `${clearIcon}` : '',
+        { 'is-clear-visible': showClose },
+      ]"
       class="el-input__icon el-range-v2__close-icon"
+      @mousedown.prevent
       @click="handleClickIcon"
     />
   </div>

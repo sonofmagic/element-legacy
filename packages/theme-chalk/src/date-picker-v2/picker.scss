@@ -65,6 +65,26 @@
     cursor: pointer;
   }
 
+  .el-input__icon.is-clear-visible,
+  .el-range-v2__close-icon.is-clear-visible {
+    position: relative;
+    z-index: 2;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -2px;
+      width: 32px;
+      height: 72%;
+      pointer-events: none;
+      background-color: var.$color-white;
+      border-radius: 16px;
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+  }
+
   .el-range-input-v2 {
     display: inline-block;
     width: 39%;
