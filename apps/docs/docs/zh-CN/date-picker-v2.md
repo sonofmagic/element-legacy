@@ -96,6 +96,187 @@
 ```
 :::
 
+### 时间滚动器
+
+:::demo `time-spinner` 是 DatePicker v2 内部用于滚动选择时间的面板组件，同样可以单独使用。下面的示例演示了切换秒列与箭头交互的基本用法。
+
+```html
+<template>
+  <div class="block time-spinner-demo">
+    <p class="demonstration">当前时间：{{ textValue }}</p>
+    <div class="time-spinner-demo__panel">
+      <el-time-spinner-v2
+        ref="basicSpinner"
+        :date="currentDate"
+        :show-seconds="showSeconds"
+        :arrow-control="arrowControl"
+        @change="handleChange"
+      />
+    </div>
+    <div class="time-spinner-demo__controls">
+      <label class="time-spinner-demo__control">
+        <span class="time-spinner-demo__label">显示秒</span>
+        <el-switch v-model="showSeconds" @change="syncSpinner" />
+      </label>
+      <label class="time-spinner-demo__control">
+        <span class="time-spinner-demo__label">箭头控制</span>
+        <el-switch v-model="arrowControl" @change="syncSpinner" />
+      </label>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      const now = new Date()
+      return {
+        currentDate: new Date(now.getTime()),
+        showSeconds: true,
+        arrowControl: false,
+      }
+    },
+    computed: {
+      textValue() {
+        const value = this.currentDate
+        return `${this.pad(value.getHours())}:${this.pad(value.getMinutes())}:${this.pad(value.getSeconds())}`
+      },
+    },
+    methods: {
+      pad(value) {
+        return String(value).padStart(2, '0')
+      },
+      handleChange(value) {
+        this.currentDate = value
+      },
+      syncSpinner() {
+        this.$nextTick(() => {
+          this.$refs.basicSpinner && this.$refs.basicSpinner.adjustSpinners(true)
+        })
+      },
+    },
+  }
+</script>
+
+<style>
+.time-spinner-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-spinner-demo__panel {
+  max-width: 320px;
+}
+
+.time-spinner-demo__controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.time-spinner-demo__control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-spinner-demo__label {
+  font-size: 14px;
+  color: var(--el-text-color-primary);
+}
+</style>
+```
+
+:::
+
+:::demo 可以通过为 `time-spinner` 设置选择范围来禁用特定的时间段。示例只允许上午与下午的工作时段，其余时间会被自动禁用。
+
+```html
+<template>
+  <div class="block time-spinner-range-demo">
+    <p class="demonstration">当前时间：{{ formatted }}</p>
+    <div class="time-spinner-range-demo__panel">
+      <el-time-spinner-v2
+        ref="restrictedSpinner"
+        :date="restrictedDate"
+        :show-seconds="false"
+        @change="handleRestrictedChange"
+      />
+    </div>
+    <el-alert
+      class="time-spinner-range-demo__tip"
+      type="info"
+      :closable="false"
+      title="可选时间段：09:30-11:30、13:30-17:00"
+    />
+  </div>
+</template>
+
+<script>
+  function withTime(base, hours, minutes) {
+    const cloned = new Date(base.getTime())
+    cloned.setHours(hours, minutes, 0, 0)
+    return cloned
+  }
+
+  export default {
+    data() {
+      const today = new Date()
+      return {
+        baseDate: today,
+        restrictedDate: withTime(today, 9, 30),
+      }
+    },
+    computed: {
+      formatted() {
+        const { restrictedDate } = this
+        return `${this.pad(restrictedDate.getHours())}:${this.pad(restrictedDate.getMinutes())}`
+      },
+    },
+    mounted() {
+      this.$nextTick(this.updateSelectableRange)
+    },
+    methods: {
+      pad(value) {
+        return String(value).padStart(2, '0')
+      },
+      withTime,
+      handleRestrictedChange(value) {
+        this.restrictedDate = value
+      },
+      updateSelectableRange() {
+        const ranges = [
+          [this.withTime(this.baseDate, 9, 30), this.withTime(this.baseDate, 11, 30)],
+          [this.withTime(this.baseDate, 13, 30), this.withTime(this.baseDate, 17, 0)],
+        ]
+        if (this.$refs.restrictedSpinner) {
+          this.$refs.restrictedSpinner.selectableRange = ranges
+        }
+      },
+    },
+  }
+</script>
+
+<style>
+.time-spinner-range-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-spinner-range-demo__panel {
+  max-width: 320px;
+}
+
+.time-spinner-range-demo__tip {
+  max-width: 320px;
+}
+</style>
+```
+
+:::
+
 ### 选择日期范围
 
 可在一个选择器中便捷地选择一段日期。

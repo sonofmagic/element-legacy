@@ -46,10 +46,12 @@ export default {
       return compoLang.filter(config => config.lang === this.lang)[0].header
     },
     isComponentPage() {
-      return this.$route.name.startsWith('component')
+      const name = this.$route && this.$route.name
+      return typeof name === 'string' && name.startsWith('component')
     },
     isHome() {
-      return this.$route.name.startsWith('home')
+      const name = this.$route && this.$route.name
+      return typeof name === 'string' && name.startsWith('home')
     },
   },
   mounted() {

@@ -17,6 +17,7 @@ import SideNav from './components/side-nav.vue'
 import title from './i18n/title.json'
 import icon from './icon.json'
 
+import TimeSpinner from '../../packages/ui/packages/date-picker-v2/src/basic/time-spinner.vue'
 import routes from './route.config'
 import runtimeConfig from './runtime-config'
 import '../../packages/theme-chalk/src/index.scss'
@@ -43,6 +44,7 @@ Vue.component('main-header', MainHeader)
 Vue.component('side-nav', SideNav)
 Vue.component('footer-nav', FooterNav)
 Vue.component('DocAlert', DocAlert)
+Vue.component('ElTimeSpinnerV2', TimeSpinner)
 
 const globalEle = new Vue({
   data() {

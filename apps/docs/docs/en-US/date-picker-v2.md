@@ -96,6 +96,187 @@ The basic day picker.
 ```
 :::
 
+### Time Spinner
+
+:::demo The `time-spinner` panel powers the time selection of DatePicker v2 and can also be used on its own. The example below toggles the seconds column and the arrow-control interaction.
+
+```html
+<template>
+  <div class="block time-spinner-demo">
+    <p class="demonstration">Current time: {{ textValue }}</p>
+    <div class="time-spinner-demo__panel">
+      <el-time-spinner-v2
+        ref="basicSpinner"
+        :date="currentDate"
+        :show-seconds="showSeconds"
+        :arrow-control="arrowControl"
+        @change="handleChange"
+      />
+    </div>
+    <div class="time-spinner-demo__controls">
+      <label class="time-spinner-demo__control">
+        <span class="time-spinner-demo__label">Show seconds</span>
+        <el-switch v-model="showSeconds" @change="syncSpinner" />
+      </label>
+      <label class="time-spinner-demo__control">
+        <span class="time-spinner-demo__label">Arrow control</span>
+        <el-switch v-model="arrowControl" @change="syncSpinner" />
+      </label>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      const now = new Date()
+      return {
+        currentDate: new Date(now.getTime()),
+        showSeconds: true,
+        arrowControl: false,
+      }
+    },
+    computed: {
+      textValue() {
+        const value = this.currentDate
+        return `${this.pad(value.getHours())}:${this.pad(value.getMinutes())}:${this.pad(value.getSeconds())}`
+      },
+    },
+    methods: {
+      pad(value) {
+        return String(value).padStart(2, '0')
+      },
+      handleChange(value) {
+        this.currentDate = value
+      },
+      syncSpinner() {
+        this.$nextTick(() => {
+          this.$refs.basicSpinner && this.$refs.basicSpinner.adjustSpinners(true)
+        })
+      },
+    },
+  }
+</script>
+
+<style>
+.time-spinner-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-spinner-demo__panel {
+  max-width: 320px;
+}
+
+.time-spinner-demo__controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.time-spinner-demo__control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-spinner-demo__label {
+  font-size: 14px;
+  color: var(--el-text-color-primary);
+}
+</style>
+```
+
+:::
+
+:::demo Provide `selectableRange` for `time-spinner` to disable unwanted options. The example only allows two working-hour ranges; every other item is automatically disabled.
+
+```html
+<template>
+  <div class="block time-spinner-range-demo">
+    <p class="demonstration">Current time: {{ formatted }}</p>
+    <div class="time-spinner-range-demo__panel">
+      <el-time-spinner-v2
+        ref="restrictedSpinner"
+        :date="restrictedDate"
+        :show-seconds="false"
+        @change="handleRestrictedChange"
+      />
+    </div>
+    <el-alert
+      class="time-spinner-range-demo__tip"
+      type="info"
+      :closable="false"
+      title="Selectable ranges: 09:30-11:30, 13:30-17:00"
+    />
+  </div>
+</template>
+
+<script>
+  function withTime(base, hours, minutes) {
+    const cloned = new Date(base.getTime())
+    cloned.setHours(hours, minutes, 0, 0)
+    return cloned
+  }
+
+  export default {
+    data() {
+      const today = new Date()
+      return {
+        baseDate: today,
+        restrictedDate: withTime(today, 9, 30),
+      }
+    },
+    computed: {
+      formatted() {
+        const { restrictedDate } = this
+        return `${this.pad(restrictedDate.getHours())}:${this.pad(restrictedDate.getMinutes())}`
+      },
+    },
+    mounted() {
+      this.$nextTick(this.updateSelectableRange)
+    },
+    methods: {
+      pad(value) {
+        return String(value).padStart(2, '0')
+      },
+      withTime,
+      handleRestrictedChange(value) {
+        this.restrictedDate = value
+      },
+      updateSelectableRange() {
+        const ranges = [
+          [this.withTime(this.baseDate, 9, 30), this.withTime(this.baseDate, 11, 30)],
+          [this.withTime(this.baseDate, 13, 30), this.withTime(this.baseDate, 17, 0)],
+        ]
+        if (this.$refs.restrictedSpinner) {
+          this.$refs.restrictedSpinner.selectableRange = ranges
+        }
+      },
+    },
+  }
+</script>
+
+<style>
+.time-spinner-range-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-spinner-range-demo__panel {
+  max-width: 320px;
+}
+
+.time-spinner-range-demo__tip {
+  max-width: 320px;
+}
+</style>
+```
+
+:::
+
 ### Date Range
 
 :::demo When in range mode, the left and right panels are linked by default. Use `unlink-panels` if you want them to flip months independently.
