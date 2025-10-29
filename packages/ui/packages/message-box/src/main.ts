@@ -1,3 +1,4 @@
+// @ts-nocheck
 const defaults = {
   title: null,
   message: '',

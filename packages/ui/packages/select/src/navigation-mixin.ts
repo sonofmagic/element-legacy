@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default {
   data() {
     return {

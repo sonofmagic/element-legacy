@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { isEqual, capitalize } from 'element-ui/src/utils/util';
 import { isDef } from 'element-ui/src/utils/shared';
 

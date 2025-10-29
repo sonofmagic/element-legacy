@@ -1,5 +1,5 @@
 import type { VueConstructor } from 'vue'
-import InfiniteScroll from './src/main.js'
+import InfiniteScroll from './src/main'
 
 type InstallableInfiniteScroll = typeof InfiniteScroll & {
   install: (vue: VueConstructor) => void

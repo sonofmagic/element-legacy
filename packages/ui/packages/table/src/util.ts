@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getValueByPath } from 'element-ui/src/utils/util';
 
 export const getCell = function(event) {

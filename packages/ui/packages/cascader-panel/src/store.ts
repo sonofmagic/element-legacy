@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Node from './node';
 import { coerceTruthyValueToArray, valueEquals } from 'element-ui/src/utils/util';
 

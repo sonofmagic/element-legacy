@@ -1,3 +1,4 @@
+// @ts-nocheck
 const hsv2hsl = function(hue, sat, val) {
   return [
     hue,

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Node from './node';
 import { getNodeKey } from './util';
 

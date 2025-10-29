@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Vue from 'vue';
 import Main from './main.vue';
 import { PopupManager } from 'element-ui/src/utils/popup';

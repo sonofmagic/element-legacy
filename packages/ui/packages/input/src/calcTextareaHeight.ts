@@ -1,3 +1,4 @@
+// @ts-nocheck
 let hiddenTextarea;
 
 const HIDDEN_STYLE = `

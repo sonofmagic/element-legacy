@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const BAR_MAP = {
   vertical: {
     offset: 'offsetHeight',

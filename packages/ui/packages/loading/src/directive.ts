@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Vue from 'vue';
 import Loading from './loading.vue';
 import { addClass, removeClass, getStyle } from 'element-ui/src/utils/dom';

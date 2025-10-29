@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { debounce } from 'throttle-debounce';
 import {
   isHtmlElement,

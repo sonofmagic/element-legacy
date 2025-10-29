@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default {
   created() {
     this.tableLayout.addObserver(this);

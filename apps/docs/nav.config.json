@@ -16,6 +16,10 @@
           "name": "快速上手"
         },
         {
+          "path": "/migration-guide",
+          "name": "迁移指南"
+        },
+        {
           "path": "/i18n",
           "name": "国际化"
         },

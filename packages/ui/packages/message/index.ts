@@ -1,3 +1,3 @@
-import Message from './src/main.js'
+import Message from './src/main'
 
 export default Message
