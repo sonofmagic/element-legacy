@@ -7,6 +7,7 @@ import entry from './app.vue'
 import demoBlock from './components/demo-block.vue'
 import Demo from './components/Demo.vue'
 import DocAlert from './components/doc-alert.vue'
+import ColorDocPreview from './components/color-doc-preview.vue'
 import FooterNav from './components/footer-nav.vue'
 import MainFooter from './components/footer.vue'
 import MainHeader from './components/header.vue'
@@ -32,6 +33,7 @@ Vue.use(Element)
 Vue.use(VueRouter)
 Vue.component('demo-block', demoBlock)
 Vue.component('Demo', Demo)
+Vue.component('ColorDocPreview', ColorDocPreview)
 Vue.component('main-footer', MainFooter)
 Vue.component('main-header', MainHeader)
 Vue.component('side-nav', SideNav)
