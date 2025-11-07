@@ -1,219 +1,312 @@
-// @ts-nocheck
-import Vue from 'vue';
-import { addClass, removeClass } from 'element-ui/src/utils/dom';
+import { addClass, removeClass } from 'element-ui/src/utils/dom'
+import Vue from 'vue'
 
-// Attach the manager to a global key so multiple bundles reuse one instance.
-const POPUP_MANAGER_KEY = '__ELEMENT_POPUP_MANAGER__';
+const POPUP_MANAGER_KEY = '__ELEMENT_POPUP_MANAGER__'
 
-const getGlobalContext = function() {
-  if (typeof globalThis !== 'undefined') return globalThis;
-  if (typeof window !== 'undefined') return window;
-  if (typeof global !== 'undefined') return global;
-  return undefined;
-};
+interface PopupInstance {
+  closeOnClickModal?: boolean
+  closeOnPressEscape?: boolean
+  close: () => void
+  handleClose?: () => void
+  handleAction?: (action: string) => void
+}
 
-const createPopupManager = function() {
-  let hasModal = false;
-  let hasInitZIndex = false;
-  let zIndex;
+interface ModalStackItem {
+  id: string
+  zIndex: number
+  modalClass?: string
+}
 
-  const instances = {};
+interface PopupGlobalContext {
+  __ELEMENT_POPUP_MANAGER__?: PopupManager
+}
 
-  const manager = {
-    modalFade: true,
-    modalStack: [],
-    modalDom: undefined,
+export interface PopupManager {
+  modalFade?: boolean
+  modalStack: ModalStackItem[]
+  modalDom?: HTMLElement
+  getInstance: (id: string) => PopupInstance | undefined
+  register: (id: string, instance: PopupInstance) => void
+  deregister: (id: string) => void
+  nextZIndex: () => number
+  doOnModalClick: () => void
+  openModal: (
+    id: string,
+    zIndex: number,
+    dom?: HTMLElement | null,
+    modalClass?: string,
+    modalFade?: boolean,
+  ) => void
+  closeModal: (id: string) => void
+  zIndex: number
+}
 
-    getInstance(id) {
-      return instances[id];
-    },
+function isServer() {
+  return Boolean(Vue.prototype.$isServer)
+}
 
-    register(id, instance) {
-      if (id && instance) {
-        instances[id] = instance;
-      }
-    },
+function createPopupManager(): PopupManager {
+  let hasModal = false
+  let hasInitZIndex = false
+  let zIndexValue: number
 
-    deregister(id) {
-      if (id) {
-        instances[id] = null;
-        delete instances[id];
-      }
-    },
+  const instances: Record<string, PopupInstance> = {}
+  let manager!: PopupManager
 
-    nextZIndex() {
-      return manager.zIndex++;
-    },
-
-    doOnModalClick() {
-      const topItem = manager.modalStack[manager.modalStack.length - 1];
-      if (!topItem) return;
-
-      const instance = manager.getInstance(topItem.id);
-      if (instance && instance.closeOnClickModal) {
-        instance.close();
-      }
+  function getModal(): HTMLElement | undefined {
+    if (isServer()) {
+      return undefined
     }
-  };
 
-  const getModal = function() {
-    if (Vue.prototype.$isServer) return;
-    let modalDom = manager.modalDom;
+    let modalDom = manager.modalDom
+
     if (modalDom) {
-      hasModal = true;
-    } else {
-      hasModal = false;
-      modalDom = document.createElement('div');
-      manager.modalDom = modalDom;
+      hasModal = true
+    }
+    else {
+      hasModal = false
+      modalDom = document.createElement('div')
+      manager.modalDom = modalDom
 
-      modalDom.addEventListener('touchmove', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-      });
+      modalDom.addEventListener('touchmove', (event) => {
+        event.preventDefault()
+        event.stopPropagation()
+      })
 
-      modalDom.addEventListener('click', function() {
-        manager.doOnModalClick && manager.doOnModalClick();
-      });
+      modalDom.addEventListener('click', () => {
+        if (manager.doOnModalClick) {
+          manager.doOnModalClick()
+        }
+      })
     }
 
-    return modalDom;
-  };
+    return modalDom
+  }
 
-  manager.openModal = function(id, zIndex, dom, modalClass, modalFade) {
-    if (Vue.prototype.$isServer) return;
-    if (!id || zIndex === undefined) return;
-    manager.modalFade = modalFade;
+  function getTopPopup(): PopupInstance | undefined {
+    if (isServer()) {
+      return undefined
+    }
 
-    const modalStack = manager.modalStack;
+    if (manager.modalStack.length === 0) {
+      return undefined
+    }
 
-    for (let i = 0, j = modalStack.length; i < j; i++) {
-      const item = modalStack[i];
-      if (item.id === id) {
-        return;
+    const topPopup = manager.modalStack[manager.modalStack.length - 1]
+
+    if (!topPopup) {
+      return undefined
+    }
+
+    return manager.getInstance(topPopup.id)
+  }
+
+  manager = {
+    modalFade: true,
+    modalStack: [] as ModalStackItem[],
+    modalDom: undefined,
+    getInstance(id: string) {
+      return instances[id]
+    },
+    register(id: string, instance: PopupInstance) {
+      if (id && instance) {
+        instances[id] = instance
       }
-    }
+    },
+    deregister(id: string) {
+      if (id) {
+        delete instances[id]
+      }
+    },
+    nextZIndex() {
+      manager.zIndex += 1
+      return manager.zIndex
+    },
+    doOnModalClick() {
+      const topItem = manager.modalStack[manager.modalStack.length - 1]
 
-    const modalDom = getModal();
+      if (!topItem) {
+        return
+      }
 
-    addClass(modalDom, 'v-modal');
-    if (manager.modalFade && !hasModal) {
-      addClass(modalDom, 'v-modal-enter');
-    }
-    if (modalClass) {
-      let classArr = modalClass.trim().split(/\s+/);
-      classArr.forEach(item => addClass(modalDom, item));
-    }
-    setTimeout(() => {
-      removeClass(modalDom, 'v-modal-enter');
-    }, 200);
+      const instance = manager.getInstance(topItem.id)
 
-    if (dom && dom.parentNode && dom.parentNode.nodeType !== 11) {
-      dom.parentNode.appendChild(modalDom);
-    } else {
-      document.body.appendChild(modalDom);
-    }
+      if (instance && instance.closeOnClickModal) {
+        instance.close()
+      }
+    },
+    openModal(id, modalZIndex, dom, modalClass, modalFadeFlag) {
+      if (isServer()) {
+        return
+      }
 
-    if (zIndex) {
-      modalDom.style.zIndex = zIndex;
-    }
-    modalDom.tabIndex = 0;
-    modalDom.style.display = '';
+      if (!id || modalZIndex === undefined) {
+        return
+      }
 
-    modalStack.push({ id: id, zIndex: zIndex, modalClass: modalClass });
-  };
+      manager.modalFade = modalFadeFlag
 
-  manager.closeModal = function(id) {
-    const modalStack = manager.modalStack;
-    const modalDom = getModal();
+      const modalStack = manager.modalStack
 
-    if (modalStack.length > 0) {
-      const topItem = modalStack[modalStack.length - 1];
-      if (topItem.id === id) {
-        if (topItem.modalClass) {
-          let classArr = topItem.modalClass.trim().split(/\s+/);
-          classArr.forEach(item => removeClass(modalDom, item));
+      if (modalStack.some(item => item.id === id)) {
+        return
+      }
+
+      const modalDom = getModal()
+
+      if (!modalDom) {
+        return
+      }
+
+      addClass(modalDom, 'v-modal')
+
+      if (manager.modalFade && !hasModal) {
+        addClass(modalDom, 'v-modal-enter')
+      }
+
+      if (modalClass) {
+        modalClass.trim().split(/\s+/).forEach(item => addClass(modalDom, item))
+      }
+
+      window.setTimeout(() => {
+        removeClass(modalDom, 'v-modal-enter')
+      }, 200)
+
+      if (dom && dom.parentNode && dom.parentNode.nodeType !== 11) {
+        dom.parentNode.appendChild(modalDom)
+      }
+      else {
+        document.body.appendChild(modalDom)
+      }
+
+      if (modalZIndex) {
+        modalDom.style.zIndex = String(modalZIndex)
+      }
+
+      modalDom.tabIndex = 0
+      modalDom.style.display = ''
+
+      modalStack.push({
+        id,
+        zIndex: modalZIndex,
+        modalClass,
+      })
+    },
+    closeModal(id) {
+      const modalStack = manager.modalStack
+      const modalDom = getModal()
+
+      if (!modalDom) {
+        return
+      }
+
+      if (modalStack.length > 0) {
+        const topItem = modalStack[modalStack.length - 1]
+
+        if (topItem && topItem.id === id) {
+          if (topItem.modalClass) {
+            topItem.modalClass.trim().split(/\s+/).forEach(item => removeClass(modalDom, item))
+          }
+
+          modalStack.pop()
+
+          if (modalStack.length > 0) {
+            modalDom.style.zIndex = String(modalStack[modalStack.length - 1].zIndex)
+          }
         }
-
-        modalStack.pop();
-        if (modalStack.length > 0) {
-          modalDom.style.zIndex = modalStack[modalStack.length - 1].zIndex;
-        }
-      } else {
-        for (let i = modalStack.length - 1; i >= 0; i--) {
-          if (modalStack[i].id === id) {
-            modalStack.splice(i, 1);
-            break;
+        else {
+          for (let index = modalStack.length - 1; index >= 0; index -= 1) {
+            if (modalStack[index].id === id) {
+              modalStack.splice(index, 1)
+              break
+            }
           }
         }
       }
-    }
 
-    if (modalStack.length === 0) {
-      if (manager.modalFade) {
-        addClass(modalDom, 'v-modal-leave');
-      }
-      setTimeout(() => {
-        if (modalStack.length === 0) {
-          if (modalDom.parentNode) modalDom.parentNode.removeChild(modalDom);
-          modalDom.style.display = 'none';
-          manager.modalDom = undefined;
+      if (modalStack.length === 0) {
+        if (manager.modalFade) {
+          addClass(modalDom, 'v-modal-leave')
         }
-        removeClass(modalDom, 'v-modal-leave');
-      }, 200);
-    }
-  };
+
+        window.setTimeout(() => {
+          if (modalStack.length === 0) {
+            if (modalDom.parentNode) {
+              modalDom.parentNode.removeChild(modalDom)
+            }
+
+            modalDom.style.display = 'none'
+            manager.modalDom = undefined
+          }
+
+          removeClass(modalDom, 'v-modal-leave')
+        }, 200)
+      }
+    },
+    zIndex: 0,
+  }
 
   Object.defineProperty(manager, 'zIndex', {
     configurable: true,
     get() {
       if (!hasInitZIndex) {
-        zIndex = zIndex || (Vue.prototype.$ELEMENT || {}).zIndex || 2000;
-        hasInitZIndex = true;
+        const elementConfig = (Vue.prototype.$ELEMENT ?? {}) as { zIndex?: number }
+
+        zIndexValue = elementConfig.zIndex ?? 2000
+        hasInitZIndex = true
       }
-      return zIndex;
+
+      return zIndexValue
     },
-    set(value) {
-      zIndex = value;
-    }
-  });
+    set(value: number) {
+      zIndexValue = value
+    },
+  })
 
-  const getTopPopup = function() {
-    if (Vue.prototype.$isServer) return;
-    if (manager.modalStack.length > 0) {
-      const topPopup = manager.modalStack[manager.modalStack.length - 1];
-      if (!topPopup) return;
-      const instance = manager.getInstance(topPopup.id);
+  if (!isServer() && typeof window !== 'undefined') {
+    window.addEventListener('keydown', (event) => {
+      const isEscape = event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27
 
-      return instance;
-    }
-  };
+      if (!isEscape) {
+        return
+      }
 
-  if (!Vue.prototype.$isServer && typeof window !== 'undefined') {
-    // handle `esc` key when the popup is shown
-    window.addEventListener('keydown', function(event) {
-      if (event.keyCode === 27) {
-        const topPopup = getTopPopup();
+      const topPopup = getTopPopup()
 
-        if (topPopup && topPopup.closeOnPressEscape) {
-          topPopup.handleClose
-            ? topPopup.handleClose()
-            : (topPopup.handleAction ? topPopup.handleAction('cancel') : topPopup.close());
+      if (topPopup && topPopup.closeOnPressEscape) {
+        if (typeof topPopup.handleClose === 'function') {
+          topPopup.handleClose()
+        }
+        else if (typeof topPopup.handleAction === 'function') {
+          topPopup.handleAction('cancel')
+        }
+        else {
+          topPopup.close()
         }
       }
-    });
+    })
   }
 
-  return manager;
-};
-
-const globalContext = getGlobalContext();
-let PopupManager = globalContext ? globalContext[POPUP_MANAGER_KEY] : undefined;
-
-if (!PopupManager) {
-  PopupManager = createPopupManager();
-  if (globalContext) {
-    globalContext[POPUP_MANAGER_KEY] = PopupManager;
-  }
+  return manager
 }
 
-export default PopupManager;
+function getGlobalContext(): PopupGlobalContext | undefined {
+  if (typeof globalThis !== 'undefined') {
+    return globalThis as PopupGlobalContext
+  }
+
+  if (typeof window !== 'undefined') {
+    return window as unknown as PopupGlobalContext
+  }
+
+  return undefined
+}
+
+const globalContext = getGlobalContext()
+const popupManager = globalContext?.[POPUP_MANAGER_KEY] ?? createPopupManager()
+
+if (globalContext && !globalContext[POPUP_MANAGER_KEY]) {
+  globalContext[POPUP_MANAGER_KEY] = popupManager
+}
+
+export default popupManager
