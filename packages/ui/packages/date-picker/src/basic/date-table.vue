@@ -26,6 +26,7 @@ function removeFromArray(arr, pred) {
 }
 
 export default {
+  name: 'ElDateTable',
   mixins: [Locale],
 
   props: {

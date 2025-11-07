@@ -26,6 +26,7 @@
   "table": "./packages/table/index.ts",
   "table-column": "./packages/table-column/index.ts",
   "date-picker": "./packages/date-picker/index.ts",
+  "date-table": "./packages/date-table/index.ts",
   "date-picker-v2": "./packages/date-picker-v2/index.ts",
   "time-select": "./packages/time-select/index.ts",
   "time-picker": "./packages/time-picker/index.ts",
