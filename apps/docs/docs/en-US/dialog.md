@@ -131,6 +131,45 @@ The content of Dialog can be anything, even a table or a form. This example show
 
 :::
 
+### Calendar popup inside Dialog
+
+When you place popup-based components such as DatePicker inside a Dialog, you can interact with their overlay just like on a normal page.
+
+:::demo The following example opens the DatePicker calendar while keeping focus inside the Dialog.
+
+```html
+<el-button type="text" @click="calendarDialogVisible = true">open Dialog with calendar</el-button>
+
+<el-dialog title="Schedule" :visible.sync="calendarDialogVisible" width="30%">
+  <p>Click the field below to open the DatePicker popup inside this Dialog.</p>
+  <div style="margin-top: 12px">
+    <el-date-picker
+      v-model="calendarDate"
+      type="date"
+      placeholder="Pick a date"
+      style="width: 100%"
+    ></el-date-picker>
+  </div>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="calendarDialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="calendarDialogVisible = false">Save</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        calendarDialogVisible: false,
+        calendarDate: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
 ### Nested Dialog
 
 If a Dialog is nested in another Dialog, `append-to-body` is required.

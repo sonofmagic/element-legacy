@@ -45,6 +45,7 @@
 @use './row';
 @use './col';
 @use './upload';
+@use './upload-list';
 @use './progress';
 @use './spinner';
 @use './message';
@@ -71,6 +72,7 @@
 @use './link';
 @use './divider';
 @use './image';
+@use './image-viewer';
 @use './calendar';
 @use './backtop';
 @use './infinite-scroll';

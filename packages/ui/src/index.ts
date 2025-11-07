@@ -49,6 +49,7 @@ import Icon from '../packages/icon/index';
 import Row from '../packages/row/index';
 import Col from '../packages/col/index';
 import Upload from '../packages/upload/index';
+import UploadList from '../packages/upload-list/index';
 import Progress from '../packages/progress/index';
 import Spinner from '../packages/spinner/index';
 import Message from '../packages/message/index';
@@ -75,6 +76,7 @@ import TimelineItem from '../packages/timeline-item/index';
 import Link from '../packages/link/index';
 import Divider from '../packages/divider/index';
 import Image from '../packages/image/index';
+import ImageViewer from '../packages/image-viewer/index';
 import Calendar from '../packages/calendar/index';
 import Backtop from '../packages/backtop/index';
 import InfiniteScroll from '../packages/infinite-scroll/index';
@@ -140,6 +142,7 @@ const components = [
   Row,
   Col,
   Upload,
+  UploadList,
   Progress,
   Spinner,
   Badge,
@@ -165,6 +168,7 @@ const components = [
   Link,
   Divider,
   Image,
+  ImageViewer,
   Calendar,
   Backtop,
   PageHeader,
@@ -264,6 +268,7 @@ export {
   Row,
   Col,
   Upload,
+  UploadList,
   Progress,
   Spinner,
   Message,
@@ -290,6 +295,7 @@ export {
   Link,
   Divider,
   Image,
+  ImageViewer,
   Calendar,
   Backtop,
   InfiniteScroll,
@@ -362,6 +368,7 @@ export default {
   Row,
   Col,
   Upload,
+  UploadList,
   Progress,
   Spinner,
   Message,
@@ -388,6 +395,7 @@ export default {
   Link,
   Divider,
   Image,
+  ImageViewer,
   Calendar,
   Backtop,
   InfiniteScroll,

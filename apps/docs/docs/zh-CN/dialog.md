@@ -131,6 +131,45 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 
 :::
 
+### Dialog 内打开日历弹窗
+
+需要在 Dialog 中使用带弹出层的组件（例如日期选择器）时，可以直接把表单元素放入 Dialog 内容里，交互会和常规页面一致。
+
+:::demo 下例展示了在 Dialog 中点击日期输入框时，日历弹窗会正常显示。
+
+```html
+<el-button type="text" @click="calendarDialogVisible = true">打开包含日历的 Dialog</el-button>
+
+<el-dialog title="排期设置" :visible.sync="calendarDialogVisible" width="30%">
+  <p>点击下方输入框即可在 Dialog 内部唤起日期弹层。</p>
+  <div style="margin-top: 12px">
+    <el-date-picker
+      v-model="calendarDate"
+      type="date"
+      placeholder="选择提醒日期"
+      style="width: 100%"
+    ></el-date-picker>
+  </div>
+  <div slot="footer" class="dialog-footer">
+    <el-button @click="calendarDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="calendarDialogVisible = false">保 存</el-button>
+  </div>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        calendarDialogVisible: false,
+        calendarDate: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
 ### 嵌套的 Dialog
 
 如果需要在一个 Dialog 内部嵌套另一个 Dialog，需要使用 `append-to-body` 属性。

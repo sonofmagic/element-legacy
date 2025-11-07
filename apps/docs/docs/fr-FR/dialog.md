@@ -131,6 +131,45 @@ Le contenu du modal peut être n'importe quoi, tableau ou formulaire compris.
 
 :::
 
+### Calendrier dans un Dialog
+
+Lorsque vous utilisez des composants avec leur propre popup (comme DatePicker) à l'intérieur d'un Dialog, ils peuvent être affichés directement dans le contenu du modal.
+
+:::demo Cet exemple ouvre l'agenda du sélecteur de dates sans quitter le Dialog.
+
+```html
+<el-button type="text" @click="calendarDialogVisible = true">Ouvrir un Dialog avec calendrier</el-button>
+
+<el-dialog title="Planification" :visible.sync="calendarDialogVisible" width="30%">
+  <p>Cliquez sur le champ ci-dessous pour afficher le calendrier du DatePicker.</p>
+  <div style="margin-top: 12px">
+    <el-date-picker
+      v-model="calendarDate"
+      type="date"
+      placeholder="Choisir une date"
+      style="width: 100%"
+    ></el-date-picker>
+  </div>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="calendarDialogVisible = false">Annuler</el-button>
+    <el-button type="primary" @click="calendarDialogVisible = false">Enregistrer</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        calendarDialogVisible: false,
+        calendarDate: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
 ### Dialog imbriqué
 
 Si un Dialog est imbriqué dans un autre Dialog, `append-to-body` est requis.

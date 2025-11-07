@@ -133,6 +133,45 @@ El contenido del Diálogo puede ser cualquier cosa, incluso una tabla o un formu
 
 :::
 
+### Calendario emergente en un Dialog
+
+Cuando uses componentes con su propia capa emergente (como DatePicker) dentro de un Dialog, simplemente inclúyelos en el contenido del cuadro.
+
+:::demo En el siguiente ejemplo, el calendario del selector de fechas se abre dentro del Dialog.
+
+```html
+<el-button type="text" @click="calendarDialogVisible = true">Abrir Dialog con calendario</el-button>
+
+<el-dialog title="Horario" :visible.sync="calendarDialogVisible" width="30%">
+  <p>Haz clic en el campo para mostrar el calendario del selector de fechas.</p>
+  <div style="margin-top: 12px">
+    <el-date-picker
+      v-model="calendarDate"
+      type="date"
+      placeholder="Selecciona una fecha"
+      style="width: 100%"
+    ></el-date-picker>
+  </div>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="calendarDialogVisible = false">Cancelar</el-button>
+    <el-button type="primary" @click="calendarDialogVisible = false">Guardar</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        calendarDialogVisible: false,
+        calendarDate: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
 ### Diálogo anidado
 
 Si un diálogo está anidado en otro diálogo, se requiere append-to-body.

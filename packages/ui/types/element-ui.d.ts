@@ -49,6 +49,7 @@ import { ElFormItem } from './form-item'
 import { ElHeader } from './header'
 import { ElIcon } from './icon'
 import { ElImage } from './image'
+import { ElImageViewer } from './image-viewer'
 import { ElInput } from './input'
 import { ElInputNumber } from './input-number'
 import { ElLink } from './link'
@@ -69,6 +70,7 @@ import { ElRadioGroup } from './radio-group'
 import { ElRate } from './rate'
 import { ElResult } from './result'
 import { ElRow } from './row'
+import { ElScrollbar } from './scrollbar'
 import { ElSelect } from './select'
 import { ElSkeleton } from './skeleton'
 import { ElSkeletonItem } from './skeleton-item'
@@ -92,6 +94,7 @@ import { ElTooltip } from './tooltip'
 import { ElTransfer } from './transfer'
 import { ElTree } from './tree'
 import { ElUpload } from './upload'
+import { ElUploadList } from './upload-list'
 
 export interface InstallationOptions {
   locale: any
@@ -270,6 +273,9 @@ export class RadioGroup extends ElRadioGroup {}
 /** Row Layout Component */
 export class Row extends ElRow {}
 
+/** Scrollbar Component */
+export class Scrollbar extends ElScrollbar {}
+
 /** Dropdown Select Component */
 export class Select extends ElSelect {}
 
@@ -327,6 +333,9 @@ export class Tree<K = any, D = TreeData> extends ElTree<K, D> {}
 /** Upload Component */
 export class Upload extends ElUpload {}
 
+/** Upload List Component */
+export class UploadList extends ElUploadList {}
+
 /** Divider Component */
 export class Divider extends ElDivider {}
 
@@ -335,6 +344,9 @@ export class Link extends ElLink {}
 
 /** Image Component */
 export class Image extends ElImage {}
+
+/** ImageViewer Component */
+export class ImageViewer extends ElImageViewer {}
 
 /** Icon Component */
 export class Icon extends ElIcon {}
