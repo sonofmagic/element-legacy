@@ -6,6 +6,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "element-ui/*": [
+        "./*"
       ]
     },
     "allowJs": true,
