@@ -28,6 +28,8 @@ export interface PopupManager {
   getInstance: (id: string) => PopupInstance | undefined
   register: (id: string, instance: PopupInstance) => void
   deregister: (id: string) => void
+  acquireZIndex: (id: string) => number
+  releaseZIndex: (id: string) => void
   nextZIndex: () => number
   doOnModalClick: () => void
   openModal: (
@@ -51,6 +53,7 @@ function createPopupManager(): PopupManager {
   let zIndexValue: number
 
   const instances: Record<string, PopupInstance> = {}
+  const zIndexCache = new Map<string, number>()
   let manager!: PopupManager
 
   function getModal(): HTMLElement | undefined {
@@ -117,6 +120,28 @@ function createPopupManager(): PopupManager {
       if (id) {
         delete instances[id]
       }
+    },
+    acquireZIndex(id: string) {
+      if (!id) {
+        return manager.nextZIndex()
+      }
+
+      const cached = zIndexCache.get(id)
+
+      if (cached) {
+        return cached
+      }
+
+      const nextZIndex = manager.nextZIndex()
+      zIndexCache.set(id, nextZIndex)
+      return nextZIndex
+    },
+    releaseZIndex(id: string) {
+      if (!id) {
+        return
+      }
+
+      zIndexCache.delete(id)
     },
     nextZIndex() {
       manager.zIndex += 1

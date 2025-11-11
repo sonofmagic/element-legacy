@@ -60,7 +60,8 @@ export default {
     return {
       showPopper: false,
       currentPlacement: '',
-      currentZIndex: null
+      currentZIndex: null,
+      popperZIndexId: `popper-${ this._uid }`
     };
   },
 
@@ -75,27 +76,41 @@ export default {
 
     showPopper(val) {
       if (this.disabled) return;
-      if (val) {
-        if (!this.currentZIndex) {
-          this.currentZIndex = PopupManager.nextZIndex();
-        }
-        this.updatePopper();
-      } else {
-        this.currentZIndex = null;
-        this.destroyPopper();
-      }
+      val ? this.handleShowPopper() : this.handleHidePopper();
       this.$emit('input', val);
     }
   },
 
   methods: {
+    handleShowPopper() {
+      this.ensurePopperZIndex();
+      this.updatePopper();
+    },
+
+    handleHidePopper() {
+      this.releasePopperZIndex();
+      this.destroyPopper();
+    },
+
+    ensurePopperZIndex() {
+      if (!this.currentZIndex) {
+        this.currentZIndex = PopupManager.acquireZIndex(this.popperZIndexId);
+      }
+      return this.currentZIndex;
+    },
+
+    releasePopperZIndex() {
+      if (this.popperZIndexId) {
+        PopupManager.releaseZIndex(this.popperZIndexId);
+      }
+      this.currentZIndex = null;
+    },
+
     setPopperZIndex() {
       const popperJS = this.popperJS;
       if (!popperJS || !popperJS._popper) return;
-      if (!this.currentZIndex) {
-        this.currentZIndex = PopupManager.nextZIndex();
-      }
-      popperJS._popper.style.zIndex = this.currentZIndex;
+      const zIndex = this.ensurePopperZIndex();
+      popperJS._popper.style.zIndex = zIndex;
     },
 
     createPopper() {
@@ -203,6 +218,7 @@ export default {
   },
 
   beforeDestroy() {
+    this.releasePopperZIndex();
     this.doDestroy(true);
     if (this.popperElm && this.popperElm.parentNode === document.body) {
       this.popperElm.removeEventListener('click', stop);

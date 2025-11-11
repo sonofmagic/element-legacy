@@ -25,6 +25,10 @@ LoadingConstructor.prototype.close = function() {
   if (this.fullscreen) {
     fullscreenLoading = undefined;
   }
+  if (this.popupZIndexId) {
+    PopupManager.releaseZIndex(this.popupZIndexId);
+    this.popupZIndexId = null;
+  }
   afterLeave(this, _ => {
     const target = this.fullscreen || this.body
       ? document.body
@@ -44,7 +48,9 @@ const addStyle = (options, parent, instance) => {
   if (options.fullscreen) {
     instance.originalPosition = getStyle(document.body, 'position');
     instance.originalOverflow = getStyle(document.body, 'overflow');
-    maskStyle.zIndex = PopupManager.nextZIndex();
+    const popupZIndexId = instance.popupZIndexId || `loading-${ instance._uid }`;
+    instance.popupZIndexId = popupZIndexId;
+    maskStyle.zIndex = PopupManager.acquireZIndex(popupZIndexId);
   } else if (options.body) {
     instance.originalPosition = getStyle(document.body, 'position');
     ['top', 'left'].forEach(property => {

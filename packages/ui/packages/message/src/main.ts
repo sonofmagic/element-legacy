@@ -40,7 +40,9 @@ const Message = function(options) {
   });
   instance.verticalOffset = verticalOffset;
   instance.visible = true;
-  instance.$el.style.zIndex = PopupManager.nextZIndex();
+  const popupZIndexId = `message-${ id }`;
+  instance.popupZIndexId = popupZIndexId;
+  instance.$el.style.zIndex = PopupManager.acquireZIndex(popupZIndexId);
   instances.push(instance);
   return instance;
 };
@@ -70,6 +72,10 @@ Message.close = function(id, userOnClose) {
       index = i;
       if (typeof userOnClose === 'function') {
         userOnClose(instances[i]);
+      }
+      if (instances[i].popupZIndexId) {
+        PopupManager.releaseZIndex(instances[i].popupZIndexId);
+        instances[i].popupZIndexId = null;
       }
       instances.splice(i, 1);
       break;

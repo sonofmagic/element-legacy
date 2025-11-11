@@ -116,7 +116,9 @@ export default {
         offsetX: 0,
         offsetY: 0,
         enableTransition: false
-      }
+      },
+      viewerZIndexId: `image-viewer-${ this._uid }`,
+      viewerAutoZIndex: null
     };
   },
   computed: {
@@ -146,8 +148,8 @@ export default {
       return style;
     },
     viewerZIndex() {
-      const nextZIndex = PopupManager.nextZIndex();
-      return this.zIndex > nextZIndex ? this.zIndex : nextZIndex;
+      const autoZIndex = this.ensureViewerZIndex();
+      return this.zIndex > autoZIndex ? this.zIndex : autoZIndex;
     }
   },
   watch: {
@@ -167,6 +169,18 @@ export default {
     }
   },
   methods: {
+    ensureViewerZIndex() {
+      if (!this.viewerAutoZIndex) {
+        this.viewerAutoZIndex = PopupManager.acquireZIndex(this.viewerZIndexId);
+      }
+      return this.viewerAutoZIndex;
+    },
+    releaseViewerZIndex() {
+      if (this.viewerZIndexId) {
+        PopupManager.releaseZIndex(this.viewerZIndexId);
+      }
+      this.viewerAutoZIndex = null;
+    },
     hide() {
       this.deviceSupportUninstall();
       this.onClose();
@@ -325,6 +339,9 @@ export default {
     if (this.appendToBody && this.$el && this.$el.parentNode) {
       this.$el.parentNode.removeChild(this.$el);
     }
+  },
+  beforeDestroy() {
+    this.releaseViewerZIndex();
   }
 };
 </script>

@@ -34,7 +34,9 @@ const Notification = function(options) {
   document.body.appendChild(instance.$el);
   instance.visible = true;
   instance.dom = instance.$el;
-  instance.dom.style.zIndex = PopupManager.nextZIndex();
+  const popupZIndexId = `notification-${ id }`;
+  instance.popupZIndexId = popupZIndexId;
+  instance.dom.style.zIndex = PopupManager.acquireZIndex(popupZIndexId);
 
   let verticalOffset = options.offset || 0;
   instances.filter(item => item.position === position).forEach(item => {
@@ -72,6 +74,10 @@ Notification.close = function(id, userOnClose) {
 
   if (typeof userOnClose === 'function') {
     userOnClose(instance);
+  }
+  if (instance && instance.popupZIndexId) {
+    PopupManager.releaseZIndex(instance.popupZIndexId);
+    instance.popupZIndexId = null;
   }
   instances.splice(index, 1);
 
