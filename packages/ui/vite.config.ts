@@ -80,6 +80,7 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: libEntry,
+      formats: ['cjs'],
     },
     rollupOptions: {
       external: ['vue'],

@@ -1,6 +1,5 @@
 {
   "name": "element-legacy",
-  "type": "module",
   "version": "0.1.0",
   "description": "Community-maintained Element UI 2.x components for Vue 2.",
   "author": "Element Legacy Maintainers",
@@ -21,9 +20,7 @@
     "element-ui",
     "element-legacy"
   ],
-  "main": "lib/index.cjs",
-  "module": "lib/index.js",
-  "unpkg": "lib/index.cjs",
+  "main": "lib/index.js",
   "types": "types/index.d.ts",
   "style": "lib/theme-chalk/index.css",
   "web-types": "./web-types.json",
