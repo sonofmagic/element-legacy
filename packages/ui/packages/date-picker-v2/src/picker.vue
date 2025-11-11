@@ -8,7 +8,7 @@ import { isDateObject } from 'element-ui/src/utils/date-util'
 import merge from 'element-ui/src/utils/merge'
 import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event'
 import Popper from 'element-ui/src/utils/vue-popper'
-import Vue from 'vue'
+import Vue from 'element-ui/src/utils/vue'
 import {
   DEFAULT_FORMATS,
   formatAsFormatAndType,

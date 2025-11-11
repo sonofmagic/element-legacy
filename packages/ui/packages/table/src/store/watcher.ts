@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'vue';
+import Vue from 'element-ui/src/utils/vue';
 import merge from 'element-ui/src/utils/merge';
 import { getKeysMap, getRowIdentity, getColumnById, getColumnByKey, orderBy, toggleRowStatus } from '../util';
 import expand from './expand';

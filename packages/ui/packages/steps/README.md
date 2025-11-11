@@ -11,7 +11,7 @@ npm i element-steps -D
 
 ## Usage
 ```javascript
-import Vue from 'vue'
+import Vue from 'element-ui/src/utils/vue'
 import ElStep from 'element-steps'
 import 'element-theme-chalk/dist/step.css'
 
@@ -21,7 +21,7 @@ Vue.use(ElStep)
 or
 
 ```javascript
-import Vue from 'vue'
+import Vue from 'element-ui/src/utils/vue'
 import { ElSteps, ElStep } from 'element-steps'
 
 Vue.component('el-steps', ElSteps)

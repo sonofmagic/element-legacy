@@ -1,5 +1,5 @@
 import { addClass, removeClass } from 'element-ui/src/utils/dom'
-import Vue from 'vue'
+import Vue from 'element-ui/src/utils/vue'
 
 const POPUP_MANAGER_KEY = '__ELEMENT_POPUP_MANAGER__'
 

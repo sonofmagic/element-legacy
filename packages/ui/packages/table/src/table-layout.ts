@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'vue';
+import Vue from 'element-ui/src/utils/vue';
 import scrollbarWidth from 'element-ui/src/utils/scrollbar-width';
 import { parseHeight } from './util';
 

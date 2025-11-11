@@ -6,7 +6,7 @@ import Clickoutside from 'element-ui/src/utils/clickoutside'
 import { formatDate, getWeekNumber, isDateObject, parseDate } from 'element-ui/src/utils/date-util'
 import merge from 'element-ui/src/utils/merge'
 import Popper from 'element-ui/src/utils/vue-popper'
-import Vue from 'vue'
+import Vue from 'element-ui/src/utils/vue'
 
 const NewPopper = {
   props: {

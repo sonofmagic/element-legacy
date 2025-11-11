@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'vue';
+import Vue from 'element-ui/src/utils/vue';
 var dropdowns = [];
 
 !Vue.prototype.$isServer && document.addEventListener('click', function(event) {

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import defaultLang from 'element-ui/src/locale/lang/zh-CN';
-import Vue from 'vue';
+import Vue from 'element-ui/src/utils/vue';
 import deepmerge from 'deepmerge';
 import Format from './format';
 

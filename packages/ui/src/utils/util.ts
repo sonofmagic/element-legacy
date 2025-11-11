@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'vue';
+import Vue from 'element-ui/src/utils/vue';
 import { isString, isObject } from 'element-ui/src/utils/types';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;

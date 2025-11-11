@@ -1,5 +1,5 @@
 import type { VueConstructor } from 'vue'
-import Vue from 'vue'
+import Vue from 'element-ui/src/utils/vue'
 import Popover from './src/main.vue'
 import directive from './src/directive'
 

@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* istanbul ignore next */
 
-import Vue from 'vue';
+import Vue from 'element-ui/src/utils/vue';
 
 const isServer = Vue.prototype.$isServer;
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
