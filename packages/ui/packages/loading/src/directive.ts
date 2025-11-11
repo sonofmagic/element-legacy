@@ -7,7 +7,6 @@ import afterLeave from 'element-ui/src/utils/after-leave';
 const Mask = Vue.extend(Loading);
 
 const loadingDirective = {};
-let loadingDirectiveSeed = 1;
 loadingDirective.install = Vue => {
   if (Vue.prototype.$isServer) return;
   const toggleLoading = (el, binding) => {
@@ -16,10 +15,7 @@ loadingDirective.install = Vue => {
         if (binding.modifiers.fullscreen) {
           el.originalPosition = getStyle(document.body, 'position');
           el.originalOverflow = getStyle(document.body, 'overflow');
-          if (!el.loadingZIndexId) {
-            el.loadingZIndexId = `loading-directive-${ loadingDirectiveSeed++ }`;
-          }
-          el.maskStyle.zIndex = PopupManager.acquireZIndex(el.loadingZIndexId);
+          el.maskStyle.zIndex = PopupManager.nextZIndex();
 
           addClass(el.mask, 'is-fullscreen');
           insertDom(document.body, el, binding);
@@ -49,10 +45,6 @@ loadingDirective.install = Vue => {
         }
       });
     } else {
-      if (el.loadingZIndexId) {
-        PopupManager.releaseZIndex(el.loadingZIndexId);
-        el.loadingZIndexId = null;
-      }
       afterLeave(el.instance, _ => {
         if (!el.instance.hiding) return;
         el.domVisible = false;
@@ -133,10 +125,6 @@ loadingDirective.install = Vue => {
         el.mask.parentNode &&
         el.mask.parentNode.removeChild(el.mask);
         toggleLoading(el, { value: false, modifiers: binding.modifiers });
-      }
-      if (el.loadingZIndexId) {
-        PopupManager.releaseZIndex(el.loadingZIndexId);
-        el.loadingZIndexId = null;
       }
       el.instance && el.instance.$destroy();
     }

@@ -53,8 +53,6 @@ export default {
   beforeDestroy() {
     PopupManager.deregister(this._popupId);
     PopupManager.closeModal(this._popupId);
-    PopupManager.releaseZIndex(this._popupId);
-    this.popupZIndex = null;
 
     this.restoreBodyStyle();
   },
@@ -65,8 +63,7 @@ export default {
       bodyPaddingRight: null,
       computedBodyPaddingRight: 0,
       withoutHiddenClass: true,
-      rendered: false,
-      popupZIndex: null
+      rendered: false
     };
   },
 
@@ -129,16 +126,12 @@ export default {
         PopupManager.zIndex = zIndex;
       }
 
-      const baseZIndex = PopupManager.acquireZIndex(this._popupId);
-      const modalZIndex = baseZIndex;
-      const domZIndex = modal ? baseZIndex + 1 : baseZIndex;
-
       if (modal) {
         if (this._closing) {
           PopupManager.closeModal(this._popupId);
           this._closing = false;
         }
-        PopupManager.openModal(this._popupId, modalZIndex, this.modalAppendToBody ? undefined : dom, props.modalClass, props.modalFade);
+        PopupManager.openModal(this._popupId, PopupManager.nextZIndex(), this.modalAppendToBody ? undefined : dom, props.modalClass, props.modalFade);
         if (props.lockScroll) {
           this.withoutHiddenClass = !hasClass(document.body, 'el-popup-parent--hidden');
           if (this.withoutHiddenClass) {
@@ -159,8 +152,7 @@ export default {
         dom.style.position = 'absolute';
       }
 
-      dom.style.zIndex = String(domZIndex);
-      this.popupZIndex = domZIndex;
+      dom.style.zIndex = PopupManager.nextZIndex();
       this.opened = true;
 
       this.onOpen && this.onOpen();
@@ -209,8 +201,6 @@ export default {
 
     doAfterClose() {
       PopupManager.closeModal(this._popupId);
-      PopupManager.releaseZIndex(this._popupId);
-      this.popupZIndex = null;
       this._closing = false;
     },
 
