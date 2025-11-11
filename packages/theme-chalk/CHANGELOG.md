@@ -1,5 +1,13 @@
 # @element-legacy/theme-chalk
 
+## 0.1.0
+
+### Patch Changes
+
+- [`cc01c7e`](https://github.com/sonofmagic/element-legacy/commit/cc01c7eb5d04fcf28f487fae0bc236a8a39f01a6) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Expose `UploadList`, `Scrollbar`, `ImageViewer`, and the internal `DateTable` view as standalone build entries (with typings) and include their Chalk styles so consumers can import them directly.
+
+  新增 `UploadList`、`Scrollbar`、`ImageViewer` 以及内部使用的 `DateTable` 的独立构建入口（含类型声明），并补齐对应的 Chalk 样式，方便直接按需引用。
+
 ## 0.0.5
 
 ### Patch Changes
