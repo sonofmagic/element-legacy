@@ -59,8 +59,7 @@ export default {
   data() {
     return {
       showPopper: false,
-      currentPlacement: '',
-      currentZIndex: null
+      currentPlacement: ''
     };
   },
 
@@ -75,29 +74,12 @@ export default {
 
     showPopper(val) {
       if (this.disabled) return;
-      if (val) {
-        if (!this.currentZIndex) {
-          this.currentZIndex = PopupManager.nextZIndex();
-        }
-        this.updatePopper();
-      } else {
-        this.currentZIndex = null;
-        this.destroyPopper();
-      }
+      val ? this.updatePopper() : this.destroyPopper();
       this.$emit('input', val);
     }
   },
 
   methods: {
-    setPopperZIndex() {
-      const popperJS = this.popperJS;
-      if (!popperJS || !popperJS._popper) return;
-      if (!this.currentZIndex) {
-        this.currentZIndex = PopupManager.nextZIndex();
-      }
-      popperJS._popper.style.zIndex = this.currentZIndex;
-    },
-
     createPopper() {
       if (this.$isServer) return;
       this.currentPlacement = this.currentPlacement || this.placement;
@@ -134,7 +116,7 @@ export default {
       if (typeof options.onUpdate === 'function') {
         this.popperJS.onUpdate(options.onUpdate);
       }
-      this.setPopperZIndex();
+      this.popperJS._popper.style.zIndex = PopupManager.nextZIndex();
       this.popperElm.addEventListener('click', stop);
     },
 
@@ -142,7 +124,9 @@ export default {
       const popperJS = this.popperJS;
       if (popperJS) {
         popperJS.update();
-        this.setPopperZIndex();
+        if (popperJS._popper) {
+          popperJS._popper.style.zIndex = PopupManager.nextZIndex();
+        }
       } else {
         this.createPopper();
       }
