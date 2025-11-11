@@ -261,6 +261,10 @@
               "title": "Dialog 对话框"
             },
             {
+              "path": "/dialog-popover-zindex",
+              "title": "Dialog Popover 层级"
+            },
+            {
               "path": "/tooltip",
               "title": "Tooltip 文字提示"
             },
