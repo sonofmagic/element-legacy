@@ -1,5 +1,11 @@
 # @element-legacy/theme-chalk
 
+## 0.1.1
+
+### Patch Changes
+
+- [`93c1022`](https://github.com/sonofmagic/element-legacy/commit/93c1022ab234a3ffe05683e359533aa5acb974e1) Thanks [@sonofmagic](https://github.com/sonofmagic)! - 修复 DatePicker v2 在紧凑四列布局下的最小宽度限制，范围选择器现在会按容器宽度收缩，不再出现重叠。
+
 ## 0.1.0
 
 ### Patch Changes
