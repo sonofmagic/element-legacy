@@ -26,27 +26,35 @@
 
   &.el-input,
   &.el-input__inner {
-    width: 220px;
+    width: 100%;
+    max-width: 220px;
+    min-width: 0;
   }
 
   @include mixins.m((monthrange)) {
     &.el-input,
     &.el-input__inner {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
+      min-width: 0;
     }
   }
 
   @include mixins.m((daterange, timerange)) {
     &.el-input,
     &.el-input__inner {
-      width: 350px;
+      width: 100%;
+      max-width: 350px;
+      min-width: 0;
     }
   }
 
   @include mixins.m(datetimerange) {
     &.el-input,
     &.el-input__inner {
-      width: 400px;
+      width: 100%;
+      max-width: 400px;
+      min-width: 0;
     }
   }
 
@@ -132,8 +140,9 @@
     box-sizing: border-box;
     display: inline-flex;
     align-items: stretch;
-    width: 304px;
-    min-width: 304px;
+    width: 100%;
+    max-width: 304px;
+    min-width: 0;
     padding: 0;
     overflow: hidden;
     background-color: var.$color-white;
@@ -221,8 +230,9 @@
     }
 
     &.el-date-range-editor-v2--datetimerange {
-      width: 448px;
-      min-width: 448px;
+      width: 100%;
+      max-width: 448px;
+      min-width: 0;
     }
   }
 }

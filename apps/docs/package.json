@@ -21,7 +21,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "element-legacy-build i18n && vite",
+    "dev": "element-legacy-build i18n && vite --host",
     "build": "element-legacy-build i18n && vite build"
   },
   "dependencies": {

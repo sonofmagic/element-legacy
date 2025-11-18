@@ -71,24 +71,138 @@ The basic day picker.
 
 :::
 
-### Pick Date & Time
+### Compact Layout
 
-:::demo Select both date and time with DatePicker v2.
+:::demo Evenly split the space to place four pickers on one row and let them shrink when space is tight.
+
 ```html
 <template>
-  <p class="demonstration">Value: {{ datetimeValue }}</p>
-  <el-date-picker-v2
-    v-model="datetimeValue"
-    type="datetime"
-    placeholder="Select date and time"
-  />
+  <div
+    class="demo-date-picker-inline"
+    style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;"
+  >
+    <el-date-picker-v2 v-model="inlineDate1" type="date" placeholder="Pick a day" style="width: 100%" />
+    <el-date-picker-v2 v-model="inlineDate2" type="date" placeholder="Pick a day" style="width: 100%" />
+    <el-date-picker-v2 v-model="inlineDate3" type="date" placeholder="Pick a day" style="width: 100%" />
+    <el-date-picker-v2 v-model="inlineDate4" type="date" placeholder="Pick a day" style="width: 100%" />
+  </div>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        datetimeValue: '',
+        inlineDate1: '',
+        inlineDate2: '',
+        inlineDate3: '',
+        inlineDate4: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+### Pick Date & Time Range
+
+:::demo Select date and time ranges with DatePicker v2, laid out four per row. You can set default start and end times via `default-time`.
+```html
+<template>
+  <div
+    class="demo-date-picker-inline"
+    style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;"
+  >
+    <el-date-picker-v2
+      v-model="datetimeRange1"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="to"
+      start-placeholder="Start"
+      end-placeholder="End"
+      :default-time="['00:00:00', '23:59:59']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+    <el-date-picker-v2
+      v-model="datetimeRange2"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="to"
+      start-placeholder="Start"
+      end-placeholder="End"
+      :default-time="['08:00:00', '18:00:00']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+    <el-date-picker-v2
+      v-model="datetimeRange3"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="to"
+      start-placeholder="Start"
+      end-placeholder="End"
+      :default-time="['12:00:00', '23:59:59']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+    <el-date-picker-v2
+      v-model="datetimeRange4"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="to"
+      start-placeholder="Start"
+      end-placeholder="End"
+      :default-time="['00:00:00', '12:00:00']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        datetimeRange1: [],
+        datetimeRange2: [],
+        datetimeRange3: [],
+        datetimeRange4: [],
+        pickerOptions: {
+          shortcuts: [
+            {
+              text: 'Last hour',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: 'Today so far',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setHours(0, 0, 0, 0)
+                picker.$emit('pick', [start, end])
+              },
+            },
+            {
+              text: 'Last 3 days',
+              onClick(picker) {
+                const end = new Date()
+                const start = new Date()
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 3)
+                picker.$emit('pick', [start, end])
+              },
+            },
+          ],
+        },
       }
     },
   }

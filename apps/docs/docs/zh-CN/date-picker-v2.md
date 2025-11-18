@@ -71,6 +71,39 @@
 
 :::
 
+### 紧凑布局
+
+:::demo 通过在容器内平均分配空间，可以让四个日期选择器在同一行展示，并且在空间不足时压缩组件宽度。
+
+```html
+<template>
+  <div
+    class="demo-date-picker-inline"
+    style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;"
+  >
+    <el-date-picker-v2 v-model="inlineDate1" type="date" placeholder="选择日期" style="width: 100%" />
+    <el-date-picker-v2 v-model="inlineDate2" type="date" placeholder="选择日期" style="width: 100%" />
+    <el-date-picker-v2 v-model="inlineDate3" type="date" placeholder="选择日期" style="width: 100%" />
+    <el-date-picker-v2 v-model="inlineDate4" type="date" placeholder="选择日期" style="width: 100%" />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        inlineDate1: '',
+        inlineDate2: '',
+        inlineDate3: '',
+        inlineDate4: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
 ### 选择日期和时间
 
 :::demo 使用 DatePicker v2 同时选择日期和时间。
@@ -359,29 +392,73 @@
 
 ### 选择日期时间范围
 
-:::demo 使用 `datetimerange` 同时选择日期与时间区间，可通过 `default-time` 指定开始和结束默认时间。
+:::demo 使用 `datetimerange` 同时选择日期与时间区间，可通过 `default-time` 指定开始和结束默认时间，示例中以四列紧凑排布展示。
 
 ```html
 <template>
-  <p class="demonstration">值：{{ datetimeRange }}</p>
-  <el-date-picker-v2
-    v-model="datetimeRange"
-    type="datetimerange"
-    align="right"
-    unlink-panels
-    range-separator="至"
-    start-placeholder="开始时间"
-    end-placeholder="结束时间"
-    :default-time="['00:00:00', '23:59:59']"
-    :picker-options="pickerOptions"
-  />
+  <div
+    class="demo-date-picker-inline"
+    style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;"
+  >
+    <el-date-picker-v2
+      v-model="datetimeRange1"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+      :default-time="['00:00:00', '23:59:59']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+    <el-date-picker-v2
+      v-model="datetimeRange2"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+      :default-time="['08:00:00', '18:00:00']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+    <el-date-picker-v2
+      v-model="datetimeRange3"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+      :default-time="['12:00:00', '23:59:59']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+    <el-date-picker-v2
+      v-model="datetimeRange4"
+      type="datetimerange"
+      align="right"
+      unlink-panels
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+      :default-time="['00:00:00', '12:00:00']"
+      :picker-options="pickerOptions"
+      style="width: 100%"
+    />
+  </div>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        datetimeRange: [],
+        datetimeRange1: [],
+        datetimeRange2: [],
+        datetimeRange3: [],
+        datetimeRange4: [],
         pickerOptions: {
           shortcuts: [
             {
