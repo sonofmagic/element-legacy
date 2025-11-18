@@ -181,11 +181,13 @@
   color: #c0c4cc;
 }
 .el-month-table-v2 td .cell {
-  display: block;
-  width: 40px;
+  display: inline-block;
+  min-width: 40px;
   height: 28px;
+  padding: 0 4px;
   margin: 0 auto;
   line-height: 28px;
+  white-space: nowrap;
   color: #606266;
   border-radius: 14px;
   border: 1px solid transparent;
@@ -640,6 +642,26 @@
 .el-date-editor-v2 .el-icon-circle-close {
   cursor: pointer;
 }
+.el-date-editor-v2 .el-input__icon.is-clear-visible,
+.el-date-editor-v2 .el-range-v2__close-icon.is-clear-visible {
+  position: relative;
+  z-index: 2;
+}
+.el-date-editor-v2 .el-input__icon.is-clear-visible:after,
+.el-date-editor-v2 .el-range-v2__close-icon.is-clear-visible:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -2px;
+  width: 32px;
+  height: 72%;
+  pointer-events: none;
+  background-color: #fff;
+  border-radius: 16px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: -1;
+}
 .el-date-editor-v2 .el-range-input-v2 {
   display: inline-block;
   width: 39%;
@@ -949,7 +971,7 @@
   padding-left: 12px;
   font-size: 14px;
   line-height: 28px;
-  color: #606266;
+  color: #303133;
   text-align: left;
   cursor: pointer;
   outline: none;

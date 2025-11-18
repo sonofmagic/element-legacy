@@ -11,7 +11,7 @@
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: 0.5;
   }
 }
 @keyframes v-modal-in {
@@ -19,12 +19,12 @@
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: 0.5;
   }
 }
 @-webkit-keyframes v-modal-out {
   0% {
-    opacity: 1;
+    opacity: 0.5;
   }
   to {
     opacity: 0;
@@ -32,7 +32,7 @@
 }
 @keyframes v-modal-out {
   0% {
-    opacity: 1;
+    opacity: 0.5;
   }
   to {
     opacity: 0;

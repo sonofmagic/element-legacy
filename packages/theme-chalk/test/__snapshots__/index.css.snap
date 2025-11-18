@@ -160,8 +160,8 @@
   font-style: normal;
   font-weight: 400;
   src:
-    url(/fonts/element-icons.woff) format("woff"),
-    url(/fonts/element-icons.ttf) format("truetype");
+    url(./fonts/element-icons.woff) format("woff"),
+    url(./fonts/element-icons.ttf) format("truetype");
   font-display: "auto";
 }
 [class^="el-icon-"],
@@ -2368,7 +2368,7 @@
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: 0.5;
   }
 }
 @keyframes v-modal-in {
@@ -2376,12 +2376,12 @@
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: 0.5;
   }
 }
 @-webkit-keyframes v-modal-out {
   0% {
-    opacity: 1;
+    opacity: 0.5;
   }
   to {
     opacity: 0;
@@ -2389,7 +2389,7 @@
 }
 @keyframes v-modal-out {
   0% {
-    opacity: 1;
+    opacity: 0.5;
   }
   to {
     opacity: 0;
@@ -5654,6 +5654,19 @@
 .el-range-editor.is-disabled .el-range-separator {
   color: #c0c4cc;
 }
+.el-picker-panel__shortcut {
+  display: block;
+  width: 100%;
+  padding-left: 12px;
+  font-size: 14px;
+  line-height: 28px;
+  color: #606266;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  border: 0;
+}
 .el-date-picker {
   width: 322px;
 }
@@ -6101,11 +6114,13 @@
   color: #c0c4cc;
 }
 .el-month-table-v2 td .cell {
-  display: block;
-  width: 40px;
+  display: inline-block;
+  min-width: 40px;
   height: 28px;
+  padding: 0 4px;
   margin: 0 auto;
   line-height: 28px;
+  white-space: nowrap;
   color: #606266;
   border-radius: 14px;
   border: 1px solid transparent;
@@ -6403,6 +6418,26 @@
 }
 .el-date-editor-v2 .el-icon-circle-close {
   cursor: pointer;
+}
+.el-date-editor-v2 .el-input__icon.is-clear-visible,
+.el-date-editor-v2 .el-range-v2__close-icon.is-clear-visible {
+  position: relative;
+  z-index: 2;
+}
+.el-date-editor-v2 .el-input__icon.is-clear-visible:after,
+.el-date-editor-v2 .el-range-v2__close-icon.is-clear-visible:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -2px;
+  width: 32px;
+  height: 72%;
+  pointer-events: none;
+  background-color: #fff;
+  border-radius: 16px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: -1;
 }
 .el-date-editor-v2 .el-range-input-v2 {
   display: inline-block;
@@ -6713,7 +6748,7 @@
   padding-left: 12px;
   font-size: 14px;
   line-height: 28px;
-  color: #606266;
+  color: #303133;
   text-align: left;
   cursor: pointer;
   outline: none;
@@ -11401,98 +11436,6 @@
     background-position: 32px 0;
   }
 }
-.el-upload {
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-}
-.el-upload__input {
-  display: none;
-}
-.el-upload__tip {
-  margin-top: 7px;
-  font-size: 12px;
-  color: #606266;
-}
-.el-upload iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
-.el-upload--picture-card {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 148px;
-  height: 148px;
-  line-height: 146px;
-  vertical-align: top;
-  cursor: pointer;
-  background-color: #fbfdff;
-  border: 1px dashed #c0ccda;
-  border-radius: 6px;
-}
-.el-upload--picture-card i {
-  font-size: 28px;
-  color: #8c939d;
-}
-.el-upload--picture-card:hover {
-  color: #409eff;
-  border-color: #409eff;
-}
-.el-upload:focus {
-  color: #409eff;
-  border-color: #409eff;
-}
-.el-upload:focus .el-upload-dragger {
-  border-color: #409eff;
-}
-.el-upload-dragger {
-  position: relative;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 360px;
-  height: 180px;
-  overflow: hidden;
-  text-align: center;
-  cursor: pointer;
-  background-color: #fff;
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-}
-.el-upload-dragger .el-icon-upload {
-  margin: 40px 0 16px;
-  font-size: 67px;
-  line-height: 50px;
-  color: #c0c4cc;
-}
-.el-upload-dragger + .el-upload__tip {
-  text-align: center;
-}
-.el-upload-dragger ~ .el-upload__files {
-  padding-top: 5px;
-  margin-top: 7px;
-  border-top: 1px solid #dcdfe6;
-}
-.el-upload-dragger .el-upload__text {
-  font-size: 14px;
-  color: #606266;
-  text-align: center;
-}
-.el-upload-dragger .el-upload__text em {
-  font-style: normal;
-  color: #409eff;
-}
-.el-upload-dragger:hover {
-  border-color: #409eff;
-}
-.el-upload-dragger.is-dragover {
-  background-color: #209fff0f;
-  border: 2px dashed #409eff;
-}
 .el-upload-list {
   padding: 0;
   margin: 0;
@@ -11817,6 +11760,98 @@
 .el-upload-list--picture .el-progress {
   position: relative;
   top: -7px;
+}
+.el-upload {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+}
+.el-upload__input {
+  display: none;
+}
+.el-upload__tip {
+  margin-top: 7px;
+  font-size: 12px;
+  color: #606266;
+}
+.el-upload iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.el-upload--picture-card {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 148px;
+  height: 148px;
+  line-height: 146px;
+  vertical-align: top;
+  cursor: pointer;
+  background-color: #fbfdff;
+  border: 1px dashed #c0ccda;
+  border-radius: 6px;
+}
+.el-upload--picture-card i {
+  font-size: 28px;
+  color: #8c939d;
+}
+.el-upload--picture-card:hover {
+  color: #409eff;
+  border-color: #409eff;
+}
+.el-upload:focus {
+  color: #409eff;
+  border-color: #409eff;
+}
+.el-upload:focus .el-upload-dragger {
+  border-color: #409eff;
+}
+.el-upload-dragger {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 360px;
+  height: 180px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+}
+.el-upload-dragger .el-icon-upload {
+  margin: 40px 0 16px;
+  font-size: 67px;
+  line-height: 50px;
+  color: #c0c4cc;
+}
+.el-upload-dragger + .el-upload__tip {
+  text-align: center;
+}
+.el-upload-dragger ~ .el-upload__files {
+  padding-top: 5px;
+  margin-top: 7px;
+  border-top: 1px solid #dcdfe6;
+}
+.el-upload-dragger .el-upload__text {
+  font-size: 14px;
+  color: #606266;
+  text-align: center;
+}
+.el-upload-dragger .el-upload__text em {
+  font-style: normal;
+  color: #409eff;
+}
+.el-upload-dragger:hover {
+  border-color: #409eff;
+}
+.el-upload-dragger.is-dragover {
+  background-color: #209fff0f;
+  border: 2px dashed #409eff;
 }
 .el-upload-cover {
   position: absolute;
@@ -14043,49 +14078,6 @@
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-.el-image__error,
-.el-image__placeholder,
-.el-image__inner {
-  width: 100%;
-  height: 100%;
-}
-.el-image {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-}
-.el-image__inner {
-  vertical-align: top;
-}
-.el-image__inner--center {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  display: block;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-.el-image__placeholder {
-  background: #f5f7fa;
-}
-.el-image__error {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  font-size: 14px;
-  vertical-align: middle;
-  color: #c0c4cc;
-  background: #f5f7fa;
-}
-.el-image__preview {
-  cursor: pointer;
-}
 .el-image-viewer__wrapper {
   position: fixed;
   inset: 0;
@@ -14251,6 +14243,49 @@
     -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0);
   }
+}
+.el-image__error,
+.el-image__placeholder,
+.el-image__inner {
+  width: 100%;
+  height: 100%;
+}
+.el-image {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.el-image__inner {
+  vertical-align: top;
+}
+.el-image__inner--center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  display: block;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.el-image__placeholder {
+  background: #f5f7fa;
+}
+.el-image__error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 14px;
+  vertical-align: middle;
+  color: #c0c4cc;
+  background: #f5f7fa;
+}
+.el-image__preview {
+  cursor: pointer;
 }
 .el-calendar {
   background-color: #fff;

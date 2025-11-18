@@ -159,8 +159,8 @@
   font-style: normal;
   font-weight: 400;
   src:
-    url(/fonts/element-icons.woff) format("woff"),
-    url(/fonts/element-icons.ttf) format("truetype");
+    url(./fonts/element-icons.woff) format("woff"),
+    url(./fonts/element-icons.ttf) format("truetype");
   font-display: "auto";
 }
 [class^="el-icon-"],
