@@ -1,5 +1,11 @@
 # @element-legacy/theme-chalk
 
+## 0.2.0
+
+### Minor Changes
+
+- [`f68b936`](https://github.com/sonofmagic/element-legacy/commit/f68b936da6f93576913416f5f08ced06b8c7f6ed) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Add a `singleClear` prop to DatePicker v2 that defaults to a single clear button clearing the full range, with an opt-out to keep two clear buttons.
+
 ## 0.1.1
 
 ### Patch Changes
