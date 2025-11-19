@@ -81,6 +81,38 @@ L'unité de base du DatePicker est le jour.
         },
         value1: '',
         value2: '',
+        valueRangeTwoClear: '',
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+:::demo Passez `single-clear` à `false` pour afficher deux boutons d'effacement distincts qui nettoient séparément la date de début et la date de fin.
+
+```html
+<template>
+  <div class="block">
+    <span class="demonstration">Deux boutons d'effacement</span>
+    <el-date-picker-v2
+      v-model="valueRangeTwoClear"
+      type="daterange"
+      range-separator="à"
+      start-placeholder="Date de début"
+      end-placeholder="Date de fin"
+      :single-clear="false"
+    >
+    </el-date-picker-v2>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        valueRangeTwoClear: '',
       }
     },
   }

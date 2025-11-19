@@ -27,16 +27,16 @@
   &.el-input,
   &.el-input__inner {
     width: 100%;
-    max-width: 220px;
     min-width: 0;
+    max-width: 220px;
   }
 
   @include mixins.m((monthrange)) {
     &.el-input,
     &.el-input__inner {
       width: 100%;
-      max-width: 300px;
       min-width: 0;
+      max-width: 300px;
     }
   }
 
@@ -44,8 +44,8 @@
     &.el-input,
     &.el-input__inner {
       width: 100%;
-      max-width: 350px;
       min-width: 0;
+      max-width: 350px;
     }
   }
 
@@ -53,8 +53,8 @@
     &.el-input,
     &.el-input__inner {
       width: 100%;
-      max-width: 400px;
       min-width: 0;
+      max-width: 400px;
     }
   }
 
@@ -69,6 +69,10 @@
     color: var.$color-text-primary;
   }
 
+  .el-input__suffix {
+    right: 4px;
+  }
+
   .el-icon-circle-close {
     cursor: pointer;
   }
@@ -79,17 +83,16 @@
     z-index: 2;
 
     &::after {
-      content: '';
       position: absolute;
       top: 50%;
-      right: -2px;
-      width: 32px;
+      right: 0;
+      z-index: -1;
+      width: 26px;
       height: 72%;
       pointer-events: none;
+      content: '';
       background-color: var.$color-white;
-      border-radius: 16px;
       transform: translateY(-50%);
-      z-index: -1;
     }
   }
 
@@ -116,7 +119,7 @@
     display: inline-block;
     width: 5%;
     height: 100%;
-    padding: 0 5px;
+    padding: 0 4px;
     margin: 0;
     font-size: 14px;
     line-height: 36px;
@@ -141,8 +144,8 @@
     display: inline-flex;
     align-items: stretch;
     width: 100%;
-    max-width: 304px;
     min-width: 0;
+    max-width: 304px;
     padding: 0;
     overflow: hidden;
     background-color: var.$color-white;
@@ -188,7 +191,6 @@
       display: flex;
       flex: 1 1 0;
       min-width: 0;
-      padding: 4px;
     }
 
     .el-date-editor-v2 {
@@ -216,7 +218,7 @@
     .el-range-separator-v2 {
       z-index: 1;
       width: auto;
-      padding: 0 8px;
+      padding: 0 4px;
       line-height: inherit;
     }
 
@@ -231,17 +233,17 @@
 
     &.el-date-range-editor-v2--datetimerange {
       width: 100%;
-      max-width: 448px;
       min-width: 0;
+      max-width: 448px;
     }
   }
 }
 
 .el-date-picker-v2__footer-actions {
   display: flex;
+  gap: 8px;
   align-items: center;
   width: 100%;
-  gap: 8px;
 
   .el-date-picker-v2__footer-confirm {
     margin-left: auto;
@@ -253,7 +255,6 @@
     display: inline-flex;
     align-items: center;
     height: 36px;
-    padding: 0 10px;
   }
 
   .el-range-input-v2 {

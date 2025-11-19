@@ -429,6 +429,7 @@ The basic day picker.
     data() {
       return {
         rangeValue: '',
+        rangeValueTwoClear: '',
         rangeQuickValue: '',
         pickerOptions: {
           shortcuts: [
@@ -461,6 +462,37 @@ The basic day picker.
             },
           ],
         },
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+:::demo Set `single-clear` to `false` to show two separate clear buttons that independently clear the start and end dates.
+
+```html
+<template>
+  <div class="block">
+    <span class="demonstration">Two clear buttons</span>
+    <div class="demonstration">Value: {{ rangeValueTwoClear }}</div>
+    <el-date-picker-v2
+      v-model="rangeValueTwoClear"
+      type="daterange"
+      range-separator="to"
+      start-placeholder="Start date"
+      end-placeholder="End date"
+      :single-clear="false"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        rangeValueTwoClear: '',
       }
     },
   }

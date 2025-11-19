@@ -350,6 +350,7 @@
     data() {
       return {
         rangeValue: '',
+        rangeValueTwoClear: '',
         rangeQuickValue: '',
         pickerOptions: {
           shortcuts: [
@@ -382,6 +383,37 @@
             },
           ],
         },
+      }
+    },
+  }
+</script>
+```
+
+:::
+
+:::demo 将 `single-clear` 设为 `false` 时会显示两个分开的清除按钮，分别清空起始和结束日期。
+
+```html
+<template>
+  <div class="block">
+    <span class="demonstration">双清除按钮</span>
+    <div class="demonstration">值：{{ rangeValueTwoClear }}</div>
+    <el-date-picker-v2
+      v-model="rangeValueTwoClear"
+      type="daterange"
+      range-separator="至"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期"
+      :single-clear="false"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        rangeValueTwoClear: '',
       }
     },
   }
