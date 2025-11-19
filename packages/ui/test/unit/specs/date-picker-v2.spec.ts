@@ -287,6 +287,46 @@ describe('DatePickerV2 range shortcuts', () => {
 
     vm.$destroy()
   })
+
+  it('defaults to a single clear button that clears the entire range', async () => {
+    const start = new Date(2024, 0, 1)
+    const end = new Date(2024, 0, 2)
+    const vm = createInstance({
+      value: [start, end],
+    })
+
+    expect(vm.buildPickerProps('start').clearable).to.be.false
+    expect(vm.buildPickerProps('end').clearable).to.be.true
+
+    const inputSpy = sinon.spy()
+    const changeSpy = sinon.spy()
+    vm.$on('input', inputSpy)
+    vm.$on('change', changeSpy)
+
+    vm.handleEndInput(null)
+    vm.handleEndChange()
+    await vm.$nextTick()
+
+    expect(vm.startValue).to.equal(null)
+    expect(vm.endValue).to.equal(null)
+    expect(inputSpy.callCount).to.be.greaterThan(0)
+    expect(inputSpy.lastCall.args[0]).to.deep.equal([null, null])
+    expect(changeSpy.calledOnce).to.be.true
+    expect(changeSpy.firstCall.args[0]).to.deep.equal([null, null])
+
+    vm.$destroy()
+  })
+
+  it('supports restoring two clear buttons via prop', () => {
+    const vm = createInstance({
+      singleClear: false,
+    })
+
+    expect(vm.buildPickerProps('start').clearable).to.be.true
+    expect(vm.buildPickerProps('end').clearable).to.be.true
+
+    vm.$destroy()
+  })
 })
 
 describe('DatePickerV2 manual input normalization', () => {

@@ -287,14 +287,23 @@ export default {
 
     handleEndInput(val: unknown) {
       const previous = this.endValue
+      const hadStartValue = this.hasFieldValue(this.startValue)
       if (!valueEquals(val, this.endValue)) {
         this.endValue = val
+      }
+      const clearedEnd = this.valueWasCleared(previous, val)
+      if (this.singleClear && clearedEnd && hadStartValue) {
+        this.startValue = null
+        if (this.activeField === 'start') {
+          this.handleFieldClear('start')
+        }
       }
       if (this.startValue && this.compareValues(this.startValue, val) > 0) {
         this.startValue = null
       }
-      if (this.valueWasCleared(previous, val)) {
+      if (clearedEnd) {
         this.handleFieldClear('end')
+        this.activeField = null
       }
       this.emitModel()
     },
@@ -437,7 +446,7 @@ export default {
         prefixIcon: this.prefixIcon,
         clearIcon: this.clearIcon,
         disabled: this.disabled,
-        clearable: this.clearable,
+        clearable: this.singleClear ? (!isStart && this.clearable) : this.clearable,
         popperClass: isStart ? this.startPopperClass : this.endPopperClass,
         editable: this.editable,
         align: this.align,

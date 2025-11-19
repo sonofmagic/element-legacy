@@ -81,6 +81,9 @@ export declare class ElDatePickerV2 extends ElementUIComponent {
   /** Whether to show clear button */
   clearable: boolean
 
+  /** Whether to use a single clear button to clear the whole range in split mode */
+  singleClear: boolean
+
   /** Placeholder */
   placeholder: string
 

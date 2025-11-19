@@ -93,6 +93,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    singleClear: {
+      type: Boolean,
+      default: true,
+    },
     id: {
       default: '',
       validator: listablePropValidator,
