@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'vue/dist/vue.js'
+import Vue from 'vue'
 import sinon from 'sinon'
 import DateRangeSplit from 'packages/date-picker-v2/src/picker/date-range-split.vue'
 import BaseDatePicker from 'packages/date-picker-v2/src/picker/base-date-picker'

@@ -40,6 +40,10 @@ export default defineConfig(
         include: [
           'test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
         ],
+        esbuild: {
+          loader: 'tsx',
+          include: [/packages\/ui\/test\/unit\/specs\/.*\\.ts$/],
+        },
         globals: true,
         setupFiles: [
           './test/vitest.setup.ts',

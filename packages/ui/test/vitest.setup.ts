@@ -44,6 +44,17 @@ const patchAsyncAPI = (name: 'it' | 'test' | 'beforeEach' | 'afterEach' | 'befor
 
 ;(['it', 'test', 'beforeEach', 'afterEach', 'beforeAll', 'afterAll'] as const).forEach(patchAsyncAPI)
 
+// Legacy mocha-style aliases used across old suites.
+const maybeAlias = (from: 'before' | 'after', to: 'beforeAll' | 'afterAll') => {
+  const globalRef = globalThis as any
+  if (!globalRef[from] && globalRef[to]) {
+    globalRef[from] = globalRef[to]
+  }
+}
+
+maybeAlias('before', 'beforeAll')
+maybeAlias('after', 'afterAll')
+
 const normalizeText = (value?: string | null) => (value ?? '').replace(/\s+/g, ' ').trim()
 
 const getStyle = (el: HTMLElement) => el.ownerDocument?.defaultView?.getComputedStyle(el)
