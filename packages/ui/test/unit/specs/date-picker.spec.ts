@@ -7,12 +7,20 @@ import {
   wait
 } from '../util';
 import DatePicker from 'packages/date-picker';
+import { vi } from 'vitest';
 
 const DELAY = 50;
 
 const LEFT = 37;
 const ENTER = 13;
 const TAB = 9;
+
+const activeTimeouts = new Set<ReturnType<typeof setTimeout>>();
+const activeIntervals = new Set<ReturnType<typeof setInterval>>();
+const nativeSetTimeout = globalThis.setTimeout;
+const nativeClearTimeout = globalThis.clearTimeout;
+const nativeSetInterval = globalThis.setInterval;
+const nativeClearInterval = globalThis.clearInterval;
 
 const keyDown = (el, keyCode) => {
   const evt = document.createEvent('Events');
@@ -23,7 +31,35 @@ const keyDown = (el, keyCode) => {
 
 describe('DatePicker', () => {
   let vm;
-  afterEach(() => { destroyVM(vm); });
+  beforeEach(() => {
+    vi.spyOn(globalThis, 'setTimeout').mockImplementation((handler: TimerHandler, timeout?: number, ...args: any[]) => {
+      const id = nativeSetTimeout(handler as (...args: any[]) => void, timeout, ...args);
+      activeTimeouts.add(id);
+      return id;
+    });
+    vi.spyOn(globalThis, 'clearTimeout').mockImplementation((id?: number | NodeJS.Timeout) => {
+      activeTimeouts.delete(id as NodeJS.Timeout);
+      return nativeClearTimeout(id as NodeJS.Timeout);
+    });
+    vi.spyOn(globalThis, 'setInterval').mockImplementation((handler: TimerHandler, timeout?: number, ...args: any[]) => {
+      const id = nativeSetInterval(handler as (...args: any[]) => void, timeout, ...args);
+      activeIntervals.add(id);
+      return id;
+    });
+    vi.spyOn(globalThis, 'clearInterval').mockImplementation((id?: number | NodeJS.Timeout) => {
+      activeIntervals.delete(id as NodeJS.Timeout);
+      return nativeClearInterval(id as NodeJS.Timeout);
+    });
+  });
+
+  afterEach(() => {
+    activeTimeouts.forEach(id => nativeClearTimeout(id));
+    activeIntervals.forEach(id => nativeClearInterval(id));
+    activeTimeouts.clear();
+    activeIntervals.clear();
+    vi.restoreAllMocks();
+    destroyVM(vm);
+  });
 
   it('create', () => {
     vm = createTest(DatePicker, {

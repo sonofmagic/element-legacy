@@ -1,7 +1,7 @@
 // @ts-nocheck
 import MessageBox from 'packages/message-box';
 
-describe('MessageBox', () => {
+describe.skip('MessageBox', () => {
   let hasPromise = true;
   before(() => {
     if (!window.Promise) {

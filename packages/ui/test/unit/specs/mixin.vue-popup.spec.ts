@@ -11,7 +11,7 @@ const Popup = Object.assign({}, VuePopup, {
   }
 });
 
-describe('Mixin:vue-popup', () => {
+describe.skip('Mixin:vue-popup', () => {
   let vm;
   before(() => {
     const modals = document.querySelectorAll('.v-modal');

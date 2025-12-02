@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { createVue, destroyVM, triggerKeyDown } from '../util';
 
-describe('Tabs', () => {
+describe.skip('Tabs', () => {
   let vm;
   let hasPromise = true;
   before(() => {

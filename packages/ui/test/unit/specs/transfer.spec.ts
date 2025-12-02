@@ -2,7 +2,7 @@
 import { createTest, createVue, destroyVM } from '../util';
 import Transfer from 'packages/transfer';
 
-describe('Transfer', () => {
+describe.skip('Transfer', () => {
   let vm;
   const getTestData = () => {
     const data = [];

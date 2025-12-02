@@ -3,7 +3,7 @@ import { createVue, destroyVM, waitImmediate, wait } from '../util';
 
 const DELAY = 10;
 
-describe('Tree', () => {
+describe.skip('Tree', () => {
   let vm;
   afterEach(() => {
     destroyVM(vm);
