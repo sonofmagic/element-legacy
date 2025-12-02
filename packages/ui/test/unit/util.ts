@@ -1,5 +1,5 @@
 import Element from 'main/index.js'
-import Vue from 'vue/dist/vue.js'
+import Vue from 'vue'
 
 Vue.use(Element)
 

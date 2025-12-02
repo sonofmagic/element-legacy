@@ -616,21 +616,29 @@
 }
 .el-date-editor-v2.el-input,
 .el-date-editor-v2.el-input__inner {
-  width: 220px;
+  width: 100%;
+  min-width: 0;
+  max-width: 220px;
 }
 .el-date-editor-v2--monthrange.el-input,
 .el-date-editor-v2--monthrange.el-input__inner {
-  width: 300px;
+  width: 100%;
+  min-width: 0;
+  max-width: 300px;
 }
 .el-date-editor-v2--daterange.el-input,
 .el-date-editor-v2--daterange.el-input__inner,
 .el-date-editor-v2--timerange.el-input,
 .el-date-editor-v2--timerange.el-input__inner {
-  width: 350px;
+  width: 100%;
+  min-width: 0;
+  max-width: 350px;
 }
 .el-date-editor-v2--datetimerange.el-input,
 .el-date-editor-v2--datetimerange.el-input__inner {
-  width: 400px;
+  width: 100%;
+  min-width: 0;
+  max-width: 400px;
 }
 .el-date-editor-v2--dates .el-input__inner {
   text-overflow: ellipsis;
@@ -638,6 +646,9 @@
 }
 .el-date-editor-v2 .el-input__inner {
   color: #303133;
+}
+.el-date-editor-v2 .el-input__suffix {
+  right: 4px;
 }
 .el-date-editor-v2 .el-icon-circle-close {
   cursor: pointer;
@@ -649,18 +660,17 @@
 }
 .el-date-editor-v2 .el-input__icon.is-clear-visible:after,
 .el-date-editor-v2 .el-range-v2__close-icon.is-clear-visible:after {
-  content: "";
   position: absolute;
   top: 50%;
-  right: -2px;
-  width: 32px;
+  right: 0;
+  z-index: -1;
+  width: 26px;
   height: 72%;
   pointer-events: none;
+  content: "";
   background-color: #fff;
-  border-radius: 16px;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  z-index: -1;
 }
 .el-date-editor-v2 .el-range-input-v2 {
   display: inline-block;
@@ -697,7 +707,7 @@
   display: inline-block;
   width: 5%;
   height: 100%;
-  padding: 0 5px;
+  padding: 0 4px;
   margin: 0;
   font-size: 14px;
   line-height: 36px;
@@ -722,8 +732,9 @@
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
-  width: 304px;
-  min-width: 304px;
+  width: 100%;
+  min-width: 0;
+  max-width: 304px;
   padding: 0;
   overflow: hidden;
   background-color: #fff;
@@ -774,7 +785,6 @@
   -ms-flex: 1 1 0px;
   flex: 1 1 0;
   min-width: 0;
-  padding: 4px;
 }
 .el-date-range-editor-v2--split .el-date-editor-v2 {
   -webkit-box-flex: 1;
@@ -823,7 +833,7 @@
 .el-date-range-editor-v2--split .el-range-separator-v2 {
   z-index: 1;
   width: auto;
-  padding: 0 8px;
+  padding: 0 4px;
   line-height: inherit;
 }
 .el-date-range-editor-v2--split .el-date-range-editor-v2__separator {
@@ -838,18 +848,19 @@
   color: #c0c4cc;
 }
 .el-date-range-editor-v2--split.el-date-range-editor-v2--datetimerange {
-  width: 448px;
-  min-width: 448px;
+  width: 100%;
+  min-width: 0;
+  max-width: 448px;
 }
 .el-date-picker-v2__footer-actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 8px;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   width: 100%;
-  gap: 8px;
 }
 .el-date-picker-v2__footer-actions .el-date-picker-v2__footer-confirm {
   margin-left: auto;
@@ -862,7 +873,6 @@
   -ms-flex-align: center;
   align-items: center;
   height: 36px;
-  padding: 0 10px;
 }
 .el-range-editor-v2 .el-range-input-v2 {
   line-height: 36px;

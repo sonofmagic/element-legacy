@@ -36,11 +36,11 @@ describe('Timeline', () => {
     }, true);
     let contentElms = vm.$el.querySelectorAll('.el-timeline-item__content');
     contentElms.forEach((elm, index) => {
-      expect(elm.innerText).to.equal(vm.activities[index].content);
+      expect(elm.textContent.trim()).to.equal(vm.activities[index].content);
     });
     let timestampElms = vm.$el.querySelectorAll('.el-timeline-item__timestamp');
     timestampElms.forEach((elm, index) => {
-      expect(elm.innerText).to.equal(vm.activities[index].timestamp);
+      expect(elm.textContent.trim()).to.equal(vm.activities[index].timestamp);
     });
   });
 
@@ -76,14 +76,14 @@ describe('Timeline', () => {
 
     const contentElms = vm.$el.querySelectorAll('.el-timeline-item__content');
     contentElms.forEach((elm, index) => {
-      expect(elm.innerText).to.equal(vm.activities[vm.activities.length - index - 1].content);
+      expect(elm.textContent.trim()).to.equal(vm.activities[vm.activities.length - index - 1].content);
     });
 
     vm.reverse = false;
     vm.$nextTick(() => {
       const contentElms = vm.$el.querySelectorAll('.el-timeline-item__content');
       contentElms.forEach((elm, index) => {
-        expect(elm.innerText).to.equal(vm.activities[index].content);
+        expect(elm.textContent.trim()).to.equal(vm.activities[index].content);
       });
       done();
     });

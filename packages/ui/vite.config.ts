@@ -69,6 +69,7 @@ export default defineConfig({
       'element-ui': workspaceRoot,
       'element-ui/src': srcRoot,
       'element-ui/packages': packagesRoot,
+      'vue': 'vue/dist/vue.esm.js',
     },
   },
   plugins: [

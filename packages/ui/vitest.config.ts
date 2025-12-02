@@ -15,6 +15,7 @@ export default defineConfig(
           'element-ui': path.resolve(import.meta.dirname),
           'packages': path.resolve(import.meta.dirname, 'packages'),
           'main': path.resolve(import.meta.dirname, 'src'),
+          'vue': 'vue/dist/vue.esm.js',
         },
       },
       test: {
