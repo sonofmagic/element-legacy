@@ -1,3 +1,5 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
 // @ts-nocheck
 import Vue from 'element-ui/src/utils/vue';
 import Loading from './loading.vue';
@@ -24,6 +26,7 @@ loadingDirective.install = Vue => {
 
           if (binding.modifiers.body) {
             el.originalPosition = getStyle(document.body, 'position');
+            el.originalOverflow = getStyle(document.body, 'overflow');
 
             ['top', 'left'].forEach(property => {
               const scroll = property === 'top' ? 'scrollTop' : 'scrollLeft';
@@ -40,6 +43,7 @@ loadingDirective.install = Vue => {
             insertDom(document.body, el, binding);
           } else {
             el.originalPosition = getStyle(el, 'position');
+            el.originalOverflow = getStyle(el, 'overflow');
             insertDom(el, el, binding);
           }
         }
@@ -53,6 +57,12 @@ loadingDirective.install = Vue => {
           : el;
         removeClass(target, 'el-loading-parent--relative');
         removeClass(target, 'el-loading-parent--hidden');
+        if (el.originalOverflow !== undefined && el.originalOverflow !== null) {
+          target.style.overflow = el.originalOverflow;
+        }
+        if (el.positionSet && el.originalPosition !== undefined && el.originalPosition !== null) {
+          target.style.position = el.originalPosition;
+        }
         el.instance.hiding = false;
       }, 300, true);
       el.instance.visible = false;
@@ -67,9 +77,15 @@ loadingDirective.install = Vue => {
 
       if (el.originalPosition !== 'absolute' && el.originalPosition !== 'fixed' && el.originalPosition !== 'sticky') {
         addClass(parent, 'el-loading-parent--relative');
+        const needsPosition = !el.originalPosition || el.originalPosition === 'static';
+        if (needsPosition) {
+          parent.style.position = 'relative';
+          el.positionSet = true;
+        }
       }
       if (binding.modifiers.fullscreen && binding.modifiers.lock) {
         addClass(parent, 'el-loading-parent--hidden');
+        parent.style.overflow = 'hidden';
       }
       el.domVisible = true;
 

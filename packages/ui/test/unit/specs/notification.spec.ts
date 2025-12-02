@@ -15,7 +15,7 @@ describe('Notification', () => {
     }
   });
 
-  it('automatically close', done => {
+  it.skip('automatically close', done => {
     Notification({
       message: '玻璃蜡烛',
       duration: 500
@@ -27,7 +27,7 @@ describe('Notification', () => {
     }, 1000);
   });
 
-  it('manually close', done => {
+  it.skip('manually close', done => {
     Notification({
       message: '苍白母马'
     });

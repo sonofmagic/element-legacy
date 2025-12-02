@@ -71,6 +71,8 @@
 
     methods: {
       handleClick(evt) {
+        // Prevent click handler when button is logically disabled or loading.
+        if (this.buttonDisabled || this.loading) return;
         this.$emit('click', evt);
       }
     }

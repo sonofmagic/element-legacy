@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
 // @ts-nocheck
 import ElInput from 'element-ui/packages/input'
 import ElTooltip from 'element-ui/packages/tooltip'
@@ -146,14 +148,16 @@ export default {
 
     reference() {
       const reference = this.$refs.reference
+      if (!reference) return null
       return reference.$el || reference
     },
 
     refInput() {
-      if (this.reference) {
-        return [].slice.call(this.reference.querySelectorAll('input'))
-      }
-      return []
+      const reference = this.reference
+      if (!reference) return []
+      const root = reference.$el || reference
+      const inputs = root?.querySelectorAll ? root.querySelectorAll('input') : []
+      return [].slice.call(inputs)
     },
 
     valueIsEmpty() {

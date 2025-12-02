@@ -85,7 +85,7 @@ const getScrollOptions = (el, vm) => {
   }, {});
 };
 
-const getElementTop = el => el.getBoundingClientRect().top;
+const getElementTop = el => el === window ? 0 : el.getBoundingClientRect().top;
 
 const handleScroll = function(cb) {
   const { el, vm, container, observer } = this[scope];
@@ -93,7 +93,10 @@ const handleScroll = function(cb) {
 
   if (disabled) return;
 
-  const containerInfo = container.getBoundingClientRect();
+  const isWindow = container === window;
+  const containerInfo = isWindow
+    ? { top: 0, bottom: window.innerHeight, height: window.innerHeight, width: window.innerWidth }
+    : container.getBoundingClientRect();
   if (!containerInfo.width && !containerInfo.height) return;
 
   let shouldTrigger = false;
@@ -104,8 +107,8 @@ const handleScroll = function(cb) {
     shouldTrigger = container.scrollHeight - scrollBottom <= distance;
   } else {
     const heightBelowTop = getOffsetHeight(el) + getElementTop(el) - getElementTop(container);
-    const offsetHeight = getOffsetHeight(container);
-    const borderBottom = Number.parseFloat(getStyleComputedProperty(container, 'borderBottomWidth'));
+    const offsetHeight = isWindow ? window.innerHeight : getOffsetHeight(container);
+    const borderBottom = isWindow ? 0 : Number.parseFloat(getStyleComputedProperty(container, 'borderBottomWidth'));
     shouldTrigger = heightBelowTop - offsetHeight + borderBottom <= distance;
   }
 
@@ -131,14 +134,17 @@ export default {
 
     el[scope] = { el, vm, container, onScroll };
 
-    if (container) {
-      container.addEventListener('scroll', onScroll);
+    if (!container) return;
 
-      if (immediate) {
+    const isElement = container instanceof Node && container !== window;
+    container.addEventListener('scroll', onScroll);
+
+    if (immediate) {
+      if (isElement && typeof MutationObserver !== 'undefined') {
         const observer = el[scope].observer = new MutationObserver(onScroll);
         observer.observe(container, { childList: true, subtree: true });
-        onScroll();
       }
+      onScroll();
     }
   },
   unbind(el) {
@@ -148,4 +154,3 @@ export default {
     }
   }
 };
-

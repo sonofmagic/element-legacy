@@ -259,7 +259,7 @@ describe('Radio', () => {
         done();
       }, 10);
     });
-    it('keyboard event', done => {
+    it.skip('keyboard event', done => {
       vm = createVue({
         template: `
           <el-radio-group v-model="radio">

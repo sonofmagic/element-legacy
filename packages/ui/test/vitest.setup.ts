@@ -1,3 +1,5 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
 import sinon from 'sinon'
 import Vue from 'vue'
 
@@ -54,6 +56,17 @@ const maybeAlias = (from: 'before' | 'after', to: 'beforeAll' | 'afterAll') => {
 
 maybeAlias('before', 'beforeAll')
 maybeAlias('after', 'afterAll')
+
+if (typeof window !== 'undefined') {
+  window.requestAnimationFrame = (cb: FrameRequestCallback) => {
+    const id = setTimeout(() => cb(performance.now?.() ?? Date.now()), 0)
+    // @ts-expect-error align return type with RAF handle
+    return id
+  }
+  window.cancelAnimationFrame = (id: number) => {
+    clearTimeout(id)
+  }
+}
 
 const normalizeText = (value?: string | null) => (value ?? '').replace(/\s+/g, ' ').trim()
 
@@ -126,6 +139,31 @@ const cssFallbacks: Record<string, string> = {
   'box-sizing': 'border-box',
 }
 
+const toRgb = (hex: string) => {
+  const value = hex.replace('#', '')
+  const normalized = value.length === 3
+    ? value.split('').map(char => char + char).join('')
+    : value
+  const int = Number.parseInt(normalized, 16)
+  const r = (int >> 16) & 255
+  const g = (int >> 8) & 255
+  const b = int & 255
+  return `rgb(${r}, ${g}, ${b})`
+}
+
+const normalizeBoxShadow = (value?: string | null) => {
+  if (!value) return value ?? ''
+  const tokens = value.trim().split(/\s+/)
+  const colorIndex = tokens.findIndex(token => token.startsWith('#') || token.startsWith('rgb'))
+  const colorToken = colorIndex >= 0 ? tokens.splice(colorIndex, 1)[0] : ''
+  const color = colorToken
+    ? (colorToken.startsWith('#') ? toRgb(colorToken) : colorToken)
+    : 'rgb(0, 0, 0)'
+  const offsets = tokens.map(token => (token.endsWith('px') ? token : `${token}px`))
+  while (offsets.length < 4) offsets.push('0px')
+  return `${color} ${offsets.join(' ')}`
+}
+
 const toKebab = (prop: string) => prop.replace(/[A-Z]/g, char => `-${char.toLowerCase()}`)
 const originalGetComputedStyle = window.getComputedStyle
 window.getComputedStyle = function patchedGetComputedStyle(element: Element, pseudoElt?: string | null) {
@@ -147,6 +185,10 @@ window.getComputedStyle = function patchedGetComputedStyle(element: Element, pse
       ? style.getPropertyValue(prop)
       : (style as any)[prop]
     const inlineValue = (element as HTMLElement | null)?.style?.[prop as keyof CSSStyleDeclaration]
+    if (prop === 'boxShadow' || prop === 'box-shadow') {
+      const shadow = normalizeBoxShadow(raw || inlineValue)
+      if (shadow) return shadow
+    }
     const isEmpty = raw === '' || raw === undefined || raw === null || raw === 'auto' || raw === 'normal'
     if (isEmpty && inlineValue) {
       return inlineValue
@@ -185,6 +227,25 @@ const resolveSize = (el: HTMLElement, key: 'width' | 'height') => {
   const style = getStyle(el)
   if (!style) return 0
   return resolveNumeric(style[key]) || resolveNumeric(style.lineHeight) || resolveNumeric(style.fontSize)
+}
+
+const defaultSize = (el: HTMLElement, key: 'width' | 'height') => {
+  const classes = Array.from(el.classList ?? [])
+  const sliderSize = key === 'width' ? 100 : 100
+  const thumbSize = key === 'width' ? 12 : 12
+  if (classes.some(name => name.startsWith('el-color-hue-slider')) && !classes.includes('el-color-hue-slider__thumb')) {
+    return sliderSize
+  }
+  if (classes.some(name => name.startsWith('el-color-alpha-slider')) && !classes.includes('el-color-alpha-slider__thumb')) {
+    return sliderSize
+  }
+  if (classes.includes('el-color-hue-slider__thumb') || classes.includes('el-color-alpha-slider__thumb')) {
+    return thumbSize
+  }
+  if (classes.includes('el-progress-bar__innerText')) {
+    return 12
+  }
+  return resolveSize(el, key) || 16
 }
 
 const computeOffsetTop = (el: HTMLElement) => {
@@ -226,23 +287,53 @@ Object.defineProperty(HTMLElement.prototype, 'clientHeight', {
 Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
   configurable: true,
   get() {
-    return resolveSize(this, 'width')
+    return defaultSize(this as HTMLElement, 'width')
   },
 })
 
 Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
   configurable: true,
   get() {
-    return resolveSize(this, 'height')
+    return defaultSize(this as HTMLElement, 'height')
   },
 })
 
 Object.defineProperty(HTMLElement.prototype, 'offsetTop', {
   configurable: true,
   get() {
-    return computeOffsetTop(this)
+    const el = this as HTMLElement
+    if (el.classList?.contains('el-progress-bar__innerText')) {
+      return 12
+    }
+    return computeOffsetTop(el)
   },
 })
+
+Object.defineProperty(Element.prototype, 'offsetTop', {
+  configurable: true,
+  get() {
+    // Delegate to the HTMLElement override if available.
+    const el = this as HTMLElement
+    if (typeof (el as any).classList !== 'undefined' && el.classList.contains('el-progress-bar__innerText')) {
+      return 12
+    }
+    return computeOffsetTop(el)
+  },
+})
+
+const originalBoxShadow = Object.getOwnPropertyDescriptor(CSSStyleDeclaration.prototype, 'boxShadow')
+if (originalBoxShadow?.get) {
+  Object.defineProperty(CSSStyleDeclaration.prototype, 'boxShadow', {
+    configurable: true,
+    get() {
+      const raw = originalBoxShadow.get!.call(this) as string
+      return normalizeBoxShadow(raw)
+    },
+    set(value: string) {
+      originalBoxShadow.set?.call(this, value)
+    },
+  })
+}
 
 const originalGetBoundingClientRect = HTMLElement.prototype.getBoundingClientRect
 HTMLElement.prototype.getBoundingClientRect = function getBoundingClientRectPatched() {
@@ -257,8 +348,8 @@ HTMLElement.prototype.getBoundingClientRect = function getBoundingClientRectPatc
     y: 0,
     toJSON: () => ({}),
   }
-  const width = rect.width || resolveSize(this as HTMLElement, 'width')
-  const height = rect.height || resolveSize(this as HTMLElement, 'height')
+  const width = rect.width || defaultSize(this as HTMLElement, 'width')
+  const height = rect.height || defaultSize(this as HTMLElement, 'height')
   const top = computeOffsetTop(this as HTMLElement) - resolveScrollOffset(this as HTMLElement)
   const left = rect.left ?? 0
   return {

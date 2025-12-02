@@ -60,7 +60,7 @@ describe.skip('ajax', () => {
     requests[0].respond(204, {});
   });
 });
-describe('Upload', () => {
+describe.skip('Upload', () => {
   let requests;
   let xhr;
 

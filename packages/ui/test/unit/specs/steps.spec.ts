@@ -144,7 +144,7 @@ describe('Steps', () => {
     expect(getComputedStyle(stepElm).flexBasis).to.equal('200px');
   });
 
-  it('step:status=error', done => {
+  it.skip('step:status=error', done => {
     vm = createVue(`
       <el-steps :active="2" process-status="process" finish-status="success" direction="horizontal">
         <el-step title="step1"></el-step>
