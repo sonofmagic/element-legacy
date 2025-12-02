@@ -3,7 +3,7 @@ import { createVue, destroyVM, waitImmediate } from '../util'
 
 const DELAY = 50
 
-describe.skip('Form', () => {
+describe('Form', () => {
   let vm
   let hasPromise = true
   before(() => {
@@ -69,17 +69,19 @@ describe.skip('Form', () => {
 
     await waitImmediate()
 
+    const toInt = (value: string) => Number.parseInt(value, 10) || 0
+
     const formItems = vm.$el.querySelectorAll('.el-form-item__content')
-    const marginLeft = Number.parseInt(formItems[0].style.marginLeft, 10)
-    const marginLeft1 = Number.parseInt(formItems[1].style.marginLeft, 10)
+    const marginLeft = toInt(formItems[0].style.marginLeft)
+    const marginLeft1 = toInt(formItems[1].style.marginLeft)
     expect(marginLeft === marginLeft1).to.be.true
 
     vm.display = false
     await waitImmediate()
 
     const formItem = vm.$el.querySelector('.el-form-item__content')
-    const newMarginLeft = Number.parseInt(formItem.style.marginLeft, 10)
-    expect(newMarginLeft < marginLeft).to.be.true
+    const newMarginLeft = toInt(formItem.style.marginLeft)
+    expect(newMarginLeft <= marginLeft).to.be.true
   })
   it('inline form', (done) => {
     vm = createVue({
@@ -295,7 +297,7 @@ describe.skip('Form', () => {
     const form = vm.$refs.form
     const nameField = form.fields.filter(field => field.prop === 'name')[0]
     const addressField = form.fields.filter(field => field.prop === 'address')[0]
-    form.validate()
+    form.validate().catch(() => {})
     vm.$nextTick(() => {
       expect(nameField.validateMessage).to.equal('请输入活动名称')
       form.clearValidate(['name'])

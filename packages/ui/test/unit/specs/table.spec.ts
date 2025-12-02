@@ -23,7 +23,7 @@ getTestData().forEach((cur) => {
   })
 })
 
-describe.skip('table', () => {
+describe('table', () => {
   describe('rendering data is correct', () => {
     const vm = createVue({
       template: `

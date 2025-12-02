@@ -1,6 +1,6 @@
 const path = require('node:path')
 
-describe.skip('Name of the group', () => {
+describe('Name of the group', () => {
   it('SSR require test', () => {
     try {
       process.env.VUE_ENV = 'server'
