@@ -41,6 +41,9 @@ export default defineConfig(
           'test\/**\/*.{test,spec}.?(c|m)[jt]s?(x)',
         ],
         globals: true,
+        setupFiles: [
+          './test/vitest.setup.ts',
+        ],
       },
     }
   },

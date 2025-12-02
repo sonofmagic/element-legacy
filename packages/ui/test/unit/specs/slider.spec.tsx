@@ -184,6 +184,9 @@ describe('Slider', () => {
       }
     }, true);
     const slider = vm.$children[0].$children[0];
+    slider.$parent.resetSize = () => {
+      slider.$parent.sliderSize = 200;
+    };
     slider.onButtonDown({ clientX: 0, preventDefault() {} });
     slider.onDragging({ clientX: 100 });
     slider.onDragEnd();
@@ -394,6 +397,9 @@ describe('Slider', () => {
         }
       }, true);
       const slider = vm.$children[0];
+      slider.resetSize = () => {
+        slider.sliderSize = 200;
+      };
       setTimeout(() => {
         slider.onSliderClick({ clientX: 100 });
         setTimeout(() => {
@@ -467,10 +473,10 @@ describe('Slider', () => {
           <el-slider
             v-model="value"
             range
-            :step="10"
-            :marks="marks"
-            :min="20"
-            show-stops></el-slider>
+          :step="10"
+          :marks="marks"
+          :min="20"
+          show-stops></el-slider>
         </div>
       `,
 
@@ -485,14 +491,14 @@ describe('Slider', () => {
                 style: {
                   color: '#f50'
                 },
-                label: <strong>50°C</strong>
+                label: '50°C'
               }
             }
           };
         }
       }, true);
 
-      waitImmediate();
+      await waitImmediate();
       const stops = vm.$el.querySelectorAll('.el-slider__marks-stop.el-slider__stop');
       const marks = vm.$el.querySelectorAll('.el-slider__marks .el-slider__marks-text');
       expect(marks.length).to.equal(2);

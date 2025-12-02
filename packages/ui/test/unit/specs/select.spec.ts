@@ -818,7 +818,7 @@ describe('Select', () => {
       }
     });
 
-    expect(vm.$el.querySelector('.empty-slot').innerText).to.be.equal('EmptySlot');
+    expect(vm.$el.querySelector('.empty-slot').textContent.trim()).to.be.equal('EmptySlot');
     done();
   });
 

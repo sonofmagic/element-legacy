@@ -264,7 +264,7 @@
           return;
         }
         let button;
-        if (Math.abs(this.minValue - targetValue) < Math.abs(this.maxValue - targetValue)) {
+        if (Math.abs(this.minValue - targetValue) <= Math.abs(this.maxValue - targetValue)) {
           button = this.firstValue < this.secondValue ? 'button1' : 'button2';
         } else {
           button = this.firstValue > this.secondValue ? 'button1' : 'button2';
@@ -286,9 +286,34 @@
       },
 
       resetSize() {
-        if (this.$refs.slider) {
-          this.sliderSize = this.$refs.slider[`client${ this.vertical ? 'Height' : 'Width' }`];
+        const slider = this.$refs.slider;
+        if (!slider) return;
+
+        const sizeKey = `client${ this.vertical ? 'Height' : 'Width' }`;
+        const rawSize = slider[sizeKey];
+
+        if (rawSize) {
+          this.sliderSize = rawSize;
+          return;
         }
+
+        const dimensionKey = this.vertical ? 'height' : 'width';
+        const parseNumeric = value => {
+          const parsed = parseFloat(value);
+          return Number.isNaN(parsed) ? 0 : parsed;
+        };
+
+        const computed = window.getComputedStyle
+          ? parseNumeric(window.getComputedStyle(slider)[dimensionKey])
+          : 0;
+        const inlineSize = slider.style ? parseNumeric(slider.style[dimensionKey]) : 0;
+        const parent = slider.parentElement;
+        const parentSize = parent && window.getComputedStyle
+          ? parseNumeric(window.getComputedStyle(parent)[dimensionKey])
+          : 0;
+        const parentInlineSize = parent && parent.style ? parseNumeric(parent.style[dimensionKey]) : 0;
+
+        this.sliderSize = computed || inlineSize || parentSize || parentInlineSize || 100;
       },
 
       emitChange() {
