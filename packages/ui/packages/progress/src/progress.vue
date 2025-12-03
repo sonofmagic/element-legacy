@@ -142,7 +142,8 @@ export default {
     },
     content() {
       if (typeof this.format === 'function') {
-        return this.format(this.percentage) || ''
+        const text = this.format(this.percentage) || ''
+        return String(text).trim()
       }
       else {
         return `${this.percentage}%`

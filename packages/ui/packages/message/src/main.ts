@@ -26,10 +26,15 @@ function Message(options) {
   const { message: messageConfig } = getGlobalConfig()
   const max = (messageConfig || {}).max
 
-  if (typeof max === 'number' && max > 0 && instances.length >= max) {
-    const firstInstance = instances[0]
-    if (firstInstance) {
-      firstInstance.close()
+  if (typeof max === 'number' && max > 0) {
+    while (instances.length >= max) {
+      const oldestInstance = instances[0]
+      if (oldestInstance) {
+        oldestInstance.close()
+      }
+      else {
+        break
+      }
     }
   }
 
