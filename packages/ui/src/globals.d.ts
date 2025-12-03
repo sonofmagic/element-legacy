@@ -1,0 +1,1 @@
+declare const __ELEMENT_LEGACY_VERSION__: string

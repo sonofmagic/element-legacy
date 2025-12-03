@@ -56,6 +56,7 @@ function collectAdditionalEntries(): Record<string, string> {
   return entries
 }
 
+const packageJson = JSON.parse(fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8')) as { version?: string }
 const additionalEntries = collectAdditionalEntries()
 const libEntry = {
   ...entry,
@@ -76,6 +77,9 @@ export default defineConfig({
     Vue(),
     VueJsx(),
   ],
+  define: {
+    __ELEMENT_LEGACY_VERSION__: JSON.stringify(packageJson.version ?? ''),
+  },
   build: {
     outDir: 'lib',
     minify: false,

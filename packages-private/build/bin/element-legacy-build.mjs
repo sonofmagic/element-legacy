@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url'
 
 const COMMAND_MAP = new Map([
   ['cp', 'cp'],
-  ['build-entry', 'build-entry'],
   ['build-locale', 'build-locale'],
   ['gen-cssfile', 'gen-cssfile'],
   ['gen-indices', 'gen-indices'],
