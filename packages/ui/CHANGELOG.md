@@ -1,5 +1,15 @@
 # element-legacy
 
+## 1.0.0
+
+### Major Changes
+
+- [`2853c44`](https://github.com/sonofmagic/element-legacy/commit/2853c44947e095e66c89f7d183f4af154259baad) Thanks [@sonofmagic](https://github.com/sonofmagic)! - feat: replace $ELEMENT usage with injected config + composable, add deprecation warning on Vue.prototype.$ELEMENT; raise peer vue to >=2.7 <3
+
+### Minor Changes
+
+- [`cd364df`](https://github.com/sonofmagic/element-legacy/commit/cd364df56d9b9a4e4db4c8350f6caf227d07d415) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Expose `async-validator-next` utilities (validator instance, validation config helpers, `zodRule`) from the main entry, and allow form validation to forward async-validator options via the new `validateOptions` prop.
+
 ## 0.2.0
 
 ### Minor Changes
