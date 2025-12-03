@@ -1,3 +1,4 @@
+import type Schema, { ValidateOption as AVValidateOption } from 'async-validator-next'
 import type { PluginObject } from 'vue'
 import type Vue from 'vue'
 import type { ElementUIComponent, ElementUIComponentSize, ElementUIHorizontalAlignment } from './component'
@@ -33,8 +34,8 @@ import { ElCollapseItem } from './collapse-item'
 import { ElColorPicker } from './color-picker'
 import { ElContainer } from './container'
 import { ElDatePicker } from './date-picker'
-import { ElDateTable } from './date-table'
 import { ElDatePickerV2 } from './date-picker-v2'
+import { ElDateTable } from './date-table'
 import { ElDescriptions } from './descriptions'
 import { ElDescriptionsItem } from './descriptions-item'
 import { ElDialog } from './dialog'
@@ -133,6 +134,24 @@ export const MessageBox: ElMessageBox
 
 /** Displays a global notification message at the upper right corner of the page */
 export const Notification: ElNotification
+
+/** Async validator instance from async-validator-next */
+export const AsyncValidator: typeof Schema
+
+/** Configure async-validator-next type validators globally */
+export const setValidationConfig: typeof import('async-validator-next')['setValidationConfig']
+
+/** Reset async-validator-next global validation config */
+export const resetValidationConfig: typeof import('async-validator-next')['resetValidationConfig']
+
+/** Read the current async-validator-next validation config */
+export const getValidationConfig: typeof import('async-validator-next')['getValidationConfig']
+
+/** Create async-validator-next rules from a Zod schema */
+export const zodRule: typeof import('async-validator-next')['zodRule']
+
+/** Re-export of async-validator-next ValidateOption */
+export type AsyncValidateOption = AVValidateOption
 
 // TS cannot merge imported class with namespace, so declare subclasses instead
 

@@ -12,55 +12,62 @@ const uppercamelcase = workspaceRequire('uppercamelcase') as (value: string) => 
 const pkg = workspaceRequire(resolveFromUi('package.json')) as { version?: string }
 const rawComponents = workspaceRequire(resolveFromUi('components.json')) as ComponentDictionary
 const OUTPUT_PATH = resolveFromUi('src', 'index.ts')
+const NON_INSTALL_COMPONENTS = new Set(['Loading', 'MessageBox', 'Notification', 'Message', 'InfiniteScroll'])
 
-const IMPORT_TEMPLATE = 'import {{name}} from \'../packages/{{package}}/index\';'
+const IMPORT_TEMPLATE = 'import {{name}} from \'../packages/{{package}}/index\''
 const INSTALL_COMPONENT_TEMPLATE = '  {{name}}'
 const MAIN_TEMPLATE = `/* Automatically generated don't modify this file! */
+/* eslint-disable perfectionist/sort-imports,perfectionist/sort-named-exports */
 
+import AsyncValidator, { getValidationConfig, resetValidationConfig, setValidationConfig, zodRule } from 'async-validator-next'
+import locale from 'element-ui/src/locale'
+import CollapseTransition from 'element-ui/src/transitions/collapse-transition'
 {{include}}
-import locale from 'element-ui/src/locale';
-import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
 
 const components = [
 {{install}},
-  CollapseTransition
-];
+  CollapseTransition,
+]
 
-const install = function(Vue, opts = {}) {
-  locale.use(opts.locale);
-  locale.i18n(opts.i18n);
+function install(Vue, opts = {}) {
+  locale.use(opts.locale)
+  locale.i18n(opts.i18n)
 
-  components.forEach(component => {
-    Vue.component(component.name, component);
-  });
+  components.forEach((component) => {
+    Vue.component(component.name, component)
+  })
 
-  Vue.use(InfiniteScroll);
-  Vue.use(Loading.directive);
+  Vue.use(InfiniteScroll)
+  Vue.use(Loading.directive)
 
   Vue.prototype.$ELEMENT = {
     size: opts.size || '',
-    zIndex: opts.zIndex || 2000
-  };
+    zIndex: opts.zIndex || 2000,
+  }
 
-  Vue.prototype.$loading = Loading.service;
-  Vue.prototype.$msgbox = MessageBox;
-  Vue.prototype.$alert = MessageBox.alert;
-  Vue.prototype.$confirm = MessageBox.confirm;
-  Vue.prototype.$prompt = MessageBox.prompt;
-  Vue.prototype.$notify = Notification;
-  Vue.prototype.$message = Message;
-
-};
+  Vue.prototype.$loading = Loading.service
+  Vue.prototype.$msgbox = MessageBox
+  Vue.prototype.$alert = MessageBox.alert
+  Vue.prototype.$confirm = MessageBox.confirm
+  Vue.prototype.$prompt = MessageBox.prompt
+  Vue.prototype.$notify = Notification
+  Vue.prototype.$message = Message
+}
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue);
+  install(window.Vue)
 }
 
 export {
   CollapseTransition,
   Loading,
-{{list}}
+{{list}},
+  AsyncValidator,
+  getValidationConfig,
+  resetValidationConfig,
+  setValidationConfig,
+  zodRule,
 }
 
 export default {
@@ -70,14 +77,19 @@ export default {
   install,
   CollapseTransition,
   Loading,
-{{list}}
-};
+{{list}},
+  AsyncValidator,
+  getValidationConfig,
+  resetValidationConfig,
+  setValidationConfig,
+  zodRule,
+}
 `
 
 const components: ComponentDictionary = { ...rawComponents }
 delete components.font
 
-const componentNames = Object.keys(components)
+const componentNames = Object.keys(components).sort()
 const includeComponentTemplate: string[] = []
 const installTemplate: string[] = []
 const listTemplate: string[] = []
@@ -90,7 +102,7 @@ componentNames.forEach((name) => {
     package: name,
   }))
 
-  if (!['Loading', 'MessageBox', 'Notification', 'Message', 'InfiniteScroll'].includes(componentName)) {
+  if (!NON_INSTALL_COMPONENTS.has(componentName)) {
     installTemplate.push(render(INSTALL_COMPONENT_TEMPLATE, {
       name: componentName,
       component: name,
@@ -110,4 +122,4 @@ const template = render(MAIN_TEMPLATE, {
 })
 
 writeFileSync(OUTPUT_PATH, template)
-console.log('[build entry] DONE:', OUTPUT_PATH)
+process.stdout.write(`[build entry] DONE: ${OUTPUT_PATH}${EOL}`)

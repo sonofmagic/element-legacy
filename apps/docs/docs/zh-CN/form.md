@@ -176,7 +176,7 @@ W3C 标准中有如下[规定](https://www.w3.org/MarkUp/html-spec/html-spec_8.h
 
 在防止用户犯错的前提下，尽可能让用户更早地发现并纠正错误。
 
-:::demo Form 组件提供了表单验证的功能，只需要通过 `rules` 属性传入约定的验证规则，并将 Form-Item 的 `prop` 属性设置为需校验的字段名即可。校验规则参见 [async-validator](https://github.com/yiminghe/async-validator)
+:::demo Form 组件提供了表单验证的功能，只需要通过 `rules` 属性传入约定的验证规则，并将 Form-Item 的 `prop` 属性设置为需校验的字段名即可。校验规则参见 [async-validator-next](https://github.com/sonofmagic/async-validator-next)
 
 ```html
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -376,7 +376,11 @@ W3C 标准中有如下[规定](https://www.w3.org/MarkUp/html-spec/html-spec_8.h
 :::
 
 :::tip
-自定义校验 callback 必须被调用。 更多高级用法可参考 [async-validator](https://github.com/yiminghe/async-validator)。
+自定义校验 callback 必须被调用。 更多高级用法可参考 [async-validator-next](https://github.com/sonofmagic/async-validator-next)。
+
+:::tip
+需要更细粒度的校验能力？Element 已直接导出 async-validator-next 的 `AsyncValidator`、`setValidationConfig`、`resetValidationConfig`、`getValidationConfig` 和 `zodRule`，可以无需额外依赖就定制全局校验或用 Zod 生成规则。
+:::
 :::
 
 ### 动态增减表单项
@@ -601,6 +605,7 @@ W3C 标准中有如下[规定](https://www.w3.org/MarkUp/html-spec/html-spec_8.h
 | inline-message          | 是否以行内形式展示校验信息                                                                | boolean | —                     | false  |
 | status-icon             | 是否在输入框中显示校验结果反馈图标                                                        | boolean | —                     | false  |
 | validate-on-rule-change | 是否在 `rules` 属性改变后立即触发一次验证                                                 | boolean | —                     | true   |
+| validate-options        | 传递给 async-validator-next `validate` 的选项（如 `first`、`firstFields`、`messages`、`keys`） | object  | —                     | { firstFields: true } |
 | size                    | 用于控制该表单内组件的尺寸                                                                | string  | medium / small / mini | —      |
 | disabled                | 是否禁用该表单内的所有组件。若设置为 true，则表单内组件上的 disabled 属性不再生效         | boolean | —                     | false  |
 

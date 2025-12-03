@@ -176,7 +176,7 @@ Depending on your design, there are several different ways to align your label e
 
 Form component allows you to verify your data, helping you find and correct errors.
 
-:::demo Just add the `rules` attribute for `Form` component, pass validation rules, and set `prop` attribute for `Form-Item` as a specific key that needs to be validated. See more information at [async-validator](https://github.com/yiminghe/async-validator).
+:::demo Just add the `rules` attribute for `Form` component, pass validation rules, and set `prop` attribute for `Form-Item` as a specific key that needs to be validated. See more information at [async-validator-next](https://github.com/sonofmagic/async-validator-next).
 
 ```html
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
@@ -378,7 +378,11 @@ This example shows how to customize your own validation rules to finish a two-fa
 :::
 
 :::tip
-Custom validate callback function must be called. See more advanced usage at [async-validator](https://github.com/yiminghe/async-validator).
+Custom validate callback function must be called. See more advanced usage at [async-validator-next](https://github.com/sonofmagic/async-validator-next).
+
+:::tip
+Need lower-level control? Element re-exports `AsyncValidator`, `setValidationConfig`, `resetValidationConfig`, `getValidationConfig`, and `zodRule` from async-validator-next so you can tune global validators or build rules from Zod schemas without adding another dependency.
+:::
 :::
 
 ### Delete or add form items dynamically
@@ -608,6 +612,7 @@ All components in a Form inherit their `size` attribute from that Form. Similarl
 | inline-message          | whether to display the error message inline with the form item                                                                    | boolean | —                     | false   |
 | status-icon             | whether to display an icon indicating the validation result                                                                       | boolean | —                     | false   |
 | validate-on-rule-change | whether to trigger validation when the `rules` prop is changed                                                                    | boolean | —                     | true    |
+| validate-options        | options forwarded to async-validator-next `validate` (e.g. `first`, `firstFields`, `messages`, `keys`)                           | object  | —                     | { firstFields: true } |
 | size                    | control the size of components in this form                                                                                       | string  | medium / small / mini | —       |
 | disabled                | whether to disabled all components in this form. If set to true, it cannot be overridden by its inner components' `disabled` prop | boolean | —                     | false   |
 

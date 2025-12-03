@@ -242,9 +242,9 @@ importers:
       '@vue/babel-helper-vue-jsx-merge-props':
         specifier: ^1.4.0
         version: 1.4.0
-      async-validator:
-        specifier: ~4.2.5
-        version: 4.2.5
+      async-validator-next:
+        specifier: ^0.1.1
+        version: 0.1.1(zod@4.1.13)
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
@@ -3471,8 +3471,10 @@ packages:
     resolution: {integrity: sha512-hsU18Ae8CDTR6Kgu9DYf0EbCr/a5iGL0rytQDobUcdpYOKokk8LEjVphnXkDkgpi0wYVsqrXuP0bZxJaTqdgoA==}
     engines: {node: '>= 0.4'}
 
-  async-validator@4.2.5:
-    resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
+  async-validator-next@0.1.1:
+    resolution: {integrity: sha512-UK5nbrUOxI76+ylYDOxAuseVR0Ni79RyR5gqkdG0YfDOCYG/bOjG/T4MK1UJPQbtOdclD3Pj0Aalnhh5fqALsw==}
+    peerDependencies:
+      zod: ^3.25.0 || ^4.0.0
 
   autoprefixer@10.4.22:
     resolution: {integrity: sha512-ARe0v/t9gO28Bznv6GgqARmVqcWOV3mfgUPn9becPHMiD3o9BwlRgaeccZnwTpZ7Zwqrm+c1sUSsMxIzQzc8Xg==}
@@ -12772,7 +12774,9 @@ snapshots:
 
   async-function@1.0.0: {}
 
-  async-validator@4.2.5: {}
+  async-validator-next@0.1.1(zod@4.1.13):
+    dependencies:
+      zod: 4.1.13
 
   autoprefixer@10.4.22(postcss@8.5.6):
     dependencies:

@@ -181,7 +181,7 @@ Suivant votre design, il y a différents moyens d'aligner vos labels.
 
 Le composant Form vous permet d'effectuer des vérifications, afin de détecter et corriger les erreurs facilement.
 
-:::demo Ajoutez l'attribut `rules` au composant `Form`, passez les règles de validation, et configurez l'attribut `prop` de `Form-Item` pour ajouter la clé de la règle correspondante au champ. Plus d'informations ici: [async-validator](https://github.com/yiminghe/async-validator).
+:::demo Ajoutez l'attribut `rules` au composant `Form`, passez les règles de validation, et configurez l'attribut `prop` de `Form-Item` pour ajouter la clé de la règle correspondante au champ. Plus d'informations ici: [async-validator-next](https://github.com/sonofmagic/async-validator-next).
 
 ```html
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
@@ -383,7 +383,11 @@ Cet exemple montre comment vous pouvez personnaliser vos règles de validation p
 :::
 
 :::tip
-Les callback de validations personnalisées doivent être appelées. Un usage plus avancé se trouve ici: [async-validator](https://github.com/yiminghe/async-validator).
+Les callback de validations personnalisées doivent être appelées. Un usage plus avancé se trouve ici: [async-validator-next](https://github.com/sonofmagic/async-validator-next).
+
+:::tip
+Besoin de plus de contrôle ? Element ré-exporte `AsyncValidator`, `setValidationConfig`, `resetValidationConfig`, `getValidationConfig` et `zodRule` depuis async-validator-next pour ajuster les validateurs globaux ou créer des règles à partir de schémas Zod sans dépendance supplémentaire.
+:::
 :::
 
 ### Ajouter ou supprimer des champs dynamiquement
@@ -613,6 +617,7 @@ Tout les composants d'un formulaire héritent leur attribut `size` de ce formula
 | inline-message          | Si le message d'erreur doit apparaître en ligne avec son champ.                                                                         | boolean | —                     | false  |
 | status-icon             | Si une icône indiquant le résultat de validation doit apparaître.                                                                       | boolean | —                     | false  |
 | validate-on-rule-change | Si la validation doit se déclencher lorsque `rules` est modifié.                                                                        | boolean | —                     | true   |
+| validate-options        | Options passées à `validate` d'async-validator-next (par exemple `first`, `firstFields`, `messages`, `keys`).                            | object  | —                     | { firstFields: true } |
 | size                    | Contrôle la taille des champs du formulaire.                                                                                            | string  | medium / small / mini | —      |
 | disabled                | Si tout les champs du formulaire doivent être désactivés. Si `true`, il ne peut pas être modifié par l'attribut `disabled` des enfants. | boolean | —                     | false  |
 

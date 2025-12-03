@@ -55,7 +55,7 @@
   "dependencies": {
     "@types/lodash-es": "^4.17.12",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
-    "async-validator": "~4.2.5",
+    "async-validator-next": "^0.1.1",
     "deepmerge": "^4.3.1",
     "lodash-es": "^4.17.21",
     "normalize-wheel": "^1.0.1",
