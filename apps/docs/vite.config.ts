@@ -1,3 +1,5 @@
+import type { ConfigEnv, UserConfig } from 'vite'
+import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import Vue from '@vitejs/plugin-vue2'
@@ -36,8 +38,12 @@ const preferredLanguages = [
   'xml',
 ] as const
 
+const elementLegacyPackagePath = path.resolve(import.meta.dirname, '../../packages/ui/package.json')
+const elementLegacyPackage = JSON.parse(fs.readFileSync(elementLegacyPackagePath, 'utf8')) as { version?: string }
+const elementLegacyVersion = elementLegacyPackage.version ?? ''
+
 export default defineConfig(
-  async ({ mode }) => {
+  async ({ mode }: ConfigEnv): Promise<UserConfig> => {
     const env = loadEnv(mode, import.meta.dirname)
     for (const [key, value] of Object.entries(env)) {
       if (process.env[key] === undefined) {
@@ -71,6 +77,9 @@ export default defineConfig(
           'throttle-debounce': path.resolve(import.meta.dirname, './utils/throttle-debounce.ts'),
         // 'vue/compiler-sfc': 'vue-template-compiler',
         },
+      },
+      define: {
+        __ELEMENT_LEGACY_VERSION__: JSON.stringify(elementLegacyVersion),
       },
       plugins: [
         Vue(
