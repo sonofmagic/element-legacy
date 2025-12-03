@@ -21,6 +21,7 @@ const MAIN_TEMPLATE = `/* Automatically generated don't modify this file! */
 
 import AsyncValidator, { getValidationConfig, resetValidationConfig, setValidationConfig, zodRule } from 'async-validator-next'
 import locale from 'element-ui/src/locale'
+import { CONFIG_PROVIDER_INJECTION_KEY, extractConfigFromOptions, setGlobalConfig } from 'element-ui/src/utils/config-provider'
 import CollapseTransition from 'element-ui/src/transitions/collapse-transition'
 {{include}}
 
@@ -33,17 +34,37 @@ function install(Vue, opts = {}) {
   locale.use(opts.locale)
   locale.i18n(opts.i18n)
 
+  const initialConfig = extractConfigFromOptions({
+    ...opts,
+    size: opts.size ?? '',
+    zIndex: opts.zIndex ?? 2000,
+  })
+  setGlobalConfig(initialConfig)
+
+  Vue.mixin({
+    inject: {
+      elConfig: { from: CONFIG_PROVIDER_INJECTION_KEY, default: null },
+    },
+    created(this: any) {
+      if (this.elConfig) {
+        this.$ELEMENT = this.elConfig
+      }
+    },
+    watch: {
+      elConfig(value) {
+        if (value) {
+          this.$ELEMENT = value
+        }
+      },
+    },
+  })
+
   components.forEach((component) => {
     Vue.component(component.name, component)
   })
 
   Vue.use(InfiniteScroll)
   Vue.use(Loading.directive)
-
-  Vue.prototype.$ELEMENT = {
-    size: opts.size || '',
-    zIndex: opts.zIndex || 2000,
-  }
 
   Vue.prototype.$loading = Loading.service
   Vue.prototype.$msgbox = MessageBox

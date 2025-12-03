@@ -3,6 +3,7 @@
 
 import AsyncValidator, { getValidationConfig, resetValidationConfig, setValidationConfig, zodRule } from 'async-validator-next'
 import locale from 'element-ui/src/locale'
+import { CONFIG_PROVIDER_INJECTION_KEY, extractConfigFromOptions, setGlobalConfig } from 'element-ui/src/utils/config-provider'
 import CollapseTransition from 'element-ui/src/transitions/collapse-transition'
 import Alert from '../packages/alert/index'
 import Aside from '../packages/aside/index'
@@ -28,6 +29,7 @@ import Collapse from '../packages/collapse/index'
 import CollapseItem from '../packages/collapse-item/index'
 import ColorPicker from '../packages/color-picker/index'
 import Container from '../packages/container/index'
+import ConfigProvider from '../packages/config-provider/index'
 import DatePicker from '../packages/date-picker/index'
 import DatePickerV2 from '../packages/date-picker-v2/index'
 import DateTable from '../packages/date-table/index'
@@ -123,6 +125,7 @@ const components = [
   CollapseItem,
   ColorPicker,
   Container,
+  ConfigProvider,
   DatePicker,
   DatePickerV2,
   DateTable,
@@ -194,17 +197,37 @@ function install(Vue, opts = {}) {
   locale.use(opts.locale)
   locale.i18n(opts.i18n)
 
+  const initialConfig = extractConfigFromOptions({
+    ...opts,
+    size: opts.size ?? '',
+    zIndex: opts.zIndex ?? 2000,
+  })
+  setGlobalConfig(initialConfig)
+
+  Vue.mixin({
+    inject: {
+      elConfig: { from: CONFIG_PROVIDER_INJECTION_KEY, default: null },
+    },
+    created(this: any) {
+      if (this.elConfig) {
+        this.$ELEMENT = this.elConfig
+      }
+    },
+    watch: {
+      elConfig(value) {
+        if (value) {
+          this.$ELEMENT = value
+        }
+      },
+    },
+  })
+
   components.forEach((component) => {
     Vue.component(component.name, component)
   })
 
   Vue.use(InfiniteScroll)
   Vue.use(Loading.directive)
-
-  Vue.prototype.$ELEMENT = {
-    size: opts.size || '',
-    zIndex: opts.zIndex || 2000,
-  }
 
   Vue.prototype.$loading = Loading.service
   Vue.prototype.$msgbox = MessageBox
@@ -247,6 +270,7 @@ export {
   CollapseItem,
   ColorPicker,
   Container,
+  ConfigProvider,
   DatePicker,
   DatePickerV2,
   DateTable,
@@ -353,6 +377,7 @@ export default {
   CollapseItem,
   ColorPicker,
   Container,
+  ConfigProvider,
   DatePicker,
   DatePickerV2,
   DateTable,

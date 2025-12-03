@@ -70,6 +70,10 @@
             {
               "path": "/link",
               "title": "Link 文字链接"
+            },
+            {
+              "path": "/config-provider",
+              "title": "ConfigProvider 全局配置"
             }
           ]
         },
@@ -388,6 +392,10 @@
             {
               "path": "/link",
               "title": "Link"
+            },
+            {
+              "path": "/config-provider",
+              "title": "ConfigProvider"
             }
           ]
         },

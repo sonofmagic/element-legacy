@@ -67,6 +67,7 @@
   "color-picker": "./packages/color-picker/index.ts",
   "transfer": "./packages/transfer/index.ts",
   "container": "./packages/container/index.ts",
+  "config-provider": "./packages/config-provider/index.ts",
   "header": "./packages/header/index.ts",
   "aside": "./packages/aside/index.ts",
   "main": "./packages/main/index.ts",

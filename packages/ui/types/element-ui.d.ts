@@ -33,6 +33,7 @@ import { ElCollapse } from './collapse'
 import { ElCollapseItem } from './collapse-item'
 import { ElColorPicker } from './color-picker'
 import { ElContainer } from './container'
+import { ElConfigProvider, ElConfigProviderButtonConfig, ElConfigProviderMessageConfig } from './config-provider'
 import { ElDatePicker } from './date-picker'
 import { ElDatePickerV2 } from './date-picker-v2'
 import { ElDateTable } from './date-table'
@@ -99,9 +100,13 @@ import { ElUpload } from './upload'
 import { ElUploadList } from './upload-list'
 
 export interface InstallationOptions {
-  locale: any
-  i18n: any
-  size: string
+  locale?: any
+  i18n?: any
+  size?: string
+  zIndex?: number
+  namespace?: string
+  button?: ElConfigProviderButtonConfig
+  message?: ElConfigProviderMessageConfig
 }
 
 /** The version of element-ui */
@@ -214,6 +219,9 @@ export class ColorPicker extends ElColorPicker {}
 
 /** Container Component */
 export class Container extends ElContainer {}
+
+/** Config Provider Component */
+export class ConfigProvider extends ElConfigProvider {}
 
 /** Date Picker Component */
 export class DatePicker extends ElDatePicker {}
