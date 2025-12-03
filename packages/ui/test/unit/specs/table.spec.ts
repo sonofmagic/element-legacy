@@ -205,7 +205,7 @@ describe('table', () => {
       }, DELAY)
     })
 
-    it('current-row-key', (done) => {
+    it('current-row-key', async () => {
       const vm = createVue({
         template: `
         <el-table :data="testData" row-key="id" highlight-current-row :current-row-key="currentRowKey">
@@ -224,22 +224,24 @@ describe('table', () => {
           return { currentRowKey: null }
         },
       }, true)
-      setTimeout((_) => {
-        vm.currentRowKey = 1
-        const tr = vm.$el.querySelector('.el-table__body-wrapper tbody tr')
-        setTimeout((_) => {
-          expect(tr.classList.contains('current-row')).to.be.true
-          vm.currentRowKey = 2
 
-          const rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
-          setTimeout((_) => {
-            expect(tr.classList.contains('current-row')).to.be.false
-            expect(rows[1].classList.contains('current-row')).to.be.true
-            destroyVM(vm)
-            done()
-          }, DELAY)
-        }, DELAY)
-      }, DELAY)
+      await wait(DELAY)
+      vm.currentRowKey = 1
+      await wait(DELAY)
+
+      const rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+      expect(rows.length).to.be.greaterThan(1)
+      expect(rows[0].classList.contains('current-row')).to.be.true
+
+      vm.currentRowKey = 2
+      await wait(DELAY)
+
+      const updatedRows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+      expect(updatedRows.length).to.be.greaterThan(1)
+      expect(updatedRows[0].classList.contains('current-row')).to.be.false
+      expect(updatedRows[1].classList.contains('current-row')).to.be.true
+
+      destroyVM(vm)
     })
 
     it('select-on-indeterminate', (done) => {
@@ -287,7 +289,7 @@ describe('table', () => {
   describe('filter', () => {
     let vm
 
-    beforeEach((done) => {
+    beforeEach(async () => {
       vm = createVue({
         template: `
           <el-table ref="table" :data="testData" @filter-change="handleFilterChange">
@@ -321,7 +323,7 @@ describe('table', () => {
         },
       }, true)
 
-      setTimeout(done, DELAY)
+      await wait(DELAY)
     })
 
     afterEach(() => destroyVM(vm))
@@ -330,60 +332,53 @@ describe('table', () => {
       expect(vm.$el.querySelector('.el-table__column-filter-trigger')).to.exist
     })
 
-    it('click dropdown', (done) => {
+    it('click dropdown', async () => {
       const btn = vm.$el.querySelector('.el-table__column-filter-trigger')
       triggerEvent(btn, 'click', true, false)
-      setTimeout((_) => {
-        const filter = document.body.querySelector('.el-table-filter')
-        expect(filter).to.exist
-        document.body.removeChild(filter)
-        done()
-      }, 100)
+      await wait(100)
+      const filter = document.body.querySelector('.el-table-filter')
+      expect(filter).to.exist
+      filter && document.body.removeChild(filter)
     })
 
-    it('click filter', (done) => {
+    it('click filter', async () => {
       const btn = vm.$el.querySelector('.el-table__column-filter-trigger')
 
       triggerEvent(btn, 'click', true, false)
-      setTimeout((_) => {
-        const filter = document.body.querySelector('.el-table-filter')
+      await wait(100)
+      const filter = document.body.querySelector('.el-table-filter')
+      expect(filter).to.exist
+      if (!filter) return
 
-        // John Lasseter
-        triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
-        // confrim button
-        setTimeout((_) => {
-          triggerEvent(filter.querySelector('.el-table-filter__bottom button'), 'click', true, false)
-          setTimeout((_) => {
-            expect(vm.filters.director).to.be.eql(['John Lasseter'])
-            expect(vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')).to.length(3)
-            document.body.removeChild(filter)
-            done()
-          }, DELAY)
-        }, 100)
-      }, 100)
+      triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
+      await wait(100)
+
+      triggerEvent(filter.querySelector('.el-table-filter__bottom button'), 'click', true, false)
+      await wait(DELAY)
+
+      expect(vm.filters.director).to.be.eql(['John Lasseter'])
+      expect(vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')).to.length(3)
+      document.body.removeChild(filter)
     })
 
-    it('click reset', (done) => {
+    it('click reset', async () => {
       const btn = vm.$el.querySelector('.el-table__column-filter-trigger')
 
       triggerEvent(btn, 'click', true, false)
-      setTimeout((_) => {
-        const filter = document.body.querySelector('.el-table-filter')
+      await wait(100)
+      const filter = document.body.querySelector('.el-table-filter')
+      expect(filter).to.exist
+      if (!filter) return
 
-        // John Lasseter
-        triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
-        setTimeout((_) => {
-          // reset button
-          triggerEvent(filter.querySelectorAll('.el-table-filter__bottom button')[1], 'click', true, false)
-          setTimeout((_) => {
-            expect(vm.filters.director).to.be.eql([])
-            expect(filter.querySelector('.el-table-filter__bottom button').classList.contains('is-disabled')).to.true
-            document.body.removeChild(filter)
-            destroyVM(vm)
-            done()
-          }, DELAY)
-        }, 100)
-      }, 100)
+      triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
+      await wait(100)
+
+      triggerEvent(filter.querySelectorAll('.el-table-filter__bottom button')[1], 'click', true, false)
+      await wait(DELAY)
+
+      expect(vm.filters.director).to.be.eql([])
+      expect(filter.querySelector('.el-table-filter__bottom button').classList.contains('is-disabled')).to.true
+      document.body.removeChild(filter)
     })
   })
 
@@ -1444,7 +1439,7 @@ describe('table', () => {
   describe('dynamic column attribtes', () => {
     const DELAY = 50
 
-    it('label', (done) => {
+    it('label', async () => {
       const vm = createVue({
         template: `
           <el-table :data="testData">
@@ -1466,15 +1461,19 @@ describe('table', () => {
         },
       }, true)
 
-      setTimeout(() => {
-        expect(vm.$el.querySelector('.el-table__header th .cell').textContent).to.equal('name')
-        vm.label = 'NAME'
-        vm.$nextTick(() => {
-          expect(vm.$el.querySelector('.el-table__header th .cell').textContent).to.equal('NAME')
-          destroyVM(vm)
-          done()
-        })
-      }, DELAY)
+      await wait(DELAY)
+      const headerCell = vm.$el.querySelector('.el-table__header th .cell')
+      expect(headerCell).to.not.be.null
+      expect(headerCell?.textContent).to.equal('name')
+
+      vm.label = 'NAME'
+      await vm.$nextTick()
+
+      const updatedHeaderCell = vm.$el.querySelector('.el-table__header th .cell')
+      expect(updatedHeaderCell).to.not.be.null
+      expect(updatedHeaderCell?.textContent).to.equal('NAME')
+
+      destroyVM(vm)
     })
 
     it('align', (done) => {
@@ -1647,7 +1646,7 @@ describe('table', () => {
       }, DELAY)
     })
 
-    it('prop', (done) => {
+    it('prop', async () => {
       const vm = createVue({
         template: `
           <el-table :data="testData">
@@ -1669,19 +1668,23 @@ describe('table', () => {
         },
       }, true)
 
-      setTimeout(() => {
-        let firstColumnContent = vm.$el.querySelector('.el-table__body td .cell').textContent
-        let secondColumnContent = vm.$el.querySelector('.el-table__body td:nth-child(2) .cell').textContent
-        expect(firstColumnContent !== secondColumnContent).to.be.true
-        vm.prop = 'release'
-        setTimeout(() => {
-          firstColumnContent = vm.$el.querySelector('.el-table__body td .cell').textContent
-          secondColumnContent = vm.$el.querySelector('.el-table__body td:nth-child(2) .cell').textContent
-          expect(firstColumnContent === secondColumnContent).to.be.true
-          destroyVM(vm)
-          done()
-        }, 100)
-      }, DELAY)
+      await wait(DELAY)
+      let firstColumnContent = vm.$el.querySelector('.el-table__body td .cell')?.textContent
+      let secondColumnContent = vm.$el.querySelector('.el-table__body td:nth-child(2) .cell')?.textContent
+      expect(firstColumnContent).to.not.be.undefined
+      expect(secondColumnContent).to.not.be.undefined
+      expect(firstColumnContent !== secondColumnContent).to.be.true
+
+      vm.prop = 'release'
+      await wait(100)
+
+      firstColumnContent = vm.$el.querySelector('.el-table__body td .cell')?.textContent
+      secondColumnContent = vm.$el.querySelector('.el-table__body td:nth-child(2) .cell')?.textContent
+      expect(firstColumnContent).to.not.be.undefined
+      expect(secondColumnContent).to.not.be.undefined
+      expect(firstColumnContent === secondColumnContent).to.be.true
+
+      destroyVM(vm)
     })
   })
 
@@ -1935,6 +1938,8 @@ describe('table', () => {
     }, true)
     await waitImmediate()
     const tr = vm.$el.querySelector('.el-table__body-wrapper tbody tr')
+    expect(tr).to.not.be.null
+    if (!tr) return destroyVM(vm)
     triggerEvent(tr, 'mouseenter', true, false)
 
     await wait(50)
@@ -1946,7 +1951,7 @@ describe('table', () => {
     destroyVM(vm)
   })
 
-  it('highlight-current-row', (done) => {
+  it('highlight-current-row', async () => {
     const vm = createVue({
       template: `
         <el-table :data="testData" highlight-current-row>
@@ -1961,32 +1966,31 @@ describe('table', () => {
         this.testData = getTestData()
       },
     }, true)
-    setTimeout((_) => {
-      const tr = vm.$el.querySelector('.el-table__body-wrapper tbody tr')
-      triggerEvent(tr, 'click', true, false)
-      setTimeout((_) => {
-        expect(tr.classList.contains('current-row')).to.be.true
-        const rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
 
-        triggerEvent(rows[1], 'click', true, false)
-        setTimeout((_) => {
-          expect(tr.classList.contains('current-row')).to.be.false
-          expect(rows[1].classList.contains('current-row')).to.be.true
+    await wait(DELAY)
+    const initialRows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    expect(initialRows.length).to.be.greaterThan(1)
+    triggerEvent(initialRows[0], 'click', true, false)
 
-          const ths = vm.$el.querySelectorAll('.el-table__header-wrapper thead th')
-          triggerEvent(ths[3], 'click', true, false)
+    await wait(DELAY)
+    expect(initialRows[0].classList.contains('current-row')).to.be.true
 
-          setTimeout((_) => {
-            const rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    triggerEvent(initialRows[1], 'click', true, false)
+    await wait(DELAY)
+    expect(initialRows[0].classList.contains('current-row')).to.be.false
+    expect(initialRows[1].classList.contains('current-row')).to.be.true
 
-            expect(rows[1].classList.contains('current-row')).to.be.false
-            expect(rows[3].classList.contains('current-row')).to.be.true
-            destroyVM(vm)
-            done()
-          }, DELAY)
-        }, DELAY)
-      }, DELAY)
-    }, DELAY)
+    const ths = vm.$el.querySelectorAll('.el-table__header-wrapper thead th')
+    expect(ths.length).to.be.greaterThan(3)
+    triggerEvent(ths[3], 'click', true, false)
+
+    await wait(DELAY)
+    const resortedRows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    expect(resortedRows.length).to.be.greaterThan(3)
+    expect(resortedRows[1].classList.contains('current-row')).to.be.false
+    expect(resortedRows[3].classList.contains('current-row')).to.be.true
+
+    destroyVM(vm)
   })
 
   it('keep highlight row when data change', (done) => {
@@ -2065,10 +2069,10 @@ describe('table', () => {
     }, DELAY)
   })
 
-  it('table append is visible in viewport if height is 100%', async () => {
-    const vm = createVue({
-      template: `
-      <el-table :data="[]" height="100%">
+    it('table append is visible in viewport if height is 100%', async () => {
+      const vm = createVue({
+        template: `
+      <el-table ref="table" :data="[]" height="100%">
         <el-table-column prop="name" label="片名" />
         <el-table-column prop="release" label="发行日期" />
         <el-table-column prop="director" label="导演" />
@@ -2080,12 +2084,19 @@ describe('table', () => {
         </template>
       </el-table>
       `,
-    }, true)
-    await waitImmediate()
-    const emptyBlockEl = vm.$el.querySelector('.el-table__empty-block')
-    expect(emptyBlockEl.style.height).to.be.equal('calc(100% - 48px)')
-    destroyVM(vm)
-  })
+      }, true)
+      await waitImmediate()
+      const table = vm.$refs.table
+      const appendWrapper = table?.$refs.appendWrapper
+      if (appendWrapper) {
+        Object.defineProperty(appendWrapper, 'offsetHeight', { configurable: true, get: () => 48 })
+        table.layout.updateElsHeight()
+        await waitImmediate()
+      }
+      const emptyBlockEl = vm.$el.querySelector('.el-table__empty-block')
+      expect(emptyBlockEl.style.height).to.be.equal('calc(100% - 48px)')
+      destroyVM(vm)
+    })
 
   describe('tree', () => {
     let vm

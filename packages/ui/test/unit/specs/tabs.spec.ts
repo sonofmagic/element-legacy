@@ -424,7 +424,7 @@ describe('Tabs', () => {
       })
     }, 100)
   })
-  it('horizonal-scrollable', (done) => {
+  it('horizonal-scrollable', async () => {
     vm = createVue({
       template: `
         <el-tabs ref="tabs" style="width: 200px;">
@@ -439,30 +439,43 @@ describe('Tabs', () => {
       `,
     }, true)
 
-    setTimeout((_) => {
-      const btnPrev = vm.$el.querySelector('.el-tabs__nav-prev')
-      btnPrev.click()
-      vm.$nextTick((_) => {
-        const tabNav = vm.$el.querySelector('.el-tabs__nav-wrap')
-        expect(tabNav.__vue__.navOffset).to.be.equal(0)
+    await new Promise(resolve => setTimeout(resolve, 100))
 
-        const btnNext = vm.$el.querySelector('.el-tabs__nav-next')
-        btnNext.click()
+    const navScroll = vm.$el.querySelector('.el-tabs__nav-scroll')
+    const nav = vm.$el.querySelector('.el-tabs__nav')
+    const tabNav = vm.$el.querySelector('.el-tabs__nav-wrap')
 
-        vm.$nextTick((_) => {
-          expect(tabNav.__vue__.navOffset).to.not.be.equal(0)
+    expect(navScroll).to.not.be.null
+    expect(nav).to.not.be.null
+    expect(tabNav).to.not.be.null
+    if (!navScroll || !nav || !tabNav) return
 
-          btnPrev.click()
+    Object.defineProperty(navScroll, 'offsetWidth', { configurable: true, get: () => 200 })
+    Object.defineProperty(nav, 'offsetWidth', { configurable: true, get: () => 600 })
 
-          vm.$nextTick((_) => {
-            expect(tabNav.__vue__.navOffset).to.be.equal(0)
-            done()
-          })
-        })
-      })
-    }, 100)
+    const navVm = tabNav.__vue__ || (nav as any).__vue__
+    navVm?.update?.()
+    await vm.$nextTick()
+
+    const btnPrev = vm.$el.querySelector('.el-tabs__nav-prev')
+    const btnNext = vm.$el.querySelector('.el-tabs__nav-next')
+    expect(btnPrev).to.not.be.null
+    expect(btnNext).to.not.be.null
+    if (!btnPrev || !btnNext) return
+
+    btnPrev.click()
+    await vm.$nextTick()
+    expect(tabNav.__vue__.navOffset).to.be.equal(0)
+
+    btnNext.click()
+    await vm.$nextTick()
+    expect(tabNav.__vue__.navOffset).to.not.be.equal(0)
+
+    btnPrev.click()
+    await vm.$nextTick()
+    expect(tabNav.__vue__.navOffset).to.be.equal(0)
   })
-  it('vertical-scrollable', (done) => {
+  it('vertical-scrollable', async () => {
     vm = createVue({
       template: `
         <el-tabs ref="tabs" tab-position="left" style="height: 200px;">
@@ -477,28 +490,41 @@ describe('Tabs', () => {
       `,
     }, true)
 
-    setTimeout((_) => {
-      const btnPrev = vm.$el.querySelector('.el-tabs__nav-prev')
-      btnPrev.click()
-      vm.$nextTick((_) => {
-        const tabNav = vm.$el.querySelector('.el-tabs__nav-wrap')
-        expect(tabNav.__vue__.navOffset).to.be.equal(0)
+    await new Promise(resolve => setTimeout(resolve, 100))
 
-        const btnNext = vm.$el.querySelector('.el-tabs__nav-next')
-        btnNext.click()
+    const navScroll = vm.$el.querySelector('.el-tabs__nav-scroll')
+    const nav = vm.$el.querySelector('.el-tabs__nav')
+    const tabNav = vm.$el.querySelector('.el-tabs__nav-wrap')
 
-        vm.$nextTick((_) => {
-          expect(tabNav.__vue__.navOffset).to.not.be.equal(0)
+    expect(navScroll).to.not.be.null
+    expect(nav).to.not.be.null
+    expect(tabNav).to.not.be.null
+    if (!navScroll || !nav || !tabNav) return
 
-          btnPrev.click()
+    Object.defineProperty(navScroll, 'offsetHeight', { configurable: true, get: () => 200 })
+    Object.defineProperty(nav, 'offsetHeight', { configurable: true, get: () => 600 })
 
-          vm.$nextTick((_) => {
-            expect(tabNav.__vue__.navOffset).to.be.equal(0)
-            done()
-          })
-        })
-      })
-    }, 100)
+    const navVm = tabNav.__vue__ || (nav as any).__vue__
+    navVm?.update?.()
+    await vm.$nextTick()
+
+    const btnPrev = vm.$el.querySelector('.el-tabs__nav-prev')
+    const btnNext = vm.$el.querySelector('.el-tabs__nav-next')
+    expect(btnPrev).to.not.be.null
+    expect(btnNext).to.not.be.null
+    if (!btnPrev || !btnNext) return
+
+    btnPrev.click()
+    await vm.$nextTick()
+    expect(tabNav.__vue__.navOffset).to.be.equal(0)
+
+    btnNext.click()
+    await vm.$nextTick()
+    expect(tabNav.__vue__.navOffset).to.not.be.equal(0)
+
+    btnPrev.click()
+    await vm.$nextTick()
+    expect(tabNav.__vue__.navOffset).to.be.equal(0)
   })
   it('should work with lazy', (done) => {
     vm = createVue({

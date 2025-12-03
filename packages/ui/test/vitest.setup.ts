@@ -245,7 +245,12 @@ const defaultSize = (el: HTMLElement, key: 'width' | 'height') => {
   if (classes.includes('el-progress-bar__innerText')) {
     return 12
   }
-  return resolveSize(el, key) || 16
+  const sizeFromStyle = resolveSize(el, key)
+  const scrollSize = key === 'width'
+    ? (Number.isFinite(el.scrollWidth) ? el.scrollWidth : 0)
+    : (Number.isFinite(el.scrollHeight) ? el.scrollHeight : 0)
+  const derivedSize = Math.max(sizeFromStyle, scrollSize)
+  return derivedSize || 16
 }
 
 const computeOffsetTop = (el: HTMLElement) => {

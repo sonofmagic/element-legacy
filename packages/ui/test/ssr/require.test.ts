@@ -4,7 +4,8 @@ describe('Name of the group', () => {
   it('SSR require test', () => {
     try {
       process.env.VUE_ENV = 'server'
-      require(path.join(process.env.PWD, './lib/index'))
+      const libPath = path.resolve(__dirname, '../../lib/index')
+      require(libPath)
       console.log('SSR require test PASS')
     }
     catch (e) {
