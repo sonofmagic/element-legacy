@@ -1,3 +1,4 @@
+import { getGlobalConfig } from 'element-ui/src/utils/config-provider'
 import { addClass, removeClass } from 'element-ui/src/utils/dom'
 import Vue from 'element-ui/src/utils/vue'
 
@@ -250,7 +251,7 @@ function createPopupManager(): PopupManager {
     configurable: true,
     get() {
       if (!hasInitZIndex) {
-        const elementConfig = (Vue.prototype.$ELEMENT ?? {}) as { zIndex?: number }
+        const elementConfig = getGlobalConfig()
 
         zIndexValue = elementConfig.zIndex ?? 2000
         hasInitZIndex = true

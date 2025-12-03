@@ -1,27 +1,12 @@
-<template>
-  <transition name="el-fade-in">
-    <div
-      v-if="visible"
-      @click.stop="handleClick"
-      :style="{
-        'right': styleRight,
-        'bottom': styleBottom
-      }"
-      class="el-backtop">
-      <slot>
-        <el-icon name="caret-top"></el-icon>
-      </slot>
-    </div>
-  </transition>
-</template>
-
 <script>
-import { throttle } from 'throttle-debounce';
+import { throttle } from 'throttle-debounce'
 
-const cubic = value => Math.pow(value, 3);
-const easeInOutCubic = value => value < 0.5
-  ? cubic(value * 2) / 2
-  : 1 - cubic((1 - value) * 2) / 2;
+const cubic = value => value ** 3
+function easeInOutCubic(value) {
+  return value < 0.5
+    ? cubic(value * 2) / 2
+    : 1 - cubic((1 - value) * 2) / 2
+}
 
 export default {
   name: 'ElBacktop',
@@ -29,82 +14,101 @@ export default {
   props: {
     visibilityHeight: {
       type: Number,
-      default: 200
+      default: 200,
     },
     target: [String],
     right: {
       type: Number,
-      default: 40
+      default: 40,
     },
     bottom: {
       type: Number,
-      default: 40
-    }
+      default: 40,
+    },
   },
 
   data() {
     return {
       el: null,
       container: null,
-      visible: false
-    };
+      visible: false,
+    }
   },
 
   computed: {
     styleBottom() {
-      return `${this.bottom}px`;
+      return `${this.bottom}px`
     },
     styleRight() {
-      return `${this.right}px`;
-    }
+      return `${this.right}px`
+    },
   },
 
   mounted() {
-    this.init();
-    this.throttledScrollHandler = throttle(300, this.onScroll);
-    this.container.addEventListener('scroll', this.throttledScrollHandler);
+    this.init()
+    this.throttledScrollHandler = throttle(300, this.onScroll)
+    this.container.addEventListener('scroll', this.throttledScrollHandler)
+  },
+
+  beforeDestroy() {
+    this.container.removeEventListener('scroll', this.throttledScrollHandler)
   },
 
   methods: {
     init() {
-      this.container = document;
-      this.el = document.documentElement;
+      this.container = document
+      this.el = document.documentElement
       if (this.target) {
-        this.el = document.querySelector(this.target);
+        this.el = document.querySelector(this.target)
         if (!this.el) {
-          throw new Error(`target is not existed: ${this.target}`);
+          throw new Error(`target is not existed: ${this.target}`)
         }
-        this.container = this.el;
+        this.container = this.el
       }
     },
     onScroll() {
-      const scrollTop = this.el.scrollTop;
-      this.visible = scrollTop >= this.visibilityHeight;
+      const scrollTop = this.el.scrollTop
+      this.visible = scrollTop >= this.visibilityHeight
     },
     handleClick(e) {
-      this.scrollToTop();
-      this.$emit('click', e);
+      this.scrollToTop()
+      this.$emit('click', e)
     },
     scrollToTop() {
-      const el = this.el;
-      const beginTime = Date.now();
-      const beginValue = el.scrollTop;
-      const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16));
+      const el = this.el
+      const beginTime = Date.now()
+      const beginValue = el.scrollTop
+      const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16))
       const frameFunc = () => {
-        const progress = (Date.now() - beginTime) / 500;
+        const progress = (Date.now() - beginTime) / 500
         if (progress < 1) {
-          el.scrollTop = beginValue * (1 - easeInOutCubic(progress));
-          rAF(frameFunc);
-        } else {
-          el.scrollTop = 0;
+          el.scrollTop = beginValue * (1 - easeInOutCubic(progress))
+          rAF(frameFunc)
         }
-      };
-      rAF(frameFunc);
-    }
+        else {
+          el.scrollTop = 0
+        }
+      }
+      rAF(frameFunc)
+    },
   },
-
-  beforeDestroy() {
-    this.container.removeEventListener('scroll', this.throttledScrollHandler);
-  }
-};
+}
 </script>
+
+<template>
+  <transition name="el-fade-in">
+    <div
+      v-if="visible"
+      :style="{
+        right: styleRight,
+        bottom: styleBottom,
+      }"
+      class="el-backtop"
+      @click.stop="handleClick"
+    >
+      <slot>
+        <el-icon name="caret-top" />
+      </slot>
+    </div>
+  </transition>
+</template>

@@ -1,3 +1,15 @@
+<script>
+let id = 0
+export default {
+  name: 'ImgEmpty',
+  data() {
+    return {
+      id: ++id,
+    }
+  },
+}
+</script>
+
 <template>
   <svg
     viewBox="0 0 79 86"
@@ -118,15 +130,3 @@
     </g>
   </svg>
 </template>
-
-<script>
-let id = 0;
-export default {
-  name: 'ImgEmpty',
-  data() {
-    return {
-      id: ++id
-    };
-  }
-};
-</script>

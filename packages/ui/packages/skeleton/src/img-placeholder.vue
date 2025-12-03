@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'ImgPlaceholder',
+}
+</script>
+
 <template>
   <svg
     viewBox="0 0 1024 1024"
@@ -8,9 +14,3 @@
     />
   </svg>
 </template>
-
-<script>
-export default {
-  name: 'ImgPlaceholder'
-};
-</script>

@@ -4,28 +4,28 @@ export default {
   props: {
     label: {
       type: String,
-      default: ''
+      default: '',
     },
     span: {
       type: Number,
-      default: 1
+      default: 1,
     },
     contentClassName: {
       type: String,
-      default: ''
+      default: '',
     },
     contentStyle: {
-      type: Object
+      type: Object,
     },
     labelClassName: {
       type: String,
-      default: ''
+      default: '',
     },
     labelStyle: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   render() {
-    return null;
-  }
-};
+    return null
+  },
+}

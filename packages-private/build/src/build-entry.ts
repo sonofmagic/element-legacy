@@ -21,7 +21,7 @@ const MAIN_TEMPLATE = `/* Automatically generated don't modify this file! */
 
 import AsyncValidator, { getValidationConfig, resetValidationConfig, setValidationConfig, zodRule } from 'async-validator-next'
 import locale from 'element-ui/src/locale'
-import { CONFIG_PROVIDER_INJECTION_KEY, extractConfigFromOptions, setGlobalConfig } from 'element-ui/src/utils/config-provider'
+import { CONFIG_PROVIDER_INJECTION_KEY, extractConfigFromOptions, getGlobalConfig, setGlobalConfig } from 'element-ui/src/utils/config-provider'
 import CollapseTransition from 'element-ui/src/transitions/collapse-transition'
 {{include}}
 
@@ -45,16 +45,9 @@ function install(Vue, opts = {}) {
     inject: {
       elConfig: { from: CONFIG_PROVIDER_INJECTION_KEY, default: null },
     },
-    created(this: any) {
-      if (this.elConfig) {
-        this.$ELEMENT = this.elConfig
-      }
-    },
-    watch: {
-      elConfig(value) {
-        if (value) {
-          this.$ELEMENT = value
-        }
+    computed: {
+      $elementConfig(): Record<string, unknown> {
+        return this.elConfig || getGlobalConfig()
       },
     },
   })

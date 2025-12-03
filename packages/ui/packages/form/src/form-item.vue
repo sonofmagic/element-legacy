@@ -149,7 +149,8 @@ export default {
       return this.size || this._formSize
     },
     sizeClass() {
-      return this.elFormItemSize || (this.$ELEMENT || {}).size
+      const configSize = (this.$elementConfig || {}).size
+      return this.elFormItemSize || configSize
     },
   },
   watch: {

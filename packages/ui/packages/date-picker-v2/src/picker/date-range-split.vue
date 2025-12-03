@@ -89,7 +89,8 @@ export default {
 
     pickerSize(): string | undefined {
       const formItemSize = (this.elFormItem || {}).elFormItemSize
-      return this.size || formItemSize || (this.$ELEMENT || {}).size
+      const configSize = (this.$elementConfig || {}).size
+      return this.size || formItemSize || configSize
     },
 
     singlePanelType(): 'date' | 'datetime' | 'month' | 'year' {
@@ -512,7 +513,7 @@ export default {
         return shortcuts
       }
 
-      return shortcuts.map(shortcut => {
+      return shortcuts.map((shortcut) => {
         if (!shortcut || typeof shortcut !== 'object') {
           return shortcut
         }

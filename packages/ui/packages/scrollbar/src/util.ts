@@ -8,7 +8,7 @@ export const BAR_MAP = {
     key: 'vertical',
     axis: 'Y',
     client: 'clientY',
-    direction: 'top'
+    direction: 'top',
   },
   horizontal: {
     offset: 'offsetWidth',
@@ -18,18 +18,18 @@ export const BAR_MAP = {
     key: 'horizontal',
     axis: 'X',
     client: 'clientX',
-    direction: 'left'
-  }
-};
+    direction: 'left',
+  },
+}
 
 export function renderThumbStyle({ move, size, bar }) {
-  const style = {};
-  const translate = `translate${bar.axis}(${ move }%)`;
+  const style = {}
+  const translate = `translate${bar.axis}(${move}%)`
 
-  style[bar.size] = size;
-  style.transform = translate;
-  style.msTransform = translate;
-  style.webkitTransform = translate;
+  style[bar.size] = size
+  style.transform = translate
+  style.msTransform = translate
+  style.webkitTransform = translate
 
-  return style;
+  return style
 };

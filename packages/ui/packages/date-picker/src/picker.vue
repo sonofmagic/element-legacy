@@ -5,8 +5,8 @@ import Emitter from 'element-ui/src/mixins/emitter'
 import Clickoutside from 'element-ui/src/utils/clickoutside'
 import { formatDate, getWeekNumber, isDateObject, parseDate } from 'element-ui/src/utils/date-util'
 import merge from 'element-ui/src/utils/merge'
-import Popper from 'element-ui/src/utils/vue-popper'
 import Vue from 'element-ui/src/utils/vue'
+import Popper from 'element-ui/src/utils/vue-popper'
 
 const NewPopper = {
   props: {
@@ -475,7 +475,8 @@ export default {
     },
 
     pickerSize() {
-      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size
+      const configSize = (this.$elementConfig || {}).size
+      return this.size || this._elFormItemSize || configSize
     },
 
     pickerDisabled() {

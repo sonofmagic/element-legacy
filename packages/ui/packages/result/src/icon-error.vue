@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'IconError',
+}
+</script>
+
 <template>
   <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -5,9 +11,3 @@
     />
   </svg>
 </template>
-
-<script>
-export default {
-  name: 'IconError'
-};
-</script>

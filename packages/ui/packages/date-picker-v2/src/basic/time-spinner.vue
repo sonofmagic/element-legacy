@@ -36,12 +36,6 @@ export default {
     }
   },
 
-  mounted() {
-    this.$nextTick(() => {
-      this.adjustSpinners(true)
-    })
-  },
-
   computed: {
     hours() {
       return this.date.getHours()
@@ -97,6 +91,12 @@ export default {
     secondOptions() {
       return SECONDS
     },
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.adjustSpinners(true)
+    })
   },
 
   methods: {
@@ -373,17 +373,17 @@ export default {
         @mouseenter.native="emitSelectRange('seconds')"
         @mouseleave.native="emitHover(null)"
       >
-       <li
-        v-for="second in secondOptions"
-        :key="second"
-        class="el-time-spinner-v2__item"
-        :data-value="second"
-        :class="{ active: second === seconds, disabled: isSecondDisabled(second) }"
-        @click="handleClick('seconds', second, isSecondDisabled(second))"
-        @mouseenter="handleHover('seconds', second, isSecondDisabled(second))"
-      >
-        {{ formatUnit(second) }}
-      </li>
+        <li
+          v-for="second in secondOptions"
+          :key="second"
+          class="el-time-spinner-v2__item"
+          :data-value="second"
+          :class="{ active: second === seconds, disabled: isSecondDisabled(second) }"
+          @click="handleClick('seconds', second, isSecondDisabled(second))"
+          @mouseenter="handleHover('seconds', second, isSecondDisabled(second))"
+        >
+          {{ formatUnit(second) }}
+        </li>
       </ElScrollbar>
     </template>
     <template v-if="arrowControl">

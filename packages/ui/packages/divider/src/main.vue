@@ -1,18 +1,3 @@
-<template functional>
-  <div
-    v-bind="data.attrs"
-    v-on="listeners"
-    :class="[data.staticClass, 'el-divider', `el-divider--${props.direction}`]"
-  >
-    <div
-      v-if="slots().default && props.direction !== 'vertical'"
-      :class="['el-divider__text', `is-${props.contentPosition}`]"
-     >
-      <slot />
-    </div>
-  </div>
-</template>
-
 <script>
 export default {
   name: 'ElDivider',
@@ -21,17 +6,31 @@ export default {
       type: String,
       default: 'horizontal',
       validator(val) {
-        return ['horizontal', 'vertical'].indexOf(val) !== -1;
-      }
+        return ['horizontal', 'vertical'].includes(val)
+      },
     },
     contentPosition: {
       type: String,
       default: 'center',
       validator(val) {
-        return ['left', 'center', 'right'].indexOf(val) !== -1;
-      }
-    }
-  }
-};
-
+        return ['left', 'center', 'right'].includes(val)
+      },
+    },
+  },
+}
 </script>
+
+<template functional>
+  <div
+    v-bind="data.attrs"
+    class="el-divider" :class="[data.staticClass, `el-divider--${props.direction}`]"
+    v-on="listeners"
+  >
+    <div
+      v-if="slots().default && props.direction !== 'vertical'"
+      class="el-divider__text" :class="[`is-${props.contentPosition}`]"
+    >
+      <slot />
+    </div>
+  </div>
+</template>

@@ -1,3 +1,36 @@
+<script>
+import { t } from 'element-ui/src/locale'
+import ImgEmpty from './img-empty.vue'
+
+export default {
+  name: 'ElEmpty',
+  components: {
+    [ImgEmpty.name]: ImgEmpty,
+  },
+  props: {
+    image: {
+      type: String,
+      default: '',
+    },
+    imageSize: Number,
+    description: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    emptyDescription() {
+      return this.description || t('el.empty.description')
+    },
+    imageStyle() {
+      return {
+        width: this.imageSize ? `${this.imageSize}px` : '',
+      }
+    },
+  },
+}
+</script>
+
 <template>
   <div class="el-empty">
     <div class="el-empty__image" :style="imageStyle">
@@ -7,44 +40,13 @@
       </slot>
     </div>
     <div class="el-empty__description">
-      <slot v-if="$slots.description" name="description"></slot>
-      <p v-else>{{ emptyDescription }}</p>
+      <slot v-if="$slots.description" name="description" />
+      <p v-else>
+        {{ emptyDescription }}
+      </p>
     </div>
     <div v-if="$slots.default" class="el-empty__bottom">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
-
-<script>
-import ImgEmpty from './img-empty.vue';
-import { t } from 'element-ui/src/locale';
-
-export default {
-  name: 'ElEmpty',
-  components: {
-    [ImgEmpty.name]: ImgEmpty
-  },
-  props: {
-    image: {
-      type: String,
-      default: ''
-    },
-    imageSize: Number,
-    description: {
-      type: String,
-      default: ''
-    }
-  },
-  computed: {
-    emptyDescription() {
-      return this.description || t('el.empty.description');
-    },
-    imageStyle() {
-      return {
-        width: this.imageSize ? `${this.imageSize}px` : ''
-      };
-    }
-  }
-};
-</script>

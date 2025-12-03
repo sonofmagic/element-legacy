@@ -1,10 +1,11 @@
+<script>
+export default {
+  name: 'ElButtonGroup',
+}
+</script>
+
 <template>
   <div class="el-button-group">
-    <slot></slot>
+    <slot />
   </div>
 </template>
-<script>
-  export default {
-    name: 'ElButtonGroup'
-  };
-</script>

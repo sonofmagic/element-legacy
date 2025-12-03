@@ -1,4 +1,5 @@
 import Vue from 'element-ui/src/utils/vue'
+import { computed, inject } from 'vue'
 
 export interface ElementConfigContext {
   size?: string
@@ -85,7 +86,6 @@ export function getGlobalConfig(): ElementConfigContext {
 
 export function setGlobalConfig(config?: ElementConfigContext | null): ElementConfigContext {
   globalConfig = mergeConfig(config ?? globalConfig)
-  Vue.prototype.$ELEMENT = globalConfig
   return globalConfig
 }
 
@@ -118,3 +118,45 @@ export function extractConfigFromOptions(config?: ElementConfigContext | null): 
 
   return picked
 }
+
+export function useGlobalConfig() {
+  const injectedConfig = inject<ElementConfigContext | null>(CONFIG_PROVIDER_INJECTION_KEY, null)
+
+  return computed(() => {
+    if (injectedConfig) {
+      return mergeConfig(getGlobalConfig(), injectedConfig)
+    }
+    return getGlobalConfig()
+  })
+}
+
+let hasWarnedElementPrototype = false
+
+function setupDeprecatedElementPrototypeAccessor() {
+  if (Object.getOwnPropertyDescriptor(Vue.prototype, '$ELEMENT')) {
+    return
+  }
+
+  Object.defineProperty(Vue.prototype, '$ELEMENT', {
+    configurable: true,
+    enumerable: false,
+    get() {
+      if (!hasWarnedElementPrototype) {
+        // eslint-disable-next-line no-console
+        console.warn('[Element Legacy] $ELEMENT is deprecated. Use ConfigProvider / injected config instead.')
+        hasWarnedElementPrototype = true
+      }
+      return globalConfig
+    },
+    set(value) {
+      if (!hasWarnedElementPrototype) {
+        // eslint-disable-next-line no-console
+        console.warn('[Element Legacy] $ELEMENT setter is deprecated. Use ConfigProvider props to set global config.')
+        hasWarnedElementPrototype = true
+      }
+      globalConfig = mergeConfig(value)
+    },
+  })
+}
+
+setupDeprecatedElementPrototypeAccessor()

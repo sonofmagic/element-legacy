@@ -1,29 +1,30 @@
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue';
-var dropdowns = [];
+import Vue from 'element-ui/src/utils/vue'
 
-!Vue.prototype.$isServer && document.addEventListener('click', function(event) {
-  dropdowns.forEach(function(dropdown) {
-    var target = event.target;
-    if (!dropdown || !dropdown.$el) return;
+const dropdowns = []
+
+!Vue.prototype.$isServer && document.addEventListener('click', (event) => {
+  dropdowns.forEach((dropdown) => {
+    const target = event.target
+    if (!dropdown || !dropdown.$el) { return }
     if (target === dropdown.$el || dropdown.$el.contains(target)) {
-      return;
+      return
     }
-    dropdown.handleOutsideClick && dropdown.handleOutsideClick(event);
-  });
-});
+    dropdown.handleOutsideClick && dropdown.handleOutsideClick(event)
+  })
+})
 
 export default {
   open(instance) {
     if (instance) {
-      dropdowns.push(instance);
+      dropdowns.push(instance)
     }
   },
 
   close(instance) {
-    var index = dropdowns.indexOf(instance);
+    const index = dropdowns.indexOf(instance)
     if (index !== -1) {
-      dropdowns.splice(instance, 1);
+      dropdowns.splice(instance, 1)
     }
-  }
-};
+  },
+}

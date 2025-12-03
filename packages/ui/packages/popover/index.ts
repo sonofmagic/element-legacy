@@ -1,7 +1,7 @@
 import type { VueConstructor } from 'vue'
 import Vue from 'element-ui/src/utils/vue'
-import Popover from './src/main.vue'
 import directive from './src/directive'
+import Popover from './src/main.vue'
 
 type InstallablePopover = typeof Popover & {
   install: (vue: VueConstructor) => void

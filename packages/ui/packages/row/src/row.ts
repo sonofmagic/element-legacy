@@ -7,28 +7,28 @@ export default {
   props: {
     tag: {
       type: String,
-      default: 'div'
+      default: 'div',
     },
     gutter: Number,
     type: String,
     justify: {
       type: String,
-      default: 'start'
+      default: 'start',
     },
-    align: String
+    align: String,
   },
 
   computed: {
     style() {
-      const ret = {};
+      const ret = {}
 
       if (this.gutter) {
-        ret.marginLeft = `-${this.gutter / 2}px`;
-        ret.marginRight = ret.marginLeft;
+        ret.marginLeft = `-${this.gutter / 2}px`
+        ret.marginRight = ret.marginLeft
       }
 
-      return ret;
-    }
+      return ret
+    },
   },
 
   render(h) {
@@ -37,9 +37,9 @@ export default {
         'el-row',
         this.justify !== 'start' ? `is-justify-${this.justify}` : '',
         this.align ? `is-align-${this.align}` : '',
-        { 'el-row--flex': this.type === 'flex' }
+        { 'el-row--flex': this.type === 'flex' },
       ],
-      style: this.style
-    }, this.$slots.default);
-  }
-};
+      style: this.style,
+    }, this.$slots.default)
+  },
+}

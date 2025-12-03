@@ -1,4 +1,5 @@
-import ElCheckbox from 'element-ui/packages/checkbox';
+import ElCheckbox from 'element-ui/packages/checkbox'
+
 export default {
   name: 'ElTableRow',
   props: [
@@ -19,10 +20,10 @@ export default {
     'getCellClass',
     'handleCellMouseLeave',
     'handleCellMouseEnter',
-    'fixed'
+    'fixed',
   ],
   components: {
-    ElCheckbox
+    ElCheckbox,
   },
   render() {
     const {
@@ -36,19 +37,19 @@ export default {
       treeIndent,
       columnsHidden = [],
       isSelected,
-      isExpanded
-    } = this;
+      isExpanded,
+    } = this
 
     return (
       <tr>
         {
           columns.map((column, cellIndex) => {
-            const { rowspan, colspan } = this.getSpan(row, column, $index, cellIndex);
+            const { rowspan, colspan } = this.getSpan(row, column, $index, cellIndex)
             if (!rowspan || !colspan) {
-              return null;
+              return null
             }
-            const columnData = { ...column };
-            columnData.realWidth = this.getColspanRealWidth(columns, colspan, cellIndex);
+            const columnData = { ...column }
+            columnData.realWidth = this.getColspanRealWidth(columns, colspan, cellIndex)
             const data = {
               store,
               isSelected,
@@ -56,21 +57,21 @@ export default {
               _self: context,
               column: columnData,
               row,
-              $index
-            };
+              $index,
+            }
             if (cellIndex === firstDefaultColumnIndex && treeRowData) {
               data.treeNode = {
                 indent: treeRowData.level * treeIndent,
-                level: treeRowData.level
-              };
+                level: treeRowData.level,
+              }
               if (typeof treeRowData.expanded === 'boolean') {
-                data.treeNode.expanded = treeRowData.expanded;
+                data.treeNode.expanded = treeRowData.expanded
                 // 表明是懒加载
                 if ('loading' in treeRowData) {
-                  data.treeNode.loading = treeRowData.loading;
+                  data.treeNode.loading = treeRowData.loading
                 }
                 if ('noLazyChildren' in treeRowData) {
-                  data.treeNode.noLazyChildren = treeRowData.noLazyChildren;
+                  data.treeNode.noLazyChildren = treeRowData.noLazyChildren
                 }
               }
             }
@@ -80,7 +81,7 @@ export default {
                 class={this.getCellClass($index, cellIndex, row, column)}
                 rowspan={rowspan}
                 colspan={colspan}
-                on-mouseenter={($event) => this.handleCellMouseEnter($event, row)}
+                on-mouseenter={$event => this.handleCellMouseEnter($event, row)}
                 on-mouseleave={this.handleCellMouseLeave}
               >
                 {
@@ -88,14 +89,14 @@ export default {
                     this._renderProxy,
                     this.$createElement,
                     data,
-                    columnsHidden[cellIndex]
+                    columnsHidden[cellIndex],
                   )
                 }
               </td>
-            );
+            )
           })
         }
       </tr>
-    );
-  }
-};
+    )
+  },
+}

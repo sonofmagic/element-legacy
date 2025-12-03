@@ -1,15 +1,11 @@
 <script>
+import { useGlobalConfig } from 'element-ui/src/utils/config-provider'
+import { computed, inject, useSlots } from 'vue'
+
+const CHINESE_TWO_CHAR_REG = /^[\u4E00-\u9FA5]{2}$/
+
 export default {
   name: 'ElButton',
-
-  inject: {
-    elForm: {
-      default: '',
-    },
-    elFormItem: {
-      default: '',
-    },
-  },
 
   props: {
     type: {
@@ -37,56 +33,60 @@ export default {
     },
   },
 
-  computed: {
-    buttonConfig() {
-      return (this.$ELEMENT || {}).button || {}
-    },
-    _elFormItemSize() {
-      return (this.elFormItem || {}).elFormItemSize
-    },
-    buttonSize() {
-      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size
-    },
-    buttonDisabled() {
-      const hasDisabledProp = Object.prototype.hasOwnProperty.call(this.$options.propsData, 'disabled')
-      return hasDisabledProp ? this.disabled : (this.elForm || {}).disabled
-    },
-    autoInsertSpaceValue() {
-      if (this.autoInsertSpace === true || this.autoInsertSpace === false) {
-        return this.autoInsertSpace
+  setup(props, { emit }) {
+    const elForm = inject('elForm', undefined)
+    const elFormItem = inject('elFormItem', undefined)
+    const slots = useSlots()
+    const config = useGlobalConfig()
+
+    const buttonConfig = computed(() => (config.value.button || {}))
+    const _elFormItemSize = computed(() => (elFormItem || {}).elFormItemSize)
+    const buttonSize = computed(() => props.size || _elFormItemSize.value || config.value.size)
+    const buttonDisabled = computed(() => {
+      const hasDisabledProp = Object.prototype.hasOwnProperty.call(props, 'disabled')
+      return hasDisabledProp ? props.disabled : (elForm || {}).disabled
+    })
+    const autoInsertSpaceValue = computed(() => {
+      if (props.autoInsertSpace === true || props.autoInsertSpace === false) {
+        return props.autoInsertSpace
       }
-      return Boolean(this.buttonConfig.autoInsertSpace)
-    },
-    hasTwoChineseCharacters() {
-      const defaultSlot = this.$slots.default
+      return Boolean(buttonConfig.value.autoInsertSpace)
+    })
+    const hasTwoChineseCharacters = computed(() => {
+      const defaultSlot = slots.default ? slots.default() : undefined
       if (!defaultSlot || defaultSlot.length !== 1) {
         return false
       }
 
       const slot = defaultSlot[0]
       const text = (slot.text || '').trim()
-      return text.length === 2 && /^[\u4E00-\u9FA5]{2}$/.test(text)
-    },
-    shouldAddSpace() {
-      return this.autoInsertSpaceValue && this.hasTwoChineseCharacters
-    },
-    spacedText() {
-      if (!this.shouldAddSpace) {
+      return text.length === 2 && CHINESE_TWO_CHAR_REG.test(text)
+    })
+    const shouldAddSpace = computed(() => autoInsertSpaceValue.value && hasTwoChineseCharacters.value)
+    const spacedText = computed(() => {
+      if (!shouldAddSpace.value) {
         return ''
       }
-      const text = (this.$slots.default?.[0]?.text || '').trim()
-      return text.split('').join(' ')
-    },
-  },
 
-  methods: {
-    handleClick(evt) {
+      const text = (slots.default?.()[0]?.text || '').trim()
+      return text.split('').join(' ')
+    })
+
+    function handleClick(evt) {
       // Prevent click handler when button is logically disabled or loading.
-      if (this.buttonDisabled || this.loading) {
+      if (buttonDisabled.value || props.loading) {
         return
       }
-      this.$emit('click', evt)
-    },
+      emit('click', evt)
+    }
+
+    return {
+      buttonSize,
+      buttonDisabled,
+      shouldAddSpace,
+      spacedText,
+      handleClick,
+    }
   },
 }
 </script>

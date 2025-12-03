@@ -271,13 +271,14 @@ export default {
       return Array.isArray(this.value) ? this.value.map(val => new Date(val)) : new Date(this.value)
     },
 
-    _elFormItemSize() {
-      return (this.elFormItem || {}).elFormItemSize
-    },
+  _elFormItemSize() {
+    return (this.elFormItem || {}).elFormItemSize
+  },
 
-    pickerSize() {
-      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size
-    },
+  pickerSize() {
+    const configSize = (this.$elementConfig || {}).size
+    return this.size || this._elFormItemSize || configSize
+  },
 
     pickerDisabled() {
       return this.disabled || (this.elForm || {}).disabled
