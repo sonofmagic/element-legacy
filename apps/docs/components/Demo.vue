@@ -4,6 +4,31 @@ import * as compiler from 'vue-template-compiler'
 import { stripScript, stripStyle, stripTemplate } from '../util'
 import DemoBlock from './demo-block.vue'
 
+function decodePayload(raw) {
+  if (!raw) {
+    return ''
+  }
+  const cleaned = raw.trim()
+  if (!cleaned) {
+    return ''
+  }
+
+  try {
+    // Prefer base64 decoding (new encoding) with a safe runtime guard for non-browser builds.
+    if (typeof atob === 'function') {
+      return atob(cleaned)
+    }
+  }
+  catch (_error) {}
+
+  try {
+    return decodeURIComponent(cleaned)
+  }
+  catch (_error) {}
+
+  return cleaned
+}
+
 function unwrapTemplate(code) {
   if (!code) {
     return ''
@@ -37,10 +62,10 @@ export default {
   },
   computed: {
     decodedSource() {
-      return this.source ? decodeURIComponent(this.source) : ''
+      return decodePayload(this.source)
     },
     decodedDescription() {
-      return this.description ? decodeURIComponent(this.description) : ''
+      return decodePayload(this.description)
     },
   },
   watch: {

@@ -39,6 +39,7 @@ const preferredLanguages = [
 ] as const
 
 const elementLegacyPackagePath = path.resolve(import.meta.dirname, '../../packages/ui/package.json')
+const elementLegacyRoot = path.resolve(import.meta.dirname, '../../packages/ui')
 const elementLegacyPackage = JSON.parse(fs.readFileSync(elementLegacyPackagePath, 'utf8')) as { version?: string }
 const elementLegacyVersion = elementLegacyPackage.version ?? ''
 
@@ -115,6 +116,29 @@ export default defineConfig(
               'global-builtin',
               'import',
             ],
+          },
+        },
+      },
+      build: {
+        chunkSizeWarningLimit: 1200,
+        rollupOptions: {
+          output: {
+            manualChunks(id) {
+              if (id.includes('node_modules')) {
+                if (id.includes(`${path.sep}vue`)) {
+                  return 'vendor-vue'
+                }
+                if (id.includes('shiki')) {
+                  return 'vendor-shiki'
+                }
+                if (id.includes('algoliasearch')) {
+                  return 'vendor-algolia'
+                }
+              }
+              if (id.startsWith(elementLegacyRoot)) {
+                return 'element-legacy'
+              }
+            },
           },
         },
       },

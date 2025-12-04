@@ -1,4 +1,5 @@
 import type MarkdownIt from 'markdown-it'
+import { Buffer } from 'node:buffer'
 import markdownItContainer from 'markdown-it-container'
 
 type MarkdownContainerType = 'tip' | 'warning'
@@ -35,9 +36,9 @@ function createDemoContainer(md: MarkdownIt): MarkdownContainer {
           fenceIndex++
         }
 
-        const encodedSource = encodeURIComponent(sourceCode)
+        const encodedSource = Buffer.from(sourceCode).toString('base64')
         const renderedDescription = descriptionText ? md.render(descriptionText) : ''
-        const encodedDescription = encodeURIComponent(renderedDescription)
+        const encodedDescription = Buffer.from(renderedDescription).toString('base64')
 
         return `<Demo source="${encodedSource}" description="${encodedDescription}">\n`
       }
