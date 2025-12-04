@@ -1,5 +1,11 @@
 # @element-legacy/theme-chalk
 
+## 1.0.1
+
+### Patch Changes
+
+- [`0a9a1bf`](https://github.com/sonofmagic/element-legacy/commit/0a9a1bffe99227f96cf2d7ee8114769afdf34e8a) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Align date-picker-v2 sizing with container width instead of max-width limits, keeping form usage full-width and documenting the form layout scenario.
+
 ## 0.2.0
 
 ### Minor Changes
