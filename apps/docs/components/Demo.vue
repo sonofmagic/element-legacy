@@ -4,6 +4,48 @@ import * as compiler from 'vue-template-compiler'
 import { stripScript, stripStyle, stripTemplate } from '../util'
 import DemoBlock from './demo-block.vue'
 
+// Demo payloads are base64-encoded UTF-8; decode safely so non-ASCII text renders correctly.
+function decodeBase64Utf8(payload) {
+  if (!payload) {
+    return ''
+  }
+
+  try {
+    if (typeof atob === 'function') {
+      const binary = atob(payload)
+      const bytes = new Uint8Array(binary.length)
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i)
+      }
+
+      if (typeof TextDecoder === 'function') {
+        try {
+          return new TextDecoder('utf-8').decode(bytes)
+        }
+        catch (_error) {}
+      }
+
+      const percentEncoded = []
+      for (let i = 0; i < bytes.length; i++) {
+        percentEncoded.push(`%${bytes[i].toString(16).padStart(2, '0')}`)
+      }
+      return decodeURIComponent(percentEncoded.join(''))
+    }
+  }
+  catch (_error) {}
+
+  try {
+    /* eslint-disable node/prefer-global/buffer */
+    if (typeof Buffer === 'function' && typeof Buffer.from === 'function') {
+      return Buffer.from(payload, 'base64').toString()
+    }
+    /* eslint-enable node/prefer-global/buffer */
+  }
+  catch (_error) {}
+
+  return ''
+}
+
 function decodePayload(raw) {
   if (!raw) {
     return ''
@@ -13,13 +55,10 @@ function decodePayload(raw) {
     return ''
   }
 
-  try {
-    // Prefer base64 decoding (new encoding) with a safe runtime guard for non-browser builds.
-    if (typeof atob === 'function') {
-      return atob(cleaned)
-    }
+  const base64Decoded = decodeBase64Utf8(cleaned)
+  if (base64Decoded) {
+    return base64Decoded
   }
-  catch (_error) {}
 
   try {
     return decodeURIComponent(cleaned)

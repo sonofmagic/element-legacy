@@ -565,6 +565,60 @@ The basic day picker.
 
 :::
 
+### Full Width in Forms
+
+:::demo In grid-based forms, DateTime pickers now stretch to the full form item width without extra styles.
+
+```html
+<template>
+  <el-form :model="formLayout" label-width="120px" class="demo-date-picker-form-grid">
+    <el-row :gutter="12">
+      <el-col :span="12">
+        <el-form-item label="Import date">
+          <el-date-picker-v2
+            v-model="formLayout.importRange"
+            type="datetimerange"
+            range-separator="to"
+            start-placeholder="Start time"
+            end-placeholder="End time"
+          />
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item label="Delivery date">
+          <el-date-picker-v2
+            v-model="formLayout.delivery"
+            type="datetime"
+            placeholder="Pick delivery time"
+          />
+        </el-form-item>
+      </el-col>
+    </el-row>
+  </el-form>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        formLayout: {
+          importRange: [],
+          delivery: '',
+        },
+      }
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-form-grid .el-form-item {
+    margin-bottom: 12px;
+  }
+</style>
+```
+
+:::
+
 ### Overflow Tooltip
 
 Hover to reveal the full value whenever it exceeds the visible width.

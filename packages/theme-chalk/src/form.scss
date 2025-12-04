@@ -130,6 +130,16 @@
     .el-input-group {
       vertical-align: top;
     }
+
+    // Let date/time picker v2 fill the form item by default
+    .el-date-editor-v2.el-input,
+    .el-date-editor-v2.el-input__inner,
+    .el-date-range-editor-v2.el-input,
+    .el-date-range-editor-v2.el-input__inner {
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+    }
   }
 
   @include mixins.e(error) {

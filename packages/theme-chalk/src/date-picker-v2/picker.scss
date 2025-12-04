@@ -26,35 +26,31 @@
 
   &.el-input,
   &.el-input__inner {
-    width: 100%;
+    width: 220px;
     min-width: 0;
-    max-width: 220px;
   }
 
   @include mixins.m((monthrange)) {
     &.el-input,
     &.el-input__inner {
-      width: 100%;
+      width: 300px;
       min-width: 0;
-      max-width: 300px;
     }
   }
 
   @include mixins.m((daterange, timerange)) {
     &.el-input,
     &.el-input__inner {
-      width: 100%;
+      width: 350px;
       min-width: 0;
-      max-width: 350px;
     }
   }
 
   @include mixins.m(datetimerange) {
     &.el-input,
     &.el-input__inner {
-      width: 100%;
+      width: 400px;
       min-width: 0;
-      max-width: 400px;
     }
   }
 
@@ -139,102 +135,104 @@
 
 @include mixins.b(date-range-editor-v2) {
   @include mixins.m(split) {
-    position: relative;
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: stretch;
-    width: 100%;
-    min-width: 0;
-    max-width: 304px;
-    padding: 0;
-    overflow: hidden;
-    background-color: var.$color-white;
-    border: 1px solid var.$input-border-color;
-    border-radius: var.$input-border-radius;
-    transition: var.$border-transition-base;
-
-    &.is-active,
-    &:hover,
-    &:focus {
-      border-color: var.$input-hover-border;
-    }
-
-    &.is-active {
-      border-color: var.$color-primary;
-    }
-
-    &.is-disabled {
-      color: var.$input-disabled-color;
-      cursor: not-allowed;
-      background-color: var.$input-disabled-fill;
-      border-color: var.$input-disabled-border;
-    }
-
-    .el-date-range-editor-v2__highlight {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      z-index: 0;
-      pointer-events: none;
-      background-color: #f2f2f2;
-      border-radius: 3px;
-      opacity: 0;
-      transition:
-        opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
-        left 0.25s cubic-bezier(0.23, 1, 0.32, 1),
-        width 0.25s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .el-date-range-editor-v2__cell {
+    // dual selectors ensure higher specificity than base .el-input__inner styles
+    &,
+    &.el-input__inner {
       position: relative;
-      z-index: 1;
-      display: flex;
-      flex: 1 1 0;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: stretch;
+      width: 304px;
       min-width: 0;
-    }
+      padding: 0;
+      overflow: hidden;
+      background-color: var.$color-white;
+      border: 1px solid var.$input-border-color;
+      border-radius: var.$input-border-radius;
+      transition: var.$border-transition-base;
 
-    .el-date-editor-v2 {
-      flex: 1 1 auto;
-      margin: 0;
-      background-color: transparent;
-    }
-
-    .el-date-editor-v2 .el-input__inner {
-      padding: 0 12px;
-      text-align: center;
-      background-color: transparent;
-      border: none;
-      box-shadow: none;
-
-      &::placeholder {
-        text-align: center;
+      &.is-active,
+      &:hover,
+      &:focus {
+        border-color: var.$input-hover-border;
       }
-    }
 
-    .el-date-editor-v2 .el-input__inner:focus {
-      box-shadow: none;
-    }
+      &.is-active {
+        border-color: var.$color-primary;
+      }
 
-    .el-range-separator-v2 {
-      z-index: 1;
-      width: auto;
-      padding: 0 4px;
-      line-height: inherit;
-    }
+      &.is-disabled {
+        color: var.$input-disabled-color;
+        cursor: not-allowed;
+        background-color: var.$input-disabled-fill;
+        border-color: var.$input-disabled-border;
+      }
 
-    .el-date-range-editor-v2__separator {
-      display: flex;
-      align-items: center;
-    }
+      .el-date-range-editor-v2__highlight {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        z-index: 0;
+        pointer-events: none;
+        background-color: #f2f2f2;
+        border-radius: 3px;
+        opacity: 0;
+        transition:
+          opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+          left 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+          width 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+      }
 
-    &.is-disabled .el-range-separator-v2 {
-      color: var.$input-disabled-color;
-    }
+      .el-date-range-editor-v2__cell {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex: 1 1 0;
+        min-width: 0;
+      }
 
-    &.el-date-range-editor-v2--datetimerange {
-      width: 100%;
-      min-width: 0;
-      max-width: 448px;
+      .el-date-editor-v2 {
+        flex: 1 1 auto;
+        margin: 0;
+        background-color: transparent;
+      }
+
+      .el-date-editor-v2 .el-input__inner {
+        padding: 0 12px;
+        text-align: center;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+
+      .el-date-editor-v2 .el-input__inner:focus {
+        box-shadow: none;
+      }
+
+      .el-range-separator-v2 {
+        z-index: 1;
+        width: auto;
+        padding: 0 4px;
+        line-height: inherit;
+      }
+
+      .el-date-range-editor-v2__separator {
+        display: flex;
+        align-items: center;
+      }
+
+      &.is-disabled .el-range-separator-v2 {
+        color: var.$input-disabled-color;
+      }
+
+      &.el-date-range-editor-v2--datetimerange {
+        width: 448px;
+        min-width: 0;
+      }
     }
   }
 }

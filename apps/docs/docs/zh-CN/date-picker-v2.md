@@ -530,6 +530,60 @@
 
 :::
 
+### 表单内占满宽度
+
+:::demo 在栅格表单中，DateTime 选择器会默认撑满表单项，无需额外样式。
+
+```html
+<template>
+  <el-form :model="formLayout" label-width="100px" class="demo-date-picker-form-grid">
+    <el-row :gutter="12">
+      <el-col :span="12">
+        <el-form-item label="订单导入日期">
+          <el-date-picker-v2
+            v-model="formLayout.importRange"
+            type="datetimerange"
+            range-separator="至"
+            start-placeholder="开始时间"
+            end-placeholder="结束时间"
+          />
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item label="交付日期">
+          <el-date-picker-v2
+            v-model="formLayout.delivery"
+            type="datetime"
+            placeholder="选择交付时间"
+          />
+        </el-form-item>
+      </el-col>
+    </el-row>
+  </el-form>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        formLayout: {
+          importRange: [],
+          delivery: '',
+        },
+      }
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-form-grid .el-form-item {
+    margin-bottom: 12px;
+  }
+</style>
+```
+
+:::
+
 ### 文本溢出提示
 
 当日期展示内容超出输入框宽度时，悬停即可看到完整内容。
