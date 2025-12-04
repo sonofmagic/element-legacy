@@ -134,6 +134,9 @@ export default defineConfig(
                 if (id.includes('algoliasearch')) {
                   return 'vendor-algolia'
                 }
+                // keep everything else from node_modules in a single vendor chunk
+                // so Vue and our library chunk don't form a cyclic dependency
+                return 'vendor'
               }
               if (id.startsWith(elementLegacyRoot)) {
                 return 'element-legacy'

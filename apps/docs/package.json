@@ -22,7 +22,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "element-legacy-build i18n && vite --host",
-    "build": "element-legacy-build i18n && vite build"
+    "build": "element-legacy-build i18n && vite build",
+    "preview": "vite preview --host"
   },
   "dependencies": {
     "algoliasearch": "^5.45.0",
