@@ -80,12 +80,15 @@ export function mergeConfig(
 
 let globalConfig: ElementConfigContext = normalizeConfig()
 
+Vue.prototype.$ELEMENT = globalConfig
+
 export function getGlobalConfig(): ElementConfigContext {
   return globalConfig
 }
 
 export function setGlobalConfig(config?: ElementConfigContext | null): ElementConfigContext {
   globalConfig = mergeConfig(config ?? globalConfig)
+  Vue.prototype.$ELEMENT = globalConfig
   return globalConfig
 }
 
@@ -129,34 +132,3 @@ export function useGlobalConfig() {
     return getGlobalConfig()
   })
 }
-
-let hasWarnedElementPrototype = false
-
-function setupDeprecatedElementPrototypeAccessor() {
-  if (Object.getOwnPropertyDescriptor(Vue.prototype, '$ELEMENT')) {
-    return
-  }
-
-  Object.defineProperty(Vue.prototype, '$ELEMENT', {
-    configurable: true,
-    enumerable: false,
-    get() {
-      if (!hasWarnedElementPrototype) {
-        // eslint-disable-next-line no-console
-        console.warn('[Element Legacy] $ELEMENT is deprecated. Use ConfigProvider / injected config instead.')
-        hasWarnedElementPrototype = true
-      }
-      return globalConfig
-    },
-    set(value) {
-      if (!hasWarnedElementPrototype) {
-        // eslint-disable-next-line no-console
-        console.warn('[Element Legacy] $ELEMENT setter is deprecated. Use ConfigProvider props to set global config.')
-        hasWarnedElementPrototype = true
-      }
-      globalConfig = mergeConfig(value)
-    },
-  })
-}
-
-setupDeprecatedElementPrototypeAccessor()

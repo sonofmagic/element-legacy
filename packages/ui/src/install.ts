@@ -15,6 +15,7 @@ export type InstallOptions = ElementConfigContext & {
 
 type ElConfigAwareVue = Vue & {
   elConfig?: ElementConfigContext | null
+  $ELEMENT?: ElementConfigContext
 }
 
 declare global {
@@ -46,6 +47,18 @@ export const install: PluginFunction<InstallOptions> = (Vue, opts?: InstallOptio
   Vue.mixin({
     inject: {
       elConfig: { from: CONFIG_PROVIDER_INJECTION_KEY, default: null },
+    },
+    created(this: ElConfigAwareVue) {
+      if (this.elConfig) {
+        this.$ELEMENT = this.elConfig
+      }
+    },
+    watch: {
+      elConfig(this: ElConfigAwareVue, value: ElementConfigContext | null) {
+        if (value) {
+          this.$ELEMENT = value
+        }
+      },
     },
     computed: {
       $elementConfig(this: ElConfigAwareVue): ElementConfigContext {
