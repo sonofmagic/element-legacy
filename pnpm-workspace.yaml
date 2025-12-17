@@ -1,9 +1,10 @@
 packages:
-  - 'packages/*'
-  - 'packages-private/*'
-  - 'apps/*'
+  - packages/*
+  - packages-private/*
+  - apps/*
   - '!**/test/**'
-
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
+  - sharp
+  - workerd
