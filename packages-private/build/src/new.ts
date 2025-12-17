@@ -127,7 +127,7 @@ fileSave(sassPath)
   .write(sassImportText, 'utf8')
   .end('\n')
 
-const elementTsPath = resolveFromUi('types', 'element-ui.d.ts')
+const elementTsPath = resolveFromUi('types', 'element-legacy.d.ts')
 
 let elementTsText = `${readFileSync(elementTsPath)}
 /** ${ComponentName} Component */

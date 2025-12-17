@@ -1,7 +1,7 @@
 <script>
-import Emitter from 'element-ui/src/mixins/emitter'
-import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition'
-import { generateId } from 'element-ui/src/utils/util'
+import Emitter from 'element-legacy/src/mixins/emitter'
+import ElCollapseTransition from 'element-legacy/src/transitions/collapse-transition'
+import { generateId } from 'element-legacy/src/utils/util'
 
 export default {
   name: 'ElCollapseItem',

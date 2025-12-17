@@ -1,6 +1,6 @@
 <script type="text/babel">
-import Emitter from 'element-ui/src/mixins/emitter'
-import { escapeRegexpString, getValueByPath } from 'element-ui/src/utils/util'
+import Emitter from 'element-legacy/src/mixins/emitter'
+import { escapeRegexpString, getValueByPath } from 'element-legacy/src/utils/util'
 
 export default {
 

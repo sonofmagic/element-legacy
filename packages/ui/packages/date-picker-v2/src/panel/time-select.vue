@@ -1,7 +1,7 @@
 <script lang="ts">
 // @ts-nocheck
-import ElScrollbar from 'element-ui/packages/scrollbar'
-import scrollIntoView from 'element-ui/src/utils/scroll-into-view'
+import ElScrollbar from 'element-legacy/packages/scrollbar'
+import scrollIntoView from 'element-legacy/src/utils/scroll-into-view'
 
 function parseTime(time) {
   const values = (time || '').split(':')

@@ -1,7 +1,7 @@
 <script lang="jsx">
-import ElCheckbox from 'element-ui/packages/checkbox'
-import emitter from 'element-ui/src/mixins/emitter'
-import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition'
+import ElCheckbox from 'element-legacy/packages/checkbox'
+import emitter from 'element-legacy/src/mixins/emitter'
+import ElCollapseTransition from 'element-legacy/src/transitions/collapse-transition'
 import { getNodeKey } from './model/util'
 
 export default {

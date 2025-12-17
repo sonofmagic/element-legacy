@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Clickoutside from 'element-ui/src/utils/clickoutside';
+import Clickoutside from 'element-legacy/src/utils/clickoutside';
 const ctx = '@@clickoutsideContext';
 
 import { triggerEvent, triggerClick } from '../util';

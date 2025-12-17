@@ -1,5 +1,5 @@
 <script>
-import Emitter from 'element-ui/src/mixins/emitter'
+import Emitter from 'element-legacy/src/mixins/emitter'
 
 const keyCode = Object.freeze({
   LEFT: 37,

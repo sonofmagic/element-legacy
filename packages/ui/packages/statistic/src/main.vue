@@ -1,5 +1,5 @@
 <script>
-import { chain, isNumber, multiply, padStart, reduce } from 'element-ui/src/utils/lodash'
+import { chain, isNumber, multiply, padStart, reduce } from 'element-legacy/src/utils/lodash'
 
 export default {
   name: 'ElStatistic',

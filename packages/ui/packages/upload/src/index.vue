@@ -1,6 +1,6 @@
 <script lang="jsx">
-import ElProgress from 'element-ui/packages/progress'
-import Migrating from 'element-ui/src/mixins/migrating'
+import ElProgress from 'element-legacy/packages/progress'
+import Migrating from 'element-legacy/src/mixins/migrating'
 import UploadList from './upload-list.vue'
 import Upload from './upload.vue'
 

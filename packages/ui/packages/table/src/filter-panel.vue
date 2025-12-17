@@ -1,11 +1,11 @@
 <script type="text/babel">
-import ElCheckbox from 'element-ui/packages/checkbox'
-import ElCheckboxGroup from 'element-ui/packages/checkbox-group'
-import ElScrollbar from 'element-ui/packages/scrollbar'
-import Locale from 'element-ui/src/mixins/locale'
-import Clickoutside from 'element-ui/src/utils/clickoutside'
-import { PopupManager } from 'element-ui/src/utils/popup'
-import Popper from 'element-ui/src/utils/vue-popper'
+import ElCheckbox from 'element-legacy/packages/checkbox'
+import ElCheckboxGroup from 'element-legacy/packages/checkbox-group'
+import ElScrollbar from 'element-legacy/packages/scrollbar'
+import Locale from 'element-legacy/src/mixins/locale'
+import Clickoutside from 'element-legacy/src/utils/clickoutside'
+import { PopupManager } from 'element-legacy/src/utils/popup'
+import Popper from 'element-legacy/src/utils/vue-popper'
 import Dropdown from './dropdown'
 
 export default {

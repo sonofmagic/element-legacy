@@ -67,9 +67,9 @@ const libEntry = {
 export default defineConfig({
   resolve: {
     alias: {
-      'element-ui': workspaceRoot,
-      'element-ui/src': srcRoot,
-      'element-ui/packages': packagesRoot,
+      'element-legacy': workspaceRoot,
+      'element-legacy/src': srcRoot,
+      'element-legacy/packages': packagesRoot,
       'vue': 'vue/dist/vue.esm.js',
     },
   },

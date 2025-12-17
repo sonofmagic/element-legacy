@@ -12,7 +12,7 @@ export default defineConfig(
       ],
       resolve: {
         alias: {
-          'element-ui': path.resolve(import.meta.dirname),
+          'element-legacy': path.resolve(import.meta.dirname),
           'packages': path.resolve(import.meta.dirname, 'packages'),
           'main': path.resolve(import.meta.dirname, 'src'),
           'vue': 'vue/dist/vue.esm.js',
@@ -21,7 +21,7 @@ export default defineConfig(
       test: {
         // resolve: {
         //   alias: {
-        //     'element-ui': path.resolve(import.meta.dirname),
+        //     'element-legacy': path.resolve(import.meta.dirname),
         //   },
         // },
         projects: [

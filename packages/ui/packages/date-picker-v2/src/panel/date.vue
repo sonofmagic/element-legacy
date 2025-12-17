@@ -1,9 +1,9 @@
 <script lang="ts">
 // @ts-nocheck
-import ElButton from 'element-ui/packages/button'
-import ElOption from 'element-ui/packages/option'
-import ElSelect from 'element-ui/packages/select'
-import Locale from 'element-ui/src/mixins/locale'
+import ElButton from 'element-legacy/packages/button'
+import ElOption from 'element-legacy/packages/option'
+import ElSelect from 'element-legacy/packages/select'
+import Locale from 'element-legacy/src/mixins/locale'
 import {
   changeYearMonthAndClampDate,
   clearMilliseconds,
@@ -19,7 +19,7 @@ import {
   prevMonth,
   prevYear,
   timeWithinRange,
-} from 'element-ui/src/utils/date-util'
+} from 'element-legacy/src/utils/date-util'
 import DateTable from '../basic/date-table.vue'
 import MonthTable from '../basic/month-table.vue'
 import YearTable from '../basic/year-table.vue'

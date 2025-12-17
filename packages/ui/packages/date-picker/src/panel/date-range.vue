@@ -1,9 +1,9 @@
 <script lang="ts">
 // @ts-nocheck
-import ElButton from 'element-ui/packages/button'
-import ElInput from 'element-ui/packages/input'
-import Locale from 'element-ui/src/mixins/locale'
-import Clickoutside from 'element-ui/src/utils/clickoutside'
+import ElButton from 'element-legacy/packages/button'
+import ElInput from 'element-legacy/packages/input'
+import Locale from 'element-legacy/src/mixins/locale'
+import Clickoutside from 'element-legacy/src/utils/clickoutside'
 import {
   extractDateFormat,
   extractTimeFormat,
@@ -18,7 +18,7 @@ import {
   parseDate,
   prevMonth,
   prevYear,
-} from 'element-ui/src/utils/date-util'
+} from 'element-legacy/src/utils/date-util'
 import DateTable from '../basic/date-table.vue'
 import TimePicker from './time.vue'
 

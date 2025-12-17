@@ -1,6 +1,6 @@
 <script lang="jsx">
-import fecha from 'element-ui/src/utils/date'
-import { getFirstDayOfMonth, getI18nSettings, getMonthDays, getPrevMonthLastDays, range as rangeArr, validateRangeInOneMonth } from 'element-ui/src/utils/date-util'
+import fecha from 'element-legacy/src/utils/date'
+import { getFirstDayOfMonth, getI18nSettings, getMonthDays, getPrevMonthLastDays, range as rangeArr, validateRangeInOneMonth } from 'element-legacy/src/utils/date-util'
 
 export default {
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 // @ts-nocheck
-import ElScrollbar from 'element-ui/packages/scrollbar'
-import RepeatClick from 'element-ui/src/directives/repeat-click'
-import { getRangeHours, getRangeMinutes, modifyTime, timeWithinRange } from 'element-ui/src/utils/date-util'
+import ElScrollbar from 'element-legacy/packages/scrollbar'
+import RepeatClick from 'element-legacy/src/directives/repeat-click'
+import { getRangeHours, getRangeMinutes, modifyTime, timeWithinRange } from 'element-legacy/src/utils/date-util'
 
 const HOURS = Array.from({ length: 24 }, (_, index) => index)
 const MINUTES = Array.from({ length: 60 }, (_, index) => index)

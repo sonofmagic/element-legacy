@@ -1,8 +1,8 @@
 <script lang="jsx">
-import ElCheckbox from 'element-ui/packages/checkbox'
-import ElCheckboxGroup from 'element-ui/packages/checkbox-group'
-import ElInput from 'element-ui/packages/input'
-import Locale from 'element-ui/src/mixins/locale'
+import ElCheckbox from 'element-legacy/packages/checkbox'
+import ElCheckboxGroup from 'element-legacy/packages/checkbox-group'
+import ElInput from 'element-legacy/packages/input'
+import Locale from 'element-legacy/src/mixins/locale'
 
 export default {
 

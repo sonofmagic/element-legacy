@@ -50,7 +50,7 @@
 
   新增 `UploadList`、`Scrollbar`、`ImageViewer` 以及内部使用的 `DateTable` 的独立构建入口（含类型声明），并补齐对应的 Chalk 样式，方便直接按需引用。
 
-- [`9f9397d`](https://github.com/sonofmagic/element-legacy/commit/9f9397df21f47763f423c3feed6c804c15fd08e4) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Make popup manager a true singleton so multiple element-ui bundles share the same modal state.
+- [`9f9397d`](https://github.com/sonofmagic/element-legacy/commit/9f9397df21f47763f423c3feed6c804c15fd08e4) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Make popup manager a true singleton so multiple element-legacy bundles share the same modal state.
 
 ## 0.0.5
 

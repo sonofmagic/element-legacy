@@ -1,7 +1,7 @@
-import { addClass, off, on, removeClass } from 'element-ui/src/utils/dom'
-import { generateId } from 'element-ui/src/utils/util'
-import Vue from 'element-ui/src/utils/vue'
-import Popper from 'element-ui/src/utils/vue-popper'
+import { addClass, off, on, removeClass } from 'element-legacy/src/utils/dom'
+import { generateId } from 'element-legacy/src/utils/util'
+import Vue from 'element-legacy/src/utils/vue'
+import Popper from 'element-legacy/src/utils/vue-popper'
 import { debounce } from 'throttle-debounce'
 
 export default {

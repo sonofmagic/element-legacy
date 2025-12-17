@@ -3,9 +3,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "element-ui": [
-        "../../packages/ui/src"
-      ],
       "element-legacy": [
         "../../packages/ui/src"
       ],

@@ -1,4 +1,4 @@
-import ElCheckbox from 'element-ui/packages/checkbox'
+import ElCheckbox from 'element-legacy/packages/checkbox'
 
 export default {
   name: 'ElTableRow',

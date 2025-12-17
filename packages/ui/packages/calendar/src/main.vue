@@ -1,9 +1,9 @@
 <script>
-import ElButton from 'element-ui/packages/button'
-import ElButtonGroup from 'element-ui/packages/button-group'
-import Locale from 'element-ui/src/mixins/locale'
-import fecha from 'element-ui/src/utils/date'
-import { validateRangeInOneMonth } from 'element-ui/src/utils/date-util'
+import ElButton from 'element-legacy/packages/button'
+import ElButtonGroup from 'element-legacy/packages/button-group'
+import Locale from 'element-legacy/src/mixins/locale'
+import fecha from 'element-legacy/src/utils/date'
+import { validateRangeInOneMonth } from 'element-legacy/src/utils/date-util'
 import DateTable from './date-table.vue'
 
 const validTypes = ['prev-month', 'today', 'next-month']

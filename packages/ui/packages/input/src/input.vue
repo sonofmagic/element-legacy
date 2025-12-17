@@ -1,8 +1,8 @@
 <script>
-import emitter from 'element-ui/src/mixins/emitter'
-import Migrating from 'element-ui/src/mixins/migrating'
-import merge from 'element-ui/src/utils/merge'
-import { isKorean } from 'element-ui/src/utils/shared'
+import emitter from 'element-legacy/src/mixins/emitter'
+import Migrating from 'element-legacy/src/mixins/migrating'
+import merge from 'element-legacy/src/utils/merge'
+import { isKorean } from 'element-legacy/src/utils/shared'
 import calcTextareaHeight from './calcTextareaHeight'
 
 export default {

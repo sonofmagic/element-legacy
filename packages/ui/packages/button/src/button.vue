@@ -1,5 +1,5 @@
 <script>
-import { useGlobalConfig } from 'element-ui/src/utils/config-provider'
+import { useGlobalConfig } from 'element-legacy/src/utils/config-provider'
 import { computed, inject, useSlots } from 'vue'
 
 const CHINESE_TWO_CHAR_REG = /^[\u4E00-\u9FA5]{2}$/

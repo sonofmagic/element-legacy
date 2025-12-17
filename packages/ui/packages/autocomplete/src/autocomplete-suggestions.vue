@@ -1,7 +1,7 @@
 <script>
-import ElScrollbar from 'element-ui/packages/scrollbar'
-import Emitter from 'element-ui/src/mixins/emitter'
-import Popper from 'element-ui/src/utils/vue-popper'
+import ElScrollbar from 'element-legacy/packages/scrollbar'
+import Emitter from 'element-legacy/src/mixins/emitter'
+import Popper from 'element-legacy/src/utils/vue-popper'
 
 export default {
   components: { ElScrollbar },

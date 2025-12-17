@@ -1,8 +1,8 @@
 <script>
 import AsyncValidator from 'async-validator-next'
-import emitter from 'element-ui/src/mixins/emitter'
-import objectAssign from 'element-ui/src/utils/merge'
-import { getPropByPath, noop } from 'element-ui/src/utils/util'
+import emitter from 'element-legacy/src/mixins/emitter'
+import objectAssign from 'element-legacy/src/utils/merge'
+import { getPropByPath, noop } from 'element-legacy/src/utils/util'
 import LabelWrap from './label-wrap.vue'
 
 export default {

@@ -1,11 +1,11 @@
 <script type="text/babel">
-import ElButton from 'element-ui/packages/button'
-import ElInput from 'element-ui/packages/input'
-import { t } from 'element-ui/src/locale'
-import Locale from 'element-ui/src/mixins/locale'
-import Dialog from 'element-ui/src/utils/aria-dialog'
-import { addClass, removeClass } from 'element-ui/src/utils/dom'
-import Popup from 'element-ui/src/utils/popup'
+import ElButton from 'element-legacy/packages/button'
+import ElInput from 'element-legacy/packages/input'
+import { t } from 'element-legacy/src/locale'
+import Locale from 'element-legacy/src/mixins/locale'
+import Dialog from 'element-legacy/src/utils/aria-dialog'
+import { addClass, removeClass } from 'element-legacy/src/utils/dom'
+import Popup from 'element-legacy/src/utils/popup'
 
 let messageBox
 const typeMap = {

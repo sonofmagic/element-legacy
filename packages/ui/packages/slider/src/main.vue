@@ -1,6 +1,6 @@
 <script type="text/babel">
-import ElInputNumber from 'element-ui/packages/input-number'
-import Emitter from 'element-ui/src/mixins/emitter'
+import ElInputNumber from 'element-legacy/packages/input-number'
+import Emitter from 'element-legacy/src/mixins/emitter'
 import SliderButton from './button.vue'
 import SliderMarker from './marker'
 

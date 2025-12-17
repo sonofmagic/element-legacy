@@ -1,7 +1,7 @@
 <script lang="ts">
 // @ts-nocheck
-import Locale from 'element-ui/src/mixins/locale'
-import { modifyWithTimeString } from 'element-ui/src/utils/date-util'
+import Locale from 'element-legacy/src/mixins/locale'
+import { modifyWithTimeString } from 'element-legacy/src/utils/date-util'
 import Picker from '../picker.vue'
 import {
   formatAsFormatAndType,

@@ -9,21 +9,21 @@
   <a href="https://coveralls.io/github/ElemeFE/element?branch=master">
     <img src="https://coveralls.io/repos/github/ElemeFE/element/badge.svg?branch=master">
   </a>
-  <a href="https://cdnjs.com/libraries/element-ui">
-    <img src="https://img.shields.io/cdnjs/v/element-ui.svg">
+  <a href="https://cdnjs.com/libraries/element-legacy">
+    <img src="https://img.shields.io/cdnjs/v/element-legacy.svg">
   </a>
-  <a href="https://www.npmjs.org/package/element-ui">
-    <img src="https://img.shields.io/npm/v/element-ui.svg">
+  <a href="https://www.npmjs.org/package/element-legacy">
+    <img src="https://img.shields.io/npm/v/element-legacy.svg">
   </a>
-  <a href="https://npmcharts.com/compare/element-ui?minimal=true">
-    <img src="http://img.shields.io/npm/dm/element-ui.svg">
+  <a href="https://npmcharts.com/compare/element-legacy?minimal=true">
+    <img src="http://img.shields.io/npm/dm/element-legacy.svg">
   </a>
   <br>
-  <a href="http://img.badgesize.io/https://unpkg.com/element-ui/lib/index.js?compression=gzip&label=gzip%20size:%20JS">
-    <img src="http://img.badgesize.io/https://unpkg.com/element-ui/lib/index.js?compression=gzip&label=gzip%20size:%20JS">
+  <a href="http://img.badgesize.io/https://unpkg.com/element-legacy/lib/index.js?compression=gzip&label=gzip%20size:%20JS">
+    <img src="http://img.badgesize.io/https://unpkg.com/element-legacy/lib/index.js?compression=gzip&label=gzip%20size:%20JS">
   </a>
-  <a href="http://img.badgesize.io/https://unpkg.com/element-ui/lib/theme-chalk/index.css?compression=gzip&label=gzip%20size:%20CSS">
-    <img src="http://img.badgesize.io/https://unpkg.com/element-ui/lib/theme-chalk/index.css?compression=gzip&label=gzip%20size:%20CSS">
+  <a href="http://img.badgesize.io/https://unpkg.com/element-legacy/lib/theme-chalk/index.css?compression=gzip&label=gzip%20size:%20CSS">
+    <img src="http://img.badgesize.io/https://unpkg.com/element-legacy/lib/theme-chalk/index.css?compression=gzip&label=gzip%20size:%20CSS">
   </a>
   <a href="#backers">
     <img src="https://opencollective.com/element/backers/badge.svg">
@@ -67,13 +67,13 @@ For MiniProgram development, we recommend using [MorJS](https://github.com/eleme
 
 ## Install
 ```shell
-npm install element-ui -S
+npm install element-legacy -S
 ```
 
 ## Quick Start
 ``` javascript
 import Vue from 'vue'
-import Element from 'element-ui'
+import Element from 'element-legacy'
 
 Vue.use(Element)
 
@@ -82,7 +82,7 @@ import {
   Select,
   Button
   // ...
-} from 'element-ui'
+} from 'element-legacy'
 
 Vue.component(Select.name, Select)
 Vue.component(Button.name, Button)

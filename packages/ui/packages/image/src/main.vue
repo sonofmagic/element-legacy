@@ -1,7 +1,7 @@
 <script>
-import Locale from 'element-ui/src/mixins/locale'
-import { getScrollContainer, isInContainer, off, on } from 'element-ui/src/utils/dom'
-import { isHtmlElement, isString } from 'element-ui/src/utils/types'
+import Locale from 'element-legacy/src/mixins/locale'
+import { getScrollContainer, isInContainer, off, on } from 'element-legacy/src/utils/dom'
+import { isHtmlElement, isString } from 'element-legacy/src/utils/types'
 import { throttle } from 'throttle-debounce'
 import ImageViewer from './image-viewer.vue'
 

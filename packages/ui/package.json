@@ -17,7 +17,7 @@
     "eleme",
     "vue",
     "components",
-    "element-ui",
+    "element-legacy",
     "element-legacy"
   ],
   "main": "lib/index.js",

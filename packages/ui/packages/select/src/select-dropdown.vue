@@ -1,5 +1,5 @@
 <script type="text/babel">
-import Popper from 'element-ui/src/utils/vue-popper'
+import Popper from 'element-legacy/src/utils/vue-popper'
 
 export default {
   name: 'ElSelectDropdown',

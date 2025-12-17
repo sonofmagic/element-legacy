@@ -1,5 +1,5 @@
 <script>
-import { arrayFind } from 'element-ui/src/utils/util'
+import { arrayFind } from 'element-legacy/src/utils/util'
 
 export default {
   name: 'TabBar',

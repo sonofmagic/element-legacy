@@ -1,9 +1,9 @@
-import { getGlobalConfig } from 'element-ui/src/utils/config-provider'
-import { PopupManager } from 'element-ui/src/utils/popup'
-import { isObject } from 'element-ui/src/utils/types'
-import { isVNode } from 'element-ui/src/utils/vdom'
+import { getGlobalConfig } from 'element-legacy/src/utils/config-provider'
+import { PopupManager } from 'element-legacy/src/utils/popup'
+import { isObject } from 'element-legacy/src/utils/types'
+import { isVNode } from 'element-legacy/src/utils/vdom'
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue'
+import Vue from 'element-legacy/src/utils/vue'
 import Main from './main.vue'
 
 const MessageConstructor = Vue.extend(Main)

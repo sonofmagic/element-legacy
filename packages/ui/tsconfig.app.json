@@ -7,7 +7,7 @@
       "@/*": [
         "./src/*"
       ],
-      "element-ui/*": [
+      "element-legacy/*": [
         "./*"
       ]
     },

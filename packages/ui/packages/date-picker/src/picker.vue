@@ -1,12 +1,12 @@
 <script lang="ts">
 // @ts-nocheck
-import ElInput from 'element-ui/packages/input'
-import Emitter from 'element-ui/src/mixins/emitter'
-import Clickoutside from 'element-ui/src/utils/clickoutside'
-import { formatDate, getWeekNumber, isDateObject, parseDate } from 'element-ui/src/utils/date-util'
-import merge from 'element-ui/src/utils/merge'
-import Vue from 'element-ui/src/utils/vue'
-import Popper from 'element-ui/src/utils/vue-popper'
+import ElInput from 'element-legacy/packages/input'
+import Emitter from 'element-legacy/src/mixins/emitter'
+import Clickoutside from 'element-legacy/src/utils/clickoutside'
+import { formatDate, getWeekNumber, isDateObject, parseDate } from 'element-legacy/src/utils/date-util'
+import merge from 'element-legacy/src/utils/merge'
+import Vue from 'element-legacy/src/utils/vue'
+import Popper from 'element-legacy/src/utils/vue-popper'
 
 const NewPopper = {
   props: {

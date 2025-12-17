@@ -1,12 +1,12 @@
 import {
   getScrollContainer,
-} from 'element-ui/src/utils/dom'
+} from 'element-legacy/src/utils/dom'
 import {
   isDefined,
   isFunction,
   isHtmlElement,
   isUndefined,
-} from 'element-ui/src/utils/types'
+} from 'element-legacy/src/utils/types'
 // @ts-nocheck
 import { debounce } from 'throttle-debounce'
 

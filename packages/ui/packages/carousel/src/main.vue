@@ -1,5 +1,5 @@
 <script>
-import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event'
+import { addResizeListener, removeResizeListener } from 'element-legacy/src/utils/resize-event'
 import { throttle } from 'throttle-debounce'
 
 export default {

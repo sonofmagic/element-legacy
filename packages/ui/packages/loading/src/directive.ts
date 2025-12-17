@@ -1,11 +1,11 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue';
+import Vue from 'element-legacy/src/utils/vue';
 import Loading from './loading.vue';
-import { addClass, removeClass, getStyle } from 'element-ui/src/utils/dom';
-import { PopupManager } from 'element-ui/src/utils/popup';
-import afterLeave from 'element-ui/src/utils/after-leave';
+import { addClass, removeClass, getStyle } from 'element-legacy/src/utils/dom';
+import { PopupManager } from 'element-legacy/src/utils/popup';
+import afterLeave from 'element-legacy/src/utils/after-leave';
 const Mask = Vue.extend(Loading);
 
 const loadingDirective = {};

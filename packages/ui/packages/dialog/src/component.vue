@@ -1,7 +1,7 @@
 <script>
-import emitter from 'element-ui/src/mixins/emitter'
-import Migrating from 'element-ui/src/mixins/migrating'
-import Popup from 'element-ui/src/utils/popup'
+import emitter from 'element-legacy/src/mixins/emitter'
+import Migrating from 'element-legacy/src/mixins/migrating'
+import Popup from 'element-legacy/src/utils/popup'
 
 export default {
   name: 'ElDialog',

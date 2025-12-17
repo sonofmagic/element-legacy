@@ -1,6 +1,6 @@
-import merge from 'element-ui/src/utils/merge'
+import merge from 'element-legacy/src/utils/merge'
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue'
+import Vue from 'element-legacy/src/utils/vue'
 import { getColumnById, getColumnByKey, getKeysMap, getRowIdentity, orderBy, toggleRowStatus } from '../util'
 import current from './current'
 import expand from './expand'

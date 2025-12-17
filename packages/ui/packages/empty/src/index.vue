@@ -1,5 +1,5 @@
 <script>
-import { t } from 'element-ui/src/locale'
+import { t } from 'element-legacy/src/locale'
 import ImgEmpty from './img-empty.vue'
 
 export default {

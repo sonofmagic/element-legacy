@@ -1,6 +1,6 @@
 <script>
-import ElTooltip from 'element-ui/packages/tooltip'
-import Emitter from 'element-ui/src/mixins/emitter'
+import ElTooltip from 'element-legacy/packages/tooltip'
+import Emitter from 'element-legacy/src/mixins/emitter'
 import Menu from './menu-mixin'
 
 export default {

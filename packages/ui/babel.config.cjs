@@ -4,7 +4,7 @@ const toPosix = value => value.replace(/\\/g, '/')
 
 function relativeElementImportPlugin({ mappings }) {
   return {
-    name: 'relative-element-ui-imports',
+    name: 'relative-element-legacy-imports',
     visitor: {
       ImportDeclaration(babelPath, state) {
         rewriteSource(babelPath.node.source, state, mappings)
@@ -66,8 +66,8 @@ module.exports = {
       plugins: [
         relativeElementImportPlugin({
           mappings: {
-            'element-ui/src': path.resolve(__dirname, 'src'),
-            'element-ui/packages': path.resolve(__dirname, 'packages'),
+            'element-legacy/src': path.resolve(__dirname, 'src'),
+            'element-legacy/packages': path.resolve(__dirname, 'packages'),
           },
         }),
       ],

@@ -1,13 +1,13 @@
 <script lang="ts">
 // @ts-nocheck
-import Locale from 'element-ui/src/mixins/locale'
+import Locale from 'element-legacy/src/mixins/locale'
 import {
   clearMilliseconds,
   limitTimeRange,
   modifyDate,
   parseDate,
   timeWithinRange,
-} from 'element-ui/src/utils/date-util'
+} from 'element-legacy/src/utils/date-util'
 import TimeSpinner from '../basic/time-spinner.vue'
 
 const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss')

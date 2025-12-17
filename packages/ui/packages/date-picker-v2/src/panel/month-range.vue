@@ -1,14 +1,14 @@
 <script lang="ts">
 // @ts-nocheck
-import Locale from 'element-ui/src/mixins/locale'
-import Clickoutside from 'element-ui/src/utils/clickoutside'
+import Locale from 'element-legacy/src/mixins/locale'
+import Clickoutside from 'element-legacy/src/utils/clickoutside'
 import {
   isDate,
   modifyWithTimeString,
   nextMonth,
   nextYear,
   prevYear,
-} from 'element-ui/src/utils/date-util'
+} from 'element-legacy/src/utils/date-util'
 import MonthTable from '../basic/month-table.vue'
 
 function calcDefaultValue(defaultValue) {
