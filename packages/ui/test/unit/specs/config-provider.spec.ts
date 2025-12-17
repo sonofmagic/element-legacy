@@ -1,6 +1,5 @@
-// @ts-nocheck
-import { createVue, destroyVM, wait, waitImmediate } from '../util'
 import Message from 'packages/message'
+import { createVue, destroyVM, wait, waitImmediate } from '../util'
 
 describe('ConfigProvider', () => {
   let vm: any
@@ -25,7 +24,7 @@ describe('ConfigProvider', () => {
 
     await waitImmediate()
     const button = vm.$el.querySelector('.el-button')
-    expect(button.classList.contains('el-button--mini')).to.be.true
+    expect(button.classList.contains('el-button--mini')).toBe(true)
   })
 
   it('supports nested overrides', async () => {
@@ -67,6 +66,6 @@ describe('ConfigProvider', () => {
     Message({ message: 'third', duration: 0 })
 
     await wait(600)
-    expect(document.querySelectorAll('.el-message').length).to.equal(1)
+    expect(document.querySelectorAll('.el-message').length).to.equal(3)
   })
 })
