@@ -7,6 +7,9 @@ Vue.config.productionTip = false
 Vue.config.devtools = false
 Vue.config.preserveWhitespace = false
 
+// Define version placeholder expected by entry exports during tests.
+;(globalThis as any).__ELEMENT_LEGACY_VERSION__ = '__TEST_VERSION__'
+
 // Expose sinon for legacy tests that expect a global spy/stub helper.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ;(globalThis as any).sinon = sinon

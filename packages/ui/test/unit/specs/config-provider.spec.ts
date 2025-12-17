@@ -5,6 +5,10 @@ import Message from 'packages/message'
 describe('ConfigProvider', () => {
   let vm: any
 
+  beforeEach(() => {
+    Message.closeAll()
+  })
+
   afterEach(() => {
     Message.closeAll()
     destroyVM(vm)
@@ -54,6 +58,9 @@ describe('ConfigProvider', () => {
     vm = createVue({
       template: `<el-config-provider :message="{ max: 1 }"></el-config-provider>`,
     }, true)
+
+    // ensure config is applied before triggering messages
+    await waitImmediate()
 
     Message({ message: 'first', duration: 0 })
     Message({ message: 'second', duration: 0 })

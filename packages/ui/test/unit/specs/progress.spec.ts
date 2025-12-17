@@ -187,6 +187,7 @@ describe('Progress', () => {
         }
       }
     }, true);
-    expect(vm.$el.querySelector('.el-progress__text').innerHTML).to.equal('占比50%');
+    const content = vm.$el.querySelector('.el-progress__text').textContent!.trim();
+    expect(content).to.equal('占比50%');
   });
 });

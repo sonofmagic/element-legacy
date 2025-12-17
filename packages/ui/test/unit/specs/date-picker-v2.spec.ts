@@ -310,9 +310,32 @@ describe('DatePickerV2 range shortcuts', () => {
     expect(vm.startValue).to.equal(null)
     expect(vm.endValue).to.equal(null)
     expect(inputSpy.callCount).to.be.greaterThan(0)
-    expect(inputSpy.lastCall.args[0]).to.deep.equal([null, null])
+    expect(inputSpy.lastCall.args[0]).to.equal(null)
     expect(changeSpy.calledOnce).to.be.true
-    expect(changeSpy.firstCall.args[0]).to.deep.equal([null, null])
+    expect(changeSpy.firstCall.args[0]).to.equal(null)
+
+    vm.$destroy()
+  })
+
+  it('emits partial payload when only one side remains filled', () => {
+    const vm = createInstance()
+    const start = new Date(2025, 0, 1)
+    vm.startValue = start
+    vm.endValue = null
+
+    const inputSpy = sinon.spy()
+    const changeSpy = sinon.spy()
+    vm.$on('input', inputSpy)
+    vm.$on('change', changeSpy)
+
+    vm.emitModel('change')
+
+    expect(inputSpy.calledOnce).to.be.true
+    expect(changeSpy.calledOnce).to.be.true
+    const payload = inputSpy.firstCall.args[0]
+    expect(payload).to.be.an('array')
+    expect(payload[0]).to.equal(start)
+    expect(payload[1]).to.equal(null)
 
     vm.$destroy()
   })

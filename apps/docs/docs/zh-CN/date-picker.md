@@ -12,10 +12,12 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
+    <div class="demonstration">组件值：{{ value1 }}</div>
     <el-date-picker v-model="value1" type="date" placeholder="选择日期"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
+    <div class="demonstration">组件值：{{ value2 }}</div>
     <el-date-picker v-model="value2" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions">
     </el-date-picker>
   </div>
@@ -74,30 +76,36 @@
 <div class="container">
   <div class="block">
     <span class="demonstration">周</span>
+    <div class="demonstration">组件值：{{ value1 }}</div>
     <el-date-picker v-model="value1" type="week" format="yyyy 第 WW 周" placeholder="选择周"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">月</span>
+    <div class="demonstration">组件值：{{ value2 }}</div>
     <el-date-picker v-model="value2" type="month" placeholder="选择月"> </el-date-picker>
   </div>
 </div>
 <div class="container">
   <div class="block">
     <span class="demonstration">年</span>
+    <div class="demonstration">组件值：{{ value3 }}</div>
     <el-date-picker v-model="value3" type="year" placeholder="选择年"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">多个日期</span>
+    <div class="demonstration">组件值：{{ value4 }}</div>
     <el-date-picker type="dates" v-model="value4" placeholder="选择一个或多个日期"> </el-date-picker>
   </div>
 </div>
 <div class="container">
   <div class="block">
     <span class="demonstration">多个月</span>
+    <div class="demonstration">组件值：{{ value5 }}</div>
     <el-date-picker type="months" v-model="value5" placeholder="选择一个或多个月"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">多个年</span>
+    <div class="demonstration">组件值：{{ value6 }}</div>
     <el-date-picker type="years" v-model="value6" placeholder="选择一个或多个年"> </el-date-picker>
   </div>
 </div>
@@ -130,6 +138,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
+    <p class="demonstration">组件值：{{ value1 }}</p>
     <el-date-picker
       v-model="value1"
       type="daterange"
@@ -141,6 +150,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
+    <p class="demonstration">组件值：{{ value2 }}</p>
     <el-date-picker
       v-model="value2"
       type="daterange"
@@ -210,6 +220,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
+    <p class="demonstration">组件值：{{ value1 }}</p>
     <el-date-picker
       v-model="value1"
       type="monthrange"
@@ -221,6 +232,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
+    <p class="demonstration">组件值：{{ value2 }}</p>
     <el-date-picker
       v-model="value2"
       type="monthrange"

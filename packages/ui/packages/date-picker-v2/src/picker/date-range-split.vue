@@ -404,7 +404,9 @@ export default {
     },
 
     emitModel(trigger?: 'change') {
-      const payload = [this.startValue ?? null, this.endValue ?? null]
+      const hasStart = this.hasFieldValue(this.startValue)
+      const hasEnd = this.hasFieldValue(this.endValue)
+      const payload = hasStart || hasEnd ? [this.startValue ?? null, this.endValue ?? null] : null
 
       this.$emit('input', payload)
 
