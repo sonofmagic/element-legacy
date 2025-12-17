@@ -21,10 +21,10 @@ Puede importar Element completamente o solamente importar lo que necesite. Comen
 En main.js:
 
 ```javascript
-import ElementUI from 'element-ui'
+import ElementUI from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-legacy/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
 
@@ -55,7 +55,7 @@ Luego edite .babelrc:
     [
       "component",
       {
-        "libraryName": "element-ui",
+        "libraryName": "element-legacy",
         "styleLibraryName": "theme-chalk"
       }
     ]
@@ -66,7 +66,7 @@ Luego edite .babelrc:
 Luego, si necesita Button y Select, edite main.js:
 
 ```javascript
-import { Button, Select } from 'element-ui'
+import { Button, Select } from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
 
@@ -164,7 +164,7 @@ import {
   Transfer,
   Tree,
   Upload
-} from 'element-ui'
+} from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Pagination)
@@ -261,7 +261,7 @@ La propiedad `zIndex` indica el z-index inicial (por defecto: 2000) para los mod
 Importando Element completamente：
 
 ```js
-import Element from 'element-ui'
+import Element from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Element, { size: 'small', zIndex: 3000 })
@@ -270,7 +270,7 @@ Vue.use(Element, { size: 'small', zIndex: 3000 })
 Importando Element parcialmente：
 
 ```js
-import { Button } from 'element-ui'
+import { Button } from 'element-legacy'
 import Vue from 'vue'
 
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }

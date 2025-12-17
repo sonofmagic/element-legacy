@@ -1,8 +1,8 @@
 // @ts-nocheck
-// import Vue from 'element-ui/src/utils/vue';
+// import Vue from './vue';
 import {
   PopupManager
-} from 'element-ui/src/utils/popup';
+} from '../utils/popup';
 import PopperJS from './popper';
 
 // TODO

@@ -44,7 +44,7 @@ export default {
         <a :href="gitterLink" class="footer-main-link" target="_blank">{{ langConfig.gitter }}</a>
         <a href="https://github.com/ElemeFE/element/issues" class="footer-main-link" target="_blank">{{ langConfig.feedback }}</a>
         <a :href="`https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.${lang}.md`" class="footer-main-link" target="_blank">{{ langConfig.contribution }}</a>
-        <a href="https://segmentfault.com/t/element-ui" class="footer-main-link" target="_blank">SegmentFault</a>
+        <a href="https://segmentfault.com/t/element-legacy" class="footer-main-link" target="_blank">SegmentFault</a>
         <a href="https://github.com/ElementUI/awesome-element" class="footer-main-link" target="_blank">Awesome Element</a>
       </div>
       <div class="footer-social">

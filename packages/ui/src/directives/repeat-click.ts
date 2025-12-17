@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { once, on } from 'element-ui/src/utils/dom';
-import { isMac } from 'element-ui/src/utils/util';
+import { once, on } from '../utils/dom';
+import { isMac } from '../utils/util';
 
 export default {
   bind(el, binding, vnode) {

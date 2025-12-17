@@ -22,14 +22,14 @@ Element 的 theme-chalk 使用 SCSS 编写，如果你的项目也使用了 SCSS
 
 ```html
 /* 改变主题色变量 */ $--color-primary: teal; /* 改变 icon 字体路径变量，必需 */ $--font-path:
-'~element-ui/lib/theme-chalk/fonts'; @import "~element-ui/theme-chalk/src/index";
+'~element-legacy/lib/theme-chalk/fonts'; @import "~element-legacy/theme-chalk/src/index";
 ```
 
 之后，在项目的入口文件中，直接引入以上样式文件即可（无需引入 Element 编译好的 CSS 文件）：
 
 ```JS
 import Vue from 'vue'
-import Element from 'element-ui'
+import Element from 'element-legacy'
 import './element-variables.scss'
 
 Vue.use(Element)
@@ -119,7 +119,7 @@ et
 和引入默认主题一样，在代码里直接引用「在线主题编辑器」或「命令行工具」生成的主题的 `theme/index.css` 文件即可。
 
 ```javascript
-import ElementUI from 'element-ui'
+import ElementUI from 'element-legacy'
 import Vue from 'vue'
 import '../theme/index.css'
 
@@ -136,7 +136,7 @@ Vue.use(ElementUI)
     [
       "component",
       {
-        "libraryName": "element-ui",
+        "libraryName": "element-legacy",
         "styleLibraryName": "~theme"
       }
     ]

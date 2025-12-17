@@ -73,6 +73,8 @@ export default defineConfig(
       base: docsBasePath,
       resolve: {
         alias: {
+          'element-legacy': path.resolve(import.meta.dirname, '../../packages/ui'),
+          // keep compatibility for internal imports that still use the old name
           'element-ui': path.resolve(import.meta.dirname, '../../packages/ui'),
           'main': path.resolve(import.meta.dirname, '../../packages/ui/src'),
           'throttle-debounce': path.resolve(import.meta.dirname, './utils/throttle-debounce.ts'),

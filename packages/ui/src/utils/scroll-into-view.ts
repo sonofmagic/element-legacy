@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue';
+import Vue from './vue';
 
 export default function scrollIntoView(container, selected) {
   if (Vue.prototype.$isServer) return;

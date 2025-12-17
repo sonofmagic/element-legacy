@@ -1,5 +1,5 @@
 <script>
-import dateUtil from 'element-ui/src/utils/date'
+import dateUtil from 'element-legacy/src/utils/date'
 import IconCheck from '../../assets/images/icon-check.png'
 import IconCopy from '../../assets/images/icon-copy.png'
 import IconDownload from '../../assets/images/icon-download.png'

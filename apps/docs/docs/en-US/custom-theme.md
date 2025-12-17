@@ -22,14 +22,14 @@ The above website enables you to preview theme of a new theme color in real-time
 
 ```html
 /* theme color */ $--color-primary: teal; /* icon font path, required */ $--font-path:
-'~element-ui/lib/theme-chalk/fonts'; @import "~element-ui/theme-chalk/src/index";
+'~element-legacy/lib/theme-chalk/fonts'; @import "~element-legacy/theme-chalk/src/index";
 ```
 
 Then in the entry file of your project, import this style file instead of Element's built CSS:
 
 ```JS
 import Vue from 'vue'
-import Element from 'element-ui'
+import Element from 'element-legacy'
 import './element-variables.scss'
 
 Vue.use(Element)
@@ -119,7 +119,7 @@ et
 Importing your own theme is just like importing the default theme, only this time you import the file built from "Online Theme Roller" or "CLI tool":
 
 ```javascript
-import ElementUI from 'element-ui'
+import ElementUI from 'element-legacy'
 import Vue from 'vue'
 import '../theme/index.css'
 
@@ -136,7 +136,7 @@ If you are using `babel-plugin-component` for on-demand import, just modify `.ba
     [
       "component",
       {
-        "libraryName": "element-ui",
+        "libraryName": "element-legacy",
         "styleLibraryName": "~theme"
       }
     ]

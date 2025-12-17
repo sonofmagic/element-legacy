@@ -148,7 +148,7 @@
   </div>
 </template>
 <script>
-  import ChangeLog from 'element-ui/CHANGELOG.fr-FR.md';
+  import ChangeLog from 'element-legacy/CHANGELOG.fr-FR.md';
 
   export default {
     components: {

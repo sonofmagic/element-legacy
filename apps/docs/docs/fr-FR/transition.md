@@ -151,10 +151,10 @@ Pour l'effet collapse, utilisez le composant `el-collapse-transition`.
 
 ```js
 // collapse
-import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
+import CollapseTransition from 'element-legacy/lib/transitions/collapse-transition'
 import Vue from 'vue'
 // fade/zoom
-import 'element-ui/lib/theme-chalk/base.css'
+import 'element-legacy/lib/theme-chalk/base.css'
 
 Vue.component(CollapseTransition.name, CollapseTransition)
 ```

@@ -21,10 +21,10 @@ You can import Element entirely, or just import what you need. Let's start with 
 In main.js:
 
 ```javascript
-import ElementUI from 'element-ui'
+import ElementUI from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-legacy/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
 
@@ -55,7 +55,7 @@ Then edit .babelrc:
     [
       "component",
       {
-        "libraryName": "element-ui",
+        "libraryName": "element-legacy",
         "styleLibraryName": "theme-chalk"
       }
     ]
@@ -66,7 +66,7 @@ Then edit .babelrc:
 Next, if you need Button and Select, edit main.js:
 
 ```javascript
-import { Button, Select } from 'element-ui'
+import { Button, Select } from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
 
@@ -164,7 +164,7 @@ import {
   Transfer,
   Tree,
   Upload
-} from 'element-ui'
+} from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Pagination)
@@ -259,7 +259,7 @@ When importing Element, you can define a global config object. For now this obje
 Fully import Element：
 
 ```js
-import Element from 'element-ui'
+import Element from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Element, { size: 'small', zIndex: 3000 })
@@ -268,7 +268,7 @@ Vue.use(Element, { size: 'small', zIndex: 3000 })
 Partial import Element：
 
 ```js
-import { Button } from 'element-ui'
+import { Button } from 'element-legacy'
 import Vue from 'vue'
 
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue'
+import Vue from '../utils/vue'
 
 export function isString(obj) {
   return Object.prototype.toString.call(obj) === '[object String]'

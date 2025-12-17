@@ -1,4 +1,5 @@
 import type MarkdownIt from 'markdown-it'
+import type { MarkdownItAsync } from 'markdown-it-async'
 import { Buffer } from 'node:buffer'
 import markdownItContainer from 'markdown-it-container'
 
@@ -9,7 +10,9 @@ interface MarkdownContainer {
   render: (tokens: any[], idx: number) => string
 }
 
-function createDemoContainer(md: MarkdownIt): MarkdownContainer {
+type MarkdownRenderer = MarkdownIt | MarkdownItAsync
+
+function createDemoContainer(md: MarkdownRenderer): MarkdownContainer {
   return {
     validate(params: string) {
       return params.trim().startsWith('demo')
@@ -47,7 +50,7 @@ function createDemoContainer(md: MarkdownIt): MarkdownContainer {
   }
 }
 
-function createAlertContainer(md: MarkdownIt, type: MarkdownContainerType): MarkdownContainer {
+function createAlertContainer(md: MarkdownRenderer, type: MarkdownContainerType): MarkdownContainer {
   return {
     validate(params: string) {
       return params.trim().startsWith(type)
@@ -64,7 +67,7 @@ function createAlertContainer(md: MarkdownIt, type: MarkdownContainerType): Mark
   }
 }
 
-export function setupMarkdownContainers(md: MarkdownIt) {
+export function setupMarkdownContainers(md: MarkdownRenderer) {
   md.use(markdownItContainer, 'demo', createDemoContainer(md))
   md.use(markdownItContainer, 'tip', createAlertContainer(md, 'tip'))
   md.use(markdownItContainer, 'warning', createAlertContainer(md, 'warning'))

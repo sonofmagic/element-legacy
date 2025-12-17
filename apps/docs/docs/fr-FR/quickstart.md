@@ -21,10 +21,10 @@ Element peut être importé entièrement ou à la demande. Commençons par l'imp
 Dans main.js:
 
 ```javascript
-import ElementUI from 'element-ui'
+import ElementUI from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-legacy/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
 
@@ -55,7 +55,7 @@ Puis éditez .babelrc:
     [
       "component",
       {
-        "libraryName": "element-ui",
+        "libraryName": "element-legacy",
         "styleLibraryName": "theme-chalk"
       }
     ]
@@ -66,7 +66,7 @@ Puis éditez .babelrc:
 Ensuite, si vous n'avez besoin que de Button et Select, éditez main.js comme suit:
 
 ```javascript
-import { Button, Select } from 'element-ui'
+import { Button, Select } from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
 
@@ -164,7 +164,7 @@ import {
   Transfer,
   Tree,
   Upload
-} from 'element-ui'
+} from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Pagination)
@@ -259,7 +259,7 @@ Lors de l'import d'Element, vous pouvez définir un objet de configuration globa
 Import total d'Element：
 
 ```js
-import Element from 'element-ui'
+import Element from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Element, { size: 'small', zIndex: 3000 })
@@ -268,7 +268,7 @@ Vue.use(Element, { size: 'small', zIndex: 3000 })
 Import partiel d'Element：
 
 ```js
-import { Button } from 'element-ui'
+import { Button } from 'element-legacy'
 import Vue from 'vue'
 
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }

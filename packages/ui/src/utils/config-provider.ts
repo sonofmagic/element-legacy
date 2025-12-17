@@ -1,4 +1,4 @@
-import Vue from 'element-ui/src/utils/vue'
+import Vue from './vue'
 import { computed, inject } from 'vue'
 
 export interface ElementConfigContext {

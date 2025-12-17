@@ -6,6 +6,9 @@
       "element-ui": [
         "../../packages/ui/src"
       ],
+      "element-legacy": [
+        "../../packages/ui/src"
+      ],
       "main": [
         "../../packages/ui/src"
       ],

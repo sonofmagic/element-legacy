@@ -2,7 +2,7 @@
 /* eslint-disable perfectionist/sort-imports,perfectionist/sort-named-exports */
 
 import AsyncValidator, { getValidationConfig, resetValidationConfig, setValidationConfig, zodRule } from 'async-validator-next'
-import locale from 'element-ui/src/locale'
+import locale from './locale'
 import type { InstallOptions } from './install'
 import { install } from './install'
 import { componentMap } from './components'

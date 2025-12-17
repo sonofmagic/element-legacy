@@ -151,10 +151,10 @@ Element 内应用在部分组件的过渡动画，你也可以直接使用。在
 
 ```js
 // collapse 展开折叠
-import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
+import CollapseTransition from 'element-legacy/lib/transitions/collapse-transition'
 import Vue from 'vue'
 // fade/zoom 等
-import 'element-ui/lib/theme-chalk/base.css'
+import 'element-legacy/lib/theme-chalk/base.css'
 
 Vue.component(CollapseTransition.name, CollapseTransition)
 ```

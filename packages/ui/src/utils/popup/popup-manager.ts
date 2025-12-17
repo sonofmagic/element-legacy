@@ -1,6 +1,6 @@
-import { getGlobalConfig } from 'element-ui/src/utils/config-provider'
-import { addClass, removeClass } from 'element-ui/src/utils/dom'
-import Vue from 'element-ui/src/utils/vue'
+import { getGlobalConfig } from '../config-provider'
+import { addClass, removeClass } from '../dom'
+import Vue from '../vue'
 
 const POPUP_MANAGER_KEY = '__ELEMENT_POPUP_MANAGER__'
 

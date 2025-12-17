@@ -20,14 +20,14 @@ Este sitio, le permitirá obtener una vista previa del tema con un nuevo color e
 
 ```html
 /* Color del tema */ $--color-primary: teal; /* Ubicación de la fuente, obligatoria */ $--font-path:
-'~element-ui/lib/theme-chalk/fonts'; @import "~element-ui/theme-chalk/src/index";
+'~element-legacy/lib/theme-chalk/fonts'; @import "~element-legacy/theme-chalk/src/index";
 ```
 
 Entonces, en el archivo principal del proyecto, importe este archivo de estilos en lugar de los estilos de Element:
 
 ```JS
 import Vue from 'vue'
-import Element from 'element-ui'
+import Element from 'element-legacy'
 import './element-variables.scss'
 
 Vue.use(Element)
@@ -117,7 +117,7 @@ et
 Importar su propio tema es igual que importar el tema por defecto, sol que esta vez se deben importar los archivos construidos con "Online Theme Roller" o "CLI tool":
 
 ```javascript
-import ElementUI from 'element-ui'
+import ElementUI from 'element-legacy'
 import Vue from 'vue'
 import '../theme/index.css'
 
@@ -134,7 +134,7 @@ Si esta utilizando `babel-plugin-component` para importar bajo demanda, solo deb
     [
       "component",
       {
-        "libraryName": "element-ui",
+        "libraryName": "element-legacy",
         "styleLibraryName": "~theme"
       }
     ]

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue';
+import Vue from './vue';
 
 let scrollBarWidth;
 

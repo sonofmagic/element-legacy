@@ -21,10 +21,10 @@
 在 main.js 中写入以下内容：
 
 ```javascript
-import ElementUI from 'element-ui'
+import ElementUI from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-legacy/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
 
@@ -55,7 +55,7 @@ npm install babel-plugin-component -D
     [
       "component",
       {
-        "libraryName": "element-ui",
+        "libraryName": "element-legacy",
         "styleLibraryName": "theme-chalk"
       }
     ]
@@ -66,7 +66,7 @@ npm install babel-plugin-component -D
 接下来，如果你只希望引入部分组件，比如 Button 和 Select，那么需要在 main.js 中写入以下内容：
 
 ```javascript
-import { Button, Select } from 'element-ui'
+import { Button, Select } from 'element-legacy'
 import Vue from 'vue'
 import App from './App.vue'
 
@@ -164,7 +164,7 @@ import {
   Transfer,
   Tree,
   Upload
-} from 'element-ui'
+} from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Pagination)
@@ -259,7 +259,7 @@ Vue.prototype.$message = Message
 完整引入 Element：
 
 ```js
-import Element from 'element-ui'
+import Element from 'element-legacy'
 import Vue from 'vue'
 
 Vue.use(Element, { size: 'small', zIndex: 3000 })
@@ -268,7 +268,7 @@ Vue.use(Element, { size: 'small', zIndex: 3000 })
 按需引入 Element：
 
 ```js
-import { Button } from 'element-ui'
+import { Button } from 'element-legacy'
 import Vue from 'vue'
 
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }

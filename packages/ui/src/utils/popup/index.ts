@@ -1,7 +1,7 @@
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue';
-import merge from 'element-ui/src/utils/merge';
-import PopupManager from 'element-ui/src/utils/popup/popup-manager';
+import Vue from '../vue';
+import merge from '../merge';
+import PopupManager from './popup-manager';
 import getScrollBarWidth from '../scrollbar-width';
 import { getStyle, addClass, removeClass, hasClass } from '../dom';
 

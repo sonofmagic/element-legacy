@@ -1,6 +1,6 @@
 // @ts-nocheck
-import Vue from 'element-ui/src/utils/vue';
-import { on } from 'element-ui/src/utils/dom';
+import Vue from '../utils/vue';
+import { on } from '../utils/dom';
 
 const nodeList = [];
 const ctx = '@@clickoutsideContext';
