@@ -1,5 +1,15 @@
 # element-legacy
 
+## 1.1.0
+
+### Minor Changes
+
+- [`01faa15`](https://github.com/sonofmagic/element-legacy/commit/01faa1506915b1c77cece7fd102d5de3aa1e2f4b) Thanks [@sonofmagic](https://github.com/sonofmagic)! - feat: upgrade async-validator-next to version 0.2.0
+
+### Patch Changes
+
+- [`c3e42aa`](https://github.com/sonofmagic/element-legacy/commit/c3e42aae1939f44a96d548435d4913405a46eb5a) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Fix date-picker-v2 range clear behavior so the clear icon resets the bound value to null and add coverage for partial and full clears.
+
 ## 1.0.1
 
 ### Patch Changes
