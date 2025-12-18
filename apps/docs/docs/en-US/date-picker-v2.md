@@ -12,12 +12,12 @@ The basic day picker.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <div class="demonstration">Value: {{ basicDate }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(basicDate) }}</code></pre>
     <el-date-picker-v2 v-model="basicDate" type="date" placeholder="Pick a day" />
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
-    <div class="demonstration">Value: {{ quickDate }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(quickDate) }}</code></pre>
     <el-date-picker-v2
       v-model="quickDate"
       align="right"
@@ -217,7 +217,7 @@ The basic day picker.
 ```html
 <template>
   <div class="block time-spinner-demo">
-    <p class="demonstration">Current time: {{ textValue }}</p>
+    <pre class="demonstration"><code>Current time: {{ JSON.stringify(textValue) }}</code></pre>
     <div class="time-spinner-demo__panel">
       <el-time-spinner-v2
         ref="basicSpinner"
@@ -309,7 +309,7 @@ The basic day picker.
 ```html
 <template>
   <div class="block time-spinner-range-demo">
-    <p class="demonstration">Current time: {{ formatted }}</p>
+    <pre class="demonstration"><code>Current time: {{ JSON.stringify(formatted) }}</code></pre>
     <div class="time-spinner-range-demo__panel">
       <el-time-spinner-v2
         ref="restrictedSpinner"
@@ -399,7 +399,7 @@ The basic day picker.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <div class="demonstration">Value: {{ rangeValue }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(rangeValue) }}</code></pre>
     <el-date-picker-v2
       v-model="rangeValue"
       type="daterange"
@@ -410,7 +410,7 @@ The basic day picker.
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
-    <div class="demonstration">Value: {{ rangeQuickValue }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(rangeQuickValue) }}</code></pre>
     <el-date-picker-v2
       v-model="rangeQuickValue"
       type="daterange"
@@ -476,7 +476,7 @@ The basic day picker.
 <template>
   <div class="block">
     <span class="demonstration">Two clear buttons</span>
-    <div class="demonstration">Value: {{ rangeValueTwoClear }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(rangeValueTwoClear) }}</code></pre>
     <el-date-picker-v2
       v-model="rangeValueTwoClear"
       type="daterange"
@@ -507,7 +507,7 @@ The basic day picker.
 
 ```html
 <template>
-  <p class="demonstration">Value: {{ datetimeRange }}</p>
+  <pre class="demonstration"><code>Value: {{ JSON.stringify(datetimeRange) }}</code></pre>
   <el-date-picker-v2
     v-model="datetimeRange"
     type="datetimerange"
@@ -628,7 +628,7 @@ Hover to reveal the full value whenever it exceeds the visible width.
 ```html
 <template>
   <div class="demo-date-picker-tooltip">
-    <p class="demonstration">Single: {{ tooltipSingle }}</p>
+    <pre class="demonstration"><code>Single: {{ JSON.stringify(tooltipSingle) }}</code></pre>
     <el-date-picker-v2
       v-model="tooltipSingle"
       type="datetime"
@@ -636,7 +636,7 @@ Hover to reveal the full value whenever it exceeds the visible width.
       value-format="yyyy-MM-dd HH:mm:ss"
       placeholder="Pick date & time"
     />
-    <p class="demonstration">Range: {{ tooltipRangeDisplay }}</p>
+    <pre class="demonstration"><code>Range: {{ JSON.stringify(tooltipRange) }}</code></pre>
     <el-date-picker-v2
       v-model="tooltipRange"
       type="datetimerange"
@@ -656,15 +656,6 @@ Hover to reveal the full value whenever it exceeds the visible width.
         tooltipSingle: '2023-09-01 08:30:00',
         tooltipRange: ['2023-09-01 08:30:00', '2023-09-12 21:45:00'],
       }
-    },
-    computed: {
-      tooltipRangeDisplay() {
-        if (!Array.isArray(this.tooltipRange)) {
-          return ''
-        }
-        const [start, end] = this.tooltipRange
-        return `${start || ''} to ${end || ''}`
-      },
     },
   }
 </script>
@@ -689,7 +680,7 @@ Hover to reveal the full value whenever it exceeds the visible width.
 ```html
 <template>
   <div class="demo-date-picker-partial">
-    <p class="demonstration">Value: {{ partialRangeDisplay }}</p>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(partialRange) }}</code></pre>
     <el-date-picker-v2
       v-model="partialRange"
       type="datetimerange"
@@ -712,15 +703,6 @@ Hover to reveal the full value whenever it exceeds the visible width.
       return {
         partialRange: [null, '2023-09-01 00:45:00'],
       }
-    },
-    computed: {
-      partialRangeDisplay() {
-        if (!Array.isArray(this.partialRange)) {
-          return ''
-        }
-        const [start, end] = this.partialRange
-        return `${start || '--'} to ${end || '--'}`
-      },
     },
     methods: {
       clearStart() {
@@ -756,7 +738,7 @@ Hover to reveal the full value whenever it exceeds the visible width.
 ```html
 <template>
   <div class="demo-date-picker-sameday">
-    <p class="demonstration">Value: {{ sameDayRangeDisplay }}</p>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(sameDayRange) }}</code></pre>
     <el-date-picker-v2
       v-model="sameDayRange"
       type="datetimerange"
@@ -780,15 +762,6 @@ Hover to reveal the full value whenever it exceeds the visible width.
       return {
         sameDayRange: ['2023-09-01 08:30:00', null],
       }
-    },
-    computed: {
-      sameDayRangeDisplay() {
-        if (!Array.isArray(this.sameDayRange)) {
-          return ''
-        }
-        const [start, end] = this.sameDayRange
-        return `${start || '--'} to ${end || '--'}`
-      },
     },
     methods: {
       clearEnd() {
@@ -823,7 +796,7 @@ Hover to reveal the full value whenever it exceeds the visible width.
 
 ```html
 <template>
-  <p class="demonstration">Value: {{ multipleDates }}</p>
+  <pre class="demonstration"><code>Value: {{ JSON.stringify(multipleDates) }}</code></pre>
   <el-date-picker-v2
     v-model="multipleDates"
     type="dates"
@@ -850,7 +823,7 @@ Hover to reveal the full value whenever it exceeds the visible width.
 
 ```html
 <template>
-  <p class="demonstration">Value: {{ monthValue }}</p>
+  <pre class="demonstration"><code>Value: {{ JSON.stringify(monthValue) }}</code></pre>
   <el-date-picker-v2
     v-model="monthValue"
     type="month"
@@ -881,7 +854,7 @@ Pick a month range in one go.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <div class="demonstration">Value: {{ monthRange }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(monthRange) }}</code></pre>
     <el-date-picker-v2
       v-model="monthRange"
       type="monthrange"
@@ -892,7 +865,7 @@ Pick a month range in one go.
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
-    <div class="demonstration">Value: {{ monthRangeQuick }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(monthRangeQuick) }}</code></pre>
     <el-date-picker-v2
       v-model="monthRangeQuick"
       type="monthrange"
@@ -953,7 +926,7 @@ Pick a month range in one go.
 
 ```html
 <template>
-  <p class="demonstration">Value: {{ yearValue }}</p>
+  <pre class="demonstration"><code>Value: {{ JSON.stringify(yearValue) }}</code></pre>
   <el-date-picker-v2
     v-model="yearValue"
     type="year"
@@ -982,7 +955,7 @@ Pick a month range in one go.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <div class="demonstration">Value: {{ yearRange }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(yearRange) }}</code></pre>
     <el-date-picker-v2
       v-model="yearRange"
       type="yearrange"
@@ -993,7 +966,7 @@ Pick a month range in one go.
   </div>
   <div class="block">
     <span class="demonstration">With shortcuts</span>
-    <div class="demonstration">Value: {{ yearRangeQuick }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(yearRangeQuick) }}</code></pre>
     <el-date-picker-v2
       v-model="yearRangeQuick"
       type="yearrange"
@@ -1057,7 +1030,7 @@ Pick a month range in one go.
 
 ```html
 <template>
-  <p class="demonstration">Value: {{ multipleMonths }}</p>
+  <pre class="demonstration"><code>Value: {{ JSON.stringify(multipleMonths) }}</code></pre>
   <el-date-picker-v2
     v-model="multipleMonths"
     type="months"
@@ -1084,7 +1057,7 @@ Pick a month range in one go.
 
 ```html
 <template>
-  <p class="demonstration">Value: {{ multipleYears }}</p>
+  <pre class="demonstration"><code>Value: {{ JSON.stringify(multipleYears) }}</code></pre>
   <el-date-picker-v2
     v-model="multipleYears"
     type="years"
@@ -1145,12 +1118,12 @@ Pay attention to capitalization
 <template>
   <div class="block">
     <span class="demonstration">Emits Date object</span>
-    <div class="demonstration">Value: {{ value1 }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker-v2 v-model="value1" type="date" placeholder="Pick a Date" format="yyyy/MM/dd"> </el-date-picker-v2>
   </div>
   <div class="block">
     <span class="demonstration">Use value-format</span>
-    <div class="demonstration">Value: {{ value2 }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker-v2
       v-model="value2"
       type="date"
@@ -1162,7 +1135,7 @@ Pay attention to capitalization
   </div>
   <div class="block">
     <span class="demonstration">Timestamp</span>
-    <div class="demonstration">Value：{{ value3 }}</div>
+    <pre class="demonstration"><code>Value：{{ JSON.stringify(value3) }}</code></pre>
     <el-date-picker-v2 v-model="value3" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="timestamp">
     </el-date-picker-v2>
   </div>
@@ -1192,7 +1165,7 @@ When picking a date range, you can assign the time part for start date and end d
 ```html
 <template>
   <div class="block">
-    <p>Component value：{{ value }}</p>
+    <pre class="demonstration"><code>Component value：{{ JSON.stringify(value) }}</code></pre>
     <el-date-picker-v2
       v-model="value"
       type="daterange"

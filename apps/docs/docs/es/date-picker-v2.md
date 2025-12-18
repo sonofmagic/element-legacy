@@ -381,12 +381,12 @@ Preste atención a la capitalización
 <template>
   <div class="block">
     <span class="demonstration">Emits Date object</span>
-    <div class="demonstration">Value: {{ value1 }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker-v2 v-model="value1" type="date" placeholder="Pick a Date" format="yyyy/MM/dd"> </el-date-picker-v2>
   </div>
   <div class="block">
     <span class="demonstration">Use value-format</span>
-    <div class="demonstration">Value: {{ value2 }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker-v2
       v-model="value2"
       type="date"
@@ -398,7 +398,7 @@ Preste atención a la capitalización
   </div>
   <div class="block">
     <span class="demonstration">Timestamp</span>
-    <div class="demonstration">Value：{{ value3 }}</div>
+    <pre class="demonstration"><code>Value：{{ JSON.stringify(value3) }}</code></pre>
     <el-date-picker-v2 v-model="value3" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="timestamp">
     </el-date-picker-v2>
   </div>
@@ -428,7 +428,7 @@ Al seleccionar un intervalo de fechas, puede asignar la hora para la fecha de in
 ```html
 <template>
   <div class="block">
-    <p>Component value：{{ value }}</p>
+    <pre class="demonstration"><code>Component value：{{ JSON.stringify(value) }}</code></pre>
     <el-date-picker-v2
       v-model="value"
       type="daterange"

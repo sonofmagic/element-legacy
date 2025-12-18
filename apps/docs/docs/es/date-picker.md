@@ -12,12 +12,12 @@ Date Picker básico por "día".
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <div class="demonstration">Valor: {{ value1 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker v-model="value1" type="date" placeholder="Pick a day"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">Picker with quick options</span>
-    <div class="demonstration">Valor: {{ value2 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker v-model="value2" type="date" placeholder="Pick a day" :picker-options="pickerOptions">
     </el-date-picker>
   </div>
@@ -76,36 +76,36 @@ Puede elegir la semana, el mes, el año o varias fechas ampliando el componente 
 <div class="container">
   <div class="block">
     <span class="demonstration">Week</span>
-    <div class="demonstration">Valor: {{ value1 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker v-model="value1" type="week" format="Week WW" placeholder="Pick a week"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">Month</span>
-    <div class="demonstration">Valor: {{ value2 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker v-model="value2" type="month" placeholder="Pick a month"> </el-date-picker>
   </div>
 </div>
 <div class="container">
   <div class="block">
     <span class="demonstration">Year</span>
-    <div class="demonstration">Valor: {{ value3 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value3) }}</code></pre>
     <el-date-picker v-model="value3" type="year" placeholder="Pick a year"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">Dates</span>
-    <div class="demonstration">Valor: {{ value4 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value4) }}</code></pre>
     <el-date-picker type="dates" v-model="value4" placeholder="Pick one or more dates"> </el-date-picker>
   </div>
 </div>
 <div class="container">
   <div class="block">
     <span class="demonstration">months</span>
-    <div class="demonstration">Valor: {{ value5 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value5) }}</code></pre>
     <el-date-picker type="months" v-model="value5" placeholder="Pick one or more months"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">years</span>
-    <div class="demonstration">Valor: {{ value6 }}</div>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value6) }}</code></pre>
     <el-date-picker type="years" v-model="value6" placeholder="Pick one or more years"> </el-date-picker>
   </div>
 </div>
@@ -138,7 +138,7 @@ Se soporta la selección de un rango de fechas.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <p class="demonstration">Valor: {{ value1 }}</p>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker
       v-model="value1"
       type="daterange"
@@ -150,7 +150,7 @@ Se soporta la selección de un rango de fechas.
   </div>
   <div class="block">
     <span class="demonstration">With quick options</span>
-    <p class="demonstration">Valor: {{ value2 }}</p>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker
       v-model="value2"
       type="daterange"
@@ -220,7 +220,7 @@ Se admite la selección de un intervalo de un mes.
 <template>
   <div class="block">
     <span class="demonstration">Default</span>
-    <p class="demonstration">Valor: {{ value1 }}</p>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker
       v-model="value1"
       type="monthrange"
@@ -232,7 +232,7 @@ Se admite la selección de un intervalo de un mes.
   </div>
   <div class="block">
     <span class="demonstration">With quick options</span>
-    <p class="demonstration">Valor: {{ value2 }}</p>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker
       v-model="value2"
       type="monthrange"
@@ -300,12 +300,12 @@ Si el tipo es `daterange`, `default-value` establece el calendario del lado izqu
 <template>
   <div class="block">
     <span class="demonstration">date</span>
-    <p class="demonstration">Valor: {{ value1 }}</p>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker v-model="value1" type="date" placeholder="Pick a date" default-value="2010-10-01"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">daterange</span>
-    <p class="demonstration">Valor: {{ value2 }}</p>
+    <pre class="demonstration"><code>Valor: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker
       v-model="value2"
       type="daterange"
@@ -370,12 +370,12 @@ Preste atención a la capitalización
 <template>
   <div class="block">
     <span class="demonstration">Emits Date object</span>
-    <div class="demonstration">Value: {{ value1 }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker v-model="value1" type="date" placeholder="Pick a Date" format="yyyy/MM/dd"> </el-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">Use value-format</span>
-    <div class="demonstration">Value: {{ value2 }}</div>
+    <pre class="demonstration"><code>Value: {{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker
       v-model="value2"
       type="date"
@@ -387,7 +387,7 @@ Preste atención a la capitalización
   </div>
   <div class="block">
     <span class="demonstration">Timestamp</span>
-    <div class="demonstration">Value：{{ value3 }}</div>
+    <pre class="demonstration"><code>Value：{{ JSON.stringify(value3) }}</code></pre>
     <el-date-picker v-model="value3" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="timestamp">
     </el-date-picker>
   </div>
@@ -417,7 +417,7 @@ Al seleccionar un intervalo de fechas, puede asignar la hora para la fecha de in
 ```html
 <template>
   <div class="block">
-    <p>Component value：{{ value }}</p>
+    <pre class="demonstration"><code>Component value：{{ JSON.stringify(value) }}</code></pre>
     <el-date-picker
       v-model="value"
       type="daterange"

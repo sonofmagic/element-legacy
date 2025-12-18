@@ -12,12 +12,12 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <div class="demonstration">值：{{ basicDate }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(basicDate) }}</code></pre>
     <el-date-picker-v2 v-model="basicDate" type="date" placeholder="选择日期" />
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <div class="demonstration">值：{{ quickDate }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(quickDate) }}</code></pre>
     <el-date-picker-v2
       v-model="quickDate"
       align="right"
@@ -109,7 +109,7 @@
 :::demo 使用 DatePicker v2 同时选择日期和时间。
 ```html
 <template>
-  <p class="demonstration">值：{{ datetimeValue }}</p>
+  <pre class="demonstration"><code>值：{{ JSON.stringify(datetimeValue) }}</code></pre>
   <el-date-picker-v2
     v-model="datetimeValue"
     type="datetime"
@@ -136,7 +136,7 @@
 ```html
 <template>
   <div class="block time-spinner-demo">
-    <p class="demonstration">当前时间：{{ textValue }}</p>
+    <pre class="demonstration"><code>当前时间：{{ JSON.stringify(textValue) }}</code></pre>
     <div class="time-spinner-demo__panel">
       <el-time-spinner-v2
         ref="basicSpinner"
@@ -228,7 +228,7 @@
 ```html
 <template>
   <div class="block time-spinner-range-demo">
-    <p class="demonstration">当前时间：{{ formatted }}</p>
+    <pre class="demonstration"><code>当前时间：{{ JSON.stringify(formatted) }}</code></pre>
     <div class="time-spinner-range-demo__panel">
       <el-time-spinner-v2
         ref="restrictedSpinner"
@@ -320,7 +320,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <div class="demonstration">值：{{ rangeValue }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(rangeValue) }}</code></pre>
     <el-date-picker-v2
       v-model="rangeValue"
       type="daterange"
@@ -331,7 +331,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <div class="demonstration">值：{{ rangeQuickValue }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(rangeQuickValue) }}</code></pre>
     <el-date-picker-v2
       v-model="rangeQuickValue"
       type="daterange"
@@ -397,7 +397,7 @@
 <template>
   <div class="block">
     <span class="demonstration">双清除按钮</span>
-    <div class="demonstration">值：{{ rangeValueTwoClear }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(rangeValueTwoClear) }}</code></pre>
     <el-date-picker-v2
       v-model="rangeValueTwoClear"
       type="daterange"
@@ -593,7 +593,7 @@
 ```html
 <template>
   <div class="demo-date-picker-tooltip">
-    <p class="demonstration">单个日期：{{ tooltipSingle }}</p>
+    <pre class="demonstration"><code>单个日期：{{ JSON.stringify(tooltipSingle) }}</code></pre>
     <el-date-picker-v2
       v-model="tooltipSingle"
       type="datetime"
@@ -601,7 +601,7 @@
       value-format="yyyy-MM-dd HH:mm:ss"
       placeholder="选择日期和时间"
     />
-    <p class="demonstration">日期范围：{{ tooltipRangeDisplay }}</p>
+    <pre class="demonstration"><code>日期范围：{{ JSON.stringify(tooltipRange) }}</code></pre>
     <el-date-picker-v2
       v-model="tooltipRange"
       type="datetimerange"
@@ -621,15 +621,6 @@
         tooltipSingle: '2023-09-01 08:30:00',
         tooltipRange: ['2023-09-01 08:30:00', '2023-09-12 21:45:00'],
       }
-    },
-    computed: {
-      tooltipRangeDisplay() {
-        if (!Array.isArray(this.tooltipRange)) {
-          return ''
-        }
-        const [start, end] = this.tooltipRange
-        return `${start || ''} 至 ${end || ''}`
-      },
     },
   }
 </script>
@@ -654,7 +645,7 @@
 ```html
 <template>
   <div class="demo-date-picker-partial">
-    <p class="demonstration">范围值：{{ partialRangeDisplay }}</p>
+    <pre class="demonstration"><code>范围值：{{ JSON.stringify(partialRange) }}</code></pre>
     <el-date-picker-v2
       v-model="partialRange"
       type="datetimerange"
@@ -677,15 +668,6 @@
       return {
         partialRange: [null, '2023-09-01 00:45:00'],
       }
-    },
-    computed: {
-      partialRangeDisplay() {
-        if (!Array.isArray(this.partialRange)) {
-          return ''
-        }
-        const [start, end] = this.partialRange
-        return `${start || '--'} 至 ${end || '--'}`
-      },
     },
     methods: {
       clearStart() {
@@ -721,7 +703,7 @@
 ```html
 <template>
   <div class="demo-date-picker-sameday">
-    <p class="demonstration">范围值：{{ sameDayRangeDisplay }}</p>
+    <pre class="demonstration"><code>范围值：{{ JSON.stringify(sameDayRange) }}</code></pre>
     <el-date-picker-v2
       v-model="sameDayRange"
       type="datetimerange"
@@ -745,15 +727,6 @@
       return {
         sameDayRange: ['2023-09-01 08:30:00', null],
       }
-    },
-    computed: {
-      sameDayRangeDisplay() {
-        if (!Array.isArray(this.sameDayRange)) {
-          return ''
-        }
-        const [start, end] = this.sameDayRange
-        return `${start || '--'} 至 ${end || '--'}`
-      },
     },
     methods: {
       clearEnd() {
@@ -788,7 +761,7 @@
 
 ```html
 <template>
-  <p class="demonstration">值：{{ multipleDates }}</p>
+  <pre class="demonstration"><code>值：{{ JSON.stringify(multipleDates) }}</code></pre>
   <el-date-picker-v2
     v-model="multipleDates"
     type="dates"
@@ -815,7 +788,7 @@
 
 ```html
 <template>
-  <p class="demonstration">值：{{ monthValue }}</p>
+  <pre class="demonstration"><code>值：{{ JSON.stringify(monthValue) }}</code></pre>
   <el-date-picker-v2
     v-model="monthValue"
     type="month"
@@ -846,7 +819,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <div class="demonstration">值：{{ value1 }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker-v2
       v-model="value1"
       type="monthrange"
@@ -858,7 +831,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <div class="demonstration">值：{{ value2 }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker-v2
       v-model="value2"
       type="monthrange"
@@ -920,7 +893,7 @@
 
 ```html
 <template>
-  <p class="demonstration">值：{{ yearValue }}</p>
+  <pre class="demonstration"><code>值：{{ JSON.stringify(yearValue) }}</code></pre>
   <el-date-picker-v2
     v-model="yearValue"
     type="year"
@@ -949,7 +922,7 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <div class="demonstration">值：{{ yearRange }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(yearRange) }}</code></pre>
     <el-date-picker-v2
       v-model="yearRange"
       type="yearrange"
@@ -960,7 +933,7 @@
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <div class="demonstration">值：{{ yearRangeQuick }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(yearRangeQuick) }}</code></pre>
     <el-date-picker-v2
       v-model="yearRangeQuick"
       type="yearrange"
@@ -1024,7 +997,7 @@
 
 ```html
 <template>
-  <p class="demonstration">值：{{ multipleMonths }}</p>
+  <pre class="demonstration"><code>值：{{ JSON.stringify(multipleMonths) }}</code></pre>
   <el-date-picker-v2
     v-model="multipleMonths"
     type="months"
@@ -1051,7 +1024,7 @@
 
 ```html
 <template>
-  <p class="demonstration">值：{{ multipleYears }}</p>
+  <pre class="demonstration"><code>值：{{ JSON.stringify(multipleYears) }}</code></pre>
   <el-date-picker-v2
     v-model="multipleYears"
     type="years"
@@ -1110,12 +1083,12 @@
 <template>
   <div class="block">
     <span class="demonstration">默认为 Date 对象</span>
-    <div class="demonstration">值：{{ value1 }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(value1) }}</code></pre>
     <el-date-picker-v2 v-model="value1" type="date" placeholder="选择日期" format="yyyy 年 MM 月 dd 日"> </el-date-picker-v2>
   </div>
   <div class="block">
     <span class="demonstration">使用 value-format</span>
-    <div class="demonstration">值：{{ value2 }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(value2) }}</code></pre>
     <el-date-picker-v2
       v-model="value2"
       type="date"
@@ -1127,7 +1100,7 @@
   </div>
   <div class="block">
     <span class="demonstration">时间戳</span>
-    <div class="demonstration">值：{{ value3 }}</div>
+    <pre class="demonstration"><code>值：{{ JSON.stringify(value3) }}</code></pre>
     <el-date-picker-v2
       v-model="value3"
       type="date"
@@ -1163,7 +1136,7 @@
 ```html
 <template>
   <div class="block">
-    <p>组件值：{{ value }}</p>
+    <pre class="demonstration"><code>组件值：{{ JSON.stringify(value) }}</code></pre>
     <el-date-picker-v2
       v-model="value"
       type="daterange"
