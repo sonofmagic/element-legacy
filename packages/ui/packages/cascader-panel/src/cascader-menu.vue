@@ -1,7 +1,7 @@
 <script lang="jsx">
-import ElScrollbar from 'element-legacy/packages/scrollbar'
-import Locale from 'element-legacy/src/mixins/locale'
-import { generateId } from 'element-legacy/src/utils/util'
+import ElScrollbar from '../../scrollbar'
+import Locale from '../../../src/mixins/locale'
+import { generateId } from '../../../src/utils/util'
 import CascaderNode from './cascader-node.vue'
 
 export default {

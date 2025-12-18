@@ -1,7 +1,7 @@
-import merge from 'element-legacy/src/utils/merge'
-import { isVNode } from 'element-legacy/src/utils/vdom'
+import merge from '../../../src/utils/merge'
+import { isVNode } from '../../../src/utils/vdom'
 // @ts-nocheck
-import Vue from 'element-legacy/src/utils/vue'
+import Vue from '../../../src/utils/vue'
 import msgboxVue from './main.vue'
 
 const defaults = {

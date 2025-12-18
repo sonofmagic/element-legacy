@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Vue from 'element-legacy/src/utils/vue'
+import Vue from '../../../src/utils/vue'
 
 const dropdowns = []
 

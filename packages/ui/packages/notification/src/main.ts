@@ -1,8 +1,8 @@
-import merge from 'element-legacy/src/utils/merge'
-import { PopupManager } from 'element-legacy/src/utils/popup'
-import { isVNode } from 'element-legacy/src/utils/vdom'
+import merge from '../../../src/utils/merge'
+import { PopupManager } from '../../../src/utils/popup'
+import { isVNode } from '../../../src/utils/vdom'
 // @ts-nocheck
-import Vue from 'element-legacy/src/utils/vue'
+import Vue from '../../../src/utils/vue'
 import Main from './main.vue'
 
 const NotificationConstructor = Vue.extend(Main)

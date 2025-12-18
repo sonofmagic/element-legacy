@@ -1,4 +1,4 @@
-import { off, on } from 'element-legacy/src/utils/dom'
+import { off, on } from '../../../src/utils/dom'
 import { BAR_MAP, renderThumbStyle } from './util'
 
 /* istanbul ignore next */

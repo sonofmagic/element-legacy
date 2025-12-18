@@ -1,7 +1,7 @@
 <script lang="ts">
 // @ts-nocheck
-import Locale from 'element-legacy/src/mixins/locale'
-import { clearMilliseconds, isDate, limitTimeRange, timeWithinRange } from 'element-legacy/src/utils/date-util'
+import Locale from '../../../../src/mixins/locale'
+import { clearMilliseconds, isDate, limitTimeRange, timeWithinRange } from '../../../../src/utils/date-util'
 import TimeSpinner from '../basic/time-spinner.vue'
 
 export default {

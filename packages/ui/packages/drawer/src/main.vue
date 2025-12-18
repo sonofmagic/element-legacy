@@ -1,6 +1,6 @@
 <script>
-import emitter from 'element-legacy/src/mixins/emitter'
-import Popup from 'element-legacy/src/utils/popup'
+import emitter from '../../../src/mixins/emitter'
+import Popup from '../../../src/utils/popup'
 
 export default {
   name: 'ElDrawer',

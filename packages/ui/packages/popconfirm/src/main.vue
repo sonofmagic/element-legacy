@@ -1,7 +1,7 @@
 <script>
-import ElButton from 'element-legacy/packages/button'
-import ElPopover from 'element-legacy/packages/popover'
-import { t } from 'element-legacy/src/locale'
+import ElButton from '../../button'
+import ElPopover from '../../popover'
+import { t } from '../../../src/locale'
 
 export default {
   name: 'ElPopconfirm',

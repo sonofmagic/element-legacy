@@ -1,10 +1,10 @@
 <script lang="jsx">
-import ElButton from 'element-legacy/packages/button'
-import ElButtonGroup from 'element-legacy/packages/button-group'
-import Emitter from 'element-legacy/src/mixins/emitter'
-import Migrating from 'element-legacy/src/mixins/migrating'
-import Clickoutside from 'element-legacy/src/utils/clickoutside'
-import { generateId } from 'element-legacy/src/utils/util'
+import ElButton from '../../button'
+import ElButtonGroup from '../../button-group'
+import Emitter from '../../../src/mixins/emitter'
+import Migrating from '../../../src/mixins/migrating'
+import Clickoutside from '../../../src/utils/clickoutside'
+import { generateId } from '../../../src/utils/util'
 
 export default {
   name: 'ElDropdown',

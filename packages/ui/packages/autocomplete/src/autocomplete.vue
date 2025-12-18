@@ -1,10 +1,10 @@
 <script>
-import ElInput from 'element-legacy/packages/input'
-import Emitter from 'element-legacy/src/mixins/emitter'
-import Focus from 'element-legacy/src/mixins/focus'
-import Migrating from 'element-legacy/src/mixins/migrating'
-import Clickoutside from 'element-legacy/src/utils/clickoutside'
-import { generateId } from 'element-legacy/src/utils/util'
+import ElInput from '../../input'
+import Emitter from '../../../src/mixins/emitter'
+import Focus from '../../../src/mixins/focus'
+import Migrating from '../../../src/mixins/migrating'
+import Clickoutside from '../../../src/utils/clickoutside'
+import { generateId } from '../../../src/utils/util'
 import { debounce } from 'throttle-debounce'
 import ElAutocompleteSuggestions from './autocomplete-suggestions.vue'
 

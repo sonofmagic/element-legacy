@@ -1,7 +1,7 @@
 <script>
-import { t } from 'element-legacy/src/locale'
-import emitter from 'element-legacy/src/mixins/emitter'
-import { addClass, removeClass } from 'element-legacy/src/utils/dom'
+import { t } from '../../../src/locale'
+import emitter from '../../../src/mixins/emitter'
+import { addClass, removeClass } from '../../../src/utils/dom'
 import TreeStore from './model/tree-store'
 import { findNearestComponent, getNodeKey } from './model/util'
 import ElTreeNode from './tree-node.vue'

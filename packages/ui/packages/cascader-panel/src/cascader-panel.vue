@@ -1,14 +1,14 @@
 <script>
-import AriaUtils from 'element-legacy/src/utils/aria-utils'
-import merge from 'element-legacy/src/utils/merge'
-import scrollIntoView from 'element-legacy/src/utils/scroll-into-view'
+import AriaUtils from '../../../src/utils/aria-utils'
+import merge from '../../../src/utils/merge'
+import scrollIntoView from '../../../src/utils/scroll-into-view'
 import {
   coerceTruthyValueToArray,
   isEmpty,
   isEqual,
   noop,
   valueEquals,
-} from 'element-legacy/src/utils/util'
+} from '../../../src/utils/util'
 import CascaderMenu from './cascader-menu.vue'
 import Store from './store'
 

@@ -1,7 +1,7 @@
 <script>
-import ElInput from 'element-legacy/packages/input'
-import RepeatClick from 'element-legacy/src/directives/repeat-click'
-import Focus from 'element-legacy/src/mixins/focus'
+import ElInput from '../../input'
+import RepeatClick from '../../../src/directives/repeat-click'
+import Focus from '../../../src/mixins/focus'
 
 export default {
   name: 'ElInputNumber',

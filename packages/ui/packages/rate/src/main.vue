@@ -1,7 +1,7 @@
 <script>
-import Migrating from 'element-legacy/src/mixins/migrating'
-import { hasClass } from 'element-legacy/src/utils/dom'
-import { isObject } from 'element-legacy/src/utils/types'
+import Migrating from '../../../src/mixins/migrating'
+import { hasClass } from '../../../src/utils/dom'
+import { isObject } from '../../../src/utils/types'
 
 export default {
   name: 'ElRate',

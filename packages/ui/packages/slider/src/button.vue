@@ -1,5 +1,5 @@
 <script>
-import ElTooltip from 'element-legacy/packages/tooltip'
+import ElTooltip from '../../tooltip'
 
 export default {
   name: 'ElSliderButton',

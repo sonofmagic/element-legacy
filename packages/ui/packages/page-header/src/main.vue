@@ -1,5 +1,5 @@
 <script>
-import { t } from 'element-legacy/src/locale'
+import { t } from '../../../src/locale'
 
 export default {
   name: 'ElPageHeader',

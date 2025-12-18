@@ -2,15 +2,15 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
-import ElInput from 'element-legacy/packages/input'
-import ElTooltip from 'element-legacy/packages/tooltip'
-import Emitter from 'element-legacy/src/mixins/emitter'
-import Clickoutside from 'element-legacy/src/utils/clickoutside'
-import { isDateObject } from 'element-legacy/src/utils/date-util'
-import merge from 'element-legacy/src/utils/merge'
-import { addResizeListener, removeResizeListener } from 'element-legacy/src/utils/resize-event'
-import Popper from 'element-legacy/src/utils/vue-popper'
-import Vue from 'element-legacy/src/utils/vue'
+import ElInput from '../../input'
+import ElTooltip from '../../tooltip'
+import Emitter from '../../../src/mixins/emitter'
+import Clickoutside from '../../../src/utils/clickoutside'
+import { isDateObject } from '../../../src/utils/date-util'
+import merge from '../../../src/utils/merge'
+import { addResizeListener, removeResizeListener } from '../../../src/utils/resize-event'
+import Popper from '../../../src/utils/vue-popper'
+import Vue from '../../../src/utils/vue'
 import {
   DEFAULT_FORMATS,
   formatAsFormatAndType,

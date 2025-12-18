@@ -1,8 +1,8 @@
 <script>
-import ElButton from 'element-legacy/packages/button'
-import Emitter from 'element-legacy/src/mixins/emitter'
-import Locale from 'element-legacy/src/mixins/locale'
-import Migrating from 'element-legacy/src/mixins/migrating'
+import ElButton from '../../button'
+import Emitter from '../../../src/mixins/emitter'
+import Locale from '../../../src/mixins/locale'
+import Migrating from '../../../src/mixins/migrating'
 import TransferPanel from './transfer-panel.vue'
 
 export default {

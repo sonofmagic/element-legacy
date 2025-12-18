@@ -1,6 +1,6 @@
 // @ts-nocheck
-import objectAssign from 'element-legacy/src/utils/merge'
-import { arrayFindIndex } from 'element-legacy/src/utils/util'
+import objectAssign from '../../../../src/utils/merge'
+import { arrayFindIndex } from '../../../../src/utils/util'
 import { markNodeData, NODE_KEY } from './util'
 
 export function getChildState(node) {

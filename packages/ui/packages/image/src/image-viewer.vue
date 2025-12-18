@@ -1,7 +1,7 @@
 <script>
-import { off, on } from 'element-legacy/src/utils/dom'
-import { PopupManager } from 'element-legacy/src/utils/popup'
-import { isFirefox, rafThrottle } from 'element-legacy/src/utils/util'
+import { off, on } from '../../../src/utils/dom'
+import { PopupManager } from '../../../src/utils/popup'
+import { isFirefox, rafThrottle } from '../../../src/utils/util'
 
 const Mode = {
   CONTAIN: {

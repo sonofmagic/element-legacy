@@ -1,8 +1,8 @@
 <script lang="ts">
 // @ts-nocheck
-import ElScrollbar from 'element-legacy/packages/scrollbar'
-import RepeatClick from 'element-legacy/src/directives/repeat-click'
-import { getRangeHours, getRangeMinutes, modifyTime } from 'element-legacy/src/utils/date-util'
+import ElScrollbar from '../../../scrollbar'
+import RepeatClick from '../../../../src/directives/repeat-click'
+import { getRangeHours, getRangeMinutes, modifyTime } from '../../../../src/utils/date-util'
 
 export default {
   components: { ElScrollbar },

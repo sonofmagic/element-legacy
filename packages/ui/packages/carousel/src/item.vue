@@ -1,5 +1,5 @@
 <script>
-import { autoprefixer } from 'element-legacy/src/utils/util'
+import { autoprefixer } from '../../../src/utils/util'
 
 const CARD_SCALE = 0.83
 export default {

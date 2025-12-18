@@ -1,4 +1,4 @@
-import { formatDate, getWeekNumber, isDateObject, parseDate } from 'element-legacy/src/utils/date-util'
+import { formatDate, getWeekNumber, isDateObject, parseDate } from '../../../../src/utils/date-util'
 
 export const DEFAULT_FORMATS = {
   date: 'yyyy-MM-dd',

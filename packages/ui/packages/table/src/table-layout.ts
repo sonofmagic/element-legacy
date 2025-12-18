@@ -1,6 +1,6 @@
-import scrollbarWidth from 'element-legacy/src/utils/scrollbar-width'
+import scrollbarWidth from '../../../src/utils/scrollbar-width'
 // @ts-nocheck
-import Vue from 'element-legacy/src/utils/vue'
+import Vue from '../../../src/utils/vue'
 import { parseHeight } from './util'
 
 class TableLayout {

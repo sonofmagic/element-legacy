@@ -1,4 +1,4 @@
-import { isFunction } from 'element-legacy/src/utils/types'
+import { isFunction } from '../../../src/utils/types'
 import DescriptionsRow from './descriptions-row'
 
 export default {

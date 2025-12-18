@@ -1,5 +1,5 @@
 <script>
-import Popper from 'element-legacy/src/utils/vue-popper'
+import Popper from '../../../src/utils/vue-popper'
 
 export default {
   name: 'ElDropdownMenu',

@@ -1,5 +1,5 @@
 <script>
-import objectAssign from 'element-legacy/src/utils/merge'
+import objectAssign from '../../../src/utils/merge'
 
 export default {
   name: 'ElForm',

@@ -1,6 +1,6 @@
-import { isDef } from 'element-legacy/src/utils/shared'
+import { isDef } from '../../../src/utils/shared'
 // @ts-nocheck
-import { capitalize, isEqual } from 'element-legacy/src/utils/util'
+import { capitalize, isEqual } from '../../../src/utils/util'
 
 let uid = 0
 

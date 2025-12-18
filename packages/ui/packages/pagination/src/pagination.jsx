@@ -1,8 +1,8 @@
-import ElInput from 'element-legacy/packages/input'
-import ElOption from 'element-legacy/packages/option'
-import ElSelect from 'element-legacy/packages/select'
-import Locale from 'element-legacy/src/mixins/locale'
-import { valueEquals } from 'element-legacy/src/utils/util'
+import ElInput from '../../input'
+import ElOption from '../../option'
+import ElSelect from '../../select'
+import Locale from '../../../src/mixins/locale'
+import { valueEquals } from '../../../src/utils/util'
 import Pager from './pager.vue'
 
 export default {

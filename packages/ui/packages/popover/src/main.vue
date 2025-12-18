@@ -1,7 +1,7 @@
 <script>
-import { addClass, off, on, removeClass } from 'element-legacy/src/utils/dom'
-import { generateId } from 'element-legacy/src/utils/util'
-import Popper from 'element-legacy/src/utils/vue-popper'
+import { addClass, off, on, removeClass } from '../../../src/utils/dom'
+import { generateId } from '../../../src/utils/util'
+import Popper from '../../../src/utils/vue-popper'
 
 export default {
   name: 'ElPopover',

@@ -1,8 +1,8 @@
 <script lang="ts">
 // @ts-nocheck
-import { getDayCountOfYear, isDate, nextDate, range } from 'element-legacy/src/utils/date-util'
-import { hasClass } from 'element-legacy/src/utils/dom'
-import { arrayFindIndex, coerceTruthyValueToArray } from 'element-legacy/src/utils/util'
+import { getDayCountOfYear, isDate, nextDate, range } from '../../../../src/utils/date-util'
+import { hasClass } from '../../../../src/utils/dom'
+import { arrayFindIndex, coerceTruthyValueToArray } from '../../../../src/utils/util'
 
 function datesInYear(year) {
   const numOfDays = getDayCountOfYear(year)

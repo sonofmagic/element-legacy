@@ -1,6 +1,6 @@
-import { arrayFind } from 'element-legacy/src/utils/util'
+import { arrayFind } from '../../../../src/utils/util'
 // @ts-nocheck
-import Vue from 'element-legacy/src/utils/vue'
+import Vue from '../../../../src/utils/vue'
 import Watcher from './watcher'
 
 Watcher.prototype.mutations = {

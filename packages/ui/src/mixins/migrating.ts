@@ -4,7 +4,7 @@ import { kebabCase } from '../utils/util';
  * Show migrating guide in browser console.
  *
  * Usage:
- * import Migrating from 'element-legacy/src/mixins/migrating';
+ * import Migrating from './migrating';
  *
  * mixins: [Migrating]
  *

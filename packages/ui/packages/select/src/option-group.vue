@@ -1,5 +1,5 @@
 <script type="text/babel">
-import Emitter from 'element-legacy/src/mixins/emitter'
+import Emitter from '../../../src/mixins/emitter'
 
 export default {
 

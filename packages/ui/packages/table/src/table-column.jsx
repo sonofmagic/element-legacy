@@ -1,4 +1,4 @@
-import ElCheckbox from 'element-legacy/packages/checkbox'
+import ElCheckbox from '../../checkbox'
 import { cellForced, cellStarts, defaultRenderCell, treeCellPrefix } from './config'
 import { compose, mergeOptions, parseMinWidth, parseWidth } from './util'
 

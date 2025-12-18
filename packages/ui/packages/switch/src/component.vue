@@ -1,7 +1,7 @@
 <script>
-import emitter from 'element-legacy/src/mixins/emitter'
-import Focus from 'element-legacy/src/mixins/focus'
-import Migrating from 'element-legacy/src/mixins/migrating'
+import emitter from '../../../src/mixins/emitter'
+import Focus from '../../../src/mixins/focus'
+import Migrating from '../../../src/mixins/migrating'
 
 export default {
   name: 'ElSwitch',

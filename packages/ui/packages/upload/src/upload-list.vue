@@ -1,6 +1,6 @@
 <script>
-import ElProgress from 'element-legacy/packages/progress'
-import Locale from 'element-legacy/src/mixins/locale'
+import ElProgress from '../../progress'
+import Locale from '../../../src/mixins/locale'
 
 export default {
 

@@ -1,8 +1,8 @@
 <script>
-import ElButton from 'element-legacy/packages/button'
-import ElInput from 'element-legacy/packages/input'
-import Locale from 'element-legacy/src/mixins/locale'
-import Popper from 'element-legacy/src/utils/vue-popper'
+import ElButton from '../../../button'
+import ElInput from '../../../input'
+import Locale from '../../../../src/mixins/locale'
+import Popper from '../../../../src/utils/vue-popper'
 import AlphaSlider from './alpha-slider.vue'
 import HueSlider from './hue-slider.vue'
 import Predefine from './predefine.vue'

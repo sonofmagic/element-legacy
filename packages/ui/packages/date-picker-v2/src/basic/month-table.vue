@@ -1,9 +1,9 @@
 <script lang="ts">
 // @ts-nocheck
-import Locale from 'element-legacy/src/mixins/locale'
-import { getDayCountOfMonth, isDate, nextDate, range } from 'element-legacy/src/utils/date-util'
-import { hasClass } from 'element-legacy/src/utils/dom'
-import { arrayFind, arrayFindIndex, coerceTruthyValueToArray } from 'element-legacy/src/utils/util'
+import Locale from '../../../../src/mixins/locale'
+import { getDayCountOfMonth, isDate, nextDate, range } from '../../../../src/utils/date-util'
+import { hasClass } from '../../../../src/utils/dom'
+import { arrayFind, arrayFindIndex, coerceTruthyValueToArray } from '../../../../src/utils/util'
 
 function datesInMonth(year, month) {
   const numOfDays = getDayCountOfMonth(year, month)

@@ -1,8 +1,8 @@
 <script lang="ts">
 // @ts-nocheck
-import Locale from 'element-legacy/src/mixins/locale'
-import { clearTime as _clearTime, getDayCountOfMonth, getFirstDayOfMonth, getStartDateOfMonth, getWeekNumber, isDate, nextDate, prevDate } from 'element-legacy/src/utils/date-util'
-import { arrayFind, arrayFindIndex, coerceTruthyValueToArray } from 'element-legacy/src/utils/util'
+import Locale from '../../../../src/mixins/locale'
+import { clearTime as _clearTime, getDayCountOfMonth, getFirstDayOfMonth, getStartDateOfMonth, getWeekNumber, isDate, nextDate, prevDate } from '../../../../src/utils/date-util'
+import { arrayFind, arrayFindIndex, coerceTruthyValueToArray } from '../../../../src/utils/util'
 
 const WEEKS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 function getDateTimestamp(time) {

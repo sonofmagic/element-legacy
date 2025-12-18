@@ -1,7 +1,7 @@
 <script lang="jsx">
-import Emitter from 'element-legacy/src/mixins/emitter'
-import ElCollapseTransition from 'element-legacy/src/transitions/collapse-transition'
-import Popper from 'element-legacy/src/utils/vue-popper'
+import Emitter from '../../../src/mixins/emitter'
+import ElCollapseTransition from '../../../src/transitions/collapse-transition'
+import Popper from '../../../src/utils/vue-popper'
 import menuMixin from './menu-mixin'
 
 const poperMixins = {

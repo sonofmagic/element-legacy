@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { getValueByPath } from 'element-legacy/src/utils/util'
+import { getValueByPath } from '../../../src/utils/util'
 
 export function getCell(event) {
   let cell = event.target

@@ -1,4 +1,4 @@
-import { coerceTruthyValueToArray, valueEquals } from 'element-legacy/src/utils/util'
+import { coerceTruthyValueToArray, valueEquals } from '../../../src/utils/util'
 // @ts-nocheck
 import Node from './node'
 

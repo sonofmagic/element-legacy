@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CONFIG_PROVIDER_INJECTION_KEY, getGlobalConfig, mergeConfig, setGlobalConfig } from 'element-legacy/src/utils/config-provider'
+import { CONFIG_PROVIDER_INJECTION_KEY, getGlobalConfig, mergeConfig, setGlobalConfig } from '../../../src/utils/config-provider'
 
 const ConfigProvider = {
   name: 'ElConfigProvider',
