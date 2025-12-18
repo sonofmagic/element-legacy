@@ -1,5 +1,11 @@
 # element-legacy
 
+## 1.1.1
+
+### Patch Changes
+
+- [`b2a6432`](https://github.com/sonofmagic/element-legacy/commit/b2a64322a65a82e8e998089d10adb34cd60aa675) Thanks [@sonofmagic](https://github.com/sonofmagic)! - fix deep import resolutions so builds work when the package is installed via an npm alias (e.g. `element-ui@npm:element-legacy`)
+
 ## 1.1.0
 
 ### Minor Changes
