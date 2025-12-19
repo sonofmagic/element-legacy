@@ -1,5 +1,11 @@
 # element-legacy
 
+## 1.1.3
+
+### Patch Changes
+
+- [`fc0090a`](https://github.com/sonofmagic/element-legacy/commit/fc0090a24bdb39e9da2d7c61881be8d4cfa96590) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Fix date-picker-v2 `default-time` handling for `daterange` so end values keep the configured time, and refresh docs examples with generic wording.
+
 ## 1.1.2
 
 ### Patch Changes
