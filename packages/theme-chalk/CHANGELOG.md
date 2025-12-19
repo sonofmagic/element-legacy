@@ -1,5 +1,11 @@
 # @element-legacy/theme-chalk
 
+## 1.1.2
+
+### Patch Changes
+
+- [`15b6666`](https://github.com/sonofmagic/element-legacy/commit/15b6666018ab54bc47bf4790060dfb4c24936707) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Fix date-picker-v2 footer confirm button to use i18n text and add a test to guard the localization.
+
 ## 1.0.1
 
 ### Patch Changes
