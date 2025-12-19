@@ -406,7 +406,14 @@ export default {
     emitModel(trigger?: 'change') {
       const hasStart = this.hasFieldValue(this.startValue)
       const hasEnd = this.hasFieldValue(this.endValue)
-      const payload = hasStart || hasEnd ? [this.startValue ?? null, this.endValue ?? null] : null
+      const applyDefaultTime = this.singlePanelType === 'date' && (this.startDefaultTime || this.endDefaultTime)
+      const startValue = applyDefaultTime
+        ? this.applyDefaultTimeToValue(this.startValue, 'start')
+        : this.startValue
+      const endValue = applyDefaultTime
+        ? this.applyDefaultTimeToValue(this.endValue, 'end')
+        : this.endValue
+      const payload = hasStart || hasEnd ? [startValue ?? null, endValue ?? null] : null
 
       this.$emit('input', payload)
 
@@ -645,6 +652,31 @@ export default {
       }
 
       return null
+    },
+
+    applyDefaultTimeToValue(value, role: 'start' | 'end') {
+      const timeConfig = role === 'start' ? this.startDefaultTime : this.endDefaultTime
+      const date = this.coerceValueToDate(value)
+
+      if (!timeConfig || !date) {
+        return value
+      }
+
+      const withTime = modifyWithTimeString(new Date(date.getTime()), timeConfig)
+
+      if (value instanceof Date) {
+        return withTime
+      }
+
+      if (this.valueFormat) {
+        return formatAsFormatAndType(withTime, this.valueFormat, this.singlePanelType)
+      }
+
+      if (typeof value === 'number') {
+        return withTime.getTime()
+      }
+
+      return withTime
     },
 
     applyShortcutTime(date, timeConfig) {

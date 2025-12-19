@@ -565,6 +565,118 @@ The basic day picker.
 
 :::
 
+### Custom Time Range Example
+
+:::demo Combine `value-format`, `default-time`, and change events to show a time range with custom placeholders.
+
+```html
+<template>
+  <div class="demo-date-picker-purchase">
+    <pre class="demonstration"><code>Time range: {{ JSON.stringify(myTime) }}</code></pre>
+    <el-date-picker-v2
+      v-model="myTime"
+      type="datetimerange"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      format="yyyy-MM-dd"
+      :range-separator="rangeCopy.to"
+      :start-placeholder="rangeCopy.start"
+      :end-placeholder="rangeCopy.end"
+      :default-time="['00:00:00', '23:59:59']"
+      clearable
+      @change="handlePurchaseChange"
+    />
+    <div v-if="lastChanged" class="demo-date-picker-purchase__tip">
+      Last change: {{ lastChanged }}
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        myTime: [],
+        lastChanged: '',
+        rangeCopy: {
+          to: 'to',
+          start: 'Start time',
+          end: 'End time',
+        },
+      }
+    },
+    methods: {
+      handlePurchaseChange(value) {
+        this.lastChanged = Array.isArray(value) && value.length === 2 ? value.join(' ~ ') : ''
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-purchase .el-range-editor-v2 {
+    width: 360px;
+  }
+
+  .demo-date-picker-purchase__tip {
+    margin-top: 8px;
+    color: var(--el-text-color-secondary);
+    font-size: 13px;
+  }
+</style>
+```
+
+:::
+
+### Custom Date Range Example
+
+:::demo When only dates are needed, switch to `type="daterange"` while keeping custom placeholders and a change hint.
+
+```html
+<template>
+  <div class="demo-date-picker-purchase">
+    <pre class="demonstration"><code>Date range: {{ JSON.stringify(myDateRange) }}</code></pre>
+    <el-date-picker-v2
+      v-model="myDateRange"
+      type="daterange"
+      format="yyyy-MM-dd"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      :range-separator="rangeCopy.to"
+      :start-placeholder="rangeCopy.start"
+      :end-placeholder="rangeCopy.end"
+      :default-time="['00:00:00', '23:59:59']"
+      clearable
+      @change="handleDateChange"
+    />
+    <div v-if="lastDateChanged" class="demo-date-picker-purchase__tip">
+      Last change: {{ lastDateChanged }}
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        myDateRange: [],
+        lastDateChanged: '',
+        rangeCopy: {
+          to: 'to',
+          start: 'Start time',
+          end: 'End time',
+        },
+      }
+    },
+    methods: {
+      handleDateChange(value) {
+        this.lastDateChanged = Array.isArray(value) && value.length === 2 ? value.join(' ~ ') : ''
+      },
+    },
+  }
+</script>
+```
+
+:::
+
 ### Full Width in Forms
 
 :::demo In grid-based forms, DateTime pickers now stretch to the full form item width without extra styles.

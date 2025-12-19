@@ -530,6 +530,118 @@
 
 :::
 
+### 自定义时间段示例
+
+:::demo 结合 `value-format`、`default-time` 与事件回调，展示自定义占位符的时间段选择。
+
+```html
+<template>
+  <div class="demo-date-picker-purchase">
+    <pre class="demonstration"><code>时间段：{{ JSON.stringify(myTime) }}</code></pre>
+    <el-date-picker-v2
+      v-model="myTime"
+      type="datetimerange"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      format="yyyy-MM-dd"
+      :range-separator="rangeText.to"
+      :start-placeholder="rangeText.start"
+      :end-placeholder="rangeText.end"
+      :default-time="['00:00:00', '23:59:59']"
+      clearable
+      @change="myTimeChange"
+    />
+    <div v-if="lastChanged" class="demo-date-picker-purchase__tip">
+      最近选择：{{ lastChanged }}
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        myTime: [],
+        lastChanged: '',
+        rangeText: {
+          to: '至',
+          start: '开始时间',
+          end: '结束时间',
+        },
+      }
+    },
+    methods: {
+      myTimeChange(value) {
+        this.lastChanged = Array.isArray(value) && value.length === 2 ? value.join(' ~ ') : ''
+      },
+    },
+  }
+</script>
+
+<style>
+  .demo-date-picker-purchase .el-range-editor-v2 {
+    width: 360px;
+  }
+
+  .demo-date-picker-purchase__tip {
+    margin-top: 8px;
+    color: var(--el-text-color-secondary);
+    font-size: 13px;
+  }
+</style>
+```
+
+:::
+
+### 自定义日期段示例
+
+:::demo 与上例类似，只需要日期段时可使用 `type="daterange"`，并保留自定义占位符与变更提示。
+
+```html
+<template>
+  <div class="demo-date-picker-purchase">
+    <pre class="demonstration"><code>日期范围：{{ JSON.stringify(myDateRange) }}</code></pre>
+    <el-date-picker-v2
+      v-model="myDateRange"
+      type="daterange"
+      format="yyyy-MM-dd"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      :range-separator="rangeText.to"
+      :start-placeholder="rangeText.start"
+      :end-placeholder="rangeText.end"
+      :default-time="['00:00:00', '23:59:59']"
+      clearable
+      @change="myDateChange"
+    />
+    <div v-if="lastDateChanged" class="demo-date-picker-purchase__tip">
+      最近选择：{{ lastDateChanged }}
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        myDateRange: [],
+        lastDateChanged: '',
+        rangeText: {
+          to: '至',
+          start: '开始时间',
+          end: '结束时间',
+        },
+      }
+    },
+    methods: {
+      myDateChange(value) {
+        this.lastDateChanged = Array.isArray(value) && value.length === 2 ? value.join(' ~ ') : ''
+      },
+    },
+  }
+</script>
+```
+
+:::
+
 ### 表单内占满宽度
 
 :::demo 在栅格表单中，DateTime 选择器会默认撑满表单项，无需额外样式。
