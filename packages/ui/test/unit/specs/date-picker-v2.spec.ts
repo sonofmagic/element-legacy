@@ -4,6 +4,9 @@ import sinon from 'sinon'
 import DateRangeSplit from 'packages/date-picker-v2/src/picker/date-range-split.vue'
 import BaseDatePicker from 'packages/date-picker-v2/src/picker/base-date-picker'
 import DateRangePanel from 'packages/date-picker-v2/src/panel/date-range.vue'
+import DatePanel from 'packages/date-picker-v2/src/panel/date.vue'
+import locale from 'main/locale'
+import zhCN from 'main/locale/lang/zh-CN'
 
 describe('DatePickerV2 range shortcuts', () => {
   function createInstance(propsData) {
@@ -347,6 +350,22 @@ describe('DatePickerV2 range shortcuts', () => {
 
     expect(vm.buildPickerProps('start').clearable).to.be.true
     expect(vm.buildPickerProps('end').clearable).to.be.true
+
+    vm.$destroy()
+  })
+
+  it('shows localized confirm text in single panel', async () => {
+    locale.use(zhCN)
+    const Constructor = Vue.extend(DatePanel)
+    const vm = new Constructor().$mount()
+
+    vm.showTime = true
+    vm.visible = true
+    await vm.$nextTick()
+
+    const confirmButton = vm.$el.querySelector('.el-date-picker-v2__footer-confirm')
+    expect(confirmButton).to.exist
+    expect(confirmButton.textContent.trim()).to.equal(zhCN.el.datepicker.confirm)
 
     vm.$destroy()
   })

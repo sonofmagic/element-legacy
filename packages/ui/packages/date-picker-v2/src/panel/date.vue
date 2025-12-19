@@ -909,7 +909,7 @@ export default {
             class="el-date-picker-v2__footer-confirm"
             @click="confirm"
           >
-            Confirm
+            {{ t('el.datepicker.confirm') }}
           </ElButton>
         </div>
       </div>
