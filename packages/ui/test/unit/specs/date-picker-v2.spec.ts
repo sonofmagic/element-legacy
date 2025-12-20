@@ -371,6 +371,74 @@ describe('DatePickerV2 range shortcuts', () => {
   })
 })
 
+describe('DatePickerV2 public methods', () => {
+  it('opens panel programmatically', async () => {
+    const Constructor = Vue.extend(BaseDatePicker)
+    const vm = new Constructor().$mount()
+
+    sinon.stub(vm, 'showPicker')
+    sinon.stub(vm, 'hidePicker')
+
+    vm.open()
+    await vm.$nextTick()
+
+    expect(vm.pickerVisible).to.be.true
+    expect(vm.showPicker.calledOnce).to.be.true
+
+    vm.close()
+    await vm.$nextTick()
+
+    expect(vm.pickerVisible).to.be.false
+    expect(vm.hidePicker.calledOnce).to.be.true
+
+    vm.showPicker.restore()
+    vm.hidePicker.restore()
+    vm.$destroy()
+  })
+
+  it('opens split range picker from wrapper method', async () => {
+    const Constructor = Vue.extend(DateRangeSplit)
+    const vm = new Constructor({
+      propsData: {
+        type: 'datetimerange',
+      },
+    }).$mount()
+
+    const startPicker = vm.$refs.startPicker
+    sinon.stub(startPicker, 'open')
+
+    vm.open()
+    await vm.$nextTick()
+
+    expect(startPicker.open.calledOnce).to.be.true
+    expect(vm.activeField).to.equal('start')
+
+    startPicker.open.restore()
+    vm.$destroy()
+  })
+
+  it('closes split range picker from wrapper method', async () => {
+    const Constructor = Vue.extend(DateRangeSplit)
+    const vm = new Constructor({
+      propsData: {
+        type: 'datetimerange',
+      },
+    }).$mount()
+
+    const startPicker = vm.$refs.startPicker
+    sinon.stub(startPicker, 'handleClose')
+
+    vm.close()
+    await vm.$nextTick()
+
+    expect(startPicker.handleClose.calledOnce).to.be.true
+    expect(vm.activeField).to.equal(null)
+
+    startPicker.handleClose.restore()
+    vm.$destroy()
+  })
+})
+
 describe('DatePickerV2 manual input normalization', () => {
   function createBasePicker(propsData) {
     const Constructor = Vue.extend(BaseDatePicker)

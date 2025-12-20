@@ -124,4 +124,14 @@ export declare class ElDatePickerV2 extends ElementUIComponent {
    * Focus the Input component
    */
   focus (): void
+
+  /**
+   * Open the picker panel (for split range pickers, pass `'end'` to open the end field)
+   */
+  open (role?: 'start' | 'end'): void
+
+  /**
+   * Close the picker panel (for split range pickers, pass `'end'` to close the end field)
+   */
+  close (role?: 'start' | 'end'): void
 }

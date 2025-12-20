@@ -556,6 +556,22 @@ export default {
       }
     },
 
+    open() {
+      if (this.readonly || this.pickerDisabled) {
+        return
+      }
+      if (!this.pickerVisible) {
+        this.pickerVisible = true
+      }
+    },
+
+    close() {
+      if (!this.pickerVisible) {
+        return
+      }
+      this.handleClose()
+    },
+
     blur() {
       this.refInput.forEach(input => input.blur())
     },

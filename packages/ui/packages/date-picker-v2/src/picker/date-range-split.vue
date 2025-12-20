@@ -236,6 +236,33 @@ export default {
       }
     },
 
+    open(role = 'start') {
+      if (this.pickerDisabled) {
+        return
+      }
+      if (role === 'end') {
+        const picker: any = this.$refs.endPicker
+        if (picker && typeof picker.open === 'function') {
+          picker.open()
+        }
+        this.handleFieldFocus('end')
+        return
+      }
+      const picker: any = this.$refs.startPicker
+      if (picker && typeof picker.open === 'function') {
+        picker.open()
+      }
+      this.handleFieldFocus('start')
+    },
+
+    close(role = 'start') {
+      if (role === 'end') {
+        this.closePanel('end')
+        return
+      }
+      this.closePanel('start')
+    },
+
     blur() {
       const pickerStart: any = this.$refs.startPicker
       const pickerEnd: any = this.$refs.endPicker

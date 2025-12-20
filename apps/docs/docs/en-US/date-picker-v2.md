@@ -1358,9 +1358,11 @@ When picking a date range, you can assign the time part for start date and end d
 
 ### Methods
 
-| Method | Description               | Parameters |
-| ------ | ------------------------- | ---------- |
-| focus  | focus the Input component | —          |
+| Method | Description                                                                                  | Parameters        |
+| ------ | -------------------------------------------------------------------------------------------- | ----------------- |
+| focus  | focus the Input component                                                                    | —                 |
+| open   | programmatically open the panel; for split range pickers, pass `end` to open the end field   | role: start / end |
+| close  | programmatically close the panel; for split range pickers, pass `end` to close the end field | role: start / end |
 
 ### Slots
 

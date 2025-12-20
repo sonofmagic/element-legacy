@@ -27,6 +27,20 @@ export default defineComponent({
       }
     },
 
+    open(...args: any[]) {
+      const inner: any = this.$refs.inner
+      if (inner && typeof inner.open === 'function') {
+        inner.open(...args)
+      }
+    },
+
+    close(...args: any[]) {
+      const inner: any = this.$refs.inner
+      if (inner && typeof inner.close === 'function') {
+        inner.close(...args)
+      }
+    },
+
     blur() {
       const inner: any = this.$refs.inner
       if (inner && typeof inner.blur === 'function') {

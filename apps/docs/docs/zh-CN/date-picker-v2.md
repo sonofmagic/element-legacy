@@ -129,6 +129,45 @@
 ```
 :::
 
+### 主动打开面板
+
+:::demo 通过组件实例的 `open` / `close` 方法可以在需要时主动展开或收起面板，例如在点击按钮后直接拉起日期时间选择器。
+
+```html
+<template>
+  <div class="block">
+    <pre class="demonstration"><code>值：{{ JSON.stringify(activeDatetime) }}</code></pre>
+    <el-button size="small" @click="openPicker">打开面板</el-button>
+    <el-button size="small" @click="closePicker">收起面板</el-button>
+    <el-date-picker-v2
+      ref="activePicker"
+      v-model="activeDatetime"
+      type="datetime"
+      placeholder="选择日期和时间"
+    />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        activeDatetime: '',
+      }
+    },
+    methods: {
+      openPicker() {
+        this.$refs.activePicker && this.$refs.activePicker.open()
+      },
+      closePicker() {
+        this.$refs.activePicker && this.$refs.activePicker.close()
+      },
+    },
+  }
+</script>
+```
+:::
+
 ### 时间滚动器
 
 :::demo `time-spinner` 是 DatePicker v2 内部用于滚动选择时间的面板组件，同样可以单独使用。下面的示例演示了切换秒列与箭头交互的基本用法。
@@ -1329,6 +1368,8 @@
 
 ### Methods
 
-| 方法名 | 说明              | 参数 |
-| ------ | ----------------- | ---- |
-| focus  | 使 input 获取焦点 | —    |
+| 方法名 | 说明                                                                 | 参数             |
+| ------ | -------------------------------------------------------------------- | ---------------- |
+| focus  | 使 input 获取焦点                                                    | —                |
+| open   | 主动展开面板，分隔面板时可传 `end` 直接拉起结束字段                  | role: start/end  |
+| close  | 主动收起面板，分隔面板时可传 `end` 仅关闭结束字段                    | role: start/end  |
