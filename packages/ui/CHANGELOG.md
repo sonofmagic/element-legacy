@@ -1,5 +1,11 @@
 # element-legacy
 
+## 1.1.4
+
+### Patch Changes
+
+- [`bb6dd34`](https://github.com/sonofmagic/element-legacy/commit/bb6dd341145392626039228067ef4e8554923f92) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Add programmatic open/close APIs to DatePicker v2 with docs and tests, including split range support.
+
 ## 1.1.3
 
 ### Patch Changes
