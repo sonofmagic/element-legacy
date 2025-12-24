@@ -784,7 +784,7 @@ export default {
       const separator = this.$refs.separator as HTMLElement | undefined
       const separatorRect = separator ? separator.getBoundingClientRect() : null
 
-      const gap = 12
+      const gap = 10
       const separatorLeft = separatorRect ? separatorRect.left - wrapperRect.left : wrapperRect.width / 2
       const separatorRight = separatorRect ? separatorRect.right - wrapperRect.left : wrapperRect.width / 2
 
@@ -796,23 +796,49 @@ export default {
       const startAreaWidth = Math.max(startAreaEnd - startAreaStart, 0)
       const endAreaWidth = Math.max(endAreaEnd - endAreaStart, 0)
       const targetWidth = Math.max(Math.min(startAreaWidth, endAreaWidth), 0)
+      const inset = 2
+      const activeCell
+        = (this.activeField === 'start'
+          ? (this.$refs.startCell as HTMLElement | undefined)
+          : (this.$refs.endCell as HTMLElement | undefined))
+      const activeRect = activeCell ? activeCell.getBoundingClientRect() : null
 
-      if (this.activeField === 'start') {
-        const offset = (startAreaWidth - targetWidth) / 2
-        const left = startAreaStart + offset
+      if (activeRect) {
+        const areaStart = this.activeField === 'start' ? startAreaStart : endAreaStart
+        const areaEnd = this.activeField === 'start' ? startAreaEnd : endAreaEnd
+        const desiredWidth = activeRect.width + inset * 2
+        const desiredLeft = activeRect.left - wrapperRect.left - inset
+        const maxWidth = Math.max(areaEnd - areaStart, 0)
+        const width = Math.max(Math.min(desiredWidth, maxWidth), 0)
+        const center = desiredLeft + desiredWidth / 2
+        const left = Math.min(Math.max(center - width / 2, areaStart), areaEnd - width)
+
         this.highlightStyle = {
           opacity: 1,
           left: `${left}px`,
-          width: `${targetWidth}px`,
+          width: `${width}px`,
+        }
+        return
+      }
+
+      if (this.activeField === 'start') {
+        const offset = (startAreaWidth - targetWidth) / 2
+        const left = Math.max(startAreaStart + offset - inset, 0)
+        const width = Math.max(Math.min(targetWidth + inset * 2, wrapperRect.width - left), 0)
+        this.highlightStyle = {
+          opacity: 1,
+          left: `${left}px`,
+          width: `${width}px`,
         }
       }
       else {
         const offset = (endAreaWidth - targetWidth) / 2
-        const left = endAreaStart + offset
+        const left = Math.max(endAreaStart + offset - inset, 0)
+        const width = Math.max(Math.min(targetWidth + inset * 2, wrapperRect.width - left), 0)
         this.highlightStyle = {
           opacity: 1,
           left: `${left}px`,
-          width: `${targetWidth}px`,
+          width: `${width}px`,
         }
       }
     },
@@ -870,6 +896,7 @@ export default {
       aria-hidden="true"
     />
     <div
+      ref="startCell"
       class="el-date-range-editor-v2__cell"
       :class="{ 'is-active': activeField === 'start' }"
     >
@@ -889,6 +916,7 @@ export default {
       >{{ rangeSeparator }}</span>
     </slot>
     <div
+      ref="endCell"
       class="el-date-range-editor-v2__cell"
       :class="{ 'is-active': activeField === 'end' }"
     >

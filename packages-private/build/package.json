@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "@babel/core": "^7.28.5",
-    "algoliasearch": "^5.46.1",
+    "algoliasearch": "^5.46.2",
     "chokidar": "^5.0.0",
     "file-save": "^0.2.0",
     "json-templater": "^1.0.4",
