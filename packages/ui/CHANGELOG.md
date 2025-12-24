@@ -1,5 +1,11 @@
 # element-legacy
 
+## 1.1.5
+
+### Patch Changes
+
+- [`f3b49d0`](https://github.com/sonofmagic/element-legacy/commit/f3b49d03bf07aace9be2d650549d08ca29eef87c) Thanks [@sonofmagic](https://github.com/sonofmagic)! - Adjust date range split picker highlight to stay centered on the active input while keeping 12px breathing room from borders and the separator, with 2px outward padding.
+
 ## 1.1.4
 
 ### Patch Changes
