@@ -42,6 +42,7 @@ function resolveLogoPath(base: string, source: string | undefined, fallback: str
 export interface DocsRuntimeConfig {
   base: string
   defaultLanguage: string
+  enableEleThemes: boolean
   logo: {
     normal: string
     small: string
@@ -53,6 +54,7 @@ const base = normalizeBasePath(import.meta.env.VITE_DOCS_BASE)
 const runtimeConfig: DocsRuntimeConfig = {
   base,
   defaultLanguage: resolveString(import.meta.env.VITE_DOCS_DEFAULT_LANG, 'en-US'),
+  enableEleThemes: import.meta.env.VITE_DOCS_ENABLE_ELE_THEMES === 'true',
   logo: {
     normal: resolveLogoPath(base, import.meta.env.VITE_DOCS_LOGO_PATH, DEFAULT_LOGO_PATH),
     small: resolveLogoPath(base, import.meta.env.VITE_DOCS_LOGO_SMALL_PATH, DEFAULT_LOGO_SMALL_PATH),

@@ -54,17 +54,6 @@ export default {
       return typeof name === 'string' && name.startsWith('home')
     },
   },
-  mounted() {
-    const testInnerImg = new Image()
-    testInnerImg.onload = () => {
-      this.$isEle = true
-    }
-    testInnerImg.onerror = (err) => {
-      console.error(err)
-    }
-    testInnerImg.src = `https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/rmsportal/VmvVUItLdPNqKlNGuRHi.png?t=${Date.now()}`
-  },
-
   created() {
     let primaryLast = '#409EFF'
     bus.$on(ACTION_USER_CONFIG_UPDATE, (val) => {

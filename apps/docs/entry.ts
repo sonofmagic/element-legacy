@@ -48,7 +48,7 @@ Vue.component('ElTimeSpinnerV2', TimeSpinner)
 
 const globalEle = new Vue({
   data() {
-    return { $isEle: false } // 是否 ele 用户
+    return { $isEle: runtimeConfig.enableEleThemes } // 是否 ele 用户
   },
 })
 
