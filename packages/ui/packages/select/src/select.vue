@@ -1,7 +1,6 @@
 <script type="text/babel">
-import ElInput from '../../input'
-import ElScrollbar from '../../scrollbar'
-import ElTag from '../../tag'
+import { debounce } from 'throttle-debounce'
+
 import Emitter from '../../../src/mixins/emitter'
 import Focus from '../../../src/mixins/focus'
 import Locale from '../../../src/mixins/locale'
@@ -10,17 +9,140 @@ import { addResizeListener, removeResizeListener } from '../../../src/utils/resi
 import scrollIntoView from '../../../src/utils/scroll-into-view'
 import { isKorean } from '../../../src/utils/shared'
 import { getValueByPath, isEdge, isIE, valueEquals } from '../../../src/utils/util'
-import { debounce } from 'throttle-debounce'
+import ElInput from '../../input'
+import ElScrollbar from '../../scrollbar'
+import ElTag from '../../tag'
 import NavigationMixin from './navigation-mixin'
 import ElOption from './option.vue'
 import ElSelectMenu from './select-dropdown.vue'
 
-export default {
-  mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
+const SELECT_FOCUS_DEBUG_STORAGE_KEY = 'ELEMENT_SELECT_FOCUS_DEBUG'
 
+function isSelectFocusDebugEnabled() {
+  if (process.env.NODE_ENV === 'production') {
+    return false
+  }
+  if (typeof window === 'undefined') {
+    return false
+  }
+  try {
+    const win = /** @type {any} */ (window)
+    return Boolean(win.__ELEMENT_SELECT_FOCUS_DEBUG__)
+      || win.localStorage.getItem(SELECT_FOCUS_DEBUG_STORAGE_KEY) === '1'
+  }
+  catch (_error) {
+    return false
+  }
+}
+
+function getActiveElementSafely() {
+  if (typeof document === 'undefined') {
+    return null
+  }
+  try {
+    return document.activeElement
+  }
+  catch (_error) {
+    return null
+  }
+}
+
+function selectDebugLog(...args) {
+  if (!isSelectFocusDebugEnabled()) {
+    return
+  }
+  // eslint-disable-next-line no-console
+  console.log(...args)
+}
+
+function selectDebugTrace(label) {
+  if (!isSelectFocusDebugEnabled()) {
+    return
+  }
+  // eslint-disable-next-line no-console
+  console.trace(label)
+}
+
+let selectFocusDebugListenersBound = false
+function ensureSelectFocusDebugListeners() {
+  if (selectFocusDebugListenersBound) {
+    return
+  }
+  if (!isSelectFocusDebugEnabled()) {
+    return
+  }
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return
+  }
+
+  selectFocusDebugListenersBound = true
+
+  window.addEventListener('focus', () => {
+    selectDebugLog('[window focus] active=', getActiveElementSafely())
+  })
+  document.addEventListener('focusin', (e) => {
+    selectDebugLog('[focusin]', e.target, 'active=', getActiveElementSafely())
+  })
+  document.addEventListener('visibilitychange', () => {
+    selectDebugLog('[visibilitychange]', document.visibilityState, 'active=', getActiveElementSafely())
+  })
+}
+
+let suppressSelectOpenOnFocusUntilUserInteraction = false
+let selectFocusOpenSuppressionListenersBound = false
+function ensureSelectFocusOpenSuppressionListeners() {
+  if (selectFocusOpenSuppressionListenersBound) {
+    return
+  }
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return
+  }
+
+  selectFocusOpenSuppressionListenersBound = true
+
+  const suppress = () => {
+    suppressSelectOpenOnFocusUntilUserInteraction = true
+    selectDebugLog('[ElSelect] suppress open-on-focus (reason: tab/window focus change)')
+  }
+  const clear = () => {
+    if (!suppressSelectOpenOnFocusUntilUserInteraction) {
+      return
+    }
+    suppressSelectOpenOnFocusUntilUserInteraction = false
+    selectDebugLog('[ElSelect] clear open-on-focus suppression (reason: user interaction)')
+  }
+
+  window.addEventListener('focus', suppress)
+  window.addEventListener('blur', suppress)
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden' || document.visibilityState === 'visible') {
+      suppress()
+    }
+  })
+
+  // Use capture so we clear before focus handlers run.
+  document.addEventListener('mousedown', clear, true)
+  document.addEventListener('touchstart', clear, true)
+  document.addEventListener('keydown', clear, true)
+}
+
+export default {
   name: 'ElSelect',
 
   componentName: 'ElSelect',
+
+  components: {
+    ElInput,
+    ElSelectMenu,
+    ElOption,
+    ElTag,
+    ElScrollbar,
+  },
+
+  directives: { Clickoutside },
+
+  mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
 
   inject: {
     elForm: {
@@ -51,9 +173,11 @@ export default {
     /** @Deprecated in next major version */
     autoComplete: {
       type: String,
-      validator(val) {
-        process.env.NODE_ENV !== 'production'
-        && console.warn('[Element Warn][Select]\'auto-complete\' property will be deprecated in next major version. please use \'autocomplete\' instead.')
+      validator(_val) {
+        if (process.env.NODE_ENV !== 'production') {
+          // eslint-disable-next-line no-console
+          console.warn('[Element Warn][Select]\'auto-complete\' property will be deprecated in next major version. please use \'autocomplete\' instead.')
+        }
         return true
       },
     },
@@ -153,7 +277,9 @@ export default {
         return this.loadingText || this.t('el.select.loading')
       }
       else {
-        if (this.remote && this.query === '' && this.options.length === 0) { return false }
+        if (this.remote && this.query === '' && this.options.length === 0) {
+          return false
+        }
         if (this.filterable && this.query && this.options.length > 0 && this.filteredOptionsCount === 0) {
           return this.noMatchText || this.t('el.select.noMatch')
         }
@@ -188,16 +314,6 @@ export default {
       return typeof this.placeholder !== 'undefined' ? this.placeholder : this.t('el.select.placeholder')
     },
   },
-
-  components: {
-    ElInput,
-    ElSelectMenu,
-    ElOption,
-    ElTag,
-    ElScrollbar,
-  },
-
-  directives: { Clickoutside },
 
   watch: {
     selectDisabled() {
@@ -261,7 +377,9 @@ export default {
             else {
               this.selectedLabel = this.selected.currentLabel
             }
-            if (this.filterable) { this.query = this.selectedLabel }
+            if (this.filterable) {
+              this.query = this.selectedLabel
+            }
           }
 
           if (this.filterable) {
@@ -294,7 +412,9 @@ export default {
     },
 
     options() {
-      if (this.$isServer) { return }
+      if (this.$isServer) {
+        return
+      }
       this.$nextTick(() => {
         this.broadcast('ElSelectDropdown', 'updatePopper')
       })
@@ -333,6 +453,8 @@ export default {
   },
 
   mounted() {
+    ensureSelectFocusDebugListeners()
+    ensureSelectFocusOpenSuppressionListeners()
     if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
       this.currentPlaceholder = ''
     }
@@ -360,12 +482,16 @@ export default {
   },
 
   beforeDestroy() {
-    if (this.$el && this.handleResize) { removeResizeListener(this.$el, this.handleResize) }
+    if (this.$el && this.handleResize) {
+      removeResizeListener(this.$el, this.handleResize)
+    }
   },
 
   methods: {
     handleNavigate(direction) {
-      if (this.isOnComposition) { return }
+      if (this.isOnComposition) {
+        return
+      }
 
       this.navigateOptions(direction)
     },
@@ -381,7 +507,9 @@ export default {
       }
     },
     handleQueryChange(val) {
-      if (this.previousQuery === val || this.isOnComposition) { return }
+      if (this.previousQuery === val || this.isOnComposition) {
+        return
+      }
       if (
         this.previousQuery === null
         && (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')
@@ -391,7 +519,9 @@ export default {
       }
       this.previousQuery = val
       this.$nextTick(() => {
-        if (this.visible) { this.broadcast('ElSelectDropdown', 'updatePopper') }
+        if (this.visible) {
+          this.broadcast('ElSelectDropdown', 'updatePopper')
+        }
       })
       this.hoverIndex = -1
       if (this.multiple && this.filterable) {
@@ -455,7 +585,9 @@ export default {
           break
         }
       }
-      if (option) { return option }
+      if (option) {
+        return option
+      }
       const label = (!isObject && !isNull && !isUndefined)
         ? String(value)
         : ''
@@ -481,7 +613,9 @@ export default {
         }
         this.selectedLabel = option.currentLabel
         this.selected = option
-        if (this.filterable) { this.query = this.selectedLabel }
+        if (this.filterable) {
+          this.query = this.selectedLabel
+        }
         return
       }
       const result = []
@@ -498,11 +632,18 @@ export default {
 
     handleFocus(event) {
       if (!this.softFocus) {
+        selectDebugLog('[ElSelect focus]', this.$el, 'active=', getActiveElementSafely())
         if (this.automaticDropdown || this.filterable) {
-          if (this.filterable && !this.visible) {
-            this.menuVisibleOnFocus = true
+          if (suppressSelectOpenOnFocusUntilUserInteraction) {
+            selectDebugLog('[ElSelect] suppressed open on focus', { automaticDropdown: this.automaticDropdown, filterable: this.filterable })
           }
-          this.visible = true
+          else {
+            if (this.filterable && !this.visible) {
+              this.menuVisibleOnFocus = true
+            }
+            selectDebugTrace('[ElSelect open on focus]')
+            this.visible = true
+          }
         }
         this.$emit('focus', event)
       }
@@ -512,6 +653,7 @@ export default {
     },
 
     blur() {
+      selectDebugTrace('[ElSelect blur()]')
       this.visible = false
       this.$refs.reference.blur()
     },
@@ -537,13 +679,18 @@ export default {
     },
 
     handleClose() {
+      selectDebugTrace('[ElSelect handleClose()]')
       this.visible = false
     },
 
     toggleLastOptionHitState(hit) {
-      if (!Array.isArray(this.selected)) { return }
+      if (!Array.isArray(this.selected)) {
+        return
+      }
       const option = this.selected[this.selected.length - 1]
-      if (!option) { return }
+      if (!option) {
+        return
+      }
 
       if (hit === true || hit === false) {
         option.hitState = hit
@@ -570,15 +717,21 @@ export default {
     },
 
     resetInputState(e) {
-      if (e.keyCode !== 8) { this.toggleLastOptionHitState(false) }
+      if (e.keyCode !== 8) {
+        this.toggleLastOptionHitState(false)
+      }
       this.inputLength = this.$refs.input.value.length * 15 + 20
       this.resetInputHeight()
     },
 
     resetInputHeight() {
-      if (this.collapseTags && !this.filterable) { return }
+      if (this.collapseTags && !this.filterable) {
+        return
+      }
       this.$nextTick(() => {
-        if (!this.$refs.reference) { return }
+        if (!this.$refs.reference) {
+          return
+        }
         const inputChildNodes = this.$refs.reference.$el.childNodes
         const input = [].filter.call(inputChildNodes, item => item.tagName === 'INPUT')[0]
         const tags = this.$refs.tags
@@ -629,7 +782,9 @@ export default {
           this.handleQueryChange('')
           this.inputLength = 20
         }
-        if (this.filterable) { this.$refs.input.focus() }
+        if (this.filterable) {
+          this.$refs.input.focus()
+        }
       }
       else {
         this.$emit('input', option.value)
@@ -638,7 +793,9 @@ export default {
       }
       this.isSilentBlur = byClick
       this.setSoftFocus()
-      if (this.visible) { return }
+      if (this.visible) {
+        return
+      }
       this.$nextTick(() => {
         this.scrollToOption(option)
       })
@@ -673,6 +830,7 @@ export default {
 
     toggleMenu() {
       if (!this.selectDisabled) {
+        selectDebugLog('[ElSelect toggleMenu before]', { visible: this.visible, active: getActiveElementSafely() })
         if (this.menuVisibleOnFocus) {
           this.menuVisibleOnFocus = false
         }
@@ -682,6 +840,7 @@ export default {
         if (this.visible) {
           (this.$refs.input || this.$refs.reference).focus()
         }
+        selectDebugLog('[ElSelect toggleMenu after]', { visible: this.visible, active: getActiveElementSafely() })
       }
     },
 
@@ -738,7 +897,9 @@ export default {
 
     handleResize() {
       this.resetInputWidth()
-      if (this.multiple) { this.resetInputHeight() }
+      if (this.multiple) {
+        this.resetInputHeight()
+      }
     },
 
     checkDefaultFirstOption() {
@@ -752,7 +913,9 @@ export default {
           break
         }
       }
-      if (hasCreated) { return }
+      if (hasCreated) {
+        return
+      }
       for (let i = 0; i !== this.options.length; ++i) {
         const option = this.options[i]
         if (this.query) {
@@ -834,12 +997,12 @@ export default {
       </transition-group>
 
       <input
-        v-model="query"
         v-if="filterable"
+        ref="input"
+        v-model="query"
         type="text"
         class="el-select__input"
         :class="[selectSize ? `is-${selectSize}` : '']"
-        ref="input"
         :disabled="selectDisabled"
         :autocomplete="autoComplete || autocomplete"
         :style="{ 'flex-grow': '1', 'width': `${inputLength / (inputWidth - 32)}%`, 'max-width': `${inputWidth - 42}px` }"

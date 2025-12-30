@@ -752,6 +752,30 @@ describe('Select', () => {
     });
   });
 
+  it('should suppress open-on-focus after tab switch until user interaction', done => {
+    vm = getSelectVm({ filterable: true });
+
+    // Simulate Chrome returning to this tab: window focus happens before the browser restores element focus.
+    window.dispatchEvent(new Event('focus'));
+
+    vm.$refs.select.$refs.reference.$refs.input.focus();
+
+    vm.$nextTick(_ => {
+      expect(vm.$refs.select.visible).to.be.false;
+
+      // First user interaction in the page clears suppression.
+      document.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+
+      vm.$refs.select.$refs.reference.$refs.input.blur();
+      vm.$refs.select.$refs.reference.$refs.input.focus();
+
+      vm.$nextTick(() => {
+        expect(vm.$refs.select.visible).to.be.true;
+        done();
+      });
+    });
+  });
+
   it('focus', done => {
     vm = createVue({
       template: `
