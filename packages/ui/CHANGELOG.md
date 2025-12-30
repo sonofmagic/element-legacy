@@ -1,5 +1,11 @@
 # element-legacy
 
+## 1.1.6
+
+### Patch Changes
+
+- [`b89e09f`](https://github.com/sonofmagic/element-legacy/commit/b89e09fd424c113ff48f273d3b9cedc00ab537f5) Thanks [@sonofmagic](https://github.com/sonofmagic)! - fix(select): prevent dropdown auto-opening on tab refocus by suppressing focus-triggered open until user interaction
+
 ## 1.1.5
 
 ### Patch Changes
