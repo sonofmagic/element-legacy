@@ -581,7 +581,7 @@
       v-model="myTime"
       type="datetimerange"
       value-format="yyyy-MM-dd HH:mm:ss"
-      format="yyyy-MM-dd"
+      format="yyyy-MM-dd HH:mm:ss"
       :range-separator="rangeText.to"
       :start-placeholder="rangeText.start"
       :end-placeholder="rangeText.end"
