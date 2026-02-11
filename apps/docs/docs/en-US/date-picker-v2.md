@@ -577,7 +577,7 @@ The basic day picker.
       v-model="myTime"
       type="datetimerange"
       value-format="yyyy-MM-dd HH:mm:ss"
-      format="yyyy-MM-dd"
+      format="yyyy-MM-dd HH:mm:ss"
       :range-separator="rangeCopy.to"
       :start-placeholder="rangeCopy.start"
       :end-placeholder="rangeCopy.end"
@@ -638,7 +638,7 @@ The basic day picker.
     <el-date-picker-v2
       v-model="myDateRange"
       type="daterange"
-      format="yyyy-MM-dd"
+      format="yyyy-MM-dd HH:mm:ss"
       value-format="yyyy-MM-dd HH:mm:ss"
       :range-separator="rangeCopy.to"
       :start-placeholder="rangeCopy.start"
