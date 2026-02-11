@@ -85,13 +85,13 @@ describe('MessageBox', () => {
       distinguishCancelAndClose: true,
     }, (action) => {
       msgAction = action
+    }).catch((action) => {
+      expect(action).to.equal('close')
+      expect(msgAction).to.equal('close')
+      done()
     })
     setTimeout(() => {
       document.querySelector('.el-message-box__close').click()
-      setTimeout(() => {
-        expect(msgAction).to.equal('close')
-        done()
-      }, 10)
     }, 10)
   })
 
@@ -209,13 +209,13 @@ describe('MessageBox', () => {
       message: '这是一段内容',
     }, (action) => {
       msgAction = action
+    }).catch((action) => {
+      expect(action).to.equal('cancel')
+      expect(msgAction).to.equal('cancel')
+      done()
     })
     setTimeout(() => {
       document.querySelector('.el-message-box__close').click()
-      setTimeout(() => {
-        expect(msgAction).to.equal('cancel')
-        done()
-      }, 10)
     }, 10)
   })
 

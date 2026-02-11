@@ -11,13 +11,13 @@
     "src"
   ],
   "dependencies": {
-    "@babel/core": "^7.28.6",
-    "algoliasearch": "^5.46.3",
+    "@babel/core": "^7.29.0",
+    "algoliasearch": "^5.48.0",
     "chokidar": "^5.0.0",
     "file-save": "^0.2.0",
     "json-templater": "^1.0.4",
     "postcss": "^8.5.6",
-    "transliteration": "^2.6.0",
+    "transliteration": "^2.6.1",
     "uppercamelcase": "^3.0.0"
   }
 }
