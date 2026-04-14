@@ -337,14 +337,22 @@ export default {
     },
 
     handleStartChange() {
-      this.emitModel('change')
+      const rangeComplete = this.hasFieldValue(this.startValue) && this.hasFieldValue(this.endValue)
+      const rangeCleared = !this.hasFieldValue(this.startValue) && !this.hasFieldValue(this.endValue)
+      if (rangeComplete || rangeCleared) {
+        this.emitModel('change')
+      }
       if (this.coerceValueToDate(this.startValue)) {
         this.focusEndInput()
       }
     },
 
     handleEndChange() {
-      this.emitModel('change')
+      const rangeComplete = this.hasFieldValue(this.startValue) && this.hasFieldValue(this.endValue)
+      const rangeCleared = !this.hasFieldValue(this.startValue) && !this.hasFieldValue(this.endValue)
+      if (rangeComplete || rangeCleared) {
+        this.emitModel('change')
+      }
     },
 
     handleStartFocus() {
@@ -523,9 +531,12 @@ export default {
         return dateA.getTime() - dateB.getTime()
       }
 
-      const comparator = role === 'start'
-        ? (date: Date) => comparisonDate && compareUnit(date, comparisonDate) > 0
-        : (date: Date) => comparisonDate && compareUnit(date, comparisonDate) < 0
+      // For the start role, do NOT disable dates after endValue.
+      // When the user picks a start date beyond the current end, handleStartInput
+      // will automatically clear endValue, so the panel should not block the pick.
+      const comparator = role === 'end'
+        ? (date: Date) => comparisonDate && compareUnit(date, comparisonDate) < 0
+        : null
 
       const optionDisabled = typeof disabledDate === 'function' ? disabledDate : null
 
@@ -536,7 +547,7 @@ export default {
           if (optionDisabled && optionDisabled(date)) {
             return true
           }
-          if (comparator(date)) {
+          if (comparator && comparator(date)) {
             return true
           }
           return false
