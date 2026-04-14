@@ -519,6 +519,201 @@ describe('DatePickerV2 manual input normalization', () => {
   })
 })
 
+describe('DatePickerV2 split range start picker disabledDate', () => {
+  function createInstance(propsData) {
+    const Constructor = Vue.extend(DateRangeSplit)
+    const vm = new Constructor({
+      propsData: {
+        type: 'daterange',
+        ...propsData,
+      },
+    })
+
+    vm.$mount()
+    return vm
+  }
+
+  it('start picker does not disable dates after endValue', () => {
+    const start = new Date(2026, 1, 24) // Feb 24
+    const end = new Date(2026, 3, 10) // Apr 10
+    const vm = createInstance({
+      value: [start, end],
+    })
+
+    const options = vm.buildPickerOptions('start')
+    // A date after endValue (e.g. Apr 14) should NOT be disabled for start picker
+    const futureDate = new Date(2026, 3, 14) // Apr 14
+    expect(options.disabledDate(futureDate)).to.be.false
+
+    vm.$destroy()
+  })
+
+  it('end picker still disables dates before startValue', () => {
+    const start = new Date(2026, 1, 24) // Feb 24
+    const end = new Date(2026, 3, 10) // Apr 10
+    const vm = createInstance({
+      value: [start, end],
+    })
+
+    const options = vm.buildPickerOptions('end')
+    // A date before startValue (e.g. Feb 1) should be disabled for end picker
+    const pastDate = new Date(2026, 1, 1) // Feb 1
+    expect(options.disabledDate(pastDate)).to.be.true
+
+    // A date after startValue should not be disabled
+    const validDate = new Date(2026, 2, 15) // Mar 15
+    expect(options.disabledDate(validDate)).to.be.false
+
+    vm.$destroy()
+  })
+
+  it('handleStartInput clears endValue when new start > end', () => {
+    const start = new Date(2026, 1, 24)
+    const end = new Date(2026, 3, 10)
+    const vm = createInstance({
+      value: [start, end],
+    })
+
+    const today = new Date(2026, 3, 14) // Apr 14, after endValue
+    vm.handleStartInput(today)
+
+    expect(vm.startValue).to.be.instanceof(Date)
+    expect(vm.startValue.getTime()).to.equal(today.getTime())
+    expect(vm.endValue).to.equal(null)
+
+    vm.$destroy()
+  })
+})
+
+describe('DatePickerV2 split range change event timing', () => {
+  function createInstance(propsData) {
+    const Constructor = Vue.extend(DateRangeSplit)
+    const vm = new Constructor({
+      propsData: {
+        type: 'daterange',
+        ...propsData,
+      },
+    })
+
+    vm.$mount()
+    return vm
+  }
+
+  it('does not emit change when only startValue is set', () => {
+    const vm = createInstance()
+    vm.startValue = new Date(2026, 3, 12)
+    vm.endValue = null
+
+    const changeSpy = sinon.spy()
+    vm.$on('change', changeSpy)
+
+    vm.handleStartChange()
+
+    expect(changeSpy.called).to.be.false
+
+    vm.$destroy()
+  })
+
+  it('emits change when both startValue and endValue are set', () => {
+    const vm = createInstance()
+    vm.startValue = new Date(2026, 3, 12)
+    vm.endValue = new Date(2026, 3, 15)
+
+    const changeSpy = sinon.spy()
+    vm.$on('change', changeSpy)
+
+    vm.handleStartChange()
+
+    expect(changeSpy.calledOnce).to.be.true
+    const payload = changeSpy.firstCall.args[0]
+    expect(payload).to.be.an('array')
+    expect(payload[0]).to.be.instanceof(Date)
+    expect(payload[1]).to.be.instanceof(Date)
+
+    vm.$destroy()
+  })
+
+  it('does not emit change from handleEndChange when startValue is empty', () => {
+    const vm = createInstance()
+    vm.startValue = null
+    vm.endValue = new Date(2026, 3, 15)
+
+    const changeSpy = sinon.spy()
+    vm.$on('change', changeSpy)
+
+    vm.handleEndChange()
+
+    expect(changeSpy.called).to.be.false
+
+    vm.$destroy()
+  })
+
+  it('emits change from handleEndChange when range is complete', () => {
+    const vm = createInstance()
+    vm.startValue = new Date(2026, 3, 12)
+    vm.endValue = new Date(2026, 3, 15)
+
+    const changeSpy = sinon.spy()
+    vm.$on('change', changeSpy)
+
+    vm.handleEndChange()
+
+    expect(changeSpy.calledOnce).to.be.true
+
+    vm.$destroy()
+  })
+
+  it('does not produce Invalid Date after clear then pick start only', async () => {
+    // Simulate: had range → cleared → pick start only
+    const start = new Date(2026, 3, 11)
+    const end = new Date(2026, 3, 12)
+    const vm = createInstance({
+      value: [start, end],
+    })
+
+    const inputSpy = sinon.spy()
+    const changeSpy = sinon.spy()
+    vm.$on('input', inputSpy)
+    vm.$on('change', changeSpy)
+
+    // Step 1: clear via singleClear (end clear button)
+    vm.handleEndInput(null)
+    vm.handleEndChange()
+    await vm.$nextTick()
+
+    expect(vm.startValue).to.equal(null)
+    expect(vm.endValue).to.equal(null)
+
+    // Step 2: pick start date only
+    const newStart = new Date(2026, 3, 12)
+    vm.handleStartInput(newStart)
+    vm.handleStartChange()
+    await vm.$nextTick()
+
+    expect(vm.startValue).to.be.instanceof(Date)
+    expect(vm.endValue).to.equal(null)
+
+    // Verify no Invalid Date in any emitted payload
+    for (let i = 0; i < inputSpy.callCount; i++) {
+      const payload = inputSpy.getCall(i).args[0]
+      if (Array.isArray(payload)) {
+        payload.forEach((val) => {
+          if (val instanceof Date) {
+            expect(Number.isNaN(val.getTime())).to.be.false
+          }
+        })
+      }
+    }
+
+    // change should NOT have been called for the partial pick
+    // (only for the clear which is a complete clear)
+    const changeCallsAfterClear = changeSpy.callCount
+    expect(changeCallsAfterClear).to.equal(1) // only the clear triggered change
+
+    vm.$destroy()
+  })
+})
+
 describe('DatePickerV2 date range panel helpers', () => {
   it('disables end time input when range is invalid', async () => {
     const Constructor = Vue.extend(DateRangePanel)
