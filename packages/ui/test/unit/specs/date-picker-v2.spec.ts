@@ -819,3 +819,54 @@ describe('DatePickerV2 date range panel helpers', () => {
     vm.$destroy()
   })
 })
+
+describe('DatePickerV2 today button visibility', () => {
+  it('hides today button when disabledDate includes today', async () => {
+    const Constructor = Vue.extend(DatePanel)
+    const vm = new Constructor().$mount()
+
+    const today = new Date()
+    vm.disabledDate = (date) => {
+      return date.getFullYear() === today.getFullYear()
+        && date.getMonth() === today.getMonth()
+        && date.getDate() === today.getDate()
+    }
+    vm.visible = true
+    await vm.$nextTick()
+
+    expect(vm.isTodayDisabled).to.be.true
+    const todayBtn = vm.$el.querySelector('.el-date-picker-v2__today-btn')
+    expect(todayBtn).to.be.null
+
+    vm.$destroy()
+  })
+
+  it('shows today button when disabledDate does not include today', async () => {
+    const Constructor = Vue.extend(DatePanel)
+    const vm = new Constructor().$mount()
+
+    vm.disabledDate = (date) => date.getFullYear() < 2000 // only disable old dates
+    vm.visible = true
+    await vm.$nextTick()
+
+    expect(vm.isTodayDisabled).to.be.false
+    const todayBtn = vm.$el.querySelector('.el-date-picker-v2__today-btn')
+    expect(todayBtn).to.exist
+
+    vm.$destroy()
+  })
+
+  it('shows today button when no disabledDate is set', async () => {
+    const Constructor = Vue.extend(DatePanel)
+    const vm = new Constructor().$mount()
+
+    vm.visible = true
+    await vm.$nextTick()
+
+    expect(vm.isTodayDisabled).to.be.false
+    const todayBtn = vm.$el.querySelector('.el-date-picker-v2__today-btn')
+    expect(todayBtn).to.exist
+
+    vm.$destroy()
+  })
+})

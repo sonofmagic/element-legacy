@@ -168,6 +168,10 @@ export default {
     todayLabel() {
       return this.t('el.datepicker.today') || 'Today'
     },
+
+    isTodayDisabled() {
+      return typeof this.disabledDate === 'function' && this.disabledDate(new Date())
+    },
   },
 
   watch: {
@@ -710,7 +714,7 @@ export default {
                   </ElSelect>
                 </div>
                 <button
-                  v-if="!showTime"
+                  v-if="!showTime && !isTodayDisabled"
                   type="button"
                   class="el-date-picker-v2__today-btn"
                   @click="selectToday"
