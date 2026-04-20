@@ -44,6 +44,11 @@ export default {
       default: 'daterange',
     },
     timeArrowControl: Boolean,
+    changeMode: {
+      type: String,
+      default: 'complete',
+      validator: (val: string) => ['complete', 'partial'].includes(val),
+    },
   },
 
   data() {
@@ -337,22 +342,14 @@ export default {
     },
 
     handleStartChange() {
-      const rangeComplete = this.hasFieldValue(this.startValue) && this.hasFieldValue(this.endValue)
-      const rangeCleared = !this.hasFieldValue(this.startValue) && !this.hasFieldValue(this.endValue)
-      if (rangeComplete || rangeCleared) {
-        this.emitModel('change')
-      }
+      this.emitModel('change')
       if (this.coerceValueToDate(this.startValue)) {
         this.focusEndInput()
       }
     },
 
     handleEndChange() {
-      const rangeComplete = this.hasFieldValue(this.startValue) && this.hasFieldValue(this.endValue)
-      const rangeCleared = !this.hasFieldValue(this.startValue) && !this.hasFieldValue(this.endValue)
-      if (rangeComplete || rangeCleared) {
-        this.emitModel('change')
-      }
+      this.emitModel('change')
     },
 
     handleStartFocus() {
@@ -448,7 +445,27 @@ export default {
       const endValue = applyDefaultTime
         ? this.applyDefaultTimeToValue(this.endValue, 'end')
         : this.endValue
-      const payload = hasStart || hasEnd ? [startValue ?? null, endValue ?? null] : null
+
+      const rangeComplete = hasStart && hasEnd
+      const rangeCleared = !hasStart && !hasEnd
+      const partial = hasStart !== hasEnd
+
+      // In 'complete' mode (default), only emit when range is complete or fully cleared.
+      // In 'partial' mode, also emit partial states like [date, null].
+      let payload: any
+      if (rangeComplete) {
+        payload = [startValue ?? null, endValue ?? null]
+      }
+      else if (rangeCleared) {
+        payload = null
+      }
+      else if (partial && this.changeMode === 'partial') {
+        payload = [startValue ?? null, endValue ?? null]
+      }
+      else {
+        // partial + complete mode → skip emit
+        return
+      }
 
       this.$emit('input', payload)
 

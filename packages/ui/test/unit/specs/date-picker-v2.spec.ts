@@ -320,7 +320,7 @@ describe('DatePickerV2 range shortcuts', () => {
     vm.$destroy()
   })
 
-  it('emits partial payload when only one side remains filled', () => {
+  it('does not emit input or change when only one side is filled', () => {
     const vm = createInstance()
     const start = new Date(2025, 0, 1)
     vm.startValue = start
@@ -333,12 +333,8 @@ describe('DatePickerV2 range shortcuts', () => {
 
     vm.emitModel('change')
 
-    expect(inputSpy.calledOnce).to.be.true
-    expect(changeSpy.calledOnce).to.be.true
-    const payload = inputSpy.firstCall.args[0]
-    expect(payload).to.be.an('array')
-    expect(payload[0]).to.equal(start)
-    expect(payload[1]).to.equal(null)
+    expect(inputSpy.called).to.be.false
+    expect(changeSpy.called).to.be.false
 
     vm.$destroy()
   })
@@ -709,6 +705,42 @@ describe('DatePickerV2 split range change event timing', () => {
     // (only for the clear which is a complete clear)
     const changeCallsAfterClear = changeSpy.callCount
     expect(changeCallsAfterClear).to.equal(1) // only the clear triggered change
+
+    vm.$destroy()
+  })
+
+  it('emits change on partial pick when changeMode is partial', () => {
+    const vm = createInstance({
+      changeMode: 'partial',
+    })
+    vm.startValue = new Date(2026, 3, 12)
+    vm.endValue = null
+
+    const changeSpy = sinon.spy()
+    vm.$on('change', changeSpy)
+
+    vm.handleStartChange()
+
+    expect(changeSpy.calledOnce).to.be.true
+    const payload = changeSpy.firstCall.args[0]
+    expect(payload).to.be.an('array')
+    expect(payload[0]).to.be.instanceof(Date)
+    expect(payload[1]).to.equal(null)
+
+    vm.$destroy()
+  })
+
+  it('does not emit change on partial pick when changeMode is complete (default)', () => {
+    const vm = createInstance()
+    vm.startValue = new Date(2026, 3, 12)
+    vm.endValue = null
+
+    const changeSpy = sinon.spy()
+    vm.$on('change', changeSpy)
+
+    vm.handleStartChange()
+
+    expect(changeSpy.called).to.be.false
 
     vm.$destroy()
   })
