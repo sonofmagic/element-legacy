@@ -1,5 +1,13 @@
 # element-legacy
 
+## 1.1.7
+
+### Patch Changes
+
+- 🐛 **fix(datePickerV2): disabledDate 包含今天则移除今天按钮** [#21](https://github.com/sonofmagic/element-legacy/pull/21) by @daguanren21
+
+- 🐛 **fix(datePickerV2): 修复emitModel 默认行为和datePicker行为保持一致** [#23](https://github.com/sonofmagic/element-legacy/pull/23) by @daguanren21
+
 ## 1.1.6
 
 ### Patch Changes
